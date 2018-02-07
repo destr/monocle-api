@@ -1207,23 +1207,58 @@ API для получения радиолокационных данных. В�
             "count": 4,
             "items": [
                 {
-                    "id": 1,
-                    "title": "Обзор 50 км УМ 0-90°",
-                    "duration": "PT1H10M10S",
-                    "mode": "circular",
-                    "distance": 25,
-                    "elevation_change_azimuth": 0,
-                    "left_border_azimuth": 0,
-                    "right_border_azimuth": 0,
-                    "elevation_program": [{
-                      "value": 1
-                    }],
-                    "blocking_program": [
-                      {
-                        "start": 0,
-                        "end": 0
-                      }
-                    ]
+                    "id": 0,
+                    "description": "Сканирование пространства от 0 до 50° по углу места для получения детализированных данных о сдвигах ветра, турбулентности масштаба дальности 50 км",
+                    "name": "СЕКТОР 50 км УМ 0-50° Аз45° шир. 60°",
+                    "_comment_program": "Массив позиций по УМ",
+                    "program": {
+                        "anglesArray": [
+                            0,
+                            0.791015625,
+                            1.58203125,
+                            2.373046875,
+                            3.1640625,
+                            4.04296875,
+                            4.833984375,
+                            5.625,
+                            6.416015625,
+                            7.20703125,
+                            7.998046875,
+                            8.7890625,
+                            9.580078125,
+                            10.37109375,
+                            12.392578125,
+                            14.4140625,
+                            16.34765625,
+                            18.369140625,
+                            20.390625,
+                            22.412109375,
+                            25.400390625,
+                            28.388671875,
+                            31.376953125,
+                            34.453125,
+                            37.44140625,
+                            40.4296875,
+                            43.41796875,
+                            46.40625,
+                            49.39453125
+                        ],
+                        "_comment_avAzimuthChange": "Azimuth at which the change of angle in the vertical",
+                        "avAzimuthChange": 0,
+                        "_comment_azimuthScanSpeed": "Speed scanning in azimuth",
+                        "azimuthScanSpeed": 23.820384889522455,
+                        "_comment_blankSectorsArray": "Массив секторов блокировки",
+                        "blankSectorsArray": [
+                        ],
+                        "_comment_mode": "Режим работы МРЛС",
+                        "mode": 5,
+                        "_comment_rasterLeftAzimuth": "left border of a raster review",
+                        "rasterLeftAzimuth": 15.029296875,
+                        "_comment_rasterRightAzimuth": "right border of a raster review",
+                        "rasterRightAzimuth": 74.970703125,
+                        "_comment_scopeRange": "Current scope range",
+                        "scopeRange": 50
+                    }
                 },
                 {
                     "id": 2,
@@ -1323,7 +1358,7 @@ API для получения радиолокационных данных. В�
 + Response 204
 
 + Response 409
-        
+
         {
             "count": 2,
             "station_ids": [1,4]
@@ -1796,18 +1831,28 @@ API для получения радиолокационных данных. В�
             {
                 "arrowwidth": 2,
                 "filterSMAOn": true,
+                "_comment_horWSBuilderStep": "гор. шаг построения",
                 "horWSBuilderStep": 500,
+                "_comment_kLongRangeSizeOverlapH": "коэффицинент перекрытия для области построения вектора для большой дальности в гор. пл.",
                 "kLongRangeSizeOverlapH": 3.75,
+                "_comment_kLongRangeSizeOverlapV": "коэффицинент перекрытия для области построения вектора для большой дальности в верт. пл.",
                 "kLongRangeSizeOverlapV": 2.0,
+                "_comment_kMediumRangeSizeOverlapH": "коэффицинент перекрытия для области построения вектора для средней дальности в гор. пл.",
                 "kMediumRangeSizeOverlapH": 3.25,
+                "_comment_kMediumRangeSizeOverlapV": "коэффицинент перекрытия для области построения вектора для средней дальности в верт. пл.",
                 "kMediumRangeSizeOverlapV": 1.75,
+                "_comment_kShortRangeSizeOverlapH": "коэффицинент перекрытия для области построения вектора для малой дальности в гор. пл.",
                 "kShortRangeSizeOverlapH": 2.0,
+                "_comment_kShortRangeSizeOverlapV": "коэффицинент перекрытия для области построения вектора для малой дальности в верт. пл.",
                 "kShortRangeSizeOverlapV": 1.5,
+                "_comment_": "",
                 "longRAzCellFillThreshold": 15,
                 "longRAzCellThreshold": 17,
                 "maxCircleWSAltitude": 3000,
                 "maxCircleWSRange": 50000,
+                "_comment_maxRastrWSAltitude": "максимальная высота расчета",
                 "maxRastrWSAltitude": 3000,
+                "_comment_maxRastrWSRange": "максимальная дальность расчета",
                 "maxRastrWSRange": 50000,
                 "mediumRAzCellFillThreshold": 17,
                 "mediumRAzCellThreshold": 23,
@@ -1816,10 +1861,14 @@ API для получения радиолокационных данных. В�
                 "sizearrowvvf": 30,
                 "stepbuildhor": 8000,
                 "stepbuildhorSector": 8000,
+                "_comment_": "",
                 "stepbuildvert": 1000,
                 "stepbuildvertSector": 1000,
+                "_comment_thresholdDeltaVelosity": "порог для определения валидности вектора по относительной погрешности",
                 "thresholdDeltaVelosity": 0.0001,
+                "_comment_thresholdEpcilonVelosity": "порог для определения валидности вектора по абсолютной погрешности",
                 "thresholdEpcilonVelosity": 0.001,
+                "_comment_verWSBuilderStep": "верт. шаг построения",
                 "verWSBuilderStep": 500
             },
             "verticalsectionmap":
