@@ -1781,57 +1781,59 @@ Cправочник типов конических сечений для СМР
 
 + Response 200 (application/json)
 
-        {
-            "velocityvectormap":
-            {
-                "arrowwidth": 2,
-                "filterSMAOn": true,
-                "_comment_horWSBuilderStep": "гор. шаг построения",
-                "horWSBuilderStep": 500,
-                "_comment_kLongRangeSizeOverlapH": "коэффицинент перекрытия для области построения вектора для большой дальности в гор. пл.",
-                "kLongRangeSizeOverlapH": 3.75,
-                "_comment_kLongRangeSizeOverlapV": "коэффицинент перекрытия для области построения вектора для большой дальности в верт. пл.",
-                "kLongRangeSizeOverlapV": 2.0,
-                "_comment_kMediumRangeSizeOverlapH": "коэффицинент перекрытия для области построения вектора для средней дальности в гор. пл.",
-                "kMediumRangeSizeOverlapH": 3.25,
-                "_comment_kMediumRangeSizeOverlapV": "коэффицинент перекрытия для области построения вектора для средней дальности в верт. пл.",
-                "kMediumRangeSizeOverlapV": 1.75,
-                "_comment_kShortRangeSizeOverlapH": "коэффицинент перекрытия для области построения вектора для малой дальности в гор. пл.",
-                "kShortRangeSizeOverlapH": 2.0,
-                "_comment_kShortRangeSizeOverlapV": "коэффицинент перекрытия для области построения вектора для малой дальности в верт. пл.",
-                "kShortRangeSizeOverlapV": 1.5,
-                "_comment_": "",
-                "longRAzCellFillThreshold": 15,
-                "longRAzCellThreshold": 17,
-                "maxCircleWSAltitude": 3000,
-                "maxCircleWSRange": 50000,
-                "_comment_maxRastrWSAltitude": "максимальная высота расчета",
-                "maxRastrWSAltitude": 3000,
-                "_comment_maxRastrWSRange": "максимальная дальность расчета",
-                "maxRastrWSRange": 50000,
-                "mediumRAzCellFillThreshold": 17,
-                "mediumRAzCellThreshold": 23,
-                "shortRAzCellFillThreshold": 15,
-                "shortRAzCellThreshold": 20,
-                "sizearrowvvf": 30,
-                "stepbuildhor": 8000,
-                "stepbuildhorSector": 8000,
-                "_comment_": "",
-                "stepbuildvert": 1000,
-                "stepbuildvertSector": 1000,
-                "_comment_thresholdDeltaVelosity": "порог для определения валидности вектора по относительной погрешности",
-                "thresholdDeltaVelosity": 0.0001,
-                "_comment_thresholdEpcilonVelosity": "порог для определения валидности вектора по абсолютной погрешности",
-                "thresholdEpcilonVelosity": 0.001,
-                "_comment_verWSBuilderStep": "верт. шаг построения",
-                "verWSBuilderStep": 500
+        { 
+            "_comment_vector_velocity_field": "",
+            "vector_velocity_field": { 
+                "_comment_circular_horizontal_pitch": "Шаг по горизонтали в режиме ОБЗОР",
+                "circular_horizontal_pitch": 100, 
+                "_comment_circular_vertical_pitch": "Шаг по вертикали в режиме ОБЗОР",
+                "circular_vertical_pitch": 100, 
+                "_comment_sector_horizontal_pitch": "Шаг по горизонтали в режиме СЕКТОР",
+                "sector_horizontal_pitch": 100, 
+                "_comment_sector_vertical_pitch": "Шаг по вертикали в режиме СЕКТОР",
+                "sector_vertical_pitch": 100 
+            }, 
+            "_comment_wind_shear_field": "Поля сдвигов ветра",
+            "wind_shear_field": { 
+                "_comment_circular_max_height": "Максимальная высота в режиме СЕКТОР",
+                "circular_max_height": 100, 
+                "_comment_circular_max_distance": "Максимальная дальность в режиме СЕКТОР",
+                "circular_max_distance": 100, 
+                "_comment_sector_max_height": "Максимальная высота в режиме ОБЗОР",
+                "sector_max_height": 100, 
+                "_comment_sector_max_distance": "Максимальная дальность в режиме ОБЗОР",
+                "sector_max_distance": 100, 
+                "_comment_horizontal_pitch": "Шаг по вертикали",
+                "horizontal_pitch": 100, 
+                "_comment_vertical_pitch": "Шаг по горизонтали",
+                "vertical_pitch": 100 
+            }, 
+            "_comment_atmospheric_process": "Карты МЯ ",
+            "atmospheric_process": { 
+                "_comment_cell_size": "Размер ячейки",
+                "cell_size": 150, 
+                "_comment_line_generalization": "Степень генерализации контуров",
+                "line_generalization": 3, 
+                "_comment_line_expansion": "Величины расширения контуров",
+                "line_expansion": 3 
+            }, 
+            "_comment_vector": "Размеры вектора",
+            "vector": { 
+                "size": 5, 
+                "thickness": 3 
+            }, 
+            "_comment_vertical_section": "Вертикальное сечение",
+            "vertical_section": { 
+                "horizontal_pitch": 100, 
+                "vertical_pitch": 100 
+            }, 
+            "_comment_accumulated_precipitation": "Размера ячейки карты накопленных осадков",
+            "accumulated_precipitation": { 
+                "cell_size": 100 
             },
-            "verticalsectionmap":
-            {
-                "automaxheight": 0,
-                "maxheight": 7.5,
-                "stepHBuildVSection": 100,
-                "stepSBuildVSection": 100
+            "_comment_vertically_integrated_liquid": "Размер ячейки построения карты вертикально интегрированной водности",
+            "vertically_integrated_liquid": { 
+                "cell_size": 100
             }
         }
 
