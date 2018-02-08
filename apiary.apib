@@ -1286,26 +1286,63 @@ Cправочник типов конических сечений для СМР
 
 + Response 200 (application/json)
 
-            {
-                "id": 1,
-                "title": "Обзор 50 км УМ 0-90°",
-                "duration": "PT0H10M0S",
-                "mode": "circular",
-                "distance": 25,
-                "elevation_change_azimuth": 0,
-                "left_border_azimuth": 0,
-                "right_border_azimuth": 0,
-                "elevation_program": [{
-                  "value": 1
-                }],
-                "blocking_program": [
-                  {
-                    "start": 0,
-                    "end": 0
-                  }
-                ]
+        {
+            "id": 0,
+            "index": "sector_50_50", 
+            "description": "Сканирование пространства от 0 до 50° по углу места для получения детализированных данных о сдвигах ветра, турбулентности масштаба дальности 50 км",
+            "name": "СЕКТОР 50 км УМ 0-50° Аз45° шир. 60°",
+            "_comment_program": "Массив позиций по УМ",
+            "program": {
+                "anglesArray": [
+                    0,
+                    0.791015625,
+                    1.58203125,
+                    2.373046875,
+                    3.1640625,
+                    4.04296875,
+                    4.833984375,
+                    5.625,
+                    6.416015625,
+                    7.20703125,
+                    7.998046875,
+                    8.7890625,
+                    9.580078125,
+                    10.37109375,
+                    12.392578125,
+                    14.4140625,
+                    16.34765625,
+                    34.453125,
+                    37.44140625,
+                    40.4296875,
+                    43.41796875,
+                    46.40625,
+                    49.39453125
+                ],
+                "_comment_avAzimuthChange": "Azimuth at which the change of angle in the vertical",
+                "avAzimuthChange": 0,
+                "_comment_azimuthScanSpeed": "Speed scanning in azimuth",
+                "azimuthScanSpeed": 23.820384889522455,
+                "_comment_blankSectorsArray": "Массив секторов блокировки, всегда четный",
+                "blankSectorsArray": [
+                    18.369140625,
+                    20.390625,
+                    22.412109375,
+                    25.400390625,
+                    28.388671875,
+                    31.376953125,
+                ],
+                "_comment_mode": "Режим работы МРЛС (2 - Круговой Обзор ФМ, 3 - Растровый Обзов ФМ, 4 - Круговой Обзор, 5 - Растровый Обзор",
+                "mode": 5,
+                "_comment_rasterLeftAzimuth": "left border of a raster review",
+                "rasterLeftAzimuth": 15.029296875,
+                "_comment_rasterRightAzimuth": "right border of a raster review",
+                "rasterRightAzimuth": 74.970703125,
+                "_comment_scopeRange": "Current scope range",
+                "scopeRange": 50,
+                "date": "2018-01-30T17:25:52+00:00"
             }
-            
+        }
+
 + Response 404
 
 ### Удалить программу [DELETE]
@@ -1326,165 +1363,170 @@ Cправочник типов конических сечений для СМР
 + Request (application/json)
 
         {
-            "title": "Сектор 75 км 60-30°",
-            "duration": "PT0H18M0S",
-            "mode": "sector",
-            "distance": 150,
-            "elevation_change_azimuth": 0,
-            "left_border_azimuth": 0,
-            "right_border_azimuth": 0,
-            "elevation_program": [{
-              "value": 1
-            }],
-            "blocking_program": [
-              {
-                "start": 0,
-                "end": 0
-              }
-            ]
+            "id": 0,
+            "index": "sector_50_50", 
+            "description": "Сканирование пространства от 0 до 50° по углу места для получения детализированных данных о сдвигах ветра, турбулентности масштаба дальности 50 км",
+            "name": "СЕКТОР 50 км УМ 0-50° Аз45° шир. 60°",
+            "_comment_program": "Массив позиций по УМ",
+            "program": {
+                "anglesArray": [
+                    0,
+                    0.791015625,
+                    1.58203125,
+                    2.373046875,
+                    3.1640625,
+                    4.04296875,
+                    4.833984375,
+                    5.625,
+                    6.416015625,
+                    7.20703125,
+                    7.998046875,
+                    8.7890625,
+                    9.580078125,
+                    10.37109375,
+                    12.392578125,
+                    14.4140625,
+                    16.34765625,
+                    34.453125,
+                    37.44140625,
+                    40.4296875,
+                    43.41796875,
+                    46.40625,
+                    49.39453125
+                ],
+                "_comment_avAzimuthChange": "Azimuth at which the change of angle in the vertical",
+                "avAzimuthChange": 0,
+                "_comment_azimuthScanSpeed": "Speed scanning in azimuth",
+                "azimuthScanSpeed": 23.820384889522455,
+                "_comment_blankSectorsArray": "Массив секторов блокировки, всегда четный",
+                "blankSectorsArray": [
+                    18.369140625,
+                    20.390625,
+                    22.412109375,
+                    25.400390625,
+                    28.388671875,
+                    31.376953125,
+                ],
+                "_comment_mode": "Режим работы МРЛС (2 - Круговой Обзор ФМ, 3 - Растровый Обзов ФМ, 4 - Круговой Обзор, 5 - Растровый Обзор",
+                "mode": 5,
+                "_comment_rasterLeftAzimuth": "left border of a raster review",
+                "rasterLeftAzimuth": 15.029296875,
+                "_comment_rasterRightAzimuth": "right border of a raster review",
+                "rasterRightAzimuth": 74.970703125,
+                "_comment_scopeRange": "Current scope range",
+                "scopeRange": 50,
+                "date": "2018-01-30T17:25:52+00:00"
+            }
         }
 
 + Response 422 (application/json)
 
     + Body
 
-            {
-                "title": "Невалидное значение",
-                "duration": "Невалидное значение",
+        {
+            "id": 0,
+            "index": "Невалидное значение",
+            "_comment_program": "Массив позиций по УМ",
+            "program": {
+                "avAzimuthChange": "Невалидное значение",
+                "azimuthScanSpeed": "Невалидное значение",
                 "mode": "Невалидное значение",
-                "distance": "Невалидное значение",
-                "elevation_change_azimuth": "Невалидное значение",
-                "left_border_azimuth": "Невалидное значение",
-                "right_border_azimuth": "Невалидное значение",
-                "elevation_program": {
-                    "common": "Невалидное значение",
-                    "items": [{
-                        "index": 0,
-                        "value": "Невалидное значение"
-                    }]
-                },
-                "blocking_program": {
-                    "common": "",
-                    "items": [{
-                        "index": 0,
-                        "start": "Невалидное значение",
-                        "end": "Невалидное значение"
-                    }]
-                }
+                "rasterLeftAzimuth": "Невалидное значение",
+                "rasterRightAzimuth": "Невалидное значение",
+                "scopeRange": "Невалидное значение"
             }
-            
+        }
+
 + Response 201 (application/json)
-
-    + Body
-
-            {
-                "id": 4,
-                "title": "Сектор 75 км 60-30°",
-                "duration": "PT0H18M0S",
-                "mode": "sector",
-                "distance": 150,
-                "elevation_change_azimuth": 0,
-                "left_border_azimuth": 0,
-                "right_border_azimuth": 0,
-                "elevation_program": [{
-                  "value": 1
-                }],
-                "blocking_program": [
-                  {
-                    "start": 0,
-                    "end": 0
-                  }
-                ]
-            }
-
-## Обновить программу [/program]
-
-Редактирование программы (для всей АС СМРЛП)
 
 ### Обновить программу [PUT]
 
 + Request (application/json)
 
         {
-            "id": 1,
-            "title": "Обзор 50 км УМ 0-90°",
-            "duration": "PT0H10M0S",
-            "mode": "circular",
-            "distance": 25,
-            "elevation_change_azimuth": 0,
-            "left_border_azimuth": 0,
-            "right_border_azimuth": 0,
-            "elevation_program": [{
-              "value": 1
-            }],
-            "blocking_program": [
-              {
-                "start": 0,
-                "end": 0
-              }
-            ]
+            "id": 0,
+            "index": "sector_50_50", 
+            "description": "Сканирование пространства от 0 до 50° по углу места для получения детализированных данных о сдвигах ветра, турбулентности масштаба дальности 50 км",
+            "name": "СЕКТОР 50 км УМ 0-50° Аз45° шир. 60°",
+            "_comment_program": "Массив позиций по УМ",
+            "program": {
+                "anglesArray": [
+                    0,
+                    0.791015625,
+                    1.58203125,
+                    2.373046875,
+                    3.1640625,
+                    4.04296875,
+                    4.833984375,
+                    5.625,
+                    6.416015625,
+                    7.20703125,
+                    7.998046875,
+                    8.7890625,
+                    9.580078125,
+                    10.37109375,
+                    12.392578125,
+                    14.4140625,
+                    16.34765625,
+                    34.453125,
+                    37.44140625,
+                    40.4296875,
+                    43.41796875,
+                    46.40625,
+                    49.39453125
+                ],
+                "_comment_avAzimuthChange": "Azimuth at which the change of angle in the vertical",
+                "avAzimuthChange": 0,
+                "_comment_azimuthScanSpeed": "Speed scanning in azimuth",
+                "azimuthScanSpeed": 23.820384889522455,
+                "_comment_blankSectorsArray": "Массив секторов блокировки, всегда четный",
+                "blankSectorsArray": [
+                    18.369140625,
+                    20.390625,
+                    22.412109375,
+                    25.400390625,
+                    28.388671875,
+                    31.376953125,
+                ],
+                "_comment_mode": "Режим работы МРЛС (2 - Круговой Обзор ФМ, 3 - Растровый Обзов ФМ, 4 - Круговой Обзор, 5 - Растровый Обзор",
+                "mode": 5,
+                "_comment_rasterLeftAzimuth": "left border of a raster review",
+                "rasterLeftAzimuth": 15.029296875,
+                "_comment_rasterRightAzimuth": "right border of a raster review",
+                "rasterRightAzimuth": 74.970703125,
+                "_comment_scopeRange": "Current scope range",
+                "scopeRange": 50,
+                "date": "2018-01-30T17:25:52+00:00"
+            }
         }
 
 + Response 200 (application/json)
 
-    + Body
-
-            {
-                "id": 1,
-                "title": "Обзор 50 км УМ 0-90°",
-                "duration": "PT0H10M0S",
-                "mode": "circular",
-                "distance": 25,
-                "elevation_change_azimuth": 0,
-                "left_border_azimuth": 0,
-                "right_border_azimuth": 0,
-                "elevation_program": [{
-                  "value": 1
-                }],
-                "blocking_program": [
-                  {
-                    "start": 0,
-                    "end": 0
-                  }
-                ]
-            }
-            
 + Response 422 (application/json)
 
     + Body
 
-            {
-                "title": "Невалидное значение",
-                "duration": "Невалидное значение",
+        {
+            "id": 0,
+            "index": "Невалидное значение",
+            "_comment_program": "Массив позиций по УМ",
+            "program": {
+                "avAzimuthChange": "Невалидное значение",
+                "azimuthScanSpeed": "Невалидное значение",
                 "mode": "Невалидное значение",
-                "distance": "Невалидное значение",
-                "elevation_change_azimuth": "Невалидное значение",
-                "left_border_azimuth": "Невалидное значение",
-                "right_border_azimuth": "Невалидное значение",
-                "elevation_program": {
-                    "common": "Невалидное значение",
-                    "items": [{
-                        "index": 0,
-                        "value": "Невалидное значение"
-                    }]
-                },
-                "blocking_program": {
-                    "common": "",
-                    "items": [{
-                        "index": 0,
-                        "start": "Невалидное значение",
-                        "end": "Невалидное значение"
-                    }]
-                }
+                "rasterLeftAzimuth": "Невалидное значение",
+                "rasterRightAzimuth": "Невалидное значение",
+                "scopeRange": "Невалидное значение"
             }
+        }
 
 + Response 409
-        
+
         {
             "count": 2,
             "station_ids": [1,4]
         }
-        
+
 + Response 404    
 
 ## Журнал событий [/station_log/list{?type}{?station}{?from}{?to}{?message}{?limit}{?offset}]
