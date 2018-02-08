@@ -710,88 +710,65 @@ Cправочник типов конических сечений для СМР
 
 + Response 200 (application/json)
 
-            {
-                "count": 2,
-                "items": 
-                    [
-                        {
-                            "id": 1,
-                            "program": {
-                                "id": 2,
-                                "title": "Обзор 50 км УМ 0-90°",
-                                "duration": "PT0H10M0S"
-                            },
-                            "start": "20050809T183142"
-                        },
-                        {
-                            "id": 2,
-                            "program": {
-                                "id": 3,
-                                "title": "Сектор 50 км 60-30°",
-                                "duration": "PT0H12M0S"
-                            },
-                            "start": "20050809T183142"
-                        }
-                    ]
-            }
+        {
+            "count": 2,
+            "items": 
+            [
+                {
+                    "id": 0,
+                    "program_id": 0,
+                    "date": "2018-01-30T17:30:46+00:00"
+                },
+                {
+                    "id": 1,
+                    "program_id": 2,
+                    "date": "2018-01-30T17:50:46+00:00"
+                }
+            ]
+        }
 + Response 409
 
 ### Обновить расписание СМРЛП [PUT]
 
 + Request (application/json)
 
-        [
-            {
-                "id": 1,
-                "program_id": 2,
-                "start": "20050809T183142"
-            },
-            {
-                "id": 2,
-                "program_id": 3,
-                "start": "20050809T183142"
-            }
-        ]
+        {
+            "count": 2,
+            "items": 
+            [
+                {
+                    "id": 0,
+                    "program_id": 1,
+                    "date": "2018-01-30T12:30:46+00:00"
+                },
+                {
+                    "id": 1,
+                    "program_id": 3,
+                    "date": "2018-01-30T12:50:46+00:00"
+                }
+            ]
+        }
 
 + Response 200 (application/json)
 
-            {
-                "count": 5,
-                "items":
-                    [
-                        {
-                            "id": 1,
-                            "program": {
-                                "id": 2,
-                                "title": "Обзор 50 км УМ 0-90°",
-                                "duration": "PT0H10M0S"
-                            },
-                            "start": "20050809T183142"
-                        },
-                        {
-                            "id": 2,
-                            "program": {
-                                "id": 3,
-                                "title": "Сектор 50 км 60-30°",
-                                "duration": "PT0H12M0S"
-                            },
-                            "start": "20050809T183142"
-                        }
-                    ]
-            }
-
 + Response 422
 
-        [
-            {
-                "index": 0,
-                "start": "Программа полностью не выполняется. Измените время начала или поменяйте программу."
-            },
-            {
-                "index": 1,
-                "program_id": "Указанная программа не найдена."
-            }
-        ]
+        {
+            "count": 2,
+            "items": 
+            [
+                {
+                    "id": 0,
+                    "program_id": "Указанная программа не найдена.",
+                    "date": "2018-01-30T17:30:46+00:00"
+                },
+                {
+                    "id": 1,
+                    "program_id": 2,
+                    "date": "Чоо-то не так с этим временем"
+                }
+            ]
+        }
 
 + Response 409
 
@@ -841,6 +818,7 @@ Cправочник типов конических сечений для СМР
 + Response 200 (application/json)
 
             {
+                "_comment_record_local_reflection_map_duration": "Оно тут оообще нужно?"
                 "record_local_reflection_map_duration": "PT0H12M0S"
             }
 
@@ -874,26 +852,6 @@ Cправочник типов конических сечений для СМР
 ### Запустить [POST]
 
 + Response 200 (application/json)
-
-            {
-                "id": 2,
-                "title": "Сектор 50 км 60-30°",
-                "duration": "PT0H12M0S",
-                "mode": "sector",
-                "distance": 50,
-                "elevation_change_azimuth": 0,
-                "left_border_azimuth": 0,
-                "right_border_azimuth": 0,
-                "elevation_program": [{
-                  "value": 1
-                }],
-                "blocking_program": [
-                  {
-                    "start": 0,
-                    "end": 0
-                  }
-                ]
-            }
 
 + Response 409
 
