@@ -888,12 +888,13 @@ Cправочник типов конических сечений для СМР
 
 + Response 404
 
-## Данные метео [/station/{id}/nams_data]
+## Данные метео [/station/{id}/nams_data{?date}]
 
 Получение данных от метедатчиков СМРЛП (сортированные)
 
 + Parameters
     + id (number) - ID СМРЛП
+    * date - Дата запроса данных (если не указана, то возвращается последние метеоданные)
 
 ### Получить [GET]
 
@@ -908,84 +909,50 @@ Cправочник типов конических сечений для СМР
             "temp": "-34.5"
         }
 
-## Получение данных метеостатистики [/station/{id}/meteo_stat{?from}{?to}]
+## Получение данных метеостатистики [/station/{id}/meteo_stat{?date}]
 
 Получение данных метеостатистики для обзоров (сортированные)
 
 + Parameters
     + id (number) - ID СМРЛП
-    * from - Начальный период поиска (если не указан, то возвращается последняя метеостатистика)
-    * to - Конечный период поиска (если не указан, то возвращается последняя метеостатистика)
+    * date - Дата запроса данных (если не указана, то возвращается последняя метеостатистика)
 
 ### Получить [GET]
 
 + Response 200 (application/json)
 
         {
-            "count": 2,
-            "items": [
-                {
-                    // скорость перемещения облачных облазований
-                    "velocityMOAbs": 25,
-                    // направление перемещения облачных облазований
-                    "velocityMOAz": 110,
-                    // максимальная верхняя граница облачности
-                    "altitudeMaxMO": 5600,
-                    // минимальная нижняя граница радиоэха
-                    "altitudeMinRefl": 700,
-                    // максимальный сдвиг ветра горизонтальный
-                    "maxWSh": 198.096,
-                    // минимальнай сдвиг ветра горизонтальный
-                    "minWSh": 0.0367296,
-                    // максимальный сдвиг ветра верт.
-                    "maxWSv": 0,
-                    // минимальнай сдвиг ветра верт.
-                    "minWSv": 1.79769e+308,
-                    // максимальная турбулентность
-                    "maxEDR": 0,
-                    // минимальная турбулентность
-                    "minEDR": 0,
-                    // максимальная интенсинвность приземных осадков
-                    "maxGroundRflI": 4.72745,
-                    // минимальная интенсинвность приземных осадков
-                    "minGroundRflI": 0.00308279,
-                    // максимальный класс метеоявлений
-                    "maxWeatherClass": 12,
-                    // минимальный класс метеоявлений
-                    "minWeatherClass": 1,
-                    // множество обнаруженных МЯ с АВТОсортировкой значений по возрастанию
-                    "wpset": [
-                        1,
-                        6,
-                        9,
-                        12
-                    ],
-                    "date": "2018-01-30T17:25:52+00:00"
-                },
-                {
-                    "velocityMOAbs": 20,
-                    "velocityMOAz": 100,
-                    "altitudeMaxMO": 5700,
-                    "altitudeMinRefl": 600,
-                    "maxWSh": 271.809,
-                    "minWSh": 0.0370822,
-                    "maxWSv": 0,
-                    "minWSv": 1.79769e+308,
-                    "maxEDR": 0,
-                    "minEDR": 0,
-                    "maxGroundRflI": 5.03446,
-                    "minGroundRflI": 0.00308279,
-                    "maxWeatherClass": 12,
-                    "minWeatherClass": 1,
-                    "wpset": [
-                        1,
-                        6,
-                        9,
-                        12
-                    ],
-                    "date": "2018-01-30T17:30:46+00:00"
-                }
-            ]
+            "_comment_velocityMOAbs": "скорость перемещения облачных облазований",
+            "velocityMOAbs": 25,
+            "_comment_velocityMOAz": "направление перемещения облачных облазований",
+            "velocityMOAz": 110,
+            "_comment_altitudeMaxMO": "максимальная верхняя граница облачности",
+            "altitudeMaxMO": 5600,
+            "_comment_altitudeMinRefl": "минимальная нижняя граница радиоэха",
+            "altitudeMinRefl": 700,
+            "_comment_maxWSh": "максимальный сдвиг ветра горизонтальный",
+            "maxWSh": 198.096,
+            "_comment_minWSh": "минимальнай сдвиг ветра горизонтальный",
+            "minWSh": 0.0367296,
+            "_comment_maxWSv": "максимальный сдвиг ветра верт.",
+            "maxWSv": 0,
+            "_comment_minWSv": "минимальнай сдвиг ветра верт.",
+            "minWSv": 1.79769e+308,
+            "_comment_maxEDR": "максимальная турбулентность",
+            "maxEDR": 0,
+            "_comment_minEDR": "минимальная турбулентность",
+            "minEDR": 0,
+            "_comment_maxGroundRflI": "максимальная интенсинвность приземных осадков",
+            "maxGroundRflI": 4.72745,
+            "_comment_minGroundRflI": "минимальная интенсинвность приземных осадков",
+            "minGroundRflI": 0.00308279,
+            "_comment_maxWeatherClass": "максимальный класс метеоявлений",
+            "maxWeatherClass": 12,
+            "_comment_minWeatherClass": "минимальный класс метеоявлений",
+            "minWeatherClass": 1,
+            "_comment_max_wp_id": "максимальное МЯ",
+            "max_wp_id": 12,
+            "date": "2018-01-30T17:25:52+00:00"
         }
 
 ## Список архивных обзоров [/station/{id}/archive_product_list]
@@ -1031,16 +998,10 @@ Cправочник типов конических сечений для СМР
 + Response 200 (application/json)
 
         {
-            "count": 1, 
-            "items": 
-                [
-                    {
-                        "date": "2017-12-28T08:00:49+00:00", 
-                        "type": "png", 
-                        "params": {"radius": 100, "pixel_size": 1000, "image_size": 200}, 
-                        "url": "http://monocle.interlike.tech/wpcell.png"
-                    }
-                ]
+            "date": "2017-12-28T08:00:49+00:00", 
+            "type": "png", 
+            "params": {"radius": 100, "cell_size": 1000, "image_size": 200}, 
+            "url": "/rlp/0/?img=monocle-autodor-node-001_2018-01-30_17-25-52_cs-dbz-cappi-100-120-1000.png"
         }
 
 ## Получение КС [/station/{id}/cs/{?type}/{?cs_id}{?indicator}{?altitude}{?date}{?cell_size}{?radius}{?angle}{?interval}]
@@ -1067,11 +1028,7 @@ Cправочник типов конических сечений для СМР
         {
             "date": "2018-01-30T17:25:52+00:00",
             "type": "png",
-            "params": {
-                "radius": 100,
-                "pixel_size": 1000,
-                "image_size": 200
-            },
+            "params": {"radius": 100, "cell_size": 1000, "image_size": 200},
             "url": "/rlp/0/?img=monocle-autodor-node-001_2018-01-30_17-25-52_cs-dbz-cappi-100-120-1000.png"
         }
 
