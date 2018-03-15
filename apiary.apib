@@ -377,18 +377,7 @@ Cправочник типов конических сечений для СМР
 + Response 200 (application/json)
 
             {
-                "id": 3,
-                "antenna": {
-                    // Номер канала излучения МРЛС
-                    "channel_id": 2,
-                    // Азимут
-                    "azimuth": 60,
-                    // Угол места
-                    "tilt": 16
-                },
                 "calibration": {
-                    // Поправка на север
-                    "azimuth_north_fix": 0,
                     "cloud_velocity": "by_radial_velocity",
                     "manual_param": "isotherm_height",
                     "get_auto_param": true,
@@ -399,11 +388,8 @@ Cправочник типов конических сечений для СМР
                     "tropopause_height": 12000
                 },
                 "meteo_criterion": {
-                    // Минимально опасное метеоявление
                     "min_dangerous_meteo": "id": 1,
-                    // Период актуализации нулевой изотермы
                     "isotherm_expire_period": 12,
-                    // Критерии классификации типов метеоявлений
                     "meteo_options": 
                     {
                         "count": 2,
@@ -445,7 +431,7 @@ Cправочник типов конических сечений для СМР
                                     "index": 0,
                                     "code": "Cl_dBZ2_min",
                                     "title": "Минимальное значение радиолокационной отражаемости на уровне Z2",
-                                    "measurement unit": "dBZ"
+                                    "measurement_unit": "dBZ"
                                     "service_life": "All"
                                 },
                                 {
@@ -469,14 +455,7 @@ Cправочник типов конических сечений для СМР
 + Request (application/json)
 
         {
-                "id": 3,
-                "antenna": {
-                    "channel_id": 2,
-                    "azimuth": 60,
-                    "tilt": 16
-                },
                 "calibration": {
-                    "azimuth_north_fix": 0,
                     "cloud_velocity": "by_center_mass",
                     "manual_param": "ground_temperature",
                     "get_auto_param": true,
@@ -510,7 +489,7 @@ Cправочник типов конических сечений для СМР
                                     // Наименование параметра
                                     "title": "Минимальное значение радиолокационной отражаемости на уровнях Z2 и Z3",
                                     // Единицы измерения параметра
-                                    "measurement unit": "dBZ"
+                                    "measurement_unit": "dBZ"
                                     // Значение параметра для теплого периода
                                     "warm": 10,
                                     // Значение параметра для холодного периода
@@ -530,14 +509,14 @@ Cправочник типов конических сечений для СМР
                                     "index": 0,
                                     "code": "Cl_dBZ2_min",
                                     "title": "Минимальное значение радиолокационной отражаемости на уровне Z2",
-                                    "measurement unit": "dBZ"
+                                    "measurement_unit": "dBZ"
                                     "service_life": "All"
                                 },
                                 {
                                     "index": 1,
                                     "code": "Cl_dBZ3_min",
                                     "title": "Минимальное значение радиолокационной отражаемости на уровнях Z3",
-                                    "measurement unit": "dBZ"
+                                    "measurement_unit": "dBZ"
                                     "warm": 35,
                                     "cold": 30,
                                     "service_life": "All"
@@ -552,13 +531,7 @@ Cправочник типов конических сечений для СМР
 + Response 422
 
         {
-            "antenna": {
-                "channel": "Невалидное значение",
-                "azimuth": "Невалидное значение",
-                "tilt": "Невалидное значение"
-            },
             "calibration": {
-                "azimuth_north_fix": "Невалидное значение",
                 "cloud_velocity": "Невалидное значение",
                 "manual_param": "Невалидное значение",
                 "get_auto_param": "Невалидное значение",
@@ -596,17 +569,7 @@ Cправочник типов конических сечений для СМР
 + Response 200 (application/json)
 
             {
-                "id": 3,
-                "title": "Елец",
-                "antenna": {
-                    "channel": {
-                        "id": 2
-                    },
-                    "azimuth": 60,
-                    "tilt": 16
-                },
                 "calibration": {
-                    "azimuth_north_fix": 0,
                     "cloud_velocity": "by_center_mass",
                     "manual_param": "isotherm_height",
                     "get_auto_param": true,
@@ -640,7 +603,7 @@ Cправочник типов конических сечений для СМР
                                     // Наименование параметра
                                     "title": "Минимальное значение радиолокационной отражаемости на уровнях Z2 и Z3",
                                     // Единицы измерения параметра
-                                    "measurement unit": "dBZ"
+                                    "measurement_unit": "dBZ"
                                     // Значение параметра для теплого периода
                                     "warm": 10,
                                     // Значение параметра для холодного периода
@@ -660,14 +623,14 @@ Cправочник типов конических сечений для СМР
                                     "index": 0,
                                     "code": "Cl_dBZ2_min",
                                     "title": "Минимальное значение радиолокационной отражаемости на уровне Z2",
-                                    "measurement unit": "dBZ"
+                                    "measurement_unit": "dBZ"
                                     "service_life": "All"
                                 },
                                 {
                                     "index": 1,
                                     "code": "Cl_dBZ3_min",
                                     "title": "Минимальное значение радиолокационной отражаемости на уровнях Z3",
-                                    "measurement unit": "dBZ"
+                                    "measurement_unit": "dBZ"
                                     "warm": 35,
                                     "cold": 30,
                                     "service_life": "All"
@@ -678,6 +641,64 @@ Cправочник типов конических сечений для СМР
                     }
                 }
             }
+            
++ Response 409
+
++ Response 404
+
+## Настройки МРЛС [/station/{id}/radarsettings]
+
+Настройки МРЛС на выбранном СМРЛП. Запрос может выполняться только если
+РЛС находится в режиме ГОТОВНОСТЬ. Режим можно узнать из текущего статуса.
+При попытке запросить настройки в режиме, отличном от ГОТОВНОСТи, возвращается 409
+При указании невалидного id СМРЛП, возвращается 404
+
++ Parameters
+    + id (number) - ID СМРЛП
+
+### Получить настройки МРЛС [GET]
+
++ Response 200 (application/json)
+
+            {
+                "_comment_channel_id": "Номер канала излучения МРЛС",
+                "channel_id": 2,
+                "_comment_hold_azimuth": "Фиксированный азимут антенны, град.",
+                "hold_azimuth": 60.0,
+                "_comment_hold_tilt": "Фиксированный угол места антенны, град.",
+                "hold_tilt": 16.0,
+                "_comment_azimuth_center": "Поправка на север",
+                "azimuth_center": 0.0
+            }
+            
+### Обновить настройки МРЛС [PUT]
+
++ Request (application/json)
+
+            {
+                "channel_id": 2,
+                "hold_azimuth": 60.0,
+                "hold_tilt": 16.0,
+                "azimuth_center": 0.0
+            }
+
++ Response 200 (application/json)
+
+            {
+                "channel_id": 2,
+                "hold_azimuth": 60.0,
+                "hold_tilt": 16.0,
+                "azimuth_center": 0.0
+            }
+            
++ Response 422
+
+        {
+                "channel_id": "Невалидное значение",
+                "hold_azimuth": "Невалидное значение",
+                "hold_tilt": "Невалидное значение",
+                "azimuth_center": "Невалидное значение"
+        }
             
 + Response 409
 
