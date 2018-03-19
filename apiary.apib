@@ -396,28 +396,24 @@ Cправочник типов конических сечений для СМР
                         "items":
                         [
                             {
-                                // Индекс МЯ
                                 "id": 0, 
-                                // Наименование МЯ
                                 "type": "Облачность (слоистообразная облачность)",
                                 "count": 1,
                                 "items":
                                 [
                                 {
-                                    // Индекс параметра
                                     "index": 0,
-                                    // Код параметра
+                                    "_comment_code": "Код параметра",
                                     "code": "Cl_dBZ23_min",
-                                    // Наименование параметра
+                                    "_comment_title": "Наименование параметра",
                                     "title": "Минимальное значение радиолокационной отражаемости на уровнях Z2 и Z3",
-                                    // Единицы измерения параметра
-                                    "measurement unit": "dBZ"
-                                    // Значение параметра для теплого периода
+                                    "measurement_unit": "dBZ",
+                                    "_comment_warm": "Значение параметра для теплого периода",
                                     "warm": 10,
-                                    // Значение параметра для холодного периода
+                                    "_comment_cold": "Значение параметра для холодного периода",
                                     "cold": -10, 
-                                    // Код параметра
-                                    "service_life": "All" // (Warm, Cold, All)
+                                    "_comment_service_life": "Время актуальности параметра (Warm, Cold, All)",
+                                    "service_life": "All"
                                 }
                                 ]
                             },
@@ -431,14 +427,14 @@ Cправочник типов конических сечений для СМР
                                     "index": 0,
                                     "code": "Cl_dBZ2_min",
                                     "title": "Минимальное значение радиолокационной отражаемости на уровне Z2",
-                                    "measurement_unit": "dBZ"
+                                    "measurement_unit": "dBZ",
                                     "service_life": "All"
                                 },
                                 {
                                     "index": 1,
                                     "code": "Cl_dBZ3_min",
                                     "title": "Минимальное значение радиолокационной отражаемости на уровнях Z3",
-                                    "measurement unit": "dBZ"
+                                    "measurement_unit": "dBZ",
                                     "warm": 35,
                                     "cold": 30,
                                     "service_life": "All"
@@ -454,10 +450,10 @@ Cправочник типов конических сечений для СМР
 
 + Request (application/json)
 
-        {
+            {
                 "calibration": {
-                    "cloud_velocity": "by_center_mass",
-                    "manual_param": "ground_temperature",
+                    "cloud_velocity": "by_radial_velocity",
+                    "manual_param": "isotherm_height",
                     "get_auto_param": true,
                     "temperature": 1.3,
                     "period": "warm",
@@ -466,7 +462,7 @@ Cправочник типов конических сечений для СМР
                     "tropopause_height": 12000
                 },
                 "meteo_criterion": {
-                    "min_dangerous_meteo_id": 1,
+                    "min_dangerous_meteo": "id": 1,
                     "isotherm_expire_period": 12,
                     "meteo_options": 
                     {
@@ -474,28 +470,24 @@ Cправочник типов конических сечений для СМР
                         "items":
                         [
                             {
-                                // Индекс МЯ
                                 "id": 0, 
-                                // Наименование МЯ
                                 "type": "Облачность (слоистообразная облачность)",
                                 "count": 1,
                                 "items":
                                 [
                                 {
-                                    // Индекс параметра
                                     "index": 0,
-                                    // Код параметра
+                                    "_comment_code": "Код параметра",
                                     "code": "Cl_dBZ23_min",
-                                    // Наименование параметра
+                                    "_comment_title": "Наименование параметра",
                                     "title": "Минимальное значение радиолокационной отражаемости на уровнях Z2 и Z3",
-                                    // Единицы измерения параметра
-                                    "measurement_unit": "dBZ"
-                                    // Значение параметра для теплого периода
+                                    "measurement_unit": "dBZ",
+                                    "_comment_warm": "Значение параметра для теплого периода",
                                     "warm": 10,
-                                    // Значение параметра для холодного периода
+                                    "_comment_cold": "Значение параметра для холодного периода",
                                     "cold": -10, 
-                                    // Код параметра
-                                    "service_life": "All" // (Warm, Cold, All)
+                                    "_comment_service_life": "Время актуальности параметра (Warm, Cold, All)",
+                                    "service_life": "All"
                                 }
                                 ]
                             },
@@ -509,14 +501,14 @@ Cправочник типов конических сечений для СМР
                                     "index": 0,
                                     "code": "Cl_dBZ2_min",
                                     "title": "Минимальное значение радиолокационной отражаемости на уровне Z2",
-                                    "measurement_unit": "dBZ"
+                                    "measurement_unit": "dBZ",
                                     "service_life": "All"
                                 },
                                 {
                                     "index": 1,
                                     "code": "Cl_dBZ3_min",
                                     "title": "Минимальное значение радиолокационной отражаемости на уровнях Z3",
-                                    "measurement_unit": "dBZ"
+                                    "measurement_unit": "dBZ",
                                     "warm": 35,
                                     "cold": 30,
                                     "service_life": "All"
@@ -570,7 +562,7 @@ Cправочник типов конических сечений для СМР
 
             {
                 "calibration": {
-                    "cloud_velocity": "by_center_mass",
+                    "cloud_velocity": "by_radial_velocity",
                     "manual_param": "isotherm_height",
                     "get_auto_param": true,
                     "temperature": 1.3,
@@ -579,8 +571,8 @@ Cправочник типов конических сечений для СМР
                     "isotherm22_height": 3,
                     "tropopause_height": 12000
                 },
-                "meteo_settings": {
-                    "min_dangerous_meteo_id": 1,
+                "meteo_criterion": {
+                    "min_dangerous_meteo": "id": 1,
                     "isotherm_expire_period": 12,
                     "meteo_options": 
                     {
@@ -588,28 +580,24 @@ Cправочник типов конических сечений для СМР
                         "items":
                         [
                             {
-                                // Индекс МЯ
                                 "id": 0, 
-                                // Наименование МЯ
                                 "type": "Облачность (слоистообразная облачность)",
                                 "count": 1,
                                 "items":
                                 [
                                 {
-                                    // Индекс параметра
                                     "index": 0,
-                                    // Код параметра
+                                    "_comment_code": "Код параметра",
                                     "code": "Cl_dBZ23_min",
-                                    // Наименование параметра
+                                    "_comment_title": "Наименование параметра",
                                     "title": "Минимальное значение радиолокационной отражаемости на уровнях Z2 и Z3",
-                                    // Единицы измерения параметра
-                                    "measurement_unit": "dBZ"
-                                    // Значение параметра для теплого периода
+                                    "measurement_unit": "dBZ",
+                                    "_comment_warm": "Значение параметра для теплого периода",
                                     "warm": 10,
-                                    // Значение параметра для холодного периода
+                                    "_comment_cold": "Значение параметра для холодного периода",
                                     "cold": -10, 
-                                    // Код параметра
-                                    "service_life": "All" // (Warm, Cold, All)
+                                    "_comment_service_life": "Время актуальности параметра (Warm, Cold, All)",
+                                    "service_life": "All"
                                 }
                                 ]
                             },
@@ -623,14 +611,14 @@ Cправочник типов конических сечений для СМР
                                     "index": 0,
                                     "code": "Cl_dBZ2_min",
                                     "title": "Минимальное значение радиолокационной отражаемости на уровне Z2",
-                                    "measurement_unit": "dBZ"
+                                    "measurement_unit": "dBZ",
                                     "service_life": "All"
                                 },
                                 {
                                     "index": 1,
                                     "code": "Cl_dBZ3_min",
                                     "title": "Минимальное значение радиолокационной отражаемости на уровнях Z3",
-                                    "measurement_unit": "dBZ"
+                                    "measurement_unit": "dBZ",
                                     "warm": 35,
                                     "cold": 30,
                                     "service_life": "All"
