@@ -380,6 +380,8 @@ Cправочник типов конических сечений для СМР
         {
             "_comment_manual": "Задаётся ли высота нулевой изотермы вручную. Если false - вычисляется из данных НАМС",
             "manual": false,
+            "_comment_expire_period": "Время истечения заданного вручную значения, ч",
+            "expire_period": 12,
             "_comment_manual_from_temp": "true: задаётся температура на уровне земли, false: задаётся высота нулевой изотермы",
             "manual_from_temp": false,
             "_comment_temperature": "Температура на уровне земли, задаваемая вручную",
@@ -400,6 +402,7 @@ Cправочник типов конических сечений для СМР
 
         {
             "manual": false,
+            "expire_period": 12,
             "manual_from_temp": false,
             "temperature": 15.2,
             "height_temp0": 2400,
@@ -411,6 +414,7 @@ Cправочник типов конических сечений для СМР
 
         {
             "manual": false,
+            "expire_period": 12,
             "manual_from_temp": false,
             "temperature": 15.2,
             "height_temp0": 2400,
@@ -442,7 +446,6 @@ Cправочник типов конических сечений для СМР
                 "_comment_cloud_velocity_radial": "Скорость перемещения облачных масс: true - по радиальной скорости, false - по центру масс МЯ",
                 "cloud_velocity_radial": true,
                 "min_dangerous_meteo": 1,
-                "isotherm_expire_period": 12,
                 "meteo_options": 
                 {
                     "count": 2,
@@ -509,7 +512,6 @@ Cправочник типов конических сечений для СМР
             "meteo_criterion": {
                 "cloud_velocity_radial": true,
                 "min_dangerous_meteo": 1,
-                "isotherm_expire_period": 12,
                 "meteo_options": 
                 {
                     "count": 2,
@@ -571,7 +573,6 @@ Cправочник типов конических сечений для СМР
         {
             "meteo_criterion": {
                 "min_dangerous_meteo": "Невалидное значение",
-                "isotherm_expire_period": "Невалидное значение",
                 "meteo_options": 
                     {
                         "count": 1,
@@ -600,7 +601,6 @@ Cправочник типов конических сечений для СМР
             "meteo_criterion": {
                 "cloud_velocity_radial": true,
                 "min_dangerous_meteo": 1,
-                "isotherm_expire_period": 12,
                 "meteo_options": 
                 {
                     "count": 2,
