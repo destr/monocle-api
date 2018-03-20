@@ -365,6 +365,71 @@ Cправочник типов конических сечений для СМР
             ]
         }
 
+## Калибровка изотермы [/station/{id}/isotherm]
+
+Настройка изотермы (0, -22 градуса), высоты тропопаузы,
+переключение автоматического/ручного режима задания, ввод параметров вычисления.
+
++ Parameters
+    + id (number) - ID СМРЛП
+
+### Получить настройки вычисления изотермы [GET]
+
++ Response 200 (application/json)
+
+        {
+            "_comment_cloud_velocity_radial": "Скорость перемещения облачных масс: true - по радиальной скорости, false - по центру масс МЯ",
+            "cloud_velocity_radial": true,
+            "_comment_manual": "Задаётся ли высота нулевой изотермы вручную. Если false - вычисляется из данных НАМС",
+            "manual": false,
+            "_comment_manual_from_temp": "true: задаётся температура на уровне земли, false: задаётся высота нулевой изотермы",
+            "manual_from_temp": false,
+            "_comment_temperature": "Температура на уровне земли, задаваемая вручную",
+            "temperature": 15.2,
+            "_comment_height_temp0": "Высота нулевой изотермы, задаваемая вручную",
+            "height_temp0": 2400,
+            "_comment_height_temp22": "Высота изотермы -22 градуса, задаваемая вручную",
+            "height_temp22": 7000,
+            "_comment_height_tropopause": "Высота тропопаузы, задаваемая вручную",
+            "height_tropopause": 12000
+        }
+        
++ Response 404
+
+### Обновить настройки вычисления изотермы [PUT]
+
++ Request (application/json)
+
+        {
+            "cloud_velocity_radial": true,
+            "manual": false,
+            "manual_from_temp": false,
+            "temperature": 15.2,
+            "height_temp0": 2400,
+            "height_temp22": 7000,
+            "height_tropopause": 12000
+        }
+
++ Response 200 (application/json)
+
+        {
+            "cloud_velocity_radial": true,
+            "manual": false,
+            "manual_from_temp": false,
+            "temperature": 15.2,
+            "height_temp0": 2400,
+            "height_temp22": 7000,
+            "height_tropopause": 12000
+        }
+        
++ Response 422 (application/json)
+
+        {
+            "temperature": "Невалидное значение",
+        }
+        
++ Response 404
+
 ## Настройки СМРЛП [/station/{id}/settings]
 
 Настройки отдельного СМРЛП
@@ -376,163 +441,135 @@ Cправочник типов конических сечений для СМР
 
 + Response 200 (application/json)
 
-            {
-                "calibration": {
-                    "_comment_cloud_velocity_radial": "Скорость перемещения облачных масс: true - по радиальной скорости, false - по центру масс МЯ",
-                    "cloud_velocity_radial": true,
-                    "_comment_manual": "Задаётся ли высота нулевой изотермы вручную. Если false - вычисляется из данных НАМС",
-                    "manual": false,
-                    "_comment_manual_from_temp": "true: задаётся температура на уровне земли, false: задаётся высота нулевой изотермы",
-                    "manual_from_temp": false,
-                    "_comment_temperature": "Температура на уровне земли, задаваемая вручную",
-                    "temperature": 15.2,
-                    "_comment_height_temp0": "Высота нулевой изотермы, задаваемая вручную",
-                    "height_temp0": 2400,
-                    "_comment_height_temp22": "Высота изотермы -22 градуса, задаваемая вручную",
-                    "height_temp22": 7000,
-                    "_comment_height_tropopause": "Высота тропопаузы, задаваемая вручную",
-                    "height_tropopause": 12000
-                },
-                "meteo_criterion": {
-                    "min_dangerous_meteo": 1,
-                    "isotherm_expire_period": 12,
-                    "meteo_options": 
-                    {
-                        "count": 2,
-                        "items":
-                        [
+        {
+            "meteo_criterion": {
+                "min_dangerous_meteo": 1,
+                "isotherm_expire_period": 12,
+                "meteo_options": 
+                {
+                    "count": 2,
+                    "items":
+                    [
+                        {
+                            "id": 0, 
+                            "type": "Облачность (слоистообразная облачность)",
+                            "count": 1,
+                            "items":
+                            [
                             {
-                                "id": 0, 
-                                "type": "Облачность (слоистообразная облачность)",
-                                "count": 1,
-                                "items":
-                                [
-                                {
-                                    "index": 0,
-                                    "_comment_code": "Код параметра",
-                                    "code": "Cl_dBZ23_min",
-                                    "_comment_title": "Наименование параметра",
-                                    "title": "Минимальное значение радиолокационной отражаемости на уровнях Z2 и Z3",
-                                    "measurement_unit": "dBZ",
-                                    "_comment_warm": "Значение параметра для теплого периода",
-                                    "warm": 10,
-                                    "_comment_cold": "Значение параметра для холодного периода",
-                                    "cold": -10, 
-                                    "_comment_service_life": "Время актуальности параметра (Warm, Cold, All)",
-                                    "service_life": "All"
-                                }
-                                ]
+                                "index": 0,
+                                "_comment_code": "Код параметра",
+                                "code": "Cl_dBZ23_min",
+                                "_comment_title": "Наименование параметра",
+                                "title": "Минимальное значение радиолокационной отражаемости на уровнях Z2 и Z3",
+                                "measurement_unit": "dBZ",
+                                "_comment_warm": "Значение параметра для теплого периода",
+                                "warm": 10,
+                                "_comment_cold": "Значение параметра для холодного периода",
+                                "cold": -10, 
+                                "_comment_service_life": "Время актуальности параметра (Warm, Cold, All)",
+                                "service_life": "All"
+                            }
+                            ]
+                        },
+                        {
+                            "id": 1, 
+                            "type": "Облачность (кучевая облачность)",
+                            "count": 1,
+                            "items":
+                            [
+                            {
+                                "index": 0,
+                                "code": "Cl_dBZ2_min",
+                                "title": "Минимальное значение радиолокационной отражаемости на уровне Z2",
+                                "measurement_unit": "dBZ",
+                                "service_life": "All"
                             },
                             {
-                                "id": 1, 
-                                "type": "Облачность (кучевая облачность)",
-                                "count": 1,
-                                "items":
-                                [
-                                {
-                                    "index": 0,
-                                    "code": "Cl_dBZ2_min",
-                                    "title": "Минимальное значение радиолокационной отражаемости на уровне Z2",
-                                    "measurement_unit": "dBZ",
-                                    "service_life": "All"
-                                },
-                                {
-                                    "index": 1,
-                                    "code": "Cl_dBZ3_min",
-                                    "title": "Минимальное значение радиолокационной отражаемости на уровнях Z3",
-                                    "measurement_unit": "dBZ",
-                                    "warm": 35,
-                                    "cold": 30,
-                                    "service_life": "All"
-                                }
-                                ]
+                                "index": 1,
+                                "code": "Cl_dBZ3_min",
+                                "title": "Минимальное значение радиолокационной отражаемости на уровнях Z3",
+                                "measurement_unit": "dBZ",
+                                "warm": 35,
+                                "cold": 30,
+                                "service_life": "All"
                             }
-                        ]
-                    }
+                            ]
+                        }
+                    ]
                 }
             }
+        }
             
-+ Response 404 (application/json)
-            
++ Response 404
+
 ### Обновить настройки СМРЛП [PUT]
 
 + Request (application/json)
 
-            {
-                "calibration": {
-                    "cloud_velocity_radial": true,
-                    "manual": false,
-                    "manual_from_temp": false,
-                    "temperature": 15.2,
-                    "height_temp0": 2400,
-                    "height_temp22": 7000,
-                    "height_tropopause": 12000
-                },
-                "meteo_criterion": {
-                    "min_dangerous_meteo": 1,
-                    "isotherm_expire_period": 12,
-                    "meteo_options": 
-                    {
-                        "count": 2,
-                        "items":
-                        [
+        {
+            "meteo_criterion": {
+                "min_dangerous_meteo": 1,
+                "isotherm_expire_period": 12,
+                "meteo_options": 
+                {
+                    "count": 2,
+                    "items":
+                    [
+                        {
+                            "id": 0, 
+                            "type": "Облачность (слоистообразная облачность)",
+                            "count": 1,
+                            "items":
+                            [
                             {
-                                "id": 0, 
-                                "type": "Облачность (слоистообразная облачность)",
-                                "count": 1,
-                                "items":
-                                [
-                                {
-                                    "index": 0,
-                                    "_comment_code": "Код параметра",
-                                    "code": "Cl_dBZ23_min",
-                                    "_comment_title": "Наименование параметра",
-                                    "title": "Минимальное значение радиолокационной отражаемости на уровнях Z2 и Z3",
-                                    "measurement_unit": "dBZ",
-                                    "_comment_warm": "Значение параметра для теплого периода",
-                                    "warm": 10,
-                                    "_comment_cold": "Значение параметра для холодного периода",
-                                    "cold": -10, 
-                                    "_comment_service_life": "Время актуальности параметра (Warm, Cold, All)",
-                                    "service_life": "All"
-                                }
-                                ]
+                                "index": 0,
+                                "_comment_code": "Код параметра",
+                                "code": "Cl_dBZ23_min",
+                                "_comment_title": "Наименование параметра",
+                                "title": "Минимальное значение радиолокационной отражаемости на уровнях Z2 и Z3",
+                                "measurement_unit": "dBZ",
+                                "_comment_warm": "Значение параметра для теплого периода",
+                                "warm": 10,
+                                "_comment_cold": "Значение параметра для холодного периода",
+                                "cold": -10, 
+                                "_comment_service_life": "Время актуальности параметра (Warm, Cold, All)",
+                                "service_life": "All"
+                            }
+                            ]
+                        },
+                        {
+                            "id": 1, 
+                            "type": "Облачность (кучевая облачность)",
+                            "count": 1,
+                            "items":
+                            [
+                            {
+                                "index": 0,
+                                "code": "Cl_dBZ2_min",
+                                "title": "Минимальное значение радиолокационной отражаемости на уровне Z2",
+                                "measurement_unit": "dBZ",
+                                "service_life": "All"
                             },
                             {
-                                "id": 1, 
-                                "type": "Облачность (кучевая облачность)",
-                                "count": 1,
-                                "items":
-                                [
-                                {
-                                    "index": 0,
-                                    "code": "Cl_dBZ2_min",
-                                    "title": "Минимальное значение радиолокационной отражаемости на уровне Z2",
-                                    "measurement_unit": "dBZ",
-                                    "service_life": "All"
-                                },
-                                {
-                                    "index": 1,
-                                    "code": "Cl_dBZ3_min",
-                                    "title": "Минимальное значение радиолокационной отражаемости на уровнях Z3",
-                                    "measurement_unit": "dBZ",
-                                    "warm": 35,
-                                    "cold": 30,
-                                    "service_life": "All"
-                                }
-                                ]
+                                "index": 1,
+                                "code": "Cl_dBZ3_min",
+                                "title": "Минимальное значение радиолокационной отражаемости на уровнях Z3",
+                                "measurement_unit": "dBZ",
+                                "warm": 35,
+                                "cold": 30,
+                                "service_life": "All"
                             }
-                        ]
-                    }
+                            ]
+                        }
+                    ]
                 }
             }
+        }
 
 + Response 422
 
         {
-            "calibration": {
-                "temperature": "Невалидное значение",
-            },
             "meteo_criterion": {
                 "min_dangerous_meteo": "Невалидное значение",
                 "isotherm_expire_period": "Невалидное значение",
@@ -560,74 +597,65 @@ Cправочник типов конических сечений для СМР
 
 + Response 200 (application/json)
 
-            {
-                "calibration": {
-                    "cloud_velocity_radial": true,
-                    "manual": false,
-                    "manual_from_temp": false,
-                    "temperature": 15.2,
-                    "height_temp0": 2400,
-                    "height_temp22": 7000,
-                    "height_tropopause": 12000
-                },
-                "meteo_criterion": {
-                    "min_dangerous_meteo": 1,
-                    "isotherm_expire_period": 12,
-                    "meteo_options": 
-                    {
-                        "count": 2,
-                        "items":
-                        [
+        {
+            "meteo_criterion": {
+                "min_dangerous_meteo": 1,
+                "isotherm_expire_period": 12,
+                "meteo_options": 
+                {
+                    "count": 2,
+                    "items":
+                    [
+                        {
+                            "id": 0, 
+                            "type": "Облачность (слоистообразная облачность)",
+                            "count": 1,
+                            "items":
+                            [
                             {
-                                "id": 0, 
-                                "type": "Облачность (слоистообразная облачность)",
-                                "count": 1,
-                                "items":
-                                [
-                                {
-                                    "index": 0,
-                                    "_comment_code": "Код параметра",
-                                    "code": "Cl_dBZ23_min",
-                                    "_comment_title": "Наименование параметра",
-                                    "title": "Минимальное значение радиолокационной отражаемости на уровнях Z2 и Z3",
-                                    "measurement_unit": "dBZ",
-                                    "_comment_warm": "Значение параметра для теплого периода",
-                                    "warm": 10,
-                                    "_comment_cold": "Значение параметра для холодного периода",
-                                    "cold": -10, 
-                                    "_comment_service_life": "Время актуальности параметра (Warm, Cold, All)",
-                                    "service_life": "All"
-                                }
-                                ]
+                                "index": 0,
+                                "_comment_code": "Код параметра",
+                                "code": "Cl_dBZ23_min",
+                                "_comment_title": "Наименование параметра",
+                                "title": "Минимальное значение радиолокационной отражаемости на уровнях Z2 и Z3",
+                                "measurement_unit": "dBZ",
+                                "_comment_warm": "Значение параметра для теплого периода",
+                                "warm": 10,
+                                "_comment_cold": "Значение параметра для холодного периода",
+                                "cold": -10, 
+                                "_comment_service_life": "Время актуальности параметра (Warm, Cold, All)",
+                                "service_life": "All"
+                            }
+                            ]
+                        },
+                        {
+                            "id": 1, 
+                            "type": "Облачность (кучевая облачность)",
+                            "count": 1,
+                            "items":
+                            [
+                            {
+                                "index": 0,
+                                "code": "Cl_dBZ2_min",
+                                "title": "Минимальное значение радиолокационной отражаемости на уровне Z2",
+                                "measurement_unit": "dBZ",
+                                "service_life": "All"
                             },
                             {
-                                "id": 1, 
-                                "type": "Облачность (кучевая облачность)",
-                                "count": 1,
-                                "items":
-                                [
-                                {
-                                    "index": 0,
-                                    "code": "Cl_dBZ2_min",
-                                    "title": "Минимальное значение радиолокационной отражаемости на уровне Z2",
-                                    "measurement_unit": "dBZ",
-                                    "service_life": "All"
-                                },
-                                {
-                                    "index": 1,
-                                    "code": "Cl_dBZ3_min",
-                                    "title": "Минимальное значение радиолокационной отражаемости на уровнях Z3",
-                                    "measurement_unit": "dBZ",
-                                    "warm": 35,
-                                    "cold": 30,
-                                    "service_life": "All"
-                                }
-                                ]
+                                "index": 1,
+                                "code": "Cl_dBZ3_min",
+                                "title": "Минимальное значение радиолокационной отражаемости на уровнях Z3",
+                                "measurement_unit": "dBZ",
+                                "warm": 35,
+                                "cold": 30,
+                                "service_life": "All"
                             }
-                        ]
-                    }
+                            ]
+                        }
+                    ]
                 }
             }
+        }
             
 + Response 409
 
