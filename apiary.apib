@@ -442,61 +442,63 @@ Cправочник типов конических сечений для СМР
 + Response 200 (application/json)
 
         {
-            "_comment_cloud_velocity_radial": "Скорость перемещения облачных масс: true - по радиальной скорости, false - по центру масс МЯ",
-            "cloud_velocity_radial": true,
             "_comment_min_dangerous_meteo": "Индекс минимального опасного МЯ",
             "min_dangerous_meteo": 5,
-            "_comment_meteo_options": "Настройки критериев метеоявлений",
-            "meteo_options": 
+            "_comment_cloud_velocity_radial": "Скорость перемещения облачных масс: true - по радиальной скорости, false - по центру масс МЯ",
+            "cloud_velocity_radial": true,
+            "_comment_meteo_classes": "Настройки критериев метеоявлений",
+            "meteo_classes":
             {
                 "count": 2,
                 "items":
                 [
                     {
-                        "id": 0, 
-                        "type": "Облачность (слоистообразная облачность)",
-                        "count": 1,
-                        "items":
-                        [
+                        "index": 0,
+                        "_comment_id": "Идентификатор МЯ. 0 означает отсутствие МЯ",
+                        "id": 2, 
+                        "type": "Слоистая облачность",
+                        "criteria":
                         {
-                            "index": 0,
-                            "_comment_code": "Код параметра",
-                            "code": "Cl_dBZ23_min",
-                            "_comment_title": "Наименование параметра",
-                            "title": "Минимальное значение радиолокационной отражаемости на уровнях Z2 и Z3",
-                            "measurement_unit": "dBZ",
-                            "_comment_warm": "Значение параметра для теплого периода",
-                            "warm": 10,
-                            "_comment_cold": "Значение параметра для холодного периода",
-                            "cold": -10, 
-                            "_comment_service_life": "Время актуальности параметра (Warm, Cold, All)",
-                            "service_life": "All"
+                            "count": 1,
+                            "items":
+                            [
+                                {
+                                    "index": 0,
+                                    "code": "Cl_bH_min",
+                                    "title": "Пороговое значение HНГ для облачности верхнего и среднего ярусов",
+                                    "measurement_unit": " м",
+                                    "warm": 3000,
+                                    "cold": 3000
+                                }
+                            ]
                         }
-                        ]
                     },
                     {
-                        "id": 1, 
+                        "id": 2, 
                         "type": "Облачность (кучевая облачность)",
-                        "count": 1,
-                        "items":
-                        [
+                        "criteria":
                         {
-                            "index": 0,
-                            "code": "Cl_dBZ2_min",
-                            "title": "Минимальное значение радиолокационной отражаемости на уровне Z2",
-                            "measurement_unit": "dBZ",
-                            "service_life": "All"
-                        },
-                        {
-                            "index": 1,
-                            "code": "Cl_dBZ3_min",
-                            "title": "Минимальное значение радиолокационной отражаемости на уровнях Z3",
-                            "measurement_unit": "dBZ",
-                            "warm": 35,
-                            "cold": 30,
-                            "service_life": "All"
+                            "count": 1,
+                            "items":
+                            [
+                                {
+                                    "index": 0,
+                                    "code": "Cl_dBZ2_min",
+                                    "title": "Минимальное значение радиолокационной отражаемости на уровне Z2",
+                                    "measurement_unit": "dBZ",
+                                    "warm": 35,
+                                    "cold": 30
+                                },
+                                {
+                                    "index": 1,
+                                    "code": "Cl_dBZ3_min",
+                                    "title": "Минимальное значение радиолокационной отражаемости на уровнях Z3",
+                                    "measurement_unit": "dBZ",
+                                    "warm": 35,
+                                    "cold": 30
+                                }
+                            ]
                         }
-                        ]
                     }
                 ]
             }
@@ -509,151 +511,148 @@ Cправочник типов конических сечений для СМР
 + Request (application/json)
 
         {
-            "meteo_criterion": {
-                "cloud_velocity_radial": true,
-                "min_dangerous_meteo": 1,
-                "meteo_options": 
-                {
-                    "count": 2,
-                    "items":
-                    [
+            "min_dangerous_meteo": 5,
+            "cloud_velocity_radial": true,
+            "meteo_classes":
+            {
+                "count": 2,
+                "items":
+                [
+                    {
+                        "index": 0,
+                        "id": 2, 
+                        "type": "Слоистая облачность",
+                        "criteria":
                         {
-                            "id": 0, 
-                            "type": "Облачность (слоистообразная облачность)",
                             "count": 1,
                             "items":
                             [
-                            {
-                                "index": 0,
-                                "_comment_code": "Код параметра",
-                                "code": "Cl_dBZ23_min",
-                                "_comment_title": "Наименование параметра",
-                                "title": "Минимальное значение радиолокационной отражаемости на уровнях Z2 и Z3",
-                                "measurement_unit": "dBZ",
-                                "_comment_warm": "Значение параметра для теплого периода",
-                                "warm": 10,
-                                "_comment_cold": "Значение параметра для холодного периода",
-                                "cold": -10, 
-                                "_comment_service_life": "Время актуальности параметра (Warm, Cold, All)",
-                                "service_life": "All"
-                            }
-                            ]
-                        },
-                        {
-                            "id": 1, 
-                            "type": "Облачность (кучевая облачность)",
-                            "count": 1,
-                            "items":
-                            [
-                            {
-                                "index": 0,
-                                "code": "Cl_dBZ2_min",
-                                "title": "Минимальное значение радиолокационной отражаемости на уровне Z2",
-                                "measurement_unit": "dBZ",
-                                "service_life": "All"
-                            },
-                            {
-                                "index": 1,
-                                "code": "Cl_dBZ3_min",
-                                "title": "Минимальное значение радиолокационной отражаемости на уровнях Z3",
-                                "measurement_unit": "dBZ",
-                                "warm": 35,
-                                "cold": 30,
-                                "service_life": "All"
-                            }
+                                {
+                                    "index": 0,
+                                    "code": "Cl_bH_min",
+                                    "title": "Пороговое значение HНГ для облачности верхнего и среднего ярусов",
+                                    "measurement_unit": " м",
+                                    "warm": 3000,
+                                    "cold": 3000
+                                }
                             ]
                         }
-                    ]
-                }
+                    },
+                    {
+                        "id": 2, 
+                        "type": "Облачность (кучевая облачность)",
+                        "criteria":
+                        {
+                            "count": 1,
+                            "items":
+                            [
+                                {
+                                    "index": 0,
+                                    "code": "Cl_dBZ2_min",
+                                    "title": "Минимальное значение радиолокационной отражаемости на уровне Z2",
+                                    "measurement_unit": "dBZ",
+                                    "warm": 35,
+                                    "cold": 30
+                                },
+                                {
+                                    "index": 1,
+                                    "code": "Cl_dBZ3_min",
+                                    "title": "Минимальное значение радиолокационной отражаемости на уровнях Z3",
+                                    "measurement_unit": "dBZ",
+                                    "warm": 35,
+                                    "cold": 30
+                                }
+                            ]
+                        }
+                    }
+                ]
             }
         }
 
 + Response 422
 
         {
-            "meteo_criterion": {
-                "min_dangerous_meteo": "Невалидное значение",
-                "meteo_options": 
+            "meteo_classes":
+            {
+                "count": 1,
+                "items":
+                [
                     {
-                        "count": 1,
-                        "items":
-                        [
-                            {
-                                "id": 0, 
-                                "count": 1,
-                                "items":
-                                [
+                        "index": 0,
+                        "criteria":
+                        {
+                            "count": 1,
+                            "items":
+                            [
                                 {
                                     "index": 0,
-                                    "warm": "Невалидное значение",
-                                    "cold": "Невалидное значение", 
+                                    "cold": "Невалидное значение"
                                 }
-                                ]
-                            }
-                        ]
+                            ]
+                        }
                     }
+                ]
             }
         }
 
 + Response 200 (application/json)
 
         {
-            "meteo_criterion": {
-                "cloud_velocity_radial": true,
-                "min_dangerous_meteo": 1,
-                "meteo_options": 
-                {
-                    "count": 2,
-                    "items":
-                    [
+            "min_dangerous_meteo": 5,
+            "cloud_velocity_radial": true,
+            "meteo_classes":
+            {
+                "count": 2,
+                "items":
+                [
+                    {
+                        "index": 0,
+                        "id": 2, 
+                        "type": "Слоистая облачность",
+                        "criteria":
                         {
-                            "id": 0, 
-                            "type": "Облачность (слоистообразная облачность)",
                             "count": 1,
                             "items":
                             [
-                            {
-                                "index": 0,
-                                "_comment_code": "Код параметра",
-                                "code": "Cl_dBZ23_min",
-                                "_comment_title": "Наименование параметра",
-                                "title": "Минимальное значение радиолокационной отражаемости на уровнях Z2 и Z3",
-                                "measurement_unit": "dBZ",
-                                "_comment_warm": "Значение параметра для теплого периода",
-                                "warm": 10,
-                                "_comment_cold": "Значение параметра для холодного периода",
-                                "cold": -10, 
-                                "_comment_service_life": "Время актуальности параметра (Warm, Cold, All)",
-                                "service_life": "All"
-                            }
-                            ]
-                        },
-                        {
-                            "id": 1, 
-                            "type": "Облачность (кучевая облачность)",
-                            "count": 1,
-                            "items":
-                            [
-                            {
-                                "index": 0,
-                                "code": "Cl_dBZ2_min",
-                                "title": "Минимальное значение радиолокационной отражаемости на уровне Z2",
-                                "measurement_unit": "dBZ",
-                                "service_life": "All"
-                            },
-                            {
-                                "index": 1,
-                                "code": "Cl_dBZ3_min",
-                                "title": "Минимальное значение радиолокационной отражаемости на уровнях Z3",
-                                "measurement_unit": "dBZ",
-                                "warm": 35,
-                                "cold": 30,
-                                "service_life": "All"
-                            }
+                                {
+                                    "index": 0,
+                                    "code": "Cl_bH_min",
+                                    "title": "Пороговое значение HНГ для облачности верхнего и среднего ярусов",
+                                    "measurement_unit": " м",
+                                    "warm": 3000,
+                                    "cold": 3000
+                                }
                             ]
                         }
-                    ]
-                }
+                    },
+                    {
+                        "id": 2, 
+                        "type": "Облачность (кучевая облачность)",
+                        "criteria":
+                        {
+                            "count": 1,
+                            "items":
+                            [
+                                {
+                                    "index": 0,
+                                    "code": "Cl_dBZ2_min",
+                                    "title": "Минимальное значение радиолокационной отражаемости на уровне Z2",
+                                    "measurement_unit": "dBZ",
+                                    "warm": 35,
+                                    "cold": 30
+                                },
+                                {
+                                    "index": 1,
+                                    "code": "Cl_dBZ3_min",
+                                    "title": "Минимальное значение радиолокационной отражаемости на уровнях Z3",
+                                    "measurement_unit": "dBZ",
+                                    "warm": 35,
+                                    "cold": 30
+                                }
+                            ]
+                        }
+                    }
+                ]
             }
         }
             
