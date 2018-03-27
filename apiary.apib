@@ -382,10 +382,6 @@ Cправочник типов конических сечений для СМР
             "manual": false,
             "_comment_expire_period": "Время истечения заданного вручную значения, ч",
             "expire_period": 12,
-            "_comment_manual_from_temp": "true: задаётся температура на уровне земли, false: задаётся высота нулевой изотермы",
-            "manual_from_temp": false,
-            "_comment_temperature": "Температура на уровне земли, задаваемая вручную",
-            "temperature": 15.2,
             "_comment_height_temp0": "Высота нулевой изотермы, задаваемая вручную",
             "height_temp0": 2400,
             "_comment_height_temp22": "Высота изотермы -22 градуса, задаваемая вручную",
@@ -403,7 +399,9 @@ Cправочник типов конических сечений для СМР
         {
             "manual": false,
             "expire_period": 12,
+            "_comment_manual_from_temp": "true: задаётся температура на уровне земли, false: задаётся высота нулевой изотермы",
             "manual_from_temp": false,
+            "_comment_temperature": "Температура на уровне земли, задаваемая вручную",
             "temperature": 15.2,
             "height_temp0": 2400,
             "height_temp22": 7000,
@@ -415,8 +413,6 @@ Cправочник типов конических сечений для СМР
         {
             "manual": false,
             "expire_period": 12,
-            "manual_from_temp": false,
-            "temperature": 15.2,
             "height_temp0": 2400,
             "height_temp22": 7000,
             "height_tropopause": 12000
@@ -432,7 +428,7 @@ Cправочник типов конических сечений для СМР
 
 + Response 409
 
-## Настройки критериев МЯ для отдельного СМРЛП [/station/{id}/settings]
+## Настройки критериев МЯ для отдельного СМРЛП [/station/{id}/meteosettings]
 
 Настройки критериев метеоявлений для отдельного СМРЛП. Эти
 настройки переопределяют значения общих настроек, задаваемых
@@ -842,7 +838,7 @@ Cправочник типов конических сечений для СМР
 + Response 200 (application/json)
 
             {
-                "_comment_record_local_reflection_map_duration": "Оно тут оообще нужно?"
+                "_comment_record_local_reflection_map_duration": "Оно тут оообще нужно?",
                 "record_local_reflection_map_duration": "PT0H12M0S"
             }
 
