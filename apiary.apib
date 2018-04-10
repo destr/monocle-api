@@ -499,6 +499,24 @@ Cправочник типов конических сечений для СМР
                                 }
                             ]
                         }
+                    },
+                    {
+                        "id": 5,
+                        "type": "Осадки умеренные",
+                        "criteria": {
+                            "count": 1,
+                            "items": [
+                                {
+                                    "code": "Rf_dBZ1",
+                                    "title": "Пороговое значение отражаемости Z1",
+                                    "measurement_unit": " dBZ",
+                                    "warm": 20,
+                                    "cold": 19,
+                                    "index": 0
+                                }
+                            ]
+                        },
+                        "index": 4
                     }
                 ]
             }
@@ -835,11 +853,6 @@ Cправочник типов конических сечений для СМР
 ### Запись карты местных отражений [POST]
 
 + Response 200 (application/json)
-
-            {
-                "_comment_record_local_reflection_map_duration": "Оно тут оообще нужно?",
-                "record_local_reflection_map_duration": "PT0H12M0S"
-            }
 
 + Response 409
 
