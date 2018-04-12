@@ -2146,65 +2146,56 @@ distance, x, z - в километрах
 
 + Request (application/json)
 
-        {
-            "count": 3,
-            "items":
-            [
-                {
-                    "index": 1,
-                    "value": 30,
-                    "color": "#010178"
-                },
-                {
-                    "index": 2,
-                    "value": 35,
-                    "color": "#fffb00"
-                },
-                {
-                    "index": 3,
-                    "value": 40,
-                    "color": "#f500f6"
-                }
-            ]
-        }
+
+        [
+            {
+                "index": 1,
+                "value": 30,
+                "color": "#010178"
+            },
+            {
+                "index": 2,
+                "value": 35,
+                "color": "#fffb00"
+            },
+            {
+                "index": 3,
+                "value": 40,
+                "color": "#f500f6"
+            }
+        ]
 
 + Response 200 (application/json)
 
-        {
-            "count": 3,
-            "items": 
-            [
-                {
-                    "index": 1,
-                    "value": 30,
-                    "color": "#010178"
-                },
-                {
-                    "index": 2,
-                    "value": 35,
-                    "color": "#fffb00"
-                },
-                {
-                    "index": 3,
-                    "value": 40,
-                    "color": "#f500f6"
-                }
-            ]
-        }
+
+        [
+            {
+                "index": 1,
+                "value": 30,
+                "color": "#010178"
+            },
+            {
+                "index": 2,
+                "value": 35,
+                "color": "#fffb00"
+            },
+            {
+                "index": 3,
+                "value": 40,
+                "color": "#f500f6"
+            }
+        ]
         
 + Response 422 (application/json)
 
-        {
-            "count": 1,
-            "items": 
-            [
-                {
-                    "index": 1,
-                    "value": "Невалидное значение",
-                    "color": "Невалидное значение"
-                }
-            ]
-        }
+
+        [
+            {
+                "index": 1,
+                "value": "Невалидное значение",
+                "color": "Невалидное значение"
+            }
+        ]
         
 + Response 404
 
