@@ -2548,6 +2548,30 @@ distance, x, z - в километрах
             }
         }
 
+## Каналы излучения [/settings/{id}/channels]
+
+### Получить [GET]
+
++ Parameters
+    + id (number) - ID СМРЛП
+
++ Response 200 (application/json)
+
+        [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12
+        ]
+
 
 ## Уведомления [/notification]
 
@@ -2575,6 +2599,40 @@ distance, x, z - в километрах
             "content": {
                 "station_id":0,
                 "message": "Отказ метео локатора",
+                "date": "2017-05-15T08:30:00"
+            }
+        }
+
+### Уведомление о соcтоянии
+Тут 4 статуса будет приходить одновременно
+Статус исправности СМРЛП
+Актуальность изотермы
+Ведется запись местных отражений
+Ведется проверка работоспособности
+
++ Request (application/json)
+
+        {
+            "type": "state",
+            "content": {
+                "station_id": 4,
+                "equipment_status": true,
+                "_comment_isotherm_status": "true - актуальная изотерма, false - нет",
+                "isotherm_status": true
+                "local_reflections_status": false,
+                "control_status": false,
+            }
+        }
+
+### Уведомление об обновлении настроек
+
++ Request (application/json)
+
+        {
+            "type": "notification",
+            "content": {
+                "station_id": 4,
+                "message": "Настройки СМРЛП Орловка успешно обновлены",
                 "date": "2017-05-15T08:30:00"
             }
         }
