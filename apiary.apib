@@ -2571,6 +2571,34 @@ distance, x, z - в километрах
             12
         ]
 
+## Список уведомлений об опасных метеоявлениях [/station/{id}/dangerous_meteo_list]
+
+Список обнаруженных опасных явлений за последний час
+
+### Получить [GET]
+
++ Parameters
+    + id (number) - ID СМРЛП
+
++ Response 200 (application/json)
+
+        {
+            "count": 3,
+            "items": [
+                {
+                    "date": "2017-05-15T08:39:00",
+                    "max_wp_id": 15
+                },
+                {
+                    "date": "2017-05-15T08:49:00",
+                    "max_wp_id": 12
+                },
+                {
+                    "date": "2017-05-15T08:59:00",
+                    "max_wp_id": 8
+                }
+            ]
+        }
 
 ## Уведомления [/notification]
 
