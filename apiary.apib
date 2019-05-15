@@ -2725,4 +2725,654 @@ distance, x, z - в километрах
 + Response 200 (application/json)
 
         {
+
+            "station": {
+                "id": 0,
+                    "index": "MORL",
+                    "title": "Орловка",
+                    "latitude": 56.142616,
+                    "longitude": 34.987386,
+                    "alarm_id": 0,
+                    "hardware_id": "CMRC0001",
+                    "terrain_altitude": 638,
+                    "radar_elevation": 25,
+                    "pressure_sensor_elevation": 3,
+                    "terrain_type": "land",
+                    "current_program": {
+                        "id": "Нет данных",
+                        "timetable_enabled": false,
+                        "title": "Нет данных",
+                        "timetable_id": ""
+                    },
+                    "local_reflections_status": "Нет данных",
+                    "equipment_status": false,
+                    "exchange_status": false,
+                    "rotation_status": 0
+            },
+                "spg": {
+                    "vector_velocity_field": {
+                        "circular_horizontal_pitch": 8000,
+                        "circular_vertical_pitch": 1000,
+                        "sector_horizontal_pitch": 8000,
+                        "sector_vertical_pitch": 1000,
+                        "vector_size": 30,
+                        "vector_thickness": 2,
+                        "filterSMAOn": true,
+                        "kLongRangeSizeOverlapH": 3.75,
+                        "kLongRangeSizeOverlapV": 2,
+                        "kMediumRangeSizeOverlapH": 3.25,
+                        "kMediumRangeSizeOverlapV": 1.75,
+                        "kShortRangeSizeOverlapH": 2,
+                        "kShortRangeSizeOverlapV": 1.5,
+                        "longRAzCellFillThreshold": 15,
+                        "longRAzCellThreshold": 17,
+                        "mediumRAzCellFillThreshold": 17,
+                        "mediumRAzCellThreshold": 23,
+                        "shortRAzCellFillThreshold": 15,
+                        "shortRAzCellThreshold": 20,
+                        "thresholdDeltaVelosity": 0.0001,
+                        "thresholdEpcilonVelosity": 0.001
+                    },
+                    "vertically_integrated_liquid": {
+                        "stepbuild": 1000
+                    },
+                    "wind_shear_field": {
+                        "circular_max_altitude": 3000,
+                        "circular_max_range": 50000,
+                        "sector_max_altitude": 3000,
+                        "sector_max_range": 50000,
+                        "horizontal_pitch": 500,
+                        "vertical_pitch": 500
+                    }
+                },
+                "render": {
+                    "colorscale": {
+                        "change": false,
+                        "dbz": {
+                            "items": [
+                            {
+                                "color": 14474460,
+                                "val": -30.0
+                            }
+                            ],
+                            "alphaBtm": -10,
+                            "alphaCenter": 0,
+                            "alphaCenterOn": false,
+                            "alphaTop": 10,
+                            "outDval": 2.5,
+                            "size": 18,
+                            "stepScale": true
+                        },
+                        "dwvs": {
+                            "items": [
+                            {
+                                "color": 1052947,
+                                "val": 0.25
+                            }
+                            ],
+                            "alphaBtm": 0,
+                            "alphaCenter": 0,
+                            "alphaCenterOn": false,
+                            "alphaTop": 0,
+                            "outDval": 0.1,
+                            "size": 9,
+                            "stepScale": true
+                        },
+                        "edr": {
+                            "items": [
+                            {
+                                "color": 16777215,
+                                "val": 0.0
+                            }
+                            ],
+                            "alphaBtm": 0,
+                            "alphaCenter": 0,
+                            "alphaCenterOn": false,
+                            "alphaTop": 0.05,
+                            "outDval": 0.01,
+                            "size": 13,
+                            "stepScale": true
+                        },
+                        "htmax": {
+                            "items": [
+                            {
+                                "color": 981670,
+                                "val": 0.0
+                            }
+                            ],
+                            "alphaBtm": 0,
+                            "alphaCenter": 0,
+                            "alphaCenterOn": false,
+                            "alphaTop": 1,
+                            "outDval": 0.1,
+                            "size": 18,
+                            "stepScale": true
+                        },
+                        "htmin": {
+                            "items": [
+                            {
+                                "color": 15725053,
+                                "val": 0.0
+                            }
+                            ],
+                            "alphaBtm": -1,
+                            "alphaCenter": 0,
+                            "alphaCenterOn": false,
+                            "alphaTop": -0.5,
+                            "outDval": 0.1,
+                            "size": 18,
+                            "stepScale": true
+                        },
+                        "rfli": {
+                            "items": [
+                            {
+                                "color": 65669,
+                                "val": 0.5
+                            }
+                            ],
+                            "alphaBtm": 0,
+                            "alphaCenter": 0,
+                            "alphaCenterOn": false,
+                            "alphaTop": 0.1,
+                            "outDval": 0.1,
+                            "size": 10,
+                            "stepScale": true
+                        },
+                        "rfls12": {
+                            "items": [
+                            {
+                                "color": 16777215,
+                                "val": 0.01
+                            }
+                            ],
+                            "alphaBtm": 0,
+                            "alphaCenter": 0,
+                            "alphaCenterOn": false,
+                            "alphaTop": 0.01,
+                            "outDval": 0.01,
+                            "size": 18,
+                            "stepScale": true
+                        },
+                        "rfls24": {
+                            "items": [
+                            {
+                                "color": 16777215,
+                                "val": 0.01
+                            }
+                            ],
+                            "alphaBtm": 0,
+                            "alphaCenter": 0,
+                            "alphaCenterOn": false,
+                            "alphaTop": 0.02,
+                            "outDval": 0.01,
+                            "size": 18,
+                            "stepScale": true
+                        },
+                        "rfls3": {
+                            "items": [
+                            {
+                                "color": 16777215,
+                                "val": 0.01
+                            }
+                            ],
+                            "alphaBtm": 0,
+                            "alphaCenter": 0,
+                            "alphaCenterOn": false,
+                            "alphaTop": 0.01,
+                            "outDval": 0.01,
+                            "size": 18,
+                            "stepScale": true
+                        },
+                        "rfls6": {
+                            "items": [
+                            {
+                                "color": 16777215,
+                                "val": 0.01
+                            }
+                            ],
+                            "alphaBtm": 0,
+                            "alphaCenter": 0,
+                            "alphaCenterOn": false,
+                            "alphaTop": 0.01,
+                            "outDval": 0.01,
+                            "size": 18,
+                            "stepScale": true
+                        },
+                        "undefined": {
+                            "alphaBtm": 0,
+                            "alphaCenter": 0,
+                            "alphaCenterOn": false,
+                            "alphaTop": 0,
+                            "outDval": 0,
+                            "size": 0,
+                            "stepScale": false
+                        },
+                        "vil": {
+                            "items": [
+                            {
+                                "color": 16777215,
+                                "val": 0.001
+                            }
+                            ],
+                            "alphaBtm": 0,
+                            "alphaCenter": 0,
+                            "alphaCenterOn": false,
+                            "alphaTop": 0.01,
+                            "outDval": 0.001,
+                            "size": 18,
+                            "stepScale": true
+                        },
+                        "vr": {
+                            "items": [
+                            {
+                                "color": 5551057,
+                                "val": -50.0
+                            }
+                            ],
+                            "alphaBtm": 0,
+                            "alphaCenter": 0,
+                            "alphaCenterOn": true,
+                            "alphaTop": 0.1,
+                            "outDval": 0.1,
+                            "size": 19,
+                            "stepScale": true
+                        },
+                        "wpcell": {
+                            "items": [
+                            {
+                                "color": 16777215,
+                                "val": 0.0
+                            }
+                            ],
+                            "alphaBtm": 0,
+                            "alphaCenter": 0,
+                            "alphaCenterOn": false,
+                            "alphaTop": 0.5,
+                            "outDval": 1,
+                            "size": 20,
+                            "stepScale": true
+                        },
+                        "wpfig": {
+                            "items": [
+                            {
+                                "color": 16777215,
+                                "val": 0.0
+                            }
+                            ],
+                            "alphaBtm": 0,
+                            "alphaCenter": 0,
+                            "alphaCenterOn": false,
+                            "alphaTop": 0.5,
+                            "outDval": 1,
+                            "size": 20,
+                            "stepScale": true
+                        },
+                        "wsh": {
+                            "items": [
+                            {
+                                "color": 13235437,
+                                "val": 0.0
+                            }
+                            ],
+                            "alphaBtm": 0,
+                            "alphaCenter": 0,
+                            "alphaCenterOn": false,
+                            "alphaTop": 0.01,
+                            "outDval": 0.25,
+                            "size": 27,
+                            "stepScale": true
+                        },
+                        "wsv": {
+                            "items": [
+                            {
+                                "color": 13693163,
+                                "val": 0.0
+                            }
+                            ],
+                            "alphaBtm": 0,
+                            "alphaCenter": 0,
+                            "alphaCenterOn": false,
+                            "alphaTop": 3,
+                            "outDval": 0.1,
+                            "size": 27,
+                            "stepScale": true
+                        }
+                    },
+                    "maps": {
+                        "contourResolution": 400,
+                        "rp_opacity": {
+                            "items": [
+                                1,
+                            1,
+                            1,
+                            1,
+                            1,
+                            1,
+                            1,
+                            1,
+                            1,
+                            1,
+                            1,
+                            1,
+                            1,
+                            1,
+                            1,
+                            1,
+                            1,
+                            1,
+                            1,
+                            1
+                                ]
+                        },
+                        "rp_z_value": {
+                            "items": [
+                                1,
+                            1,
+                            1,
+                            1,
+                            1,
+                            1,
+                            1,
+                            2,
+                            3,
+                            4,
+                            5,
+                            6,
+                            7,
+                            1,
+                            8,
+                            9,
+                            10,
+                            11,
+                            12,
+                            1
+                                ]
+                        },
+                        "showRegionData": true,
+                        "terrainGroundSize": 668,
+                        "terrainHorizontalShift": 0,
+                        "terrainVerticalShift": 0
+                    },
+                    "vertical_section": {
+                        "automaxheight": 0,
+                        "maxheight": 7.5,
+                        "horizontal_pitch": 100,
+                        "vertical_pitch": 100
+                    },
+                    "horizontal_section": {
+                        "cappi_altitude_interval": 100,
+                        "cappi_altitude_max": 20000,
+                        "cappi_altitude_min": 0
+                    }
+                },
+                "programs": [
+                {
+                    "description": "",
+                    "isDefault": true,
+                    "name": "ЗАГЛУШКА ОБЗОР 150 КМ 45-62°",
+                    "program": {
+                        "mode": 4,
+                        "blank_sectors_array": [
+                        {
+                            "start" : 0.0,
+                            "end": 0.0
+                        }
+                        ],
+                        "av_azimuth_change": 0,
+                        "azimuth_scan_speed": 23.82,
+                        "raster_left_azimuth": 30,
+                        "raster_right_azimuth": 60,
+                        "scope_range": 150,
+                        "angles_array": [
+                            0.0
+                        ]
+                    },
+                    "id": "view_dummy_150"
+                }
+            ],
+            "meteo": {
+                "min_dangerous_meteo": 5,
+                "max_dangerous_meteo": 19,
+                "cloud_velocity_radial": true,
+                "meteo_classes": [
+                {
+                    "id": 1,
+                    "type": "Облачность верхнего и среднего ярусов",
+                    "criteria": [
+                    {
+                        "code": "Cl_bH_min",
+                        "title": "Пороговое значение HНГ для облачности верхнего и среднего ярусов",
+                        "measurement_unit": " м",
+                        "warm": 0.0,
+                        "cold": 0.0
+                    }
+                    ]
+                }
+                ]
+            },
+
+            "timetable": [
+            {
+                "program_id": "view_dummy_150",
+                "date": "00:00:00"
+            }
+            ],
+            "bufr" : {
+                "count": 1,
+                "items": 
+                    [
+                    {
+                        "active": true,
+                        "ip": "hostname",
+                        "port": 21,
+                        "path": "",
+                        "login": "login",
+                        "password": "password",
+                        "active_mode": false,
+                        "stations": [
+                        {
+                            "id": 0,
+                            "title": "TITLE",
+                            "products": {
+                                "wpcell" : true,
+                                "htmax" : true,
+                                "dbz": false,
+                                "rfli": false,
+                                "rfls3up24": true
+                            }
+                        }
+                        ]
+
+                    }
+                ]
+            },
+            "dpm": {
+                "dataprocessing": {
+                    "manual_dbz_correction": 0,
+                    "anglev_dbz_correction_enable": 0,
+                    "WeightWindow": 1,
+                    "accumulatorSize": 59,
+                    "autoAccumulatorSize": 1,
+                    "autoKsOn": 1,
+                    "coefficientKs_10": 57.9382019,
+                    "coefficientKs_100": 57.9485009,
+                    "coefficientKs_150": 61.4485009,
+                    "coefficientKs_20": 57.9382019,
+                    "coefficientKs_200": 57.9485009,
+                    "coefficientKs_25": 58.4382019,
+                    "coefficientKs_50": 57.9382019,
+                    "coefficientKs_55": 63.2382049,
+                    "falseAlarmMFOffProbability": 3e-7,
+                    "falseAlarmProbability": 0.03,
+                    "indexProtoAv": 9,
+                    "kaperturef": 1.75,
+                    "kaperturerange": 2,
+                    "coeffIncreaseSingleTargetLF": 1,
+                    "linearNoiseFilterEnabled": 1,
+                    "medianFiltrOn": 1,
+                    "minreflectionrange": 1,
+                    "oneTgtFiltrOn": 1,
+                    "outDataPixelFilterOn": 0,
+                    "outDataPixelFilterMaxHeight": 20000,
+                    "pulsePeriod0Value10": 0.000243,
+                    "pulsePeriod0Value100": 0.000999,
+                    "pulsePeriod0Value150": 0.001224,
+                    "pulsePeriod0Value20": 0.000243,
+                    "pulsePeriod0Value200": 0.001989,
+                    "pulsePeriod0Value25": 0.000495,
+                    "pulsePeriod0Value50": 0.000495,
+                    "pulsePeriod0Value55": 0.000999,
+                    "pulsePeriod1Value10": 0.000243,
+                    "pulsePeriod1Value100": 0.001143,
+                    "pulsePeriod1Value150": 0.001377,
+                    "pulsePeriod1Value20": 0.000243,
+                    "pulsePeriod1Value200": 0.001989,
+                    "pulsePeriod1Value25": 0.000594,
+                    "pulsePeriod1Value50": 0.000594,
+                    "pulsePeriod1Value55": 0.001143,
+                    "sigmaAmbientNoise_100": 6.71100342110189e-18,
+                    "sigmaAmbientNoise_150": 7.81796275566459e-18,
+                    "sigmaAmbientNoise_50": 6.53831724970232e-18,
+                    "sigmaAmbientNoise_55": 7.72873151205209e-18,
+                    "tauPulseValue10": 0.0000021,
+                    "tauPulseValue100": 0.000016125,
+                    "tauPulseValue150": 0.000024,
+                    "tauPulseValue20": 0.0000021,
+                    "tauPulseValue200": 0.0000321,
+                    "tauPulseValue25": 0.000004125,
+                    "tauPulseValue50": 0.0000081,
+                    "tauPulseValue55": 0.0000195,
+                    "spectralLReflFirtrOn": 1,
+                    "localReflSpectralSize": 17,
+                    "coeffReflMeanSpectreTreshold": 100,
+                    "coeffLReflSpectralZeroPwr": 0.9,
+                    "coeffDeltaPwrQuant": 0.25,
+                    "maxLRPwrValueOn": 1
+                },
+                "local_reflections": {
+                    "build_enabled": 0,
+                    "last_build_timestamp": 0,
+                    "num_cycles": 20
+                },
+                "isotherm": {
+                    "height_temp0": "",
+                    "manual_expire_period": 12,
+                    "manual_height_temp0": 2400,
+                    "manual_temperature": "",
+                    "manual_update_time": 0,
+                    "season_switch_threshold": 500
+                },
+                "radarsettings": {
+                    "AhDiscretesFirmwareValue": 1403,
+                    "beamWidth": 3.25,
+                    "trChannel": 44
+                },
+                "rainfall_computer": {
+                    "cell_size": 1000,
+                    "max_rainfall_height": 2500,
+                    "rainFallParams00": 0.36,
+                    "rainFallParams01": 0.0052,
+                    "rainFallParams02": 0.013,
+                    "rainFallParams10": 0.045,
+                    "rainFallParams11": 0.065,
+                    "rainFallParams12": 0.0625
+                },
+                "weather_map": {
+                    "contour_line_generalization": 3,
+                    "contour_line_expansion": 1,
+                    "cell_size": 1000,
+                    "max_hor_interpolation_step": 4000,
+                    "statistics_wph_off_coord_km_size": 0,
+                    "min_always_show_index_wph": 10,
+                    "afilter_wph_on": 1,
+                    "exclude_contours_after_afilter_wph": 0,
+                    "velocityRadial": 1,
+                    "maxNumSecVVCycle": 1800,
+                    "afilter_wph_treshold1": 400,
+                    "afilter_wph_treshold2": 400,
+                    "afilter_wph_treshold3": 84,
+                    "afilter_wph_treshold4": 84,
+                    "afilter_wph_treshold5": 84,
+                    "afilter_wph_treshold6": 64,
+                    "afilter_wph_treshold7": 84,
+                    "afilter_wph_treshold8": 84,
+                    "afilter_wph_treshold9": 84,
+                    "afilter_wph_treshold10": 4,
+                    "afilter_wph_treshold11": 4,
+                    "afilter_wph_treshold12": 4,
+                    "afilter_wph_treshold13": 4,
+                    "afilter_wph_treshold14": 4,
+                    "afilter_wph_treshold15": 4,
+                    "afilter_wph_treshold16": 4,
+                    "afilter_wph_treshold17": 4,
+                    "afilter_wph_treshold18": 4,
+                    "afilter_wph_treshold19": 4
+                }
+            },
+            "mr":{
+                "telescope": {
+                    "hostAddress": "127.0.0.1",
+                    "portAPI": 8888,
+                    "portWebSocket": 8889
+                },
+                "holoplayer": {
+                    "currentTimeOn": false,
+                    "loopHoloOn": true,
+                    "playspeed": 100,
+                    "playPath": "/var/lib/monocle/raw",
+                    "start": 110,
+                    "stop": 1800,
+                    "record": false,
+                    "recordPath": "/var/lib/monocle/raw"
+                },
+                "nams": {
+                    "dataRequest": "/script/dati.js",
+                    "elevation": 3,
+                    "updateRequest": "/cgi-bin/en_cgi_dati.cgi"
+                },
+                "network": {
+                    "hostAddress": "192.168.0.101",
+                    "namsAddress": "10.128.128.5",
+                    "namsPort": 80,
+                    "mtp5Address": "127.0.0.1",
+                    "mtp5Port": 5000,
+                    "radarAddress": "192.168.0.100",
+                    "radarConfRecvPort": 7706,
+                    "radarConfSendPort": 7703,
+                    "radarConfStatusPort": 7706,
+                    "radarConfigurePort": 7703,
+                    "radarControlPort": 7701,
+                    "radarDataPort": 7700,
+                    "radarStatusPort": 7704
+                },
+                "paths": {
+                    "rootPath": "/var/lib/monocle",
+                    "jsonRequestsPath": "/var/lib/monocle/control/requests",
+                    "jsonResponsesPath": "/var/lib/monocle/control/responses",
+                    "localReflectionsPath": "/var/lib/monocle/localreflections",
+                    "logPath": "/var/log/monocle",
+                    "programsPath": "/var/lib/monocle/programs",
+                    "storagePath": "/var/lib/monocle/db",
+                    "dbPath": "/var/lib/monocle/mr.db"
+                },
+                "programs": {
+                    "default": "view_dummy_150",
+                    "changeModeThroughReadiness": true,
+                    "changeModeDelay": 2000,
+                    "timeTableEnabled": true,
+                    "timeTableId": "view_dummy_150"
+                },
+                "radar": {
+                    "elevation": 25,
+                    "hAvADrivesOnIgnoring": false,
+                    "configRequestTimeout": 2500
+                },
+                "remote": {
+                    "statusWriteInterval": 5000
+                },
+                "terrain": {
+                    "altitude": 640,
+                    "type": 0
+                }
+            }
         }
