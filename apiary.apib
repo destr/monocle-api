@@ -2651,21 +2651,16 @@ distance, x, z - в километрах
 
 ## Уведомление об окончании обработки очередного пакета данных [/notify/new_product]
 
-### Отправить уведомление [POST]
-+ Request (application/json)
+### Отправить уведомление [GET]
++ Response 200 (application/json)
 
         {
             "type": "new_product",
             "content": {
-                "station_id":0,
+                "station_id": 0,
                 "date": "2017-05-15T08:30:00",
                 "max_wp_id": 15
             }
-        }
-        
-+ Response 200 (application/json)
-
-        {
         }
 
 ## Устаревшее [/deprectated]
@@ -2702,7 +2697,7 @@ distance, x, z - в километрах
             "content": {
                 "station_id": 4,
                 "equipment_status": true,
-                "isotherm_status": true
+                "isotherm_status": true,
                 "local_reflections_status": false,
                 "control_status": false,
                 "exchange_status": true,
