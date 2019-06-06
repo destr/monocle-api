@@ -3400,3 +3400,41 @@ distance, x, z - в километрах
                 }
             }
         }
+
+## Запрос проверки соединения с FTP [/settings/check_ftp_connection]
+Запрос на проверку соединения с FTP по указанным реквизитам
+
+### Запрос проверки [POST]
+
++ Request (application/json)
+
+        {
+            "host": "hostname",
+            "port": 21,
+            "path": "",
+            "login": "login",
+            "password": "password",
+            "active_mode": false
+        }
+
++ Response 200 (application/json)
+
+        {
+        }
+
+## Уведомление о результате проверки FTP-соединения [/notify/ftp_connection_result]
+Уведомление отправляется с результатом выполненной проверки
+
+### Отправить уведомление [GET]
+
++ Response 200 (application/json)
+
+        {
+            "type": "ftp_connection",
+            "content" : {
+                "result": false,
+                "message": ""
+            }
+        }
+
+
