@@ -3417,24 +3417,15 @@ distance, x, z - в километрах
             "active_mode": false
         }
 
-+ Response 200 (application/json)
-
-        {
-        }
-
-## Уведомление о результате проверки FTP-соединения [/notify/ftp_connection_result]
-Уведомление отправляется с результатом выполненной проверки
-
-### Отправить уведомление [GET]
+### Результат проверки
 
 + Response 200 (application/json)
 
         {
             "type": "ftp_connection",
             "content" : {
-                "result": false,
+                "result": 0,
                 "message": ""
             }
         }
-
 
