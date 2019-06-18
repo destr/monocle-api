@@ -385,11 +385,11 @@ Cправочник типов конических сечений для СМР
             "_comment_update_time": "Время последнего обновления",
             "update_time": "2017-05-15T08:30:00",
             "_comment_height_temp0": "Высота нулевой изотермы, задаваемая вручную",
-            "height_temp0": 2400,
+            "height_temp0": 2400.0,
             "_comment_height_temp22": "Высота изотермы -22 градуса, задаваемая вручную",
-            "height_temp22": 7000,
+            "height_temp22": 7000.0,
             "_comment_height_tropopause": "Высота тропопаузы, задаваемая вручную",
-            "height_tropopause": 12000
+            "height_tropopause": 12000.0
         }
         
 + Response 404
@@ -405,9 +405,9 @@ Cправочник типов конических сечений для СМР
             "manual_from_temp": false,
             "_comment_temperature": "Температура на уровне земли, задаваемая вручную",
             "temperature": 15.2,
-            "height_temp0": 2400,
-            "height_temp22": 7000,
-            "height_tropopause": 12000
+            "height_temp0": 2400.0,
+            "height_temp22": 7000.0,
+            "height_tropopause": 12000.0
         }
 
 + Response 200 (application/json)
@@ -3244,6 +3244,12 @@ distance, x, z - в километрах
 
                     }
                 ]
+            },
+              "qtiface": {
+                "calibration_period": {
+                    "warm": 3,
+                    "cold": 72
+                    }
             },
             "dpm": {
                 "dataprocessing": {
