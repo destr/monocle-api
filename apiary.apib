@@ -3541,3 +3541,29 @@ distance, x, z - в километрах
             "dir": "",
             "files": [""]
         }
+
+## Управление вопроизведением голограмм [/station/{id}/holocontrol]
+ Команды управления записью/воспроизведением голограмм
+
+### Установить новые параметры воспроизведения/записи [POST]
+
++ Parameters
+    + id (number) - ID СМРЛП
+
++ Request (application/json)
+
+        {
+            "loop_holo_on": true,
+            "current_time_on": false,
+            "playspeed": 1,
+            "start": 100,
+            "stop": 200,
+            "_comment_command": "Команда воспроизведение(play)/запись(record)",
+            "command": ""
+        }
+
++ Response 200 (application/json)
+
+        {
+            "status": true
+        }
