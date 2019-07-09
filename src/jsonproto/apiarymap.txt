@@ -1,0 +1,80 @@
+/station/list{?ids}{?title}{?limit}{?offset}
+  <200 StationList
+/station/{id}
+  <200 StationSettings
+# для КС и РЛП типов структура типа одинакова
+/station/{id}/types/rlp_list
+  <200 ProductType
+/station/{id}/types/cs_list
+/station/{id}/isotherm
+  <200 ::IsothermCalibration
+  > ::IsothermCalibrationPut
+/station/{id}/meteosettings
+/station/{id}/radarsettings
+/station/{id}/schedule
+/station/{id}/schedule/start
+/station/{id}/schedule/stop
+/station/{id}/local_reflection_map/start{?cycle}
+/station/{id}/local_reflection_map/stop
+/station/{id}/program/{program_id}/start
+/station/{id}/program/stop
+/station/{id}/check/start
+/station/{id}/nams_data{?date}
+/station/{id}/meteo_stat{?date}
+  <200 MeteoStatistics
+/station/{id}/archive_product_list
+# ответ на эти запросы одинаковый
+/station/{id}/cs/{type}/{?cs_id}{?indicator}{?altitude}{?date}{?cell_size}{?radius}{?angle}
+/station/{id}/rlp/{type}/{?rlp_id}{?only_dangerous}{?altitude}{?date}{?cell_size}{?radius}
+  <200 RlpMap
+/station/{id}/rlp_altitudes{?date}
+/station/{id}/cs_altitudes{?date}
+/station/{id}/angles_array{?date}
+  <200 AnglesArray
+/station/{id}/{product_type}/point/{?latitude}{?longitude}
+/program/list{?mode}{?title}{?limit}{?offset}
+/program/{id}
+/station_log/list{?type}{?station}{?from}{?to}{?limit}{?offset}
+  <200 LogEntryList
+/alarm/list{?stations}
+/dangerous_meteo/list{?stations}
+/settings/bufr
+/settings/productrender
+/settings/color_scale/list
+/settings/color_scale/{id}
+/settings/color_scale/{id}/default
+/settings/default_weather_criteria
+/north_azimuth/{id}
+/vertical_section_by_route
+  > VerticalSectionPost
+/vertical_profile
+  > VerticalProfilePost
+  <200 VerticalProfile
+/station/{id}/mrls_status
+  <200 ::MrlsStatus
+/settings/{id}/channels
+/station/{id}/dangerous_meteo_list
+/notification
+/notify/new_state
+  <200 State
+/notify/new_product
+  <200 Product
+/station/{id}/settings/qtiface
+  <200 QtifaceSettings
+/settings/check_ftp_connection
+  > ::FtpConnectionPost
+  <200 FtpConnectionResult
+/station/{id}/marker_data
+  > MarkerDataPost
+  <200 MarkerData
+/vertical_section_wp
+  > VerticalSectionWpPost
+  <200 VerticalSectionWp
+/vertical_section_cs
+  > VerticalSectionCsPost
+  <200 VerticalSectionCs
+/station/{id}/lsholodir
+  <200 ::LsHoloDir
+/station/{id}/holocontrol
+  > HoloControlPost
+  <200 HoloControlStatus
