@@ -125,6 +125,8 @@ class JsonProtoGen:
                     self.classes[class_name] += self._tab(2) + "self.{0} = list()\n".format(key)
                     self.assign_func[class_name] += self._tab(2) + """for e in j['{0}']:
             self.{0}.append({1}(e))\n""".format(key, array_type)
+                    self.to_json_func[class_name] += self._tab(2) + \
+                                                     "ret[\"{0}\"] = [i.tojson() for i in self.items]\n".format(key)
                     continue
 
             self.classes[class_name] += self._tab(2) + "self.{0} = None\n".format(key)
