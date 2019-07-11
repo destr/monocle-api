@@ -9,6 +9,12 @@ from collections import OrderedDict
 from argparse import ArgumentParser
 
 
+class EnumDescr:
+    def __init__(self, name, items):
+        self.name = name
+        self.items = items
+
+
 class JsonProtoGen:
     class OutType(enum.Enum):
         CPP = 'cpp'
@@ -19,6 +25,9 @@ class JsonProtoGen:
         self.gen_str = ""
         self.classes = OrderedDict()
         self.assign_func = OrderedDict()
+        self.enums = OrderedDict()
+        self.enums_from = OrderedDict()
+        self.enums_to = OrderedDict()
 
         self.to_json_func = OrderedDict()
         self.type_map = {'str': 'QString', 'float': 'double'}
@@ -181,11 +190,13 @@ class JsonProtoGen:
         out << "{";\n"""
         first = True
         comments = self._extract_field_comments(json_object)
+        enums = self._extract_field_enums(json_object)
 
         for key in json_object.keys():
 
-            if key.startswith("_comment_"):
+            if key.startswith("_comment_") or key.startswith("_enum_"):
                 continue
+
             key_esc = self._escape_cpp_keyword(key)
             if first:
                 first = False
@@ -300,12 +311,23 @@ class JsonProtoGen:
             t = self._type(type(item).__name__)
             is_nullable = key in self.nullable
 
-            self._add_field(class_name, t, key_esc, is_nullable=is_nullable, comments=comments)
+            self._add_field(class_name, t, key_esc, is_nullable=is_nullable, comments=comments, enums=enums)
             to_func = "." + self._to(t) + "()"
             if is_nullable:
                 to_func = ""
 
-            self.assign_func[class_name] += self._tab(2) + '{0} = obj.value("{1}"){2};\n'.format(key_esc, key, to_func)
+            to_enum = [''] * 2
+            from_enum = [''] * 2
+            is_enum = key_esc in enums
+            if is_enum:
+                e_name = enums[key_esc].name
+                to_enum[0] = "{0}FromString(".format(e_name)
+                to_enum[1] = ")"
+
+                from_enum[0] = "{0}ToString(".format(e_name)
+                from_enum[1] = ")"
+
+            self.assign_func[class_name] += self._tab(2) + '{0} = {3}obj.value("{1}"){2}{4};\n'.format(key_esc, key, to_func, *to_enum)
 
             is_string = (t == 'QString')
             value = key_esc
@@ -315,6 +337,9 @@ class JsonProtoGen:
 
             if t == 'bool':
                 value = '({0} ? "true" : "false")'.format(key_esc)
+
+            if is_enum:
+                value = from_enum[0] + value + from_enum[1]
             self.to_json_func[class_name] += self._tab(2) + \
                 'out << "\\"{0}\\": " << {1}'.format(key, self._quote_json_string(value, is_string))
 
@@ -322,8 +347,12 @@ class JsonProtoGen:
         self.to_json_func[class_name] += ";\n" + self._tab(2) + "out << \"}\";\n"
         self.to_json_func[class_name] += self._tab(2) + "return __data;\n    }\n"
 
+        # генерация объявлений enum
+        self.classes[class_name] += self._generate_enums_cpp(class_name, enums)
+
         self.classes[class_name] += self._tab() + self.assign_func[class_name]
         self.classes[class_name] += self._tab() + self.to_json_func[class_name]
+
 
         # дополнительные статичные методы
         self.classes[class_name] += """
@@ -331,7 +360,37 @@ class JsonProtoGen:
 private:
     bool is_null_ = true;
 """
+        self.classes[class_name] += self.enums_from[class_name]
+        self.classes[class_name] += self.enums_to[class_name]
         self.classes[class_name] += "};\n"
+
+    def _generate_enums_cpp(self, class_name, enums):
+        self.enums[class_name] = ''
+        self.enums_from[class_name] = ''
+        self.enums_to[class_name] = ''
+
+        for n, e in enums.items():
+            self.enums[class_name] += self._tab() + "enum {0} {{\n".format(e.name)
+            self.enums_from[class_name] += self._tab() + "static {0} {0}FromString(QString str){{\n".format(e.name)
+            self.enums_to[class_name] += self._tab() + """static QString {0}ToString(Command cmd){{
+        switch (cmd) {{
+""".format(e.name)
+
+            is_first = True
+            for key, value, text_value in e.items:
+                if is_first:
+                    is_first = False
+                else:
+                    self.enums[class_name] += ",\n"
+                self.enums[class_name] += self._tab(2) + "{0} = {1}".format(key, value)
+                self.enums_from[class_name] += self._tab(2) + "if (str == \"{0}\") return {1};\n".format(text_value, key)
+                self.enums_to[class_name] += self._tab(3) + "case {0}: return \"{1}\";\n".format(key, text_value)
+
+            self.enums_from[class_name] += self._tab(2) + "return Undefined;\n" + self._tab() + "}\n"
+            self.enums_to[class_name] += self._tab(2) + "}\n" + self._tab(2) + "return \"undefined\";\n" + self._tab() + "}\n"
+            self.enums[class_name] += "\n" + self._tab() + "};\n"
+
+        return self.enums[class_name]
 
     def _output_array_element_to_json(self, counter, user_type, string_list):
         obj_to = ''
@@ -375,12 +434,16 @@ private:
     def _print(self, *args):
         print(*args, file=self.o_file)
 
-    def _add_field(self, class_name, type, name, ident=1, is_nullable = False, comments=dict()):
+    def _add_field(self, class_name, type, name, ident=1, is_nullable = False, comments=dict(), enums=dict()):
         t = type
         if is_nullable:
             t = 'QVariant'
         if name in comments:
             self.classes[class_name] += self._tab(ident) + "// " + comments[name] + "\n"
+
+        if name in enums:
+            t = enums[name].name
+
         self.classes[class_name] += self._tab(ident) + t + " " + name + ";\n"
 
     def _to(self, type):
@@ -398,18 +461,56 @@ private:
         return word
 
     def _extract_field_comments(self, json_object):
+        return self._extract_field_property(json_object, "_comment_")
+
+    def _extract_field_enums(self, json_object):
+        enums = self._extract_field_property(json_object, "_enum_")
+        # разбор строковой записи enum
+        # <имя_перечисления>: ключ=значение/текстовое_значение,...
+        for key, value in enums.items():
+            index = value.index(':')
+            enum_name = value[0:index]
+
+            str_items = value[index + 1:].split(",")
+            items = self._parse_enum_items(str_items)
+            enums[key] = EnumDescr(enum_name, items)
+
+        return enums
+
+    def _parse_enum_items(self, items):
+        r = list()
+        max_value = -sys.maxsize
+        for i in items:
+            key, value = i.split('=', maxsplit=2)
+            key = key.strip()
+            i_val, t_val = value.split('/', maxsplit=2)
+            i_val = i_val.strip()
+            t_val= t_val.strip()
+
+            max_value = max(max_value, int(i_val, 0))
+
+            r.append((key, i_val, t_val))
+
+        # добавляем Undefined
+        r.append(("Undefined", max_value + 1, "undefined"))
+
+        return r
+
+    def _extract_field_property(self, json_object, property):
         """
-        Извлечение комментариев из JSON. Комментарии имеют формат _comment_<field_name>
+        Извлечение свойств полей имеющих формат <property><field_name>
         :param json_object:
+        :param property: имя свойства
         :return:
         """
-        comments = dict()
-        for key in json_object.keys():
-            if key.startswith("_comment_"):
-                field = key[key.index('_', 1) + 1:]
-                comments[self._escape_cpp_keyword(field)] = json_object[key]
 
-        return comments
+        p = dict()
+        for key in json_object.keys():
+            if key.startswith(property):
+                field = key[key.index('_', 1) + 1:]
+                p[self._escape_cpp_keyword(field)] = json_object[key]
+
+        return p
 
 
 if __name__ == "__main__":
