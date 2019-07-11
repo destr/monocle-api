@@ -192,6 +192,9 @@ class JsonProtoGen:
         comments = self._extract_field_comments(json_object)
         enums = self._extract_field_enums(json_object)
 
+        # генерация объявлений enum
+        self.classes[class_name] += self._generate_enums_cpp(class_name, enums)
+
         for key in json_object.keys():
 
             if key.startswith("_comment_") or key.startswith("_enum_"):
@@ -347,8 +350,7 @@ class JsonProtoGen:
         self.to_json_func[class_name] += ";\n" + self._tab(2) + "out << \"}\";\n"
         self.to_json_func[class_name] += self._tab(2) + "return __data;\n    }\n"
 
-        # генерация объявлений enum
-        self.classes[class_name] += self._generate_enums_cpp(class_name, enums)
+
 
         self.classes[class_name] += self._tab() + self.assign_func[class_name]
         self.classes[class_name] += self._tab() + self.to_json_func[class_name]

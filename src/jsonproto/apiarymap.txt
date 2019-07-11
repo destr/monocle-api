@@ -76,5 +76,5 @@
 /station/{id}/lsholodir
   <200 ::LsHoloDir
 /station/{id}/holocontrol
-  > HoloControlPost
-  <200 HoloControlStatus
+  > ::HoloControlPost
+  <200 ::HoloControlStatus
