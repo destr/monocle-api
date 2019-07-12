@@ -123,7 +123,7 @@ class JsonProtoGen:
         if enums:
             self._generate_enums_py(class_name, enums)
 
-        self.classes[class_name] += self._tab() + "def __init__(self):\n"
+        self.classes[class_name] += self._tab() + "def __init__(self, j=None):\n"
         self.assign_func[class_name] = self._tab() + "def fromjson(self, j):\n"
         self.to_json_func[class_name] = self._tab() + """def tojson(self):
         ret = dict()\n"""
@@ -162,13 +162,15 @@ class JsonProtoGen:
                 to_enum[1] = ")"
 
                 from_enum[0] = ''
-                from_enum[1] = '._value_'
+                from_enum[1] = '.value'
+
 
             self.assign_func[class_name] += self._tab(2) + "self.{0} = {1}j['{0}']{2}\n".format(key, *to_enum)
             self.to_json_func[class_name] += self._tab(2) + "ret[\"{0}\"] = {1}self.{0}{2}\n".format(key, *from_enum)
 
         self.to_json_func[class_name] += self._tab(2) + "return ret\n"
 
+        self.classes[class_name] += self._tab(2) + "if j:\n" + self._tab(3) + "self.fromjson(j)\n"
         self.classes[class_name] += "\n"
         self.classes[class_name] += self.assign_func[class_name]
         self.classes[class_name] += "\n"
@@ -399,7 +401,7 @@ private:
         for n, e in enums.items():
             self.enums[class_name] += self._tab() + "enum {0} {{\n".format(e.name)
             self.enums_from[class_name] += self._tab() + "static {0} {0}FromString(QString str){{\n".format(e.name)
-            self.enums_to[class_name] += self._tab() + """static QString {0}ToString(Command cmd){{
+            self.enums_to[class_name] += self._tab() + """static QString {0}ToString({0} cmd){{
         switch (cmd) {{
 """.format(e.name)
 
