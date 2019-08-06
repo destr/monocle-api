@@ -3535,7 +3535,7 @@ distance, x, z - в километрах
         }
 
 ## Получить список файлов содержащихся в каталоге для воспроизведения [/station/{id}/lsholodir]
- Запрос списка файлов
+Запрос списка файлов
 
 ### Получить [GET]
 
@@ -3550,7 +3550,7 @@ distance, x, z - в километрах
         }
 
 ## Управление вопроизведением голограмм [/station/{id}/holocontrol]
- Команды управления записью/воспроизведением голограмм
+Команды управления записью/воспроизведением голограмм
 
 ### Установить новые параметры воспроизведения/записи [POST]
 
@@ -3576,3 +3576,41 @@ distance, x, z - в километрах
             "_enum_status": "Status: Play = 0/play, Record = 1/record, Stop = 2/stop",
             "status": ""
         }
+
+
+## Выдача данных температурного профилемера [/station/{id}/mtp{?date}]
+Выдача данных измерений ТПМ и характеристик температурной стратификации для выбранного МП и времени.
+
+### Получить [GET]
+
++ Parameters
+    + id (number) - ID СМРЛП
+    * date - Дата обзора
+    
++ Response 200 (application/json)
+
+        {
+            "inversion_layer_altitude": 250,
+            "_comment_inversion_layer_altitude": "Высота нижней границы слоя инверсии, м",
+            "inverstion_layer_power_height": 260,
+            "_comment_inverstion_layer_power_height": "Вертикальная мощность слоя инверсии, м",
+            "inversion_layer_temp_delta": 3.2,
+            "_comment_inversion_layer_temp_delta": "Величина слоя инверсии, *С",
+            "mix_layer_altitude": 800,
+            "_comment_mix_layer_altitude": "Высота слоя перемешивания, м",
+            "height_temp0": 1800,
+            "_comment_height_temp0": "Высота изотермы 0*С, м",
+            "height_temp22": 3000,
+            "_comment_height_temp22": "Высота изотермы -22*С, м",
+            "height_tropopause" : 11400,
+            "_comment_height_tropopause": "Высота тропопаузы, м",
+            "data": [
+                { "altitude": 15, "temperature": 12.5 },
+                { "altitude": 50, "temperature": 12.1 },
+                { "altitude": 100, "temperature": 11.7 },
+                { "altitude": 150, "temperature": 11.0 }
+            ],
+            "_comment_data": "Данные измерений ТПМ (от 0 до 15000 м)"
+        }
+        
++ Response 404
