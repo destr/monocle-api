@@ -3613,3 +3613,89 @@ distance, x, z - в километрах
         }
         
 + Response 404
+
+## Выдача паспорта обзора [/station/{id}/passport{?date}]
+Выдача паспорта цикла обзора, хранимого на СКОД.
+
+### Получить [GET]
+
++ Parameters
+    + id (number) - ID СМРЛП
+    * date - Дата обзора
+    
++ Response 200 (application/json)
+
+        {
+            "antenna_altitude_msl": 511,
+            "cloud_direction": 120,
+            "cloud_speed": 10.8,
+            "data_format": "1",
+            "date": "20190808T142111Z",
+            "hiso0": { "source": "auto", "success": true, "value": 3937 },
+            "hiso22": { "source": "auto", "success": true, "value": 7321 },
+            "htropo": { "source": "auto", "success": true, "value": 13491 },
+            "location": [ 56.142616, 34.987386 ],
+            "max_cloud_altitude": 4000,
+            "max_edr": 0,
+            "max_ground_rfli": 5.323521526695193,
+            "min_edr": 0,
+            "min_ground_rfli": 0.1277328201064342,
+            "min_refl_altitude": 400,
+            "primary_valid": true,
+            "program": {
+                "description": "System program",
+                "isDefault": false,
+                "name": "DUMP",
+                "program": {
+                    "angleChangeAzimuth": 0,
+                    "anglesArray": [
+                        0,
+                        0.791015625,
+                        1.58203125,
+                        2.373046875,
+                        3.1640625,
+                        4.04296875,
+                        4.833984375,
+                        5.625,
+                        6.416015625,
+                        7.20703125,
+                        7.998046875,
+                        8.7890625,
+                        9.580078125,
+                        10.37109375,
+                        12.392578125,
+                        14.4140625,
+                        16.34765625,
+                        18.369140625,
+                        20.390625,
+                        22.412109375,
+                        25.400390625,
+                        28.388671875,
+                        31.376953125,
+                        34.453125,
+                        37.44140625,
+                        40.4296875,
+                        43.41796875,
+                        46.40625,
+                        49.39453125
+                    ],
+                    "azimuthScanSpeed": 23.777619048953056,
+                    "blankSectorsArray": [],
+                    "mode": 4,
+                    "rasterLeftAzimuth": 60.029296875,
+                    "rasterRightAzimuth": 29.970703125,
+                    "scopeRange": 100
+                }
+            },
+            "rfli_height": 2500,
+            "season": "warm",
+            "secondary_valid": true,
+            "spg_datetime": "20190808T143015Z",
+            "station_index": "TEST",
+            "station_name": "",
+            "station_synoptic_code": "00001",
+            "weather_list": [ 2, 3, 4, 5, 7 ],
+            "weather_max": 4
+        }
+        
++ Response 404
