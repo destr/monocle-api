@@ -82,3 +82,5 @@
   <200 ::Mtp5Archive
 /station/{id}/mtp{?date}
   <200 ::Mtp5Data
+/api/version
+  <200 ::VersionInfo

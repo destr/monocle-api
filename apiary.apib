@@ -3717,3 +3717,18 @@ distance, x, z - в километрах
         }
         
 + Response 404
+
+## Версия API [/api/version]
+Информация о версии и других свойствах API
+
+### Получить [GET]
+
++ Response 200 (application/json)
+
+    {
+        "version": "1.0.0",
+        "git_revision": "sha1",
+        "build_date": "iso-date",
+        "supported_methods": [""]
+    }
+
