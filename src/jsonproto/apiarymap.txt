@@ -78,3 +78,7 @@
 /station/{id}/holocontrol
   > ::HoloControlPost
   <200 ::HoloControlStatus
+/station/{id}/mtp/archive
+  <200 ::Mtp5Archive
+/station/{id}/mtp{?date}
+  <200 ::Mtp5Data

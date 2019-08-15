@@ -3576,6 +3576,24 @@ distance, x, z - в километрах
             "status": ""
         }
 
+## Выдача списка дат архивных данных температурного профилимера [/station/{id}/mtp/archive]
+Выдача архивных дат измерений ТПМ. Список отсортирован по возрастанию
+
+### Получить [GET]
+
++ Parameters
+    + id (number) - ID СМРЛП
+
++ Response 200 (application/json)
+
+    {
+        "dates": [
+            "2017-10-20T00:33:44",
+            "2017-10-20T00:38:20"
+        ]
+    }
+
++ Response 404
 
 ## Выдача данных температурного профилемера [/station/{id}/mtp{?date}]
 Выдача данных измерений ТПМ и характеристик температурной стратификации для выбранного МП и времени.
@@ -3584,14 +3602,14 @@ distance, x, z - в километрах
 
 + Parameters
     + id (number) - ID СМРЛП
-    * date - Дата обзора
+    * date - Дата обзора (ISO формат)
     
 + Response 200 (application/json)
 
         {
             "inversion_layer_altitude": 250,
             "_comment_inversion_layer_altitude": "Высота нижней границы слоя инверсии, м",
-            "inverstion_layer_power_height": 260,
+            "inversion_layer_power_height": 260,
             "_comment_inversion_layer_power_height": "Вертикальная мощность слоя инверсии, м",
             "inversion_layer_temp_delta": 3.2,
             "_comment_inversion_layer_temp_delta": "Величина слоя инверсии, *С",
