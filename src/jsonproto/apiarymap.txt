@@ -1,4 +1,4 @@
-/station/list{?ids}{?title}{?limit}{?offset}
+/station/list
   <200 StationList
 /station/{id}
   <200 StationSettings
@@ -36,8 +36,6 @@
 /program/{id}
 /station_log/list{?type}{?station}{?from}{?to}{?limit}{?offset}
   <200 LogEntryList
-/alarm/list{?stations}
-/dangerous_meteo/list{?stations}
 /settings/bufr
 /settings/productrender
 /settings/color_scale/list
