@@ -23,7 +23,7 @@ hooks.before('Справочник типов КС > Получить переч
 });
 
 hooks.before('Калибровка изотермы > Получить настройки вычисления изотермы', function(transaction) {
-	transaction.skip = false; 
+	transaction.skip = true; 
 });
 
 hooks.before('Калибровка изотермы > Обновить настройки вычисления изотермы', function(transaction) {
