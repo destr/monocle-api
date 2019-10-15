@@ -3,7 +3,7 @@ const hooks = require('hooks')
 
 
 hooks.before('АС СМРЛП > Получить список СМРЛП', function(transaction) {
-	transaction.skip = false; 
+	transaction.skip = false;
 });
 
 hooks.before('СМРЛП > Получить параметры СМРЛП', function(transaction) {
@@ -23,7 +23,7 @@ hooks.before('Справочник типов КС > Получить переч
 });
 
 hooks.before('Калибровка изотермы > Получить настройки вычисления изотермы', function(transaction) {
-	transaction.skip = true; 
+	transaction.skip = false; 
 });
 
 hooks.before('Калибровка изотермы > Обновить настройки вычисления изотермы', function(transaction) {
