@@ -1,5 +1,5 @@
 §FORMAT: 1A
-HOST: http://polls.apiblueprint.org/
+HOST: http://polls.api/versionblueprint.org/
 
 # monocle
 
@@ -11,153 +11,43 @@ API для получения радиолокационных данных. В�
 
 ### Получить список СМРЛП [GET]
 
-+ Response 200 (application/json)
++ Response 200 (application/json; charset=utf-8)
 
-        {
-            "count": 5,
-            "items": [
-                {
-                    "id": 0,
-                    "index": "0001",
-                    "title": "Орловка",
-                    "baltrad_index": "abcdefg",
-                    "path": "monocle-mreja-node01",
-                    "synopt_index": "00001",
-                    "latitude": 55.807775,
-                    "longitude": 37.566814,
-                    "terrain_altitude": 200,
-                    "radar_elevation": 7,
-                    "pressure_sensor_elevation": 3,
-                    "mtp_elevation": 5,
-                    "radar_present": true,
-                    "nams_present": false,
-                    "mtp_present": true,
-                    "_comment_terrain_type": "Тип местности: 0 - Суша, 1 - Холодное море, 2 - Теплое море",
-                    "terrain_type": 0,
-                    "current_program": {
-                        "id": "6d697530-25f1-11e8-a0e9-1c1b0d7db1e3",
-                        "title": "Обзор 50 км УМ 0-90°",
-                        "timetable_enabled": true
-                    },
-                    "local_reflections_status": "Построена 28.03.2018 в 09:54:32",
-                    "equipment_status": true,
-                    "exchange_status": true,
-                    "rotation_status": 60
-                },
-                {
-                    "id": 1,
-                    "index": "0002",
-                    "title": "Чкаловский",
-                    "baltrad_index": "abcdefg",
-                    "path": "monocle-mreja-node02",
-                    "synopt_index": "00002",
-                    "latitude": 55.807775,
-                    "longitude": 37.566814,
-                    "terrain_altitude": 200,
-                    "radar_elevation": 7,
-                    "pressure_sensor_elevation": 3,
-                    "mtp_elevation": 5,
-                    "radar_present": true,
-                    "nams_present": true,
-                    "mtp_present": true,
-                    "_comment_terrain_type": "Тип местности: 0 - Суша, 1 - Холодное море, 2 - Теплое море",
-                    "terrain_type": 1,
-                    "current_program": {
-                        "id": "6d697530-25f1-11e8-a0e9-1c1b0d7db1e1",
-                        "title": "Обзор 50 км УМ 0-90°",
-                        "timetable_enabled": false
-                    },
-                    "local_reflections_status": "Идёт построение (9 из 10)",
-                    "equipment_status": true,
-                    "exchange_status": true,
-                    "rotation_status": 60
-                },
-                {
-                    "id": 2,
-                    "index": "0003",
-                    "title": "Елец",
-                    "baltrad_index": "abcdefg",
-                    "path": "monocle-mreja-node03",
-                    "synopt_index": "00003",
-                    "latitude": 55.807775,
-                    "longitude": 37.566814,
-                    "terrain_altitude": 200,
-                    "radar_elevation": 7,
-                    "pressure_sensor_elevation": 3,
-                    "mtp_elevation": 5,
-                    "radar_present": true,
-                    "nams_present": false,
-                    "mtp_present": false,
-                    "_comment_terrain_type": "Тип местности: 0 - Суша, 1 - Холодное море, 2 - Теплое море",
-                    "terrain_type": 2,
-                    "current_program": {
-                        "id": "6d697530-25f1-11e8-a0e9-1c1b0d7db1e4",
-                        "title": "Готовность",
-                        "timetable_enabled": false
-                    },
-                    "local_reflections_status": "Идёт построение (Завершено циклов: 3 из 20)",
-                    "equipment_status": true,
-                    "exchange_status": true,
-                    "rotation_status": 60
-                },
-                {
-                    "id": 3,
-                    "index": "0004",
-                    "title": "Тула",
-                    "baltrad_index": "abcdefg",
-                    "path": "monocle-mreja-node04",
-                    "synopt_index": "00004",
-                    "latitude": 55.807775,
-                    "longitude": 37.566814,
-                    "terrain_altitude": 200,
-                    "radar_elevation": 7,
-                    "pressure_sensor_elevation": 3,
-                    "mtp_elevation": 5,
-                    "radar_present": true,
-                    "nams_present": true,
-                    "mtp_present": true,
-                    "_comment_terrain_type": "Тип местности: 0 - Суша, 1 - Холодное море, 2 - Теплое море",
-                    "terrain_type": 2,
-                    "current_program": {
-                        "id": "6d697530-25f1-11e8-a0e9-1c1b0d7db1e8",
-                        "title": "Готовность",
-                        "timetable_enabled": true
-                    },
-                    "local_reflections_status": "Нет данных",
-                    "equipment_status": true,
-                    "exchange_status": true,
-                    "rotation_status": 60
-                },
-                {
-                    "id": 4,
-                    "index": "0005",
-                    "title": "Щелково",
-                    "path": "monocle-mreja-node05",
-                    "synopt_index": "00005",
-                    "baltrad_index": "abcdefg",
-                    "latitude": 55.807775,
-                    "longitude": 37.566814,
-                    "terrain_altitude": 200,
-                    "radar_elevation": 7,
-                    "pressure_sensor_elevation": 3,
-                    "mtp_elevation": 5,
-                    "radar_present": true,
-                    "nams_present": true,
-                    "mtp_present": true,
-                    "_comment_terrain_type": "Тип местности: 0 - Суша, 1 - Холодное море, 2 - Теплое море",
-                    "terrain_type": 0,
-                    "current_program": {
-                        "id": "6d697530-25f1-11e8-a0e9-1c1b0d7db1e9",
-                        "title": "Готовность",
-                        "timetable_enabled": false
-                    },
-                    "local_reflections_status": "Отсутствует",
-                    "equipment_status": true,
-                    "exchange_status": true,
-                    "rotation_status": 60
-                }
-            ]
-        }
+            {
+                "count": 1,
+                    "items": [
+                    {
+                        "id": 0,
+                        "index": "MORL",
+                        "baltrad_index": "abcdefgh",
+                        "path": "monocle-mrlk-bz-ga",
+                        "synopt_index": "1",
+                        "title": "Орловка",
+                        "latitude": 56.142616,
+                        "longitude": 34.987386,
+                        "alarm_id": 0,
+                        "hardware_id": "CMRC0001",
+                        "radar_present": true,
+                        "nams_present": true,
+                        "mtp_present": true,
+                        "terrain_altitude": 638,
+                        "radar_elevation": 25,
+                        "pressure_sensor_elevation": 0,
+                        "mtp_elevation": 0,
+                        "terrain_type": 0,
+                        "current_program": {
+                            "id": "Нет данных",
+                            "timetable_enabled": false,
+                            "title": "Нет данных",
+                            "timetable_id": "view_dummy_150"
+                        },
+                        "local_reflections_status": "Нет данных",
+                        "equipment_status": false,
+                        "exchange_status": false,
+                        "rotation_status": 0
+                    }
+                ]
+            }
 
 ## СМРЛП [/station/{id}]
 
@@ -169,37 +59,39 @@ API для получения радиолокационных данных. В�
 
 ### Получить параметры СМРЛП [GET]
 
-+ Response 200 (application/json)
++ Response 200 (application/json; charset=utf-8)
 
             {
-                "id": 3,
-                "index": "0003",
-                "title": "Елец",
-                "baltrad_index": "abcdefg",
-                "path": "monocle-mreja-node01",
-                "synopt_index": "00005",
-                "latitude": 55.807775,
-                "longitude": 37.566814,
-                "terrain_altitude": 200,
-                "radar_elevation": 7,
-                "pressure_sensor_elevation": 3,
-                "mtp_elevation": 5,
-                "radar_present": true,
-                "nams_present": false,
-                "mtp_present": true,
-                "_comment_terrain_type": "Тип местности: 0 - Суша, 1 - Холодное море, 2 - Теплое море",
-                "terrain_type": 0,
-                "current_program": {
-                    "id": "6d697530-25f1-11e8-a0e9-1c1b0d7db1e3",
-                    "title": "Готовность",
-                    "timetable_enabled": true
-                },
-                "local_reflections_status": "Идёт построение (Завершено циклов: 3 из 20)",
-                "equipment_status": true,
-                "exchange_status": true,
-                "rotation_status": 60
+                "id": 0,
+                    "index": "MORL",
+                    "baltrad_index": "abcdefgh",
+                    "path": "monocle-mrlk-bz-ga",
+                    "synopt_index": "1",
+                    "title": "Орловка",
+                    "latitude": 56.142616,
+                    "longitude": 34.987386,
+                    "alarm_id": 0,
+                    "hardware_id": "CMRC0001",
+                    "radar_present": true,
+                    "nams_present": true,
+                    "mtp_present": true,
+                    "terrain_altitude": 638,
+                    "radar_elevation": 25,
+                    "pressure_sensor_elevation": 0,
+                    "mtp_elevation": 0,
+                    "terrain_type": 0,
+                    "current_program": {
+                        "id": "Нет данных",
+                        "timetable_enabled": false,
+                        "title": "Нет данных",
+                        "timetable_id": "view_dummy_150"
+                    },
+                    "local_reflections_status": "Нет данных",
+                    "equipment_status": false,
+                    "exchange_status": false,
+                    "rotation_status": 0
             }
-            
+
 + Response 404
 
 ### Обновить параметры СМРЛП [PUT]
@@ -290,96 +182,96 @@ Cправочник типов РЛП для СМРЛП
 
 ### Получить перечень типов РЛП [GET]
 
-+ Response 200 (application/json)
++ Response 200 (application/json; charset=utf-8)
 
-        {
-            "count": 12,
-            "items": [{
-                    "id": 0,
-                    "index": "Wpcell",
-                    "title": "Карта метео явлений (в ячейках)",
-                    "enable_altitude_scale": false,
-                    "mixed_with_other_rlp": false
-                },
-                {
-                    "id": 1,
-                    "index": "Wpfig",
-                    "title": "Карта метео явлений (в контурах)",
-                    "enable_altitude_scale": true,
-                    "mixed_with_other_rlp": false
-                },
-                {
-                    "id": 2,
-                    "index": "Htmax",
-                    "title": "Карта верхней границы радиоэха",
-                    "enable_altitude_scale": false,
-                    "mixed_with_other_rlp": false
-                },
-                {
-                    "id": 3,
-                    "index": "Htmin",
-                    "title": "Карта нижней границы радиоэха",
-                    "enable_altitude_scale": false,
-                    "mixed_with_other_rlp": true
-                },
-                {
-                    "id": 4,
-                    "index": "VvField",
-                    "title": "Карта векторного поля скоростей",
-                    "enable_altitude_scale": false,
-                    "mixed_with_other_rlp": true
-                },
-                {
-                    "id": 5,
-                    "index": "WindShiftH",
-                    "title": "Объемная карта значений горизонтального сдвига ветра",
-                    "enable_altitude_scale": false,
-                    "mixed_with_other_rlp": true
-                },
-                {
-                    "id": 6,
-                    "index": "WindShiftV",
-                    "title": "Объемная карта значений вертикального сдвига ветра",
-                    "enable_altitude_scale": false,
-                    "mixed_with_other_rlp": true
-                },
-                {
-                    "id": 7,
-                    "index": "VIL",
-                    "title": "Карта интегрированного водозапаса в ячейках, кг/м^2",
-                    "enable_altitude_scale": false,
-                    "mixed_with_other_rlp": true
-                },
-                {
-                    "id": 8,
-                    "index": "RflS3",
-                    "title": "Количество осадков накопленное за 3, мм/ч",
-                    "enable_altitude_scale": false,
-                    "mixed_with_other_rlp": true
-                },
-                {
-                    "id": 9,
-                    "index": "RflS6",
-                    "title": "Количество осадков накопленное за 6, мм/ч",
-                    "enable_altitude_scale": false,
-                    "mixed_with_other_rlp": true
-                },
-                {
-                    "id": 10,
-                    "index": "RflS12",
-                    "title": "Количество осадков накопленное за 12, мм/ч",
-                    "enable_altitude_scale": false,
-                    "mixed_with_other_rlp": true
-                },
-                {
-                    "id": 11,
-                    "index": "RflS24",
-                    "title": "Количество осадк0ов накопленное за 24, мм/ч",
-                    "enable_altitude_scale": false,
-                    "mixed_with_other_rlp": true
-                }
-            ]
-        }
+            {
+                "count": 12,
+                "items": [{
+                        "id": 0,
+                        "index": "Wpcell",
+                        "title": "Карта метео явлений (в ячейках)",
+                        "enable_altitude_scale": false,
+                        "mixed_with_other_rlp": false
+                    },
+                    {
+                        "id": 1,
+                        "index": "Wpfig",
+                        "title": "Карта метео явлений (в контурах)",
+                        "enable_altitude_scale": true,
+                        "mixed_with_other_rlp": false
+                    },
+                    {
+                        "id": 2,
+                        "index": "Htmax",
+                        "title": "Карта верхней границы радиоэха",
+                        "enable_altitude_scale": false,
+                        "mixed_with_other_rlp": false
+                    },
+                    {
+                        "id": 3,
+                        "index": "Htmin",
+                        "title": "Карта нижней границы радиоэха",
+                        "enable_altitude_scale": false,
+                        "mixed_with_other_rlp": true
+                    },
+                    {
+                        "id": 4,
+                        "index": "VvField",
+                        "title": "Карта векторного поля скоростей",
+                        "enable_altitude_scale": false,
+                        "mixed_with_other_rlp": true
+                    },
+                    {
+                        "id": 5,
+                        "index": "WindShiftH",
+                        "title": "Объемная карта значений горизонтального сдвига ветра",
+                        "enable_altitude_scale": false,
+                        "mixed_with_other_rlp": true
+                    },
+                    {
+                        "id": 6,
+                        "index": "WindShiftV",
+                        "title": "Объемная карта значений вертикального сдвига ветра",
+                        "enable_altitude_scale": false,
+                        "mixed_with_other_rlp": true
+                    },
+                    {
+                        "id": 7,
+                        "index": "VIL",
+                        "title": "Карта интегрированного водозапаса в ячейках, кг/м^2",
+                        "enable_altitude_scale": false,
+                        "mixed_with_other_rlp": true
+                    },
+                    {
+                        "id": 8,
+                        "index": "RflS3",
+                        "title": "Количество осадков накопленное за 3, мм/ч",
+                        "enable_altitude_scale": false,
+                        "mixed_with_other_rlp": true
+                    },
+                    {
+                        "id": 9,
+                        "index": "RflS6",
+                        "title": "Количество осадков накопленное за 6, мм/ч",
+                        "enable_altitude_scale": false,
+                        "mixed_with_other_rlp": true
+                    },
+                    {
+                        "id": 10,
+                        "index": "RflS12",
+                        "title": "Количество осадков накопленное за 12, мм/ч",
+                        "enable_altitude_scale": false,
+                        "mixed_with_other_rlp": true
+                    },
+                    {
+                        "id": 11,
+                        "index": "RflS24",
+                        "title": "Количество осадк0ов накопленное за 24, мм/ч",
+                        "enable_altitude_scale": false,
+                        "mixed_with_other_rlp": true
+                    }
+                ]
+            }
 
 ## Справочник типов КС [/station/{id}/types/cs_list]
 
@@ -390,37 +282,38 @@ Cправочник типов конических сечений для СМР
 
 ### Получить перечень типов КС [GET]
 
-+ Response 200 (application/json)
++ Response 200 (application/json; charset=utf-8)
 
-        {
-            "count": 5,
-            "items": [{
-                    "id": 12,
-                    "index": "Dbz",
-                    "title": "Отражаемость"
-                },
-                {
-                    "id": 13,
-                    "index": "Vr",
-                    "title": "Радиальная скорость"
-                },
-                {
-                    "id": 14,
-                    "index": "Edr",
-                    "title": "Уд. скорость диссипации турбулентной энергии"
-                },
-                {
-                    "id": 15,
-                    "index": "RflI",
-                    "title": "интенсивность осадков"
-                },
-                {
-                    "id": 16,
-                    "index": "Power",
-                    "title": "Мощность"
-                }
-            ]
-        }
+            {
+                "count": 5,
+                    "items": [
+                    {
+                        "id": 12,
+                        "index": "dbz",
+                        "title": "Отражаемость"
+                    },
+                    {
+                        "id": 13,
+                        "index": "vr",
+                        "title": "Радиальная скорость"
+                    },
+                    {
+                        "id": 14,
+                        "index": "dwvs",
+                        "title": "Ширина спектра скоростей"
+                    },
+                    {
+                        "id": 15,
+                        "index": "edr",
+                        "title": "Уд. скорость диссипации турбулентной энергии"
+                    },
+                    {
+                        "id": 16,
+                        "index": "rfli",
+                        "title": "Интенсивность осадков"
+                    }
+                ]
+            }
 
 ## Калибровка изотермы [/station/{id}/isotherm]
 
@@ -3743,7 +3636,7 @@ distance, x, z - в километрах
 
 ### Получить [GET]
 
-+ Response 200 (application/json)
++ Response 200 (application/json; charset=utf-8)
 
         {
             "version": "1.0.0",
