@@ -934,7 +934,7 @@ min_wp_id(минимальное МЯ) - индетификатор из спи�
 
 ### Получить [GET]
 
-+ Response 200 (application/json)
++ Response 200 (application/json; charset=utf-8)
 
         {
             "count": 52,
@@ -3469,7 +3469,7 @@ distance, x, z - в километрах
 + Parameters
     + id: `0` (number) - ID СМРЛП
 
-+ Response 200 (application/json)
++ Response 200 (application/json; charset=utf-8)
 
         {
             "dates": [
@@ -3489,7 +3489,7 @@ distance, x, z - в километрах
     + id: `0` (number) - ID СМРЛП
     * date (optional) - Дата обзора (ISO формат)
     
-+ Response 200 (application/json)
++ Response 200 (application/json; charset=utf-8)
 
         {
             "inversion_layer_altitude": 250,
@@ -3528,7 +3528,7 @@ distance, x, z - в километрах
     + id: `0` (number) - ID СМРЛП
     * date (optional) - Дата обзора
     
-+ Response 200 (application/json)
++ Response 200 (application/json; charset=utf-8)
 
         {
             "antenna_altitude_msl": 511,
@@ -3665,7 +3665,7 @@ distance, x, z - в километрах
     * date (string, optional) - Дата обзора (если не указан, то возвращается последнее РЛП)
     * only_dangerous (bool, optional) - Флаг фильтрации опасных МЯ
 
-+ Response 200 (application/json)
++ Response 200 (application/json; charset=utf-8)
 
         {
             "timestamp": 1558443985,
@@ -3701,7 +3701,7 @@ distance, x, z - в километрах
             ]
         }
 
-+ Response 200 (applicaton/json)
++ Response 200 (applicaton/json; charset=utf-8)
 
         {
             "timestamp": 1558443985,
@@ -3755,7 +3755,7 @@ distance, x, z - в километрах
 + Parameters
     + id: `0` (number) - ID СМРЛП
 
-+ Response 200
++ Response 200 (application/json; charset=utf-8)
 
         {
             "sources": [

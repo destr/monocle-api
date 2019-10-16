@@ -106,7 +106,7 @@ hooks.before('Получение данных метеостатистики > �
 });
 
 hooks.before('Список архивных обзоров > Получить', function(transaction) {
-	transaction.skip = true; 
+	transaction.skip = false;
 });
 
 hooks.before('Получение карт РЛП > Получить', function(transaction) {
@@ -250,15 +250,15 @@ hooks.before('Управление вопроизведением гологра
 });
 
 hooks.before('Выдача списка дат архивных данных температурного профилимера > Получить', function(transaction) {
-	transaction.skip = true; 
+	transaction.skip = false; 
 });
 
 hooks.before('Выдача данных температурного профилемера > Получить', function(transaction) {
-	transaction.skip = true; 
+	transaction.skip = false; 
 });
 
 hooks.before('Выдача паспорта обзора > Получить', function(transaction) {
-	transaction.skip = true; 
+	transaction.skip = true;
 });
 
 hooks.before('Версия API > Получить', function(transaction) {
