@@ -1,6 +1,21 @@
 const hooks = require('hooks')
 
-
+function removeComments(o) {
+    for (k in o) {
+        if (typeof o[k] === "object") {
+            removeComments(o[k]);
+            continue;
+        }
+        if (k.startsWith("_comment")) {
+            delete o[k];
+        }
+    }
+}
+hooks.beforeEachValidation(function(transaction) {
+    var obj = JSON.parse(transaction.expected.body)
+    removeComments(obj)
+    transaction.expected.body = JSON.stringify(obj)
+});
 
 hooks.before('АС СМРЛП > Получить список СМРЛП', function(transaction) {
 	transaction.skip = false;
@@ -143,7 +158,7 @@ hooks.before('Журнал событий > Получить список соб
 });
 
 hooks.before('Настройки экспорта BUFR > Получить список настроек экспорта BUFR', function(transaction) {
-	transaction.skip = true; 
+	transaction.skip = false; 
 });
 
 hooks.before('Настройки экспорта BUFR > Обновить список настроек экспорта BUFR', function(transaction) {
@@ -151,7 +166,7 @@ hooks.before('Настройки экспорта BUFR > Обновить спи
 });
 
 hooks.before('Построение карт РЛП > Получить настройки для построения карт РЛП', function(transaction) {
-	transaction.skip = true; 
+	transaction.skip = false; 
 });
 
 hooks.before('Построение карт РЛП > Обновить настройки для построения карт', function(transaction) {
@@ -171,7 +186,7 @@ hooks.before('Настройки цветовой шкалы по умолчан
 });
 
 hooks.before('Критерии классификации типов метеоявлений по умолчанию > Получить', function(transaction) {
-	transaction.skip = true; 
+	transaction.skip = false; 
 });
 
 hooks.before('Поправка на север > Получить', function(transaction) {
