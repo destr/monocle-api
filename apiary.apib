@@ -3646,7 +3646,7 @@ distance, x, z - в километрах
             "supported_methods": [""]
         }
         
-## Получить данные РЛП в формате GeoJSON [/station/{id}/rlp/geojson{?rlp_id}{?altitude}{?date}]
+## Получить данные РЛП в формате GeoJSON [/station/{id}/rlp/geojson{?rlp_id}{?altitude}{?date}{?only_dangerous}]
 Получить данные РЛП в формате GeoJSON для отрисовки в интерфейсе.
 Поддерживаемые РЛП:
 "Карта МЯ в контурах" (wpfig)
@@ -3663,6 +3663,7 @@ distance, x, z - в километрах
             + `vvf`
     * altitude (number, optional) - Высота в метрах [100:20000]
     * date (string, optional) - Дата обзора (если не указан, то возвращается последнее РЛП)
+    * only_dangerous (bool, optional) - Флаг фильтрации опасных МЯ
 
 + Response 200 (application/json)
 
