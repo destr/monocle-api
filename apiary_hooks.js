@@ -18,11 +18,9 @@ hooks.beforeEachValidation(function(transaction) {
 });
 
 hooks.before('АС СМРЛП > Получить список СМРЛП', function(transaction) {
-	transaction.skip = false;
 });
 
 hooks.before('СМРЛП > Получить параметры СМРЛП', function(transaction) {
-	transaction.skip = false; 
 });
 
 hooks.before('СМРЛП > Обновить параметры СМРЛП', function(transaction) {
@@ -30,11 +28,9 @@ hooks.before('СМРЛП > Обновить параметры СМРЛП', func
 });
 
 hooks.before('Справочник типов РЛП > Получить перечень типов РЛП', function(transaction) {
-	transaction.skip = false; 
 });
 
 hooks.before('Справочник типов КС > Получить перечень типов КС', function(transaction) {
-	transaction.skip = false;
 });
 
 hooks.before('Калибровка изотермы > Получить настройки вычисления изотермы', function(transaction) {
@@ -114,11 +110,9 @@ hooks.before('Получение карт РЛП > Получить', function(t
 });
 
 hooks.before('Получение высот для некоторых РЛП > Получить', function(transaction) {
-	transaction.skip = true; 
 });
 
 hooks.before('Получение высот для КС > Получить', function(transaction) {
-	transaction.skip = true; 
 });
 
 hooks.before('Получение КС > Получить', function(transaction) {
@@ -126,7 +120,6 @@ hooks.before('Получение КС > Получить', function(transaction)
 });
 
 hooks.before('Получение углов места > Получить', function(transaction) {
-	transaction.skip = true; 
 });
 
 hooks.before('Метеоинформация в указанной точке > Получить', function(transaction) {
@@ -134,7 +127,6 @@ hooks.before('Метеоинформация в указанной точке > 
 });
 
 hooks.before('Программы > Получить список программ', function(transaction) {
-	transaction.skip = true; 
 });
 
 hooks.before('Программа > Получить', function(transaction) {
@@ -158,7 +150,6 @@ hooks.before('Журнал событий > Получить список соб
 });
 
 hooks.before('Настройки экспорта BUFR > Получить список настроек экспорта BUFR', function(transaction) {
-	transaction.skip = false; 
 });
 
 hooks.before('Настройки экспорта BUFR > Обновить список настроек экспорта BUFR', function(transaction) {
@@ -166,7 +157,6 @@ hooks.before('Настройки экспорта BUFR > Обновить спи
 });
 
 hooks.before('Построение карт РЛП > Получить настройки для построения карт РЛП', function(transaction) {
-	transaction.skip = false; 
 });
 
 hooks.before('Построение карт РЛП > Обновить настройки для построения карт', function(transaction) {
@@ -186,7 +176,6 @@ hooks.before('Настройки цветовой шкалы по умолчан
 });
 
 hooks.before('Критерии классификации типов метеоявлений по умолчанию > Получить', function(transaction) {
-	transaction.skip = false; 
 });
 
 hooks.before('Поправка на север > Получить', function(transaction) {
@@ -210,7 +199,6 @@ hooks.before('Вертикальный профиль > Получить', funct
 });
 
 hooks.before('Текущие значения параметров работы МРЛС > Получить', function(transaction) {
-	transaction.skip = true; 
 });
 
 hooks.before('Каналы излучения > Получить', function(transaction) {
@@ -250,11 +238,9 @@ hooks.before('Управление вопроизведением гологра
 });
 
 hooks.before('Выдача списка дат архивных данных температурного профилимера > Получить', function(transaction) {
-	transaction.skip = false; 
 });
 
 hooks.before('Выдача данных температурного профилемера > Получить', function(transaction) {
-	transaction.skip = false; 
 });
 
 hooks.before('Выдача паспорта обзора > Получить', function(transaction) {
@@ -262,7 +248,6 @@ hooks.before('Выдача паспорта обзора > Получить', fu
 });
 
 hooks.before('Версия API > Получить', function(transaction) {
-	transaction.skip = false; 
 });
 
 hooks.before('Получить данные РЛП в формате GeoJSON > Получить', function(transaction) {

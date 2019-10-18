@@ -1231,7 +1231,7 @@ distance, x, z - в километрах
     * limit (number, optional)- Количество строк на странице
     * offset (number, optional) - Начиная с какой позиции выводить элементы
 
-+ Response 200 (application/json)
++ Response 200 (application/json; charset=utf-8)
 
         {
             "count": 2,
@@ -1293,8 +1293,7 @@ distance, x, z - в километрах
                         "_comment_raster_right_azimuth": "right border of a raster review",
                         "raster_right_azimuth": 74.970703125,
                         "_comment_scope_range": "Current scope range",
-                        "scope_range": 50,
-                        "duration": "00:10:00"
+                        "scope_range": 50
                     }
                 },
                 {
@@ -1354,8 +1353,7 @@ distance, x, z - в километрах
                         "_comment_raster_right_azimuth": "right border of a raster review",
                         "raster_right_azimuth": 74.970703125,
                         "_comment_scope_range": "Current scope range",
-                        "scope_range": 50,
-                        "duration": "00:10:00"
+                        "scope_range": 50
                     }
                 }
             ]
@@ -2404,7 +2402,7 @@ distance, x, z - в километрах
 + Parameters
     + id: `0` (number) - ID СМРЛП
 
-+ Response 200 (application/json)
++ Response 200 (application/json; charset=utf-8)
 
         {
             "packet_number": {
