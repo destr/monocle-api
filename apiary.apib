@@ -46,7 +46,8 @@ API для получения радиолокационных данных. В�
                         "local_reflections_status": "Нет данных",
                         "equipment_status": false,
                         "exchange_status": false,
-                        "rotation_status": 0
+                        "rotation_status": 0,
+                        "precipitaion_elevation_calc" : 0
                     }
                 ]
             }
@@ -3029,31 +3030,37 @@ distance, x, z - в километрах
 + Response 200 (application/json)
 
         {
-
-            "station": {
-                "id": 0,
-                    "index": "MORL",
-                    "title": "Орловка",
-                    "latitude": 56.142616,
-                    "longitude": 34.987386,
-                    "alarm_id": 0,
-                    "hardware_id": "CMRC0001",
-                    "terrain_altitude": 638,
-                    "radar_elevation": 25,
-                    "pressure_sensor_elevation": 3,
-                    "_comment_terrain_type": "Тип местности: 0 - Суша, 1 - Холодное море, 2 - Теплое море",
-                    "terrain_type": 0,
-                    "current_program": {
-                        "id": "Нет данных",
-                        "timetable_enabled": false,
-                        "title": "Нет данных",
-                        "timetable_id": ""
+                "station": {
+                        "id": 0,
+                        "index": "MORL",
+                        "baltrad_index": "abcdefgh",
+                        "path": "monocle-mrlk-bz-ga",
+                        "synopt_index": "1",
+                        "title": "Орловка",
+                        "latitude": 56.142616,
+                        "longitude": 34.987386,
+                        "alarm_id": 0,
+                        "hardware_id": "CMRC0001",
+                        "radar_present": true,
+                        "nams_present": true,
+                        "mtp_present": true,
+                        "terrain_altitude": 638,
+                        "radar_elevation": 25,
+                        "pressure_sensor_elevation": 0,
+                        "mtp_elevation": 0,
+                        "terrain_type": 0,
+                        "current_program": {
+                            "id": "Нет данных",
+                            "timetable_enabled": false,
+                            "title": "Нет данных",
+                            "timetable_id": "view_dummy_150"
+                        },
+                        "local_reflections_status": "Нет данных",
+                        "equipment_status": false,
+                        "exchange_status": false,
+                        "rotation_status": 0,
+                        "precipitaion_elevation_calc" : 0
                     },
-                    "local_reflections_status": "Нет данных",
-                    "equipment_status": false,
-                    "exchange_status": false,
-                    "rotation_status": 0
-            },
                 "spg": {
                     "vector_velocity_field": {
                         "circular_horizontal_pitch": 8000,
