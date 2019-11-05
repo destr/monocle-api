@@ -58,7 +58,7 @@ API для получения радиолокационных данных. В�
 
 + Parameters
     + id: `0` (number, optional) - ID СМРЛП
-        
+
 
 ### Получить параметры СМРЛП [GET]
 
@@ -175,7 +175,7 @@ API для получения радиолокационных данных. В�
                 "exchange_status": true,
                 "rotation_status": 60
             }
-        
+
 + Response 404
 
 ## Расписание СМРЛП [/station/{id}/schedule]
@@ -191,7 +191,7 @@ API для получения радиолокационных данных. В�
 
         {
             "count": 2,
-            "items": 
+            "items":
             [
                 {
                     "id": 0,
@@ -213,7 +213,7 @@ API для получения радиолокационных данных. В�
 
         {
             "count": 2,
-            "items": 
+            "items":
             [
                 {
                     "id": 0,
@@ -234,7 +234,7 @@ API для получения радиолокационных данных. В�
 
         {
             "count": 2,
-            "items": 
+            "items":
             [
                 {
                     "id": 0,
@@ -306,7 +306,7 @@ API для получения радиолокационных данных. В�
 
 + Parameters
     + id: `0` (number, required) - ID станции
-    
+
 ### Остановить запись карты местных отражений [POST]
 
 + Response 200 (application/json)
@@ -501,7 +501,7 @@ Cправочник типов конических сечений для СМР
                     }
                 ]
             }
-            
+
 ## Критерии классификации типов метеоявлений по умолчанию [/settings/default_weather_criteria]
 
 Типовой (зашитый производителем) перечень критериев классификации МЯ по фиксированному перечню параметров
@@ -516,7 +516,7 @@ Cправочник типов конических сечений для СМР
             "items":
             [
                 {
-                    "id": 0, 
+                    "id": 0,
                     "type": "Облачность (слоистообразная облачность)",
                     "count": 1,
                     "items":
@@ -527,13 +527,13 @@ Cправочник типов конических сечений для СМР
                         "title": "Минимальное значение радиолокационной отражаемости на уровнях Z2 и Z3",
                         "measurement_unit": "dBZ",
                         "warm": 10,
-                        "cold": -10, 
+                        "cold": -10,
                         "service_life": "All"
                     }
                     ]
                 },
                 {
-                    "id": 1, 
+                    "id": 1,
                     "type": "Облачность (кучевая облачность)",
                     "count": 1,
                     "items":
@@ -586,7 +586,7 @@ Cправочник типов конических сечений для СМР
             "_comment_height_tropopause": "Высота тропопаузы, задаваемая вручную",
             "height_tropopause": 12000.0
         }
-        
+
 + Response 404
 
 ### Обновить настройки вычисления изотермы [PUT]
@@ -615,13 +615,13 @@ Cправочник типов конических сечений для СМР
             "height_temp22": 7000,
             "height_tropopause": 12000
         }
-        
+
 + Response 422 (application/json)
 
         {
             "temperature": "Невалидное значение",
         }
-        
+
 + Response 404
 
 + Response 409
@@ -636,7 +636,7 @@ Cправочник типов конических сечений для СМР
 + Parameters
     + id: `0` (number) - ID СМРЛП
     * date (optional) - Дата обзора
-    
+
 + Response 200 (application/json; charset=utf-8)
 
         {
@@ -737,7 +737,7 @@ Cправочник типов конических сечений для СМР
             "weather_max": 4,
             "_comment_weather_max": "Максимальное МЯ"
         }
-        
+
 + Response 404
 
 ## Список уведомлений об опасных метеоявлениях [/station/{id}/dangerous_meteo_list]
@@ -775,7 +775,7 @@ Cправочник типов конических сечений для СМР
 
 
 
-        
+
 ## Получить данные РЛП в формате GeoJSON [/station/{id}/rlp/geojson{?rlp_id}{?altitude}{?date}{?only_dangerous}]
 Получить данные РЛП в формате GeoJSON для отрисовки в интерфейсе.
 Поддерживаемые РЛП:
@@ -909,7 +909,7 @@ Cправочник типов конических сечений для СМР
                     300.5, 526.29, 991.2
                 ]
         }
-        
+
 ## Вертикальное сечение для КС [/vertical_section_cs]
 
 Предоставление вертикального сечения по маршруту для конических сечений.
@@ -1156,8 +1156,8 @@ min_wp_id(минимальное МЯ) - индетификатор из спи�
 + Response 200 (application/json)
 
         {
-            "date": "2017-12-28T08:00:49+00:00", 
-            "type": "png", 
+            "date": "2017-12-28T08:00:49+00:00",
+            "type": "png",
             "params": {"radius": 100.0, "cell_size": 1000.0, "image_size": 209},
             "url": "/wpcell.png"
         }
@@ -1174,10 +1174,10 @@ min_wp_id(минимальное МЯ) - индетификатор из спи�
 + Response 200 (application/json)
 
         [
-            0.1, 
-            0.3, 
-            0.6, 
-            1.0, 
+            0.1,
+            0.3,
+            0.6,
+            1.0,
             1.5,
             2.0,
             2.2,
@@ -1205,17 +1205,17 @@ min_wp_id(минимальное МЯ) - индетификатор из спи�
 + Response 200 (application/json)
 
         [
-            0.1, 
-            0.2, 
-            0.3, 
-            0.4, 
-            0.5, 
-            0.6, 
-            0.7, 
-            0.8, 
-            0.9, 
-            1.0, 
-            1.1, 
+            0.1,
+            0.2,
+            0.3,
+            0.4,
+            0.5,
+            0.6,
+            0.7,
+            0.8,
+            0.9,
+            1.0,
+            1.1,
             1.2,
             1.3,
             1.4,
@@ -1239,7 +1239,7 @@ min_wp_id(минимальное МЯ) - индетификатор из спи�
 + Parameters
     + id: `0` (number) - ID СМРЛП
     + type: `png` (string) - тип данных, для данной итерации всегда png
-    * cs_id: `13` (int) - тип конического сечения 
+    * cs_id: `13` (int) - тип конического сечения
     * indicator: `maxcappi` (string) -  CAPPI / PPI / MAXCAPPI
     * altitude: `100` (number) - Высота в метрах (только для CAPPI) [100:20000]
     * date (string, optional) - Дата обзора (если не указан, то возвращается последнее КС)
@@ -1249,7 +1249,7 @@ min_wp_id(минимальное МЯ) - индетификатор из спи�
         + Default: `0`
     * bufr_quality (boolean, optional) - Флаг низкого качества отрисовки из GUI
         + Default: `false`
-    
+
 
 + Response 200 (application/json)
 
@@ -1311,7 +1311,7 @@ distance, x, z - в километрах
 
 + Parameters
     + id: `0` (number) - ID СМРЛП
-    
+
 + Request (application/json)
 
         {
@@ -1357,7 +1357,7 @@ distance, x, z - в километрах
                 }
             ]
         }
-        
+
 # Group Настройки
 
 
@@ -1388,7 +1388,7 @@ distance, x, z - в километрах
                     {
                         "index": 0,
                         "_comment_id": "Идентификатор МЯ. 0 означает отсутствие МЯ",
-                        "id": 1, 
+                        "id": 1,
                         "type": "Слоистая облачность",
                         "criteria":
                         {
@@ -1407,7 +1407,7 @@ distance, x, z - в километрах
                         }
                     },
                     {
-                        "id": 2, 
+                        "id": 2,
                         "type": "Облачность (кучевая облачность)",
                         "criteria":
                         {
@@ -1454,7 +1454,7 @@ distance, x, z - в километрах
                 ]
             }
         }
-            
+
 + Response 404
 
 ### Обновить настройки СМРЛП [PUT]
@@ -1471,7 +1471,7 @@ distance, x, z - в километрах
                 [
                     {
                         "index": 0,
-                        "id": 2, 
+                        "id": 2,
                         "type": "Слоистая облачность",
                         "criteria":
                         {
@@ -1490,7 +1490,7 @@ distance, x, z - в километрах
                         }
                     },
                     {
-                        "id": 2, 
+                        "id": 2,
                         "type": "Облачность (кучевая облачность)",
                         "criteria":
                         {
@@ -1558,7 +1558,7 @@ distance, x, z - в километрах
                 [
                     {
                         "index": 0,
-                        "id": 2, 
+                        "id": 2,
                         "type": "Слоистая облачность",
                         "criteria":
                         {
@@ -1577,7 +1577,7 @@ distance, x, z - в километрах
                         }
                     },
                     {
-                        "id": 2, 
+                        "id": 2,
                         "type": "Облачность (кучевая облачность)",
                         "criteria":
                         {
@@ -1606,7 +1606,7 @@ distance, x, z - в километрах
                 ]
             }
         }
-            
+
 + Response 409
 
 + Response 404
@@ -1635,7 +1635,7 @@ distance, x, z - в километрах
                 "_comment_azimuth_center": "Поправка на север",
                 "azimuth_center": 0.0
             }
-            
+
 ### Обновить настройки МРЛС [PUT]
 
 + Request (application/json)
@@ -1655,7 +1655,7 @@ distance, x, z - в километрах
                 "hold_tilt": 16.0,
                 "azimuth_center": 0.0
             }
-            
+
 + Response 422
 
         {
@@ -1664,7 +1664,7 @@ distance, x, z - в километрах
                 "hold_tilt": "Невалидное значение",
                 "azimuth_center": "Невалидное значение"
         }
-            
+
 + Response 409
 
 + Response 404
@@ -1808,7 +1808,7 @@ distance, x, z - в километрах
                 }
             ]
         }
-        
+
 ## Программа [/program/{id}]
 
 Работа с заданной программой (для всей АС СМРЛП)
@@ -1894,7 +1894,7 @@ distance, x, z - в километрах
             "count": 2,
             "station_ids": [1,4]
         }
-    
+
 + Response 404
 
 ### Создать программу [POST /program]
@@ -2074,7 +2074,7 @@ distance, x, z - в километрах
             "station_ids": [1,4]
         }
 
-+ Response 404    
++ Response 404
 
 ## Журнал событий [/station_log/list{?type}{?station}{?from}{?to}{?limit}{?offset}]
 
@@ -2097,7 +2097,7 @@ distance, x, z - в километрах
 
         {
             "count": 4,
-            "items": 
+            "items":
                 [
                     {
                         "date": "2017-05-15T08:30:00",
@@ -2137,225 +2137,69 @@ distance, x, z - в километрах
                     }
                 ]
         }
-        
 
-## Настройки экспорта BUFR [/settings/bufr]
- 
-Экспорт данных АС СМРЛП в заданные направления по протоколу FTP
- 
-### Получить список настроек экспорта BUFR [GET]
 
-+ Response 200 (application/json; charset=utf-8)
 
-        {
-            "count": 2,
-            "items": 
-                [
-                    {
-                        "active": true,
-                        "ip": "40.72.241.112",
-                        "port": 21,
-                        "active_mode": true,
-                        "path": "/var/lib/monocle/data/",
-                        "login": "login",
-                        "password": "password",
-                        "stations": [
-                            {
-                                "id": 1,
-                                "title": "Орловка"
-                            },
-                            {
-                                "id": 2,
-                                "title": "Чкаловский"
-                            },
-                            {
-                                "id": 3,
-                                "title": "Братск"
-                            }
-                        ]
-                    },
-                    {
-                        "active": false,
-                        "ip": "40.72.241.112",
-                        "port": 21,
-                        "active_mode": false,
-                        "path": "/var/lib/monocle/data/",
-                        "login": "login",
-                        "password": "password",
-                        "stations": [
-                            {
-                                "id": 3,
-                                "title": "Братск"
-                            }
-                        ]
-                    }
-                ]
-        }
-
-### Обновить список настроек экспорта BUFR [PUT]
-
-+ Request (application/json)
-
-        [
-            {
-                "active": true,
-                "ip": "40.72.241.112",
-                "port": 21,
-                "path": "/var/lib/monocle/data/",
-                "login": "login",
-                "password": "password",
-                "stations": [
-                    {
-                        "id": 1,
-                        "title": "Орловка"
-                    },
-                    {
-                        "id": 2,
-                        "title": "Чкаловский"
-                    },
-                    {
-                        "id": 3,
-                        "title": "Братск"
-                    }
-                ]
-            },
-            {
-                "active": false,
-                "ip": "40.72.241.112",
-                "port": 21,
-                "path": "/var/lib/monocle/data/",
-                "login": "login",
-                "password": "password",
-                "stations": [
-                    {
-                        "id": 3,
-                        "title": "Братск"
-                    }
-                ]
-            }
-        ]
-
-+ Response 200 (application/json)
-
-        {
-            "count": 2,
-            "items": 
-                [
-                    {
-                        "active": true,
-                        "ip": "40.72.241.112",
-                        "port": 21,
-                        "path": "/var/lib/monocle/data/",
-                        "login": "login",
-                        "password": "password", 
-                        "stations": [
-                            {
-                                "id": 1,
-                                "title": "Орловка"
-                            },
-                            {
-                                "id": 2,
-                                "title": "Чкаловский"
-                            },
-                            {
-                                "id": 3,
-                                "title": "Братск"
-                            }
-                        ]
-                    },
-                    {
-                        "active": false,
-                        "ip": "40.72.241.112",
-                        "port": 21,
-                        "path": "/var/lib/monocle/data/",
-                        "login": "login",
-                        "password": "password", 
-                        "stations": [
-                            {
-                                "id": 3,
-                                "title": "Братск"
-                            }
-                        ]
-                    }
-                ]
-        }
-    
-+ Response 422 (application/json)
-
-        {
-            "count": 1,
-            "items": 
-                [
-                    {
-                        "index": 1,
-                        "active": "Невалидное значение",
-                        "ip": "Невалидное значение",
-                        "port": "Невалидное значение",
-                        "path": "Невалидное значение",
-                        "stations": "Невалидное значение"
-                    }
-                ]
-        }
 
 ## Построение карт РЛП [/settings/productrender]
- 
+
 Настройки алгоритма построения карт РЛП
 
 ### Получить настройки для построения карт РЛП [GET]
 
 + Response 200 (application/json; charset=utf-8)
 
-        { 
+        {
             "_comment_vector_velocity_field": "",
             "vector_velocity_field": {
                 "_comment_circular_horizontal_pitch": "Шаг по горизонтали в режиме ОБЗОР",
-                "circular_horizontal_pitch": 8000, 
+                "circular_horizontal_pitch": 8000,
                 "_comment_circular_vertical_pitch": "Шаг по вертикали в режиме ОБЗОР",
-                "circular_vertical_pitch": 1000, 
+                "circular_vertical_pitch": 1000,
                 "_comment_sector_horizontal_pitch": "Шаг по горизонтали в режиме СЕКТОР",
-                "sector_horizontal_pitch": 8000, 
+                "sector_horizontal_pitch": 8000,
                 "_comment_sector_vertical_pitch": "Шаг по вертикали в режиме СЕКТОР",
                 "sector_vertical_pitch": 1000,
                 "_comment_vector_size": "Размер ячейки вектора поля скоростей",
                 "vector_size": 5,
                 "_comment_vector_thickness": "Толщина линии вектора поля скоростей",
                 "vector_thickness": 3
-            }, 
+            },
             "_comment_wind_shear_field": "Поля сдвигов ветра",
-            "wind_shear_field": { 
+            "wind_shear_field": {
                 "_comment_circular_max_altitude": "Максимальная высота в режиме ОБЗОР",
-                "circular_max_altitude": 100, 
+                "circular_max_altitude": 100,
                 "_comment_circular_max_range": "Максимальная дальность в режиме ОБЗОР",
-                "circular_max_range": 100, 
+                "circular_max_range": 100,
                 "_comment_sector_max_altitude": "Максимальная высота в режиме СЕКТОР",
-                "sector_max_altitude": 100, 
+                "sector_max_altitude": 100,
                 "_comment_sector_max_range": "Максимальная дальность в режиме СЕКТОР",
-                "sector_max_range": 100, 
+                "sector_max_range": 100,
                 "_comment_horizontal_pitch": "Шаг по вертикали",
-                "horizontal_pitch": 100, 
+                "horizontal_pitch": 100,
                 "_comment_vertical_pitch": "Шаг по горизонтали",
-                "vertical_pitch": 100 
-            }, 
+                "vertical_pitch": 100
+            },
             "_comment_weather_map": "Карты МЯ ",
             "weather_map": {
                 "_comment_cell_size": "Размер ячейки МЯ, м",
-                "cell_size": 1000.0, 
+                "cell_size": 1000.0,
                 "_comment_contour_line_generalization": "Степень генерализации контуров МЯ",
-                "contour_line_generalization": 3, 
+                "contour_line_generalization": 3,
                 "_comment_contour_line_expansion": "Величины расширения контуров МЯ",
                 "contour_line_expansion": 3
             },
             "_comment_vertical_section": "Вертикальное сечение",
-            "vertical_section": { 
-                "horizontal_pitch": 100, 
-                "vertical_pitch": 100 
-            }, 
+            "vertical_section": {
+                "horizontal_pitch": 100,
+                "vertical_pitch": 100
+            },
             "_comment_accumulated_precipitation": "Размера ячейки карты накопленных осадков",
-            "accumulated_precipitation": { 
-                "cell_size": 100.0 
+            "accumulated_precipitation": {
+                "cell_size": 100.0
             },
             "_comment_vertically_integrated_liquid": "Размер ячейки построения карты вертикально интегрированной водности",
-            "vertically_integrated_liquid": { 
+            "vertically_integrated_liquid": {
                 "cell_size": 100.0
             }
         }
@@ -2366,34 +2210,34 @@ distance, x, z - в километрах
 
         {
             "vector_velocity_field": {
-                "circular_horizontal_pitch": 8000, 
-                "circular_vertical_pitch": 1000, 
-                "sector_horizontal_pitch": 8000, 
+                "circular_horizontal_pitch": 8000,
+                "circular_vertical_pitch": 1000,
+                "sector_horizontal_pitch": 8000,
                 "sector_vertical_pitch": 1000,
                 "vector_size": 5,
                 "vector_thickness": 3
             },
-            "wind_shear_field": { 
-                "circular_max_altitude": 100, 
-                "circular_max_range": 100, 
-                "sector_max_altitude": 100, 
-                "sector_max_range": 100, 
-                "horizontal_pitch": 100, 
-                "vertical_pitch": 100 
+            "wind_shear_field": {
+                "circular_max_altitude": 100,
+                "circular_max_range": 100,
+                "sector_max_altitude": 100,
+                "sector_max_range": 100,
+                "horizontal_pitch": 100,
+                "vertical_pitch": 100
             },
             "weather_map": {
-                "cell_size": 1000, 
-                "contour_line_generalization": 3, 
+                "cell_size": 1000,
+                "contour_line_generalization": 3,
                 "contour_line_expansion": 3
             },
-            "vertical_section": { 
-                "horizontal_pitch": 100, 
-                "vertical_pitch": 100 
+            "vertical_section": {
+                "horizontal_pitch": 100,
+                "vertical_pitch": 100
             },
-            "accumulated_precipitation": { 
-                "cell_size": 100 
+            "accumulated_precipitation": {
+                "cell_size": 100
             },
-            "vertically_integrated_liquid": { 
+            "vertically_integrated_liquid": {
                 "cell_size": 100
             }
         }
@@ -2402,34 +2246,34 @@ distance, x, z - в километрах
 
         {
             "vector_velocity_field": {
-                "circular_horizontal_pitch": 8000, 
-                "circular_vertical_pitch": 1000, 
-                "sector_horizontal_pitch": 8000, 
+                "circular_horizontal_pitch": 8000,
+                "circular_vertical_pitch": 1000,
+                "sector_horizontal_pitch": 8000,
                 "sector_vertical_pitch": 1000,
                 "vector_size": 5,
                 "vector_thickness": 3
             },
-            "wind_shear_field": { 
-                "circular_max_altitude": 100, 
-                "circular_max_range": 100, 
-                "sector_max_altitude": 100, 
-                "sector_max_range": 100, 
-                "horizontal_pitch": 100, 
-                "vertical_pitch": 100 
+            "wind_shear_field": {
+                "circular_max_altitude": 100,
+                "circular_max_range": 100,
+                "sector_max_altitude": 100,
+                "sector_max_range": 100,
+                "horizontal_pitch": 100,
+                "vertical_pitch": 100
             },
             "weather_map": {
-                "cell_size": 1000, 
-                "contour_line_generalization": 3, 
+                "cell_size": 1000,
+                "contour_line_generalization": 3,
                 "contour_line_expansion": 3
             },
-            "vertical_section": { 
-                "horizontal_pitch": 100, 
-                "vertical_pitch": 100 
+            "vertical_section": {
+                "horizontal_pitch": 100,
+                "vertical_pitch": 100
             },
-            "accumulated_precipitation": { 
-                "cell_size": 100 
+            "accumulated_precipitation": {
+                "cell_size": 100
             },
-            "vertically_integrated_liquid": { 
+            "vertically_integrated_liquid": {
                 "cell_size": 100
             }
         }
@@ -2509,7 +2353,7 @@ distance, x, z - в километрах
                         }
                     ]
                 }
-            ]        
+            ]
         }
 
 ## Настройки цветовой шкалы [/settings/color_scale/{id}]
@@ -2562,7 +2406,7 @@ distance, x, z - в километрах
                 "color": "#f500f6"
             }
         ]
-        
+
 + Response 422 (application/json)
 
 
@@ -2573,7 +2417,7 @@ distance, x, z - в километрах
                 "color": "Невалидное значение"
             }
         ]
-        
+
 + Response 404
 
 ## Настройки цветовой шкалы по умолчанию [/settings/color_scale/{id}/default]
@@ -2610,7 +2454,7 @@ distance, x, z - в километрах
                 }
             ]
         }
-        
+
 
 
 ## Поправка на север [/north_azimuth/{id}]
@@ -2839,8 +2683,6 @@ distance, x, z - в километрах
         ]
 
 
-
-
 ## Актуальные значения оперативных параметров МП [/station/{id}/meteo]
 Получение и обновление актуальных значений ОМП МП из разных источников МП.
 Если какие-то источники МП недоступны, то при обновлении значений эти источники в массив не включаются.
@@ -2898,6 +2740,8 @@ distance, x, z - в километрах
 + Parameters
     + id: `0` (number) - ID CMРЛП
 
++ Request (application/json)
+
         {
             "date": "2019-09-19T14:22:41",
             "_comment_date": "Дата и время измерения ОМП",
@@ -2929,7 +2773,7 @@ distance, x, z - в километрах
             ],
             "_comment_sources": "Массив контейнеров ОМП МП из разных источников"
         }
-        
+
 + Response 200
 
 #Group Уведомления
@@ -2953,7 +2797,7 @@ distance, x, z - в километрах
         }
 
 ## Устаревшее [/deprectated]
-        
+
 ### Уведомление об об отказе компонентов системы
 
 + Request (application/json)
@@ -2993,8 +2837,8 @@ distance, x, z - в километрах
                 "rotation_status": 60
             }
         }
-        
-        
+
+
 ## Уведомление об обновлении настроек [/station/{id}/notify_settings_changed]
 Уведомления об обновлении настроек
 
@@ -3013,7 +2857,7 @@ distance, x, z - в километрах
                 "date": "2017-05-15T08:30:00"
             }
         }
-        
+
 + Response 200 (application/json)
 
         {
@@ -3028,7 +2872,7 @@ distance, x, z - в километрах
 
 + Parameters
     + id: `0` (number) - ID СМРЛП
-    
+
 + Response 200 (application/json)
 
         {
@@ -3473,7 +3317,7 @@ distance, x, z - в километрах
             ],
             "bufr" : {
                 "count": 1,
-                "items": 
+                "items":
                     [
                     {
                         "active": true,
@@ -3579,7 +3423,7 @@ distance, x, z - в километрах
                     "coeffReflMeanSpectreTreshold": 100,
                     "coeffLReflSpectralZeroPwr": 0.9,
                     "coeffDeltaPwrQuant": 0.25,
-                    "maxLRPwrValueOn": 1, 
+                    "maxLRPwrValueOn": 1,
                     "velocity_mo_abs_step": 2.5,
                     "velocity_mo_az_step": 10.0
                 },
@@ -3792,7 +3636,7 @@ distance, x, z - в километрах
             "_enum_status": "Status: Play = 0/play, Record = 1/record, Stop = 2/stop",
             "status": ""
         }
-        
+
 
 #Group MТП-5
 
@@ -3824,7 +3668,7 @@ distance, x, z - в километрах
 + Parameters
     + id: `0` (number) - ID СМРЛП
     * date (optional) - Дата обзора (ISO формат)
-    
+
 + Response 200 (application/json; charset=utf-8)
 
         {
@@ -3850,11 +3694,183 @@ distance, x, z - в километрах
             ],
             "_comment_data": "Данные измерений ТПМ (от 0 до 15000 м)"
         }
-        
+
 + Response 204
-        
+
 + Response 404
-     
+
+# Group Настройки экспорта
+
+## Настройки экспорта BUFR [/settings/bufr]
+
+Экспорт данных АС СМРЛП в заданные направления по протоколу FTP
+
+### Получить список настроек экспорта BUFR [GET]
+
++ Response 200 (application/json; charset=utf-8)
+
+        {
+            "count": 2,
+            "items":
+                [
+                    {
+                        "active": true,
+                        "ip": "40.72.241.112",
+                        "port": 21,
+                        "active_mode": true,
+                        "path": "/var/lib/monocle/data/",
+                        "login": "login",
+                        "password": "password",
+                        "stations": [
+                            {
+                                "id": 1,
+                                "title": "Орловка"
+                            },
+                            {
+                                "id": 2,
+                                "title": "Чкаловский"
+                            },
+                            {
+                                "id": 3,
+                                "title": "Братск"
+                            }
+                        ]
+                    },
+                    {
+                        "active": false,
+                        "ip": "40.72.241.112",
+                        "port": 21,
+                        "active_mode": false,
+                        "path": "/var/lib/monocle/data/",
+                        "login": "login",
+                        "password": "password",
+                        "stations": [
+                            {
+                                "id": 3,
+                                "title": "Братск"
+                            }
+                        ]
+                    }
+                ]
+        }
+
+### Обновить список настроек экспорта BUFR [PUT]
+
++ Request (application/json)
+
+        [
+            {
+                "active": true,
+                "ip": "40.72.241.112",
+                "port": 21,
+                "path": "/var/lib/monocle/data/",
+                "login": "login",
+                "password": "password",
+                "stations": [
+                    {
+                        "id": 1,
+                        "title": "Орловка"
+                    },
+                    {
+                        "id": 2,
+                        "title": "Чкаловский"
+                    },
+                    {
+                        "id": 3,
+                        "title": "Братск"
+                    }
+                ]
+            },
+            {
+                "active": false,
+                "ip": "40.72.241.112",
+                "port": 21,
+                "path": "/var/lib/monocle/data/",
+                "login": "login",
+                "password": "password",
+                "stations": [
+                    {
+                        "id": 3,
+                        "title": "Братск"
+                    }
+                ]
+            }
+        ]
+
++ Response 200 (application/json)
+
+        {
+            "count": 2,
+            "items":
+                [
+                    {
+                        "active": true,
+                        "ip": "40.72.241.112",
+                        "port": 21,
+                        "path": "/var/lib/monocle/data/",
+                        "login": "login",
+                        "password": "password",
+                        "stations": [
+                            {
+                                "id": 1,
+                                "title": "Орловка"
+                            },
+                            {
+                                "id": 2,
+                                "title": "Чкаловский"
+                            },
+                            {
+                                "id": 3,
+                                "title": "Братск"
+                            }
+                        ]
+                    },
+                    {
+                        "active": false,
+                        "ip": "40.72.241.112",
+                        "port": 21,
+                        "path": "/var/lib/monocle/data/",
+                        "login": "login",
+                        "password": "password",
+                        "stations": [
+                            {
+                                "id": 3,
+                                "title": "Братск"
+                            }
+                        ]
+                    }
+                ]
+        }
+
++ Response 422 (application/json)
+
+        {
+            "count": 1,
+            "items":
+                [
+                    {
+                        "index": 1,
+                        "active": "Невалидное значение",
+                        "ip": "Невалидное значение",
+                        "port": "Невалидное значение",
+                        "path": "Невалидное значение",
+                        "stations": "Невалидное значение"
+                    }
+                ]
+        }
+                        "port": 21,
+                        "active_mode": true,
+
+## Настройка экспорта НАМС [/settings/nams]
+Экспорт данных АС СМРПЛ
+
+### Получить список настроек экспорта НАМС [GET]
++ Response 200 (application/json; charset=utf-8)
+    + Attributes(object)
+      - count: 2 (string) - Количество элементов
+      - items (array[FtpHost]) - Список FTP
+
+
 
 # Group Служебные
 
@@ -3864,11 +3880,25 @@ distance, x, z - в километрах
 ### Получить [GET]
 
 + Response 200 (application/json; charset=utf-8)
+    + Attributes(object)
+      - version: 1.0.0 (string) - Версия API
+      - git_revision: sha1 (string) - Git ревизия backend
+      - api_revision: sha1 (string) - Git ревизия API
+      - build_date: `2019-11-01T11:13:20+00:00` (string) - Дата сборки
+      - supported_methods: /api/version (array[string]) - Методы API
 
-        {
-            "version": "1.0.0",
-            "git_revision": "sha1",
-            "api_revision": "sha1",
-            "build_date": "iso-date",
-            "supported_methods": [""]
-        }
+
+# Data Structures
+## FtpHost (object, fixed-type)
+- active: false (boolean) - Признак использования хоста для выгрузки
+- ip: example.com (string) - Имя хоста
+- port: 21 (number) - Порт
+- active_mode: true (boolean) - Активный режим работы FTP
+- path: /var/lib/monocle/data/ (string) - Каталог вызгузки данных на FTP
+- login: login (string) - Логин
+- password: password (string) - Пароль
+- stations (array[FtpStation]) - Список станций
+
+## FtpStation(object, fixed-type)
+- id: 0 (number) - Идентификатор станции
+- title: Орловка (string) - Название станции
