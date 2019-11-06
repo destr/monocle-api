@@ -128,6 +128,11 @@ class JsonProtoGen:
         self.to_json_func[class_name] = self._tab() + """def tojson(self):
         ret = dict()\n"""
 
+        is_root_array=False
+        if type(json_object) == list:
+            is_root_array = True
+            json_object = {"array": json_object}
+
         for key in json_object.keys():
             if key.startswith("_comment_") or key.startswith("_enum_"):
                 continue
@@ -164,11 +169,10 @@ class JsonProtoGen:
                 from_enum[0] = ''
                 from_enum[1] = '.value'
 
-
             self.assign_func[class_name] += self._tab(2) + "self.{0} = {1}j['{0}']{2}\n".format(key, *to_enum)
             self.to_json_func[class_name] += self._tab(2) + "ret[\"{0}\"] = {1}self.{0}{2}\n".format(key, *from_enum)
 
-        self.to_json_func[class_name] += self._tab(2) + "return ret\n"
+        self.to_json_func[class_name] += self._tab(2) + "return ret{0}\n".format("['array']" if is_root_array else '')
 
         self.classes[class_name] += self._tab(2) + "if j:\n" + self._tab(3) + "self.fromjson(j)\n"
         self.classes[class_name] += "\n"
@@ -222,6 +226,12 @@ class JsonProtoGen:
 
         # генерация объявлений enum
         self.classes[class_name] += self._generate_enums_cpp(class_name, enums)
+
+        # TODO Исправить генерацияю assign функции и toJson
+        is_root_array=False
+        if type(json_object) == list:
+            is_root_array = True
+            json_object = {"array": json_object}
 
         for key in json_object.keys():
 
@@ -534,6 +544,13 @@ private:
         """
 
         p = dict()
+        # если используется нотация MSON, то если будет тип задан как
+        # Attributes(array) то json_object будет массимов каких-то объектов.
+        # Да и в принципе комменты я думаю как-то по другому можно из MSON извлекать, а не добавлять дополнительные поля
+        # Тоже самое и с enum
+        if type(json_object) == list:
+            json_object = json_object[0]
+
         for key in json_object.keys():
             if key.startswith(property):
                 field = key[key.index('_', 1) + 1:]

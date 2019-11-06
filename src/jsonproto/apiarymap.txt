@@ -82,3 +82,6 @@
   <200 ::Mtp5Data
 /api/version
   <200 ::VersionInfo
+/settings/nams
+  <200 ::NamsExportSettings
+  > NamsExportSettingsPut

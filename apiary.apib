@@ -3860,18 +3860,47 @@ distance, x, z - в километрах
         }
 
 ## Настройка экспорта НАМС [/settings/nams]
-Экспорт данных АС СМРПЛ. 
+Экспорт данных НАМС с АС СМРПЛ.
 
 ### Получить список настроек экспорта НАМС [GET]
 + Response 200 (application/json; charset=utf-8)
     + Attributes(CurrentFtpExportSettings)
 
-      
 ### Обновить список настроек экспорта НАМС [PUT]
 + Request (application/json)
     + Attributes(array)
         - (FtpHost)
-     
+
++ Response 200 (application/json; charset=utf-8)
+    + Attributes(CurrentFtpExportSettings)
+
+## Настройка экспорта HDF5 [/settings/hdf5]
+Экспорт данных HDF5 c АС СМРПЛ.
+
+### Получить список настроек экспорта HDF5 [GET]
++ Response 200 (application/json; charset=utf-8)
+    + Attributes(CurrentFtpExportSettings)
+
+### Обновить список настроек экспорта HDF5 [PUT]
++ Request (application/json)
+    + Attributes(array)
+        - (FtpHost)
+
++ Response 200 (application/json; charset=utf-8)
+    + Attributes(CurrentFtpExportSettings)
+
+## Настройка экспорта MTP5 [/settings/mtp5]
+Экспорт данных MTP5 с АС СМРПЛ
+
+### Получить список настроек экспорта MTP5 [GET]
++ Response 200 (application/json; charset=utf-8)
+    + Attributes(CurrentFtpExportSettings)
+
+### Обновить список настроек экспорта MTP5 [PUT]
++ Request (application/json)
+    + Attributes(array)
+        - (FtpHost)
+
 + Response 200 (application/json; charset=utf-8)
     + Attributes(CurrentFtpExportSettings)
 
