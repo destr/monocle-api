@@ -3918,6 +3918,22 @@ distance, x, z - в километрах
       - api_revision: sha1 (string) - Git ревизия API
       - build_date: `2019-11-01T11:13:20+00:00` (string) - Дата сборки
       - supported_methods: /api/version (array[string]) - Методы API
+      
+
+## Версия формата имени файла BUFR [/internal/bufr_versions]
+Для некоторых получателей необходимо именовать файлы по разному. 
+Ограничения: На один хост FTP можно выгрузить только один формат.
+Не реализовано (API)ен
+
+### Получить [GET]
++ Response 200 (application/json; charset=utf-8)
+    + Attributes(array)
+        - (object)
+            - node: `monocle-autodor` (string) - Название узла
+            - ftp (array):
+                - (object)
+                    - host: localhost (string) - Имя хоста указанного в настройка выгрузки BUFR
+                    - version: aviamettelecom (string) - Название версии формата
 
 
 # Data Structures
