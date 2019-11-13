@@ -3,9 +3,9 @@
 /station/{id}
   <200 StationSettings
 # для КС и РЛП типов структура типа одинакова
-/station/{id}/types/rlp_list
+/station/{id}/types/rlp_list{?role}
   <200 ProductType
-/station/{id}/types/cs_list
+/station/{id}/types/cs_list{?role}
 /station/{id}/isotherm
   <200 ::IsothermCalibration
   > ::IsothermCalibrationPut
