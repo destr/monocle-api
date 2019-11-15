@@ -3214,11 +3214,9 @@ distance, x, z - в километрах
     + id: `0` (number) - ID СМРЛП
 
 + Response 200 (application/json)
-
-        {
-            "dir": "",
-            "files": [""]
-        }
+    + Attributes(object)
+        - dir (string) - Каталог
+        - files: .dat (array[string]) - Список файлов
 
 ## Управление вопроизведением голограмм [/station/{id}/holocontrol]
 Команды управления записью/воспроизведением голограмм
@@ -3281,30 +3279,19 @@ distance, x, z - в километрах
     * date (optional) - Дата обзора (ISO формат)
 
 + Response 200 (application/json; charset=utf-8)
+    + Attributes (object)
+        - inversion_layer_altitude: 250 (number) - Высота нижней границы слоя инверсии, м
+        - inversion_layer_power_height: 260 (number) - Вертикальная мощность слоя инверсии, м
+        - inversion_layer_temp_delta: 3.2 (number) Величина слоя инверсии, °С
+        - mix_layer_altitude: 800 (number) - Высота слоя перемешивания, м
+        - height_temp0": 1800 (number) - Высота изотермы 0°С, м
+        - height_temp22: 3000 (number) - Высота изотермы -22°С, м
+        - height_tropopause: 11400 (number) - Высота тропопаузы, м
+        - data(array) - Данные измерений ТПМ (от 0 до 15000 м)
+            - (object)
+                - altitude: 15 (number) - Высота
+                - temperature: 12.5 (number) - Температура
 
-        {
-            "inversion_layer_altitude": 250,
-            "_comment_inversion_layer_altitude": "Высота нижней границы слоя инверсии, м",
-            "inversion_layer_power_height": 260,
-            "_comment_inversion_layer_power_height": "Вертикальная мощность слоя инверсии, м",
-            "inversion_layer_temp_delta": 3.2,
-            "_comment_inversion_layer_temp_delta": "Величина слоя инверсии, *С",
-            "mix_layer_altitude": 800,
-            "_comment_mix_layer_altitude": "Высота слоя перемешивания, м",
-            "height_temp0": 1800,
-            "_comment_height_temp0": "Высота изотермы 0*С, м",
-            "height_temp22": 3000,
-            "_comment_height_temp22": "Высота изотермы -22*С, м",
-            "height_tropopause" : 11400,
-            "_comment_height_tropopause": "Высота тропопаузы, м",
-            "data": [
-                { "altitude": 15, "temperature": 12.5 },
-                { "altitude": 50, "temperature": 12.1 },
-                { "altitude": 100, "temperature": 11.7 },
-                { "altitude": 150, "temperature": 11.0 }
-            ],
-            "_comment_data": "Данные измерений ТПМ (от 0 до 15000 м)"
-        }
 
 + Response 204
 
