@@ -128,6 +128,7 @@ class ApibGen:
             if category["element"] != "category":
                 continue
             for resource in category["content"]:
+                json_str = ''
                 if resource["element"] == "resource":
                     re = ResourceElement(resource)
                     self.re[re.url] = re
@@ -141,7 +142,9 @@ class ApibGen:
                         jsongen = JsonProtoGen()
                         jsongen.class_name = cname
                         jsongen.outtype = self.opts.outtype
-                        jsongen.i_file = io.StringIO(re.jsonobj(code))
+
+                        json_str = re.jsonobj(code)
+                        jsongen.i_file = io.StringIO(json_str)
 
                         jsongen.o_file = self._open_proto_output_file(jsongen.class_name)
                         try:
@@ -149,6 +152,7 @@ class ApibGen:
                         except json.JSONDecodeError as e:
                             print("%s:1:1: error: Json decode error for URL: %s type `%s': %s"
                                   % (self.opts.input_file, re.url, cname, str(e)), file=sys.stderr)
+                            print(json_str)
                             exit(-1)
 
                         self._out_include(jsongen.class_name)
