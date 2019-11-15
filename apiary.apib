@@ -1831,51 +1831,9 @@ distance, x, z - в километрах
     * offset (number, optional) - Начиная с какой позиции выводить элементы
 
 + Response 200 (application/json)
-
-        {
-            "count": 4,
-            "items":
-                [
-                    {
-                        "date": "2017-05-15T08:30:00",
-                        "type": "info",
-                        "station": {
-                            "id": 6,
-                            "title": "Щелково"
-                        },
-                        "message": "Превышен период обновления параметров калибровки."
-                    },
-                    {
-                        "date": "2017-05-15T08:30:00",
-                        "type": "error",
-                        "station": {
-                            "id": 1,
-                            "title": "Орловка"
-                        },
-                        "message": "Ошибка подключения к МРЛС. Проверьте настройки."
-                    },
-                    {
-                        "date": "2017-05-15T08:30:00",
-                        "type": "info",
-                        "station": {
-                            "id": 6,
-                            "title": "Щелково"
-                        },
-                        "message": "Карта местных отражений очищена"
-                    },
-                    {
-                        "date": "2017-05-15T08:30:00",
-                        "type": "info",
-                        "station": {
-                            "id": 2,
-                            "title": "Чкаловский"
-                        },
-                        "message": "Карта местных отражений очищена"
-                    }
-                ]
-        }
-
-
+    + Attributes(object)
+        - count: 1 (number) - Количество элементов
+        - items (array[LogMessage]) - Сообщения
 
 
 ## Построение карт РЛП [/settings/productrender]
@@ -2039,59 +1997,9 @@ distance, x, z - в километрах
 ### Получить список настроек цветовых шкал [GET]
 
 + Response 200 (application/json; charset=utf-8)
-
-        {
-            "count": 2,
-            "items":
-            [
-                {
-                    "id": 0,
-                    "title": "Отражаемость",
-                    "count": 3,
-                    "items":
-                    [
-                        {
-                            "index": 0,
-                            "value": 30,
-                            "color": "#010178"
-                        },
-                        {
-                            "index": 1,
-                            "value": 35,
-                            "color": "#fffb00"
-                        },
-                        {
-                            "index": 2,
-                            "value": 40,
-                            "color": "#f500f6"
-                        }
-                    ]
-                },
-                {
-                    "id": 1,
-                    "title": "Радиальная скорость",
-                    "count": 3,
-                    "items":
-                    [
-                        {
-                            "index": 0,
-                            "value": 30,
-                            "color": "#010178"
-                        },
-                        {
-                            "index": 1,
-                            "value": 35,
-                            "color": "#fffb00"
-                        },
-                        {
-                            "index": 2,
-                            "value": 45,
-                            "color": "#f500f6"
-                        }
-                    ]
-                }
-            ]
-        }
+    + Attributes(object)
+        - count: 1 (number) - Количество элементов
+        - items (array[ColorScale]) - Цветовые шкалы
 
 ## Настройки цветовой шкалы [/settings/color_scale/{id}]
 
@@ -2103,46 +2011,10 @@ distance, x, z - в километрах
 ### Обновить настройки цветовой шкалы [PUT]
 
 + Request (application/json)
+    + Attributes(array[ColorScaleItem])
 
-
-        [
-            {
-                "index": 1,
-                "value": 30,
-                "color": "#010178"
-            },
-            {
-                "index": 2,
-                "value": 35,
-                "color": "#fffb00"
-            },
-            {
-                "index": 3,
-                "value": 40,
-                "color": "#f500f6"
-            }
-        ]
-
-+ Response 200 (application/json)
-
-
-        [
-            {
-                "index": 1,
-                "value": 30,
-                "color": "#010178"
-            },
-            {
-                "index": 2,
-                "value": 35,
-                "color": "#fffb00"
-            },
-            {
-                "index": 3,
-                "value": 40,
-                "color": "#f500f6"
-            }
-        ]
++ Response 200 (application/json; charset=utf-8)
+    + Attributes(array[ColorScaleItem])
 
 + Response 422 (application/json)
 
@@ -2167,32 +2039,7 @@ distance, x, z - в километрах
 ### Получить настройки цветовой шкалы по умолчанию [GET]
 
 + Response 200 (application/json)
-
-        {
-            "id": 2,
-            "count": 3,
-            "title": "Радиальная скорость",
-            "items":
-            [
-                {
-                    "id": 0,
-                    "value": 30,
-                    "color": "#010178"
-                },
-                {
-                    "id": 1,
-                    "value": 35,
-                    "color": "#fffb00"
-                },
-                {
-                    "id": 2,
-                    "value": 40,
-                    "color": "#f500f6"
-                }
-            ]
-        }
-
-
+    + Attributes(ColorScale)
 
 ## Поправка на север [/north_azimuth/{id}]
 
@@ -3720,3 +3567,16 @@ distance, x, z - в километрах
 - type: `info` (LogLevelEnum) - Уровень сообщения
 - station (ShortStationInfo) - Краткая информация о стации на которой произошло событие
 - message: `Текст сообщения` (string) - Сообщение
+
+## ColorScale
+### Properties
+- id: 0 (number) - Идентификатор шкалы
+- title: Отражаемость (string) - Название шкалы
+- count: 3 (number) - Количество элементов item
+- items (array[ColorScaleItem])
+
+## ColorScaleItem
+### Properties
+- index: 0 (number) - Порядковый номер
+- value: 30 (number) - Значение
+- color: #010178 (string) - RGB значение цвета
