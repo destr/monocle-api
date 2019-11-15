@@ -2781,6 +2781,30 @@ distance, x, z - в километрах
 
 + Response 200
 
+## Параметры алгоритмов обработки метео данных [/station/{id}/algorithmparameters]
+Получение параметров алгоритмов обработки метео данных
+
+### Получить текущее состояние [GET]
+
++ Parameters
+    - id: `0` (number) - ID СМРЛП
+
++ Response 200 (application/json; charset=utf-8)
+    + Attributes(AlgorithmParameters)
+    
+### Обновить параметры [PUT]
+
++ Parameters
+    - id: `0` (number) - ID СМРЛП
+
++ Request (application/json)
+    + Attributes(AlgorithmParameters)
+    
++ Response 200 (application/json)
+    
+    {
+    }
+
 #Group Уведомления
 
 ## Уведомления [/notification]
@@ -3965,3 +3989,130 @@ distance, x, z - в километрах
 ### Properties
 - count: 1(number) - Количество элементов
 - items (array[FtpHost]) - Список FTP
+
+## WeightWindowEnum(enum[number])
+Типы взвешивания
+### Members
+- `0` - Без взвешивания
+- `1` - Блэккман-Харрис вариант 1
+- `2` - Блэккман-Харрис вариант 2
+
+## MeteoClassEnum(enum[number])
+Типы метео явлений
+### Members
+- `1` - Обл. В и Ср яруса
+- `2` - Слоистообр. обл.
+- `3` - Осадки слабые
+- `4` - Осадки умеренные
+- `5` - Осадки сильные
+- `6` - Кучевая облачность
+- `7` - Ливень слабый
+- `8` - Ливень умеренный
+- `9` - Ливень сильный
+- `10` - Гроза - вер. 30-70%
+- `11` - Гроза - вер. 71-90%
+- `12` - Гроза - вер. >90%
+- `13` - Град слабый
+- `14` - Град умеренный
+- `15` - Град сильный
+- `16` - Шквал слабый
+- `17` - Шквал умеренный,
+- `18` - Шквал сильный
+- `19` - Торнадо (смерч)
+
+## AlgorithmParameters(object,fixed-type)
+### Properties
++ dpm(object)
+    + dataprocessing(object)
+        * nominal_cycle_time: 605 (number) - Номинальная длительность обзора, с
+        * nominal_rastr_cycle_time: 605 (number) - Номинальная длительность обзора РАСТР, с
+        * autoAccumulatorSize: 60 (number) - Размер буфера накопления, пак
+        * WeightWindow: `0` (WeightWindowEnum[number]) - Взвешивание
+        * falseAlarmProbability: 100 (number) - Вероятность ложной тревоги с МФ
+        * falseAlarmMFOffProbability: 100 (number) - Вероятность ложной тревоги без МФ
+        * minreflectionrange: 0 (number) - Приземные отражения - Д, м
+        * manual_dbz_correction: 0 (number) - Поправка отражаемости, дБZ
+        * kaperturef: 1.5 (number) - Коэффициент расширения частотной апертуры МФ, ед.
+        * coeffReflMeanSpectreTreshold: 2 (number) - Коэффициент усиления мощности КМО, ед.
+        * localReflSpectralSize: 15 (number) - Ширина зоны неподвижных отражений, отсч.
+        * coeffIncreaseSingleTargetLF: 1 (number) - Коэффициент увеличения размера одиночной цели, ед.
+        * coeffLReflSpectralZeroPwr: 0.9 (number) - Доля неподвижных отражений, ед.
+        * oneTgtFiltrOn: false (boolean) - Фильтр одиночных целей в отражаемости
+        * linearNoiseFilterEnabled: false (boolean) - Фильтр линейных помех
+        * medianFiltrOn: false (boolean) - Медианная фильтрация
+        * maxLRPwrValueOn: false (boolean) - Получение максимальной мощности для карты местных отражений
+        * spectralLReflFirtrOn: false (boolean) - Спектральный фильтр местных отражений
+        * anglev_dbz_correction_enable: false (boolean) - Коррекция Z по приземному заполнению луча
+        * velocity_mo_abs_step: 2.5 (number) - Шаг отображения скорости ветра м/с
+        * velocity_mo_az_step: 10 (number) - Шаг отображения направления ветра, º
+    + local_reflections(object)
+        * num_cycles: 4 (number) - Циклы записи мест. отражений
+    + rainfall_computer(object)
+        * rainFallParams00: 0.36 (number) - Параметры расчета интенсивности осадков из дБZ:Множитель для дождя, ед.
+        * rainFallParams01: 0.0052 (number) - Параметры расчета интенсивности осадков из дБZ: Множитель для града, ед.
+        * rainFallParams02: 0.013 (number) - Параметры расчета интенсивности осадков из дБZ: Множитель для снега, ед.
+        * rainFallParams10: 0.045 (number) - Параметры расчета интенсивности осадков из дБZ: Показатель степени для дождя, ед.
+        * rainFallParams11: 0.065 (number) - Параметры расчета интенсивности осадков из дБZ: Показатель степени для града, ед.
+        * rainFallParams12: 0.0625 (number) - Параметры расчета интенсивности осадков из дБZ: Показатель степени для снега, ед.
+        * max_rainfall_height: 600 (number) - Максимальная высота получения осадков, м
+        * cell_size: 1000 (number) - Размер ячейки карты накопленных осадков, м
+    + weather_map(object)
+        * statistics_wph_off_coord_km_size: 40 (number) - Размер зоны исключения расчета статистики макс МЯ, км
+        * afilter_wph_treshold1: 0 (number) - Порог по площади, кв. км: Обл. В и Ср яруса
+        * afilter_wph_treshold2: 0 (number) - Порог по площади, кв. км: Слоистообр. обл.
+        * afilter_wph_treshold3: 0 (number) - Порог по площади, кв. км: Осадки слабые
+        * afilter_wph_treshold4: 0 (number) - Порог по площади, кв. км: Осадки умеренные
+        * afilter_wph_treshold5: 0 (number) - Порог по площади, кв. км: Осадки сильные
+        * afilter_wph_treshold6: 0 (number) - Порог по площади, кв. км: Кучевая облачность
+        * afilter_wph_treshold7: 0 (number) - Порог по площади, кв. км: Ливень слабый
+        * afilter_wph_treshold8: 0 (number) - Порог по площади, кв. км: Ливень умеренный
+        * afilter_wph_treshold9: 0 (number) - Порог по площади, кв. км: Ливень сильный
+        * afilter_wph_treshold10: 0 (number) - Порог по площади, кв. км: Гроза - вер. 30-70%
+        * afilter_wph_treshold11: 0 (number) - Порог по площади, кв. км: Гроза - вер. 71-90%
+        * afilter_wph_treshold12: 0 (number) - Порог по площади, кв. км: Гроза - вер. >90%
+        * afilter_wph_treshold13: 0 (number) - Порог по площади, кв. км: Град слабый
+        * afilter_wph_treshold14: 0 (number) - Порог по площади, кв. км: Град умеренный
+        * afilter_wph_treshold15: 0 (number) - Порог по площади, кв. км: Град сильный
+        * afilter_wph_treshold16: 0 (number) - Порог по площади, кв. км: Шквал слабый
+        * afilter_wph_treshold17: 0 (number) - Порог по площади, кв. км: Шквал умеренный
+        * afilter_wph_treshold18: 0 (number) - Порог по площади, кв. км: Шквал сильный
+        * afilter_wph_treshold19: 0 (number) - Порог по площади, кв. км: Торнадо (смерч)
+        * min_always_show_index_wph: 0 (MeteoClassEnum[number]) - Минимально опасное МЯ для постоянного отображения Примечание.  Предложение переименовать: "Мин. МЯ без фильтрации"
+        * exclude_contours_after_afilter_wph: false (boolean) - Удалять мелкие контуры после фильтрации
+        * afilter_wph_on: false (boolean) - Фильтр статистики МЯ по площади контура
+        * cell_size: 1000 (number) - Размер ячейки карты МЯ, м
+        * contour_line_generalization: 8 (number) - Степень генерализации контуров, ед.
+        * contour_line_expansion: 1 (number) - Величина расширения контуров, ячеек
++ spg(object)
+    + vector_velocity_field(object)
+        * vector_size: 30 (number) - Размер вектора, ед.
+        * vector_thickness: 2 (number) - Толщина вектора, ед.
+        * kShortRangeSizeOverlapH: 2 (number) - Параметры расчета векторного поля скоростей: Гор. коэф. перекрытия мал. дальности, ед.        
+        * kShortRangeSizeOverlapV: 1.5 (number) - Параметры расчета векторного поля скоростей: Верт. коэф. перекрытия мал. дальности, ед.       
+        * kMediumRangeSizeOverlapH: 3.25 (number) - Параметры расчета векторного поля скоростей: Гор. коэф. перекрытия ср. дальности, ед.         
+        * kMediumRangeSizeOverlapV: 1.75 (number) - Параметры расчета векторного поля скоростей: Верт. коэф. перекрытия ср. дальности, ед.        
+        * kLongRangeSizeOverlapH: 3.75 (number) - Параметры расчета векторного поля скоростей: Гор. коэф. перекрытия макс. дальности, ед.       
+        * kLongRangeSizeOverlapV: 3 (number) - Параметры расчета векторного поля скоростей: Верт. коэф. перекрытия макс. дальности, ед.      
+        * shortRAzCellThreshold: 25 (number) - Параметры расчета векторного поля скоростей: Азимутальное перекрытия мал. дальности, ед.      
+        * shortRAzCellFillThreshold: 20 (number) - Параметры расчета векторного поля скоростей: Порог заполнения по азимуту мал. дальности, ед.  
+        * mediumRAzCellThreshold: 27 (number) - Параметры расчета векторного поля скоростей: Азимутальное перекрытия ср. дальности, ед.       
+        * mediumRAzCellFillThreshold: 23 (number) - Параметры расчета векторного поля скоростей: Порог заполнения по азимуту ср. дальности, ед.   
+        * longRAzCellThreshold: 17 (number) - Параметры расчета векторного поля скоростей: Азимутальное перекрытия макс. дальности, ед.     
+        * longRAzCellFillThreshold: 13 (number) - Параметры расчета векторного поля скоростей: Порог заполнения по азимуту макс. дальности, ед. 
+        * circular_horizontal_pitch: 8000 (number) - Шаг по горизонтали векторного поля скоростей, м (ОБЗОР)
+        * circular_vertical_pitch: 1000 (number) - Шаг по вертикали векторного поля скоростей, м (ОБЗОР)
+        * sector_horizontal_pitch: 1000 (number) - Шаг по горизонтали векторного поля скоростей, м (СЕКТОР)
+        * sector_vertical_pitch: 500 (number) - Шаг по вертикали векторного поля скоростей, м (СЕКТОР)
+    + wind_shear_field(object)
+        * circular_max_altitude: 3000 (number) - Максимальная высота поля сдвигов ветра, м (ОБЗОР)
+        * circular_max_range: 50000 (number) - Макс дальность поля сдвигов ветра, м (ОБЗОР)
+        * sector_max_altitude: 3000 (number) - Максимальная высота поля сдвигов ветра, м (СЕКТОР)
+        * sector_max_range: 50000 (number) - Макс дальность поля сдвигов ветра, м (СЕКТОР)
+        * horizontal_pitch: 500 (number) - Шаг по горизонтали для поля сдвигов ветра, м
+        * vertical_pitch: 500 (number) - Шаг по вертикали для поля сдвигов ветра, м
+    + vertically_integrated_liquid(object)
+        * stepbuild: 1000 (number) - Размер ячейки построения карты VIL, м
++ render(object)
+    + vertical_section(object)
+        * vertical_pitch: 0.1 (number) - Шаг по горизонтали для вертикального сечения, км
+        * horizontal_pitch: 0.1 (number) - Шаг по вертикали для вертикального сечения и профиля, км
