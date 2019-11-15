@@ -188,45 +188,17 @@ API для получения радиолокационных данных. В�
 ### Получить расписание СМРЛП [GET]
 
 + Response 200 (application/json)
-
-        {
-            "count": 2,
-            "items":
-            [
-                {
-                    "id": 0,
-                    "program_id": "b8e8bf60-25d9-11e8-a0e9-1c1b0d7db1e3",
-                    "date": "17:30:46"
-                },
-                {
-                    "id": 1,
-                    "program_id": "b8e8bf60-25d9-21e8-a0e9-1c1b0d7db1e3",
-                    "date": "17:50:46"
-                }
-            ]
-        }
+    + Attributes (object)
+        - count: 1 (number) - Количество записей в расписании
+        - items(Schedule) - Расписание
 + Response 409
 
 ### Обновить расписание СМРЛП [PUT]
 
 + Request (application/json)
-
-        {
-            "count": 2,
-            "items":
-            [
-                {
-                    "id": 0,
-                    "program_id": "b8e8bf60-25d9-11e8-a0e9-1c1b0d7db1e3",
-                    "date": "12:30:46"
-                },
-                {
-                    "id": 1,
-                    "program_id": "b8e8bf60-25d9-21e8-a0e9-1c1b0d7db1e3",
-                    "date": "12:50:46"
-                }
-            ]
-        }
+    + Attributes (object)
+        - count: 1 (number) - Количество записей в расписании
+        - items(Schedule) - Расписание
 
 + Response 200 (application/json)
 
@@ -3093,6 +3065,12 @@ distance, x, z - в километрах
     + Attributes(Program)
 
 # Data Structures
+## Schedule(array)
+- (object)
+    - id: 0 (number) - Порядковый номер
+    - program_id: `123` (string) - Уникальный идентификатор программы
+    - date: `00:01:01` (string) - Время запуска программы в формате hh:mm::ss
+
 ## FtpHost (object, fixed-type)
 Описание FTP-хоста на который происходит выгрузка данных НАМС, BUFR, HDF5 и ТПМ
 ### Properties
