@@ -1823,10 +1823,7 @@ distance, x, z - в километрах
 ### Получить список событий [GET]
 
 + Parameters
-    * type (enum[string], optional) - Тип события, информация или ошибка
-        + Members
-            + `error`
-            + `info`
+    * type (LogLevelEnum, optional) - Тип события, информация или ошибка
     * station: `0` (number) - id СМРЛП
     * from (string, optional) - Начальный период поиска ISO Date
     * to (string, optional) - Конечный период поиска ISO Date
@@ -3541,9 +3538,9 @@ distance, x, z - в километрах
 - path: /var/lib/monocle/data/ (string) - Каталог выгрузки данных на FTP
 - login: login (string) - Логин
 - password: password (string) - Пароль
-- stations (array[FtpStation]) - Список станций с которых происходит выгрузка
+- stations (array[ShortStationInfo]) - Список станций с которых происходит выгрузка
 
-## FtpStation(object, fixed-type)
+## ShortStationInfo(object, fixed-type)
 Описание станции с которой происходит выгрузка
 ### Properties
 - id: 0 (number) - Идентификатор станции
@@ -3711,3 +3708,15 @@ distance, x, z - в километрах
     - raster_right_azimuth: `0.1` (number) - right border of a raster review
     - scope_range: `0` (number) - Current scope range
     - duration: `00:00:00` (string) - Длительность
+    
+## LogLevelEnum(enum[string])
+### Members
++ `error` - Ошибка
++ `info` - Информационное сообщение
+
+## LogMessage
+### Properties
+- date: `2017-05-15T08:30:00` (string) - Дата события (ISO-формат)
+- type: `info` (LogLevelEnum) - Уровень сообщения
+- station (ShortStationInfo) - Краткая информация о стации на которой произошло событие
+- message: `Текст сообщения` (string) - Сообщение
