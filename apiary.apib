@@ -689,105 +689,7 @@ Cправочник типов конических сечений для СМР
     * date (optional) - Дата обзора
 
 + Response 200 (application/json; charset=utf-8)
-
-        {
-            "antenna_altitude_msl": 511,
-            "_comment_antenna_altitude_msl": "Высота антенны МРЛС над уровнем моря",
-            "cloud_direction": 120,
-            "_comment_cloud_direction": "Направление (азимут, град.) перемещения облачных систем",
-            "cloud_speed": 10.8,
-            "_comment_cloud_speed": "Скорость (м/с) перемещения облачных систем",
-            "data_format": "1",
-            "_comment_data_format": "Код версии сериализованных данных",
-            "date": "20190808T142111Z",
-            "_comment_date": "Дата завершения формирования первичных РЛП",
-            "hiso0": { "source": "auto", "success": true, "value": 3937 },
-            "_comment_hiso0": "H изотермы 0 °С",
-            "hiso22": { "source": "auto", "success": true, "value": 7321 },
-            "_comment_hiso22": "H изотермы -22 °С",
-            "htropo": { "source": "auto", "success": true, "value": 13491 },
-            "_comment_htropo": "H тропопаузы",
-            "location": [ 56.142616, 34.987386 ],
-            "_comment_location": "Географическая координата точки получения обзора",
-            "max_cloud_altitude": 4000,
-            "_comment_max_cloud_altitude": "Вертикальная граница облачности (MAX ВГО)",
-            "max_edr": 0,
-            "_comment_max_edr": "Макс. EDR",
-            "max_ground_rfli": 5.323521526695193,
-            "_comment_max_ground_rfli": "Макс. интенсивность приземных осадков",
-            "min_edr": 0,
-            "_comment_min_edr": "Мин. EDR",
-            "min_ground_rfli": 0.1277328201064342,
-            "_comment_min_ground_rfli": "Мин. интенсивность приземных осадков",
-            "min_refl_altitude": 400,
-            "_comment_min_refl_altitude": "Нижняя граница радиоэха (MIN ГРЭ)",
-            "primary_valid": true,
-            "_comment_primary_valid": "Первичный признак валидности обзора",
-            "program": {
-                "description": "System program",
-                "isDefault": false,
-                "name": "DUMP",
-                "program": {
-                    "mode": 4,
-                    "blank_sectors_array": [],
-                    "av_azimuth_change": 0,
-                    "azimuth_scan_speed": 23.777619048953056,
-                    "raster_left_azimuth": 60.029296875,
-                    "raster_right_azimuth": 29.970703125,
-                    "scope_range": 100,
-                    "angles_array": [
-                        0,
-                        0.791015625,
-                        1.58203125,
-                        2.373046875,
-                        3.1640625,
-                        4.04296875,
-                        4.833984375,
-                        5.625,
-                        6.416015625,
-                        7.20703125,
-                        7.998046875,
-                        8.7890625,
-                        9.580078125,
-                        10.37109375,
-                        12.392578125,
-                        14.4140625,
-                        16.34765625,
-                        18.369140625,
-                        20.390625,
-                        22.412109375,
-                        25.400390625,
-                        28.388671875,
-                        31.376953125,
-                        34.453125,
-                        37.44140625,
-                        40.4296875,
-                        43.41796875,
-                        46.40625,
-                        49.39453125
-                    ]
-                }
-            },
-            "_comment_program": "Программа выполнения обзора МРЛС",
-            "rfli_height": 2500,
-            "_comment_rfli_height": "Высота расчёта осадков",
-            "season": "warm",
-            "_comment_season": "Период эксплуатации",
-            "secondary_valid": true,
-            "_comment_secondary_valid": "Окончательный признак валидности обзора",
-            "spg_datetime": "20190808T143015Z",
-            "_comment_spg_datetime": "Дата завершения формирования вторичных РЛП",
-            "station_index": "TEST",
-            "_comment_station_index": "Код станции",
-            "station_name": "",
-            "_comment_station_name": "Имя позиции МРЛК в системе",
-            "station_synoptic_code": "00001",
-            "_comment_station_synoptic_code": "Синоптический индекс станции",
-            "weather_list": [ 2, 3, 4, 5, 7 ],
-            "_comment_weather_list": "Отсортированный перечень МЯ",
-            "weather_max": 4,
-            "_comment_weather_max": "Максимальное МЯ"
-        }
+    + Attributes (Passport)
 
 + Response 404
 
@@ -3579,3 +3481,43 @@ distance, x, z - в километрах
 - index: 0 (number) - Порядковый номер
 - value: 30.5 (number) - Значение
 - color: #010178 (string) - RGB значение цвета
+
+## IsothermSource
+### Properties
+- source: "auto" (string)
+- success: true (boolean)
+- value: 3937 (number)
+
+## SeasonEnum(enum[string])
+### Members
+- `warm`
+- `cold`
+
+## Passport
+### Properties
+- antenna_altitude_msl: 511 (number) - Высота антенны МРЛС над уровнем моря
+- cloud_direction: 120 (number) - Направление (азимут, град.) перемещения облачных систем
+- cloud_speed: 10.8 (number) - Скорость (м/с) перемещения облачных систем
+- data_format: 1 (string) - Код версии сериализованных данных
+- date: 20190808T142111Z (string) - Дата завершения формирования первичных РЛП
+- hiso0(IsothermSource) - H изотермы 0 °С
+- hiso22(IsothermSource) - H изотермы -22 °С
+- htropo(IsothermSource) - H тропопаузы
+- location: 56.142616, 34.987386 (array[number]) - Географическая координата точки получения обзора
+- max_cloud_altitude: 4000 (number) - Вертикальная граница облачности (MAX ВГО)
+- max_edr: 0 (number) - Макс. EDR
+- max_ground_rfli: 5.323521526695193 (number) - Макс. интенсивность приземных осадков
+- min_edr: 0 (number) - Мин. EDR
+- min_ground_rfli: 0.1277328201064342 (number) - Мин. интенсивность приземных осадков
+- min_refl_altitude: 400 (number) - Нижняя граница радиоэха (MIN ГРЭ)
+- primary_valid: true (boolean) - Первичный признак валидности обзора
+- program (Program) - Программа выполнения обзора МРЛС
+- rfli_height: 2500 (number) - Высота расчёта осадков
+- season: `warm` (SeasonEnum) - Период эксплуатации
+- secondary_valid: true (boolean) - Окончательный признак валидности обзора
+- spg_datetime: `20190808T143015Z` (string) - Дата завершения формирования вторичных РЛП
+- station_index: `TEST` (string) - Код станции
+- station_name: `station_name` (string) - Имя позиции МРЛК в системе
+- station_synoptic_code: `00001` (string) - Синоптический индекс станции
+- weather_list: 2, 3, 4, 5, 7 (array[number]) - Отсортированный перечень МЯ
+- weather_max: 4 (number) - Максимальное МЯ
