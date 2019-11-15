@@ -1406,37 +1406,16 @@ distance, x, z - в километрах
 ### Получить настройки МРЛС [GET]
 
 + Response 200 (application/json)
-
-            {
-                "_comment_channel_id": "Номер канала излучения МРЛС",
-                "channel_id": 2,
-                "_comment_hold_azimuth": "Фиксированный азимут антенны, град.",
-                "hold_azimuth": 60.0,
-                "_comment_hold_tilt": "Фиксированный угол места антенны, град.",
-                "hold_tilt": 16.0,
-                "_comment_azimuth_center": "Поправка на север",
-                "azimuth_center": 0.0
-            }
+    + Attributes(RadarSettings)
 
 ### Обновить настройки МРЛС [PUT]
 
 + Request (application/json)
-
-            {
-                "channel_id": 2,
-                "hold_azimuth": 60.0,
-                "hold_tilt": 16.0,
-                "azimuth_center": 0.0
-            }
+    + Attributes(RadarSettings)
+            
 
 + Response 200 (application/json)
-
-            {
-                "channel_id": 2,
-                "hold_azimuth": 60.0,
-                "hold_tilt": 16.0,
-                "azimuth_center": 0.0
-            }
+    + Attributes(RadarSettings)
 
 + Response 422
 
@@ -3359,3 +3338,10 @@ distance, x, z - в километрах
 - station_synoptic_code: `00001` (string) - Синоптический индекс станции
 - weather_list: 2, 3, 4, 5, 7 (array[number]) - Отсортированный перечень МЯ
 - weather_max: 4 (number) - Максимальное МЯ
+
+## RadarSettings
+### Properties
+- channel_id: 2 (number) - Номер канала излучения МРЛС
+- hold_azimuth: 60.0 (number) - Фиксированный азимут антенны, град.
+- hold_tilt: 16.0 (number) - Фиксированный угол места антенны, град.
+- azimuth_center: 0.1 (number) - Поправка на север
