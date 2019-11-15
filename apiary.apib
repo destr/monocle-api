@@ -417,95 +417,15 @@ Cправочник типов РЛП для СМРЛП
 ### Получить перечень типов РЛП [GET]
 
 + Response 200 (application/json; charset=utf-8)
-
-            {
-                "count": 12,
-                "items": [{
-                        "id": 0,
-                        "index": "Wpcell",
-                        "title": "Карта метео явлений (в ячейках)",
-                        "enable_altitude_scale": false,
-                        "mixed_with_other_rlp": false
-                    },
-                    {
-                        "id": 1,
-                        "index": "Wpfig",
-                        "title": "Карта метео явлений (в контурах)",
-                        "enable_altitude_scale": true,
-                        "mixed_with_other_rlp": false
-                    },
-                    {
-                        "id": 2,
-                        "index": "Htmax",
-                        "title": "Карта верхней границы радиоэха",
-                        "enable_altitude_scale": false,
-                        "mixed_with_other_rlp": false
-                    },
-                    {
-                        "id": 3,
-                        "index": "Htmin",
-                        "title": "Карта нижней границы радиоэха",
-                        "enable_altitude_scale": false,
-                        "mixed_with_other_rlp": true
-                    },
-                    {
-                        "id": 4,
-                        "index": "VvField",
-                        "title": "Карта векторного поля скоростей",
-                        "enable_altitude_scale": false,
-                        "mixed_with_other_rlp": true
-                    },
-                    {
-                        "id": 5,
-                        "index": "WindShiftH",
-                        "title": "Объемная карта значений горизонтального сдвига ветра",
-                        "enable_altitude_scale": false,
-                        "mixed_with_other_rlp": true
-                    },
-                    {
-                        "id": 6,
-                        "index": "WindShiftV",
-                        "title": "Объемная карта значений вертикального сдвига ветра",
-                        "enable_altitude_scale": false,
-                        "mixed_with_other_rlp": true
-                    },
-                    {
-                        "id": 7,
-                        "index": "VIL",
-                        "title": "Карта интегрированного водозапаса в ячейках, кг/м^2",
-                        "enable_altitude_scale": false,
-                        "mixed_with_other_rlp": true
-                    },
-                    {
-                        "id": 8,
-                        "index": "RflS3",
-                        "title": "Количество осадков накопленное за 3, мм/ч",
-                        "enable_altitude_scale": false,
-                        "mixed_with_other_rlp": true
-                    },
-                    {
-                        "id": 9,
-                        "index": "RflS6",
-                        "title": "Количество осадков накопленное за 6, мм/ч",
-                        "enable_altitude_scale": false,
-                        "mixed_with_other_rlp": true
-                    },
-                    {
-                        "id": 10,
-                        "index": "RflS12",
-                        "title": "Количество осадков накопленное за 12, мм/ч",
-                        "enable_altitude_scale": false,
-                        "mixed_with_other_rlp": true
-                    },
-                    {
-                        "id": 11,
-                        "index": "RflS24",
-                        "title": "Количество осадк0ов накопленное за 24, мм/ч",
-                        "enable_altitude_scale": false,
-                        "mixed_with_other_rlp": true
-                    }
-                ]
-            }
+    + Attributes(object)
+        - count: 1 (number) - Количество элементов
+        - items(array)
+            - (object)
+                - id: 0 (number) - Уникальный индекс продукта
+                - index: `Wpcell` (string) - Строковый индекс продукта
+                - title: `Продукт` (string) - Название продукта
+                - enable_altitude_scale: false (boolean)
+                - mixed_with_other_rlp: false (boolean)
 
 ## Справочник типов КС [/station/{id}/types/cs_list{?role}]
 
@@ -521,37 +441,14 @@ Cправочник типов конических сечений для СМР
 ### Получить перечень типов КС [GET]
 
 + Response 200 (application/json; charset=utf-8)
+    + Attributes(object)
+        - count: 1 (number) - Количество элементов
+        - items(array)
+            - (object)
+                - id: 12 (number) - Уникальый идентификатор продукта
+                - index: `dbz` (string) - Строковый идентификатор продукта
+                - title: `Название` (string) - Название продукта
 
-            {
-                "count": 5,
-                    "items": [
-                    {
-                        "id": 12,
-                        "index": "dbz",
-                        "title": "Отражаемость"
-                    },
-                    {
-                        "id": 13,
-                        "index": "vr",
-                        "title": "Радиальная скорость"
-                    },
-                    {
-                        "id": 14,
-                        "index": "dwvs",
-                        "title": "Ширина спектра скоростей"
-                    },
-                    {
-                        "id": 15,
-                        "index": "edr",
-                        "title": "Уд. скорость диссипации турбулентной энергии"
-                    },
-                    {
-                        "id": 16,
-                        "index": "rfli",
-                        "title": "Интенсивность осадков"
-                    }
-                ]
-            }
 
 ## Критерии классификации типов метеоявлений по умолчанию [/settings/default_weather_criteria]
 
