@@ -1770,15 +1770,21 @@ distance, x, z - в километрах
 
 + Response 200
 
-## Параметры алгоритмов обработки метео данных [/settings/algorithmparameters]
+## Параметры алгоритмов обработки метео данных [/station/{id}/algorithmparameters]
 Получение параметров алгоритмов обработки метео данных
 
 ### Получить текущее состояние [GET]
+
++ Parameters
+    - id: `0` (number) - ID СМРЛП
 
 + Response 200 (application/json; charset=utf-8)
     + Attributes(AlgorithmParameters)
     
 ### Обновить параметры [PUT]
+
++ Parameters
+    - id: `0` (number) - ID СМРЛП
 
 + Request (application/json)
     + Attributes(AlgorithmParameters)
