@@ -25,6 +25,7 @@ class JsonProtoGen:
         self.gen_str = ""
         self.classes = OrderedDict()
         self.assign_func = OrderedDict()
+        self.update_func = OrderedDict()
         self.enums = OrderedDict()
         self.enums_from = OrderedDict()
         self.enums_to = OrderedDict()
@@ -127,6 +128,7 @@ class JsonProtoGen:
         self.assign_func[class_name] = self._tab() + "def fromjson(self, j):\n"
         self.to_json_func[class_name] = self._tab() + """def tojson(self):
         ret = dict()\n"""
+        self.update_func[class_name] = self._tab() + "def update_json(self, j):\n"
 
         is_root_array=False
         if type(json_object) == list:
@@ -143,6 +145,7 @@ class JsonProtoGen:
                 self.classes[class_name] += self._tab(2) + "self.{0} = {1}()\n".format(key, sub_class_name)
                 self.assign_func[class_name] += self._tab(2) + "self.{0}.fromjson(j['{0}'])\n".format(key)
                 self.to_json_func[class_name] += self._tab(2) + "ret[\"{0}\"] = self.{0}.tojson()\n".format(key)
+                self.update_func[class_name] += self._tab(2) + "self.{0}.update_json(j['{0}'])\n".format(key)
                 self._process_json_py(item, sub_class_name)
                 continue
             elif isinstance(item, list):
@@ -156,6 +159,10 @@ class JsonProtoGen:
             self.{0}.append({1}(e))\n""".format(key, array_type)
                     self.to_json_func[class_name] += self._tab(2) + \
                                                      "ret[\"{0}\"] = [i.tojson() for i in self.{0}]\n".format(key)
+                    self.update_func[class_name] += self._tab(2) + "if len(self.{0}) != len(j['{0}']):\n".format(key) + \
+                        self._tab(3) + "raise AttributeError('{0}.{1}: Update arrays different sizes')\n".format(class_name, key)
+                    self.update_func[class_name] += self._tab(2) + \
+                        "for o in self.{0}:\n".format(key) + self._tab(3) + "o.update_json(j['{0}'])\n".format(key)
                     continue
 
             self.classes[class_name] += self._tab(2) + "self.{0} = None\n".format(key)
@@ -171,6 +178,7 @@ class JsonProtoGen:
 
             self.assign_func[class_name] += self._tab(2) + "self.{0} = {1}j['{0}']{2}\n".format(key, *to_enum)
             self.to_json_func[class_name] += self._tab(2) + "ret[\"{0}\"] = {1}self.{0}{2}\n".format(key, *from_enum)
+            self.update_func[class_name] += self._tab(2) + "j['{0}'] = self.{0}\n".format(key)
 
         self.to_json_func[class_name] += self._tab(2) + "return ret{0}\n".format("['array']" if is_root_array else '')
 
@@ -179,6 +187,8 @@ class JsonProtoGen:
         self.classes[class_name] += self.assign_func[class_name]
         self.classes[class_name] += "\n"
         self.classes[class_name] += self.to_json_func[class_name]
+        self.classes[class_name] += "\n"
+        self.classes[class_name] += self.update_func[class_name]
 
     def _output_py(self, root_class_name):
         o_name = self.opts.input_file if self.opts is not None else "-"
