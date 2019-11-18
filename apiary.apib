@@ -1534,135 +1534,16 @@ distance, x, z - в километрах
 ### Получить настройки для построения карт РЛП [GET]
 
 + Response 200 (application/json; charset=utf-8)
-
-        {
-            "_comment_vector_velocity_field": "",
-            "vector_velocity_field": {
-                "_comment_circular_horizontal_pitch": "Шаг по горизонтали в режиме ОБЗОР",
-                "circular_horizontal_pitch": 8000,
-                "_comment_circular_vertical_pitch": "Шаг по вертикали в режиме ОБЗОР",
-                "circular_vertical_pitch": 1000,
-                "_comment_sector_horizontal_pitch": "Шаг по горизонтали в режиме СЕКТОР",
-                "sector_horizontal_pitch": 8000,
-                "_comment_sector_vertical_pitch": "Шаг по вертикали в режиме СЕКТОР",
-                "sector_vertical_pitch": 1000,
-                "_comment_vector_size": "Размер ячейки вектора поля скоростей",
-                "vector_size": 5,
-                "_comment_vector_thickness": "Толщина линии вектора поля скоростей",
-                "vector_thickness": 3
-            },
-            "_comment_wind_shear_field": "Поля сдвигов ветра",
-            "wind_shear_field": {
-                "_comment_circular_max_altitude": "Максимальная высота в режиме ОБЗОР",
-                "circular_max_altitude": 100,
-                "_comment_circular_max_range": "Максимальная дальность в режиме ОБЗОР",
-                "circular_max_range": 100,
-                "_comment_sector_max_altitude": "Максимальная высота в режиме СЕКТОР",
-                "sector_max_altitude": 100,
-                "_comment_sector_max_range": "Максимальная дальность в режиме СЕКТОР",
-                "sector_max_range": 100,
-                "_comment_horizontal_pitch": "Шаг по вертикали",
-                "horizontal_pitch": 100,
-                "_comment_vertical_pitch": "Шаг по горизонтали",
-                "vertical_pitch": 100
-            },
-            "_comment_weather_map": "Карты МЯ ",
-            "weather_map": {
-                "_comment_cell_size": "Размер ячейки МЯ, м",
-                "cell_size": 1000.0,
-                "_comment_contour_line_generalization": "Степень генерализации контуров МЯ",
-                "contour_line_generalization": 3,
-                "_comment_contour_line_expansion": "Величины расширения контуров МЯ",
-                "contour_line_expansion": 3
-            },
-            "_comment_vertical_section": "Вертикальное сечение",
-            "vertical_section": {
-                "horizontal_pitch": 100,
-                "vertical_pitch": 100
-            },
-            "_comment_accumulated_precipitation": "Размера ячейки карты накопленных осадков",
-            "accumulated_precipitation": {
-                "cell_size": 100.0
-            },
-            "_comment_vertically_integrated_liquid": "Размер ячейки построения карты вертикально интегрированной водности",
-            "vertically_integrated_liquid": {
-                "cell_size": 100.0
-            }
-        }
+    + Attributes(ProductRenderer)
 
 ### Обновить настройки для построения карт [PUT]
 
 + Request (application/json)
+    + Attributes(ProductRenderer)
 
-        {
-            "vector_velocity_field": {
-                "circular_horizontal_pitch": 8000,
-                "circular_vertical_pitch": 1000,
-                "sector_horizontal_pitch": 8000,
-                "sector_vertical_pitch": 1000,
-                "vector_size": 5,
-                "vector_thickness": 3
-            },
-            "wind_shear_field": {
-                "circular_max_altitude": 100,
-                "circular_max_range": 100,
-                "sector_max_altitude": 100,
-                "sector_max_range": 100,
-                "horizontal_pitch": 100,
-                "vertical_pitch": 100
-            },
-            "weather_map": {
-                "cell_size": 1000,
-                "contour_line_generalization": 3,
-                "contour_line_expansion": 3
-            },
-            "vertical_section": {
-                "horizontal_pitch": 100,
-                "vertical_pitch": 100
-            },
-            "accumulated_precipitation": {
-                "cell_size": 100
-            },
-            "vertically_integrated_liquid": {
-                "cell_size": 100
-            }
-        }
 
 + Response 200 (application/json)
-
-        {
-            "vector_velocity_field": {
-                "circular_horizontal_pitch": 8000,
-                "circular_vertical_pitch": 1000,
-                "sector_horizontal_pitch": 8000,
-                "sector_vertical_pitch": 1000,
-                "vector_size": 5,
-                "vector_thickness": 3
-            },
-            "wind_shear_field": {
-                "circular_max_altitude": 100,
-                "circular_max_range": 100,
-                "sector_max_altitude": 100,
-                "sector_max_range": 100,
-                "horizontal_pitch": 100,
-                "vertical_pitch": 100
-            },
-            "weather_map": {
-                "cell_size": 1000,
-                "contour_line_generalization": 3,
-                "contour_line_expansion": 3
-            },
-            "vertical_section": {
-                "horizontal_pitch": 100,
-                "vertical_pitch": 100
-            },
-            "accumulated_precipitation": {
-                "cell_size": 100
-            },
-            "vertically_integrated_liquid": {
-                "cell_size": 100
-            }
-        }
+    + Attributes(ProductRenderer)
 
 + Response 422 (application/json)
 
@@ -3323,3 +3204,31 @@ distance, x, z - в километрах
 - hold_azimuth: 60.0 (number) - Фиксированный азимут антенны, град.
 - hold_tilt: 16.0 (number) - Фиксированный угол места антенны, град.
 - azimuth_center: 0.1 (number) - Поправка на север
+
+## ProductRenderer
+### Properties
+- vector_velocity_field (object)
+  - circular_horizontal_pitch: 8000 (number) - Шаг по горизонтали в режиме ОБЗОР
+  - circular_vertical_pitch: 1000 (number) - Шаг по вертикали в режиме ОБЗОР
+  - sector_horizontal_pitch: 8000 (number) - Шаг по горизонтали в режиме СЕКТОР
+  - sector_vertical_pitch: 1000 (number) - Шаг по вертикали в режиме СЕКТОР
+  - vector_size: 5 (number) - Размер ячейки вектора поля скоростей
+  - vector_thickness: 3 (number) - Толщина линии вектора поля скоростей
+- wind_shear_field (object) - Поля сдвигов ветра
+  - circular_max_altitude: 100 (number) - Максимальная высота в режиме ОБЗОР
+  - circular_max_range: 100 (number) - Максимальная дальность в режиме ОБЗОР
+  - sector_max_altitude: 100 (number) - Максимальная высота в режиме СЕКТОР
+  - sector_max_range: 100 (number) - Максимальная дальность в режиме СЕКТОР
+  - horizontal_pitch: 100 (number) - Шаг по вертикали
+  - vertical_pitch: 100 (number) - Шаг по горизонтали
+- weather_map (object) - Карты МЯ
+  - cell_size: 1000.1 (number) - Размер ячейки МЯ, м
+  - contour_line_generalization: 3 (number) - Степень генерализации контуров МЯ
+  - contour_line_expansion: 3 (number) - Величины расширения контуров МЯ
+- vertical_section (object) - Вертикальное сечение
+  - horizontal_pitch: 100 (number)
+  - vertical_pitch: 100 (number)
+- accumulated_precipitation (object) - Размера ячейки карты накопленных осадков
+  - cell_size: 100.1 (number) - Размер
+- vertically_integrated_liquid (object) - Размер ячейки построения карты вертикально интегрированной водности
+  - cell_size: 100.1 (number) - Размер
