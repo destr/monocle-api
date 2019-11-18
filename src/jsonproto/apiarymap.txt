@@ -85,3 +85,5 @@
 /settings/nams
   <200 ::NamsExportSettings
   > NamsExportSettingsPut
+/station/{id}/algorithmparameters
+  <200 ::AlgorighmParameters
