@@ -317,54 +317,9 @@ Cправочник типов конических сечений для СМР
 ### Получить [GET]
 
 + Response 200 (application/json; charset=utf-8)
-
-        {
-            "count": 2,
-            "items":
-            [
-                {
-                    "id": 0,
-                    "type": "Облачность (слоистообразная облачность)",
-                    "count": 1,
-                    "items":
-                    [
-                    {
-                        "index": 0,
-                        "code": "Cl_dBZ23_min",
-                        "title": "Минимальное значение радиолокационной отражаемости на уровнях Z2 и Z3",
-                        "measurement_unit": "dBZ",
-                        "warm": 10,
-                        "cold": -10,
-                        "service_life": "All"
-                    }
-                    ]
-                },
-                {
-                    "id": 1,
-                    "type": "Облачность (кучевая облачность)",
-                    "count": 1,
-                    "items":
-                    [
-                    {
-                        "index": 0,
-                        "code": "Cl_dBZ2_min",
-                        "title": "Минимальное значение радиолокационной отражаемости на уровне Z2",
-                        "measurement_unit": "dBZ",
-                        "service_life": "All"
-                    },
-                    {
-                        "index": 1,
-                        "code": "Cl_dBZ3_min",
-                        "title": "Минимальное значение радиолокационной отражаемости на уровнях Z3",
-                        "measurement_unit": "dBZ",
-                        "warm": 35,
-                        "cold": 30,
-                        "service_life": "All"
-                    }
-                    ]
-                }
-            ]
-        }
+  + Attributes(object, fixed-type)
+      - count: 1 (number)
+      - items (array[WeatherCriteria])
 
 
 ## Калибровка изотермы [/station/{id}/isotherm]
@@ -3161,3 +3116,20 @@ distance, x, z - в километрах
     - timetable_enabled: false (boolean) - Признак работы по расписанию
     - title: `TITLE` (string) - Название программы
     - timetable_id: `view` (string)  - Уникальный идентификатор расписания
+    
+## WeatherCriteriaItem(object, fixed-type)
+### Properties
+- index: 0 (number)
+- code: `Cl_dBZ23_min` (string)
+- title: `Название` (string)
+- measurement_unit: `dBZ` (string)
+- warm: `10` (number)тр
+- cold: `-10` (number)
+- service_life: `All` (string)
+
+## WeatherCriteria(object, fixed-type)
+### Properties
+- id: 0 (number)
+- type: `Облачность` (string)
+- count: 1 (number) - Количество критериев
+- items (array[WeatherCriteriaItem])
