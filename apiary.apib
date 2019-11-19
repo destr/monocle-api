@@ -13,7 +13,7 @@ API для получения радиолокационных данных. В�
 
 ### Получить список СМРЛП [GET]
 
-+ Response 200 (application/json; charset=utf-8)
++ Response 200 (application/json; charset=UTF-8)
     + Attributes(object)
         - count: `1` (number) - Количество станций в списке
         - items (array[Station]) - Список станций
@@ -2899,7 +2899,7 @@ distance, x, z - в километрах
     + dataprocessing(object)
         * nominal_cycle_time: 605 (number) - Номинальная длительность обзора, с
         * nominal_rastr_cycle_time: 605 (number) - Номинальная длительность обзора РАСТР, с
-        * autoAccumulatorSize: 60 (number) - Размер буфера накопления, пак
+        * accumulatorSize: 60 (number) - Размер буфера накопления, пак
         * WeightWindow: `0` (WeightWindowEnum[number]) - Взвешивание
         * falseAlarmProbability: 100 (number) - Вероятность ложной тревоги с МФ
         * falseAlarmMFOffProbability: 100 (number) - Вероятность ложной тревоги без МФ
@@ -3152,12 +3152,12 @@ distance, x, z - в километрах
 - radar_present: true (boolean) - Признак установки на посту локатора
 - nams_present: true (boolean) - Признак установки на посту НАМС
 - mtp_present: true (boolean) - Признак установки на посту МТП-5
-- local_reflections_status: false (boolean) - Статус карты местных отражений
+- local_reflections_status: `Статус` (string) - Статус карты местных отражений
 - equipment_status: false (boolean)
 - exchange_status: false (boolean)
 - rotation_status: 0.1 (number) - Прогресс текущего обзора
 - current_program (object) - Текущая программа
-    - id: 0 (number) - Уникальный идентификатор программы
+    - id: `dummy` (string) - Уникальный идентификатор программы
     - timetable_enabled: false (boolean) - Признак работы по расписанию
     - title: `TITLE` (string) - Название программы
     - timetable_id: `view` (string)  - Уникальный идентификатор расписания

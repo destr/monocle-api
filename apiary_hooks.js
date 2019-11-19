@@ -262,3 +262,10 @@ hooks.before('Настройки > Актуальные значения опе�
 	transaction.skip = true; 
 });
 
+hooks.before('Служебные > Test > Get', function(transaction) {
+    transaction.skip = true;
+});
+
+hooks.before('Служебные > Версия формата имени файла BUFR > Получить', function(transaction) {
+    transaction.skip = true;
+});
