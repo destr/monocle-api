@@ -14,43 +14,10 @@ API для получения радиолокационных данных. В�
 ### Получить список СМРЛП [GET]
 
 + Response 200 (application/json; charset=utf-8)
+    + Attributes(object)
+        - count: `1` (number) - Количество станций в списке
+        - items (array[Station]) - Список станций
 
-            {
-                "count": 1,
-                    "items": [
-                    {
-                        "id": 0,
-                        "index": "MORL",
-                        "baltrad_index": "abcdefgh",
-                        "path": "monocle-mrlk-bz-ga",
-                        "synopt_index": "1",
-                        "title": "Орловка",
-                        "latitude": 56.142616,
-                        "longitude": 34.987386,
-                        "alarm_id": 0,
-                        "hardware_id": "CMRC0001",
-                        "radar_present": true,
-                        "nams_present": true,
-                        "mtp_present": true,
-                        "terrain_altitude": 638,
-                        "radar_elevation": 25,
-                        "pressure_sensor_elevation": 0,
-                        "mtp_elevation": 0,
-                        "terrain_type": 0,
-                        "current_program": {
-                            "id": "Нет данных",
-                            "timetable_enabled": false,
-                            "title": "Нет данных",
-                            "timetable_id": "view_dummy_150"
-                        },
-                        "local_reflections_status": "Нет данных",
-                        "equipment_status": false,
-                        "exchange_status": false,
-                        "rotation_status": 0,
-                        "precipitaion_elevation_calc" : 0
-                    }
-                ]
-            }
 
 ## СМРЛП [/station/{id}]
 
@@ -59,67 +26,17 @@ API для получения радиолокационных данных. В�
 + Parameters
     + id: `0` (number, optional) - ID СМРЛП
 
-
 ### Получить параметры СМРЛП [GET]
 
 + Response 200 (application/json; charset=utf-8)
-
-            {
-                "id": 0,
-                    "index": "MORL",
-                    "baltrad_index": "abcdefgh",
-                    "path": "monocle-mrlk-bz-ga",
-                    "synopt_index": "1",
-                    "title": "Орловка",
-                    "latitude": 56.142616,
-                    "longitude": 34.987386,
-                    "alarm_id": 0,
-                    "hardware_id": "CMRC0001",
-                    "radar_present": true,
-                    "nams_present": true,
-                    "mtp_present": true,
-                    "terrain_altitude": 638,
-                    "radar_elevation": 25,
-                    "pressure_sensor_elevation": 0,
-                    "mtp_elevation": 0,
-                    "terrain_type": 0,
-                    "current_program": {
-                        "id": "Нет данных",
-                        "timetable_enabled": false,
-                        "title": "Нет данных",
-                        "timetable_id": "view_dummy_150"
-                    },
-                    "local_reflections_status": "Нет данных",
-                    "equipment_status": false,
-                    "exchange_status": false,
-                    "rotation_status": 0,
-                    "precipitation_elevation_calc": 0
-            }
+    + Attributes(Station)
 
 + Response 404
 
 ### Обновить параметры СМРЛП [PUT]
 
 + Request (application/json)
-
-        {
-            "index": "0003",
-            "title": "Елец",
-            "baltrad_index": "abcdefg",
-            "path": "",
-            "synopt_index": ""
-            "latitude": 55.807775,
-            "longitude": 37.566814,
-            "terrain_altitude": 200,
-            "radar_elevation": 7,
-            "pressure_sensor_elevation": 3,
-            "mtp_elevation": 5,
-            "radar_present": true,
-            "nams_present": true,
-            "mtp_present": true,
-            "terrain_type": 0,
-            "precipitation_elevation_calc": 0
-        }
+    + Attribute(StationBase)
 
 + Response 422 (application/json)
 
@@ -143,38 +60,8 @@ API для получения радиолокационных данных. В�
                 "mtp_present": "Невалидное значение",
             }
 
-+ Response 200 (application/json)
-
-    + Body
-
-            {
-                "index": "0003",
-                "title": "Елец",
-                "baltrad_index": "abcdefg",
-                "path": "monocle-mreja-node01",
-                "synopt_index": "00001"
-                "latitude": 55.807775,
-                "longitude": 37.566814,
-                "terrain_altitude": 0,
-                "terrain_altitude": 200,
-                "radar_elevation": 7,
-                "pressure_sensor_elevation": 3,
-                "mtp_elevation": 5,
-                "radar_present": true,
-                "nams_present": true,
-                "mtp_present": true,
-                "_comment_terrain_type": "Тип местности: 0 - Суша, 1 - Холодное море, 2 - Теплое море",
-                "terrain_type": 0,
-                "current_program": {
-                    "id": "6d697530-25f1-11e8-a0e9-1c1b0d7db1e3",
-                    "title": "Готовность",
-                    "timetable_enabled": true
-                },
-                "local_reflections_status": "Идёт построение (Завершено циклов: 3 из 20)",
-                "equipment_status": true,
-                "exchange_status": true,
-                "rotation_status": 60
-            }
++ Response 200 (application/json; charset=utf-8)
+    + Attribute(Station)
 
 + Response 404
 
@@ -2943,7 +2830,7 @@ distance, x, z - в километрах
 ### Get [GET]
 
 + Response 200 (application/json)
-    + Attributes(Program)
+    + Attributes(Station)
 
 # Data Structures
 ## Schedule(array)
@@ -3232,3 +3119,45 @@ distance, x, z - в километрах
   - cell_size: 100.1 (number) - Размер
 - vertically_integrated_liquid (object) - Размер ячейки построения карты вертикально интегрированной водности
   - cell_size: 100.1 (number) - Размер
+  
+## TerrainTypeEnum(enum[number])
+Тип местности
+### Members
+- `0` - Суша
+- `1` - Холодное море
+- `2` - Тёплое море
+
+## StationBase(object, fixed-type)
+Изменяемые параметры станции
+### Properties
+- index: `0000` (string) - Четёрехсимвольный индекс станции
+- title: `Елец`` (string) - Название станции
+- baltrad_index: `abcd` (string)
+- synopt_index: `1` - (string) - Синоптический индекс
+- alarm_id: 0 (number) - Идентификатор оповещения об опасном метео явлении
+- latitude: 55.807775 (number) - Широта
+- longitude: 37.566814 (number) - Долгота
+- terrnain_type: 0 (TerrainTypeEnum[number]) - Тип местности
+- terrain_altitude: 200 (number) - Высота над уровнем моря
+- radar_elevation: 7 (number) - Высота локатора относительно земли
+- mtp_elevation: 5 (number) - Высота МТП-5 относительно земли
+- precipitation_elevation_calc: 0 (number) - Высота расчёта осадков
+- pressure_sensor_elevation: 0 (number)
+
+## Station(StationBase, fixed-type)
+### Properties
+- id: 0 (number) - Уникальный идентификатор
+- path: `monocle-mrlk-bz-ga` (string) - Внутреннее название станции
+- hardware_id: `CMRC0001` (string) - Идентификатор оборудования
+- radar_present: true (boolean) - Признак установки на посту локатора
+- nams_present: true (boolean) - Признак установки на посту НАМС
+- mtp_present: true (boolean) - Признак установки на посту МТП-5
+- local_reflections_status: false (boolean) - Статус карты местных отражений
+- equipment_status: false (boolean)
+- exchange_status: false (boolean)
+- rotation_status: 0.1 (number) - Прогресс текущего обзора
+- current_program (object) - Текущая программа
+    - id: 0 (number) - Уникальный идентификатор программы
+    - timetable_enabled: false (boolean) - Признак работы по расписанию
+    - title: `TITLE` (string) - Название программы
+    - timetable_id: `view` (string)  - Уникальный идентификатор расписания
