@@ -1245,7 +1245,7 @@ distance, x, z - в километрах
 
 ### Получить настройки цветовой шкалы по умолчанию [GET]
 
-+ Response 200 (application/json)
++ Response 200 (application/json; charset=utf-8)
     + Attributes(ColorScale)
 
 ## Поправка на север [/north_azimuth/{id}]
@@ -2828,7 +2828,7 @@ distance, x, z - в километрах
 
 ## ColorScale(object, fixed-type)
 ### Properties
-- id: 0 (number) - Идентификатор шкалы
+- id: 0 (number, optional) - Идентификатор шкалы. Нужен только для пагинации
 - title: Отражаемость (string) - Название шкалы
 - count: 3 (number) - Количество элементов item
 - items (array[ColorScaleItem])
