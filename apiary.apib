@@ -913,87 +913,7 @@ distance, x, z - в километрах
 ### Получить [GET]
 
 + Response 200 (application/json; charset=utf-8)
-
-        {
-            "_comment_min_dangerous_meteo": "Индекс минимального опасного МЯ",
-            "min_dangerous_meteo": 5,
-            "_comment_cloud_velocity_radial": "Скорость перемещения облачных масс: true - по радиальной скорости, false - по центру масс МЯ",
-            "cloud_velocity_radial": true,
-            "_comment_meteo_classes": "Настройки критериев метеоявлений",
-            "meteo_classes":
-            {
-                "count": 2,
-                "items":
-                [
-                    {
-                        "index": 0,
-                        "_comment_id": "Идентификатор МЯ. 0 означает отсутствие МЯ",
-                        "id": 1,
-                        "type": "Слоистая облачность",
-                        "criteria":
-                        {
-                            "count": 1,
-                            "items":
-                            [
-                                {
-                                    "index": 0,
-                                    "code": "Cl_bH_min",
-                                    "title": "Пороговое значение HНГ для облачности верхнего и среднего ярусов",
-                                    "measurement_unit": " м",
-                                    "warm": 3000,
-                                    "cold": 3000
-                                }
-                            ]
-                        }
-                    },
-                    {
-                        "id": 2,
-                        "type": "Облачность (кучевая облачность)",
-                        "criteria":
-                        {
-                            "count": 1,
-                            "items":
-                            [
-                                {
-                                    "index": 0,
-                                    "code": "Cl_dBZ2_min",
-                                    "title": "Минимальное значение радиолокационной отражаемости на уровне Z2",
-                                    "measurement_unit": "dBZ",
-                                    "warm": 35,
-                                    "cold": 30
-                                },
-                                {
-                                    "index": 1,
-                                    "code": "Cl_dBZ3_min",
-                                    "title": "Минимальное значение радиолокационной отражаемости на уровнях Z3",
-                                    "measurement_unit": "dBZ",
-                                    "warm": 35,
-                                    "cold": 30
-                                }
-                            ]
-                        }
-                    },
-                    {
-                        "id": 5,
-                        "type": "Осадки умеренные",
-                        "criteria": {
-                            "count": 1,
-                            "items": [
-                                {
-                                    "code": "Rf_dBZ1",
-                                    "title": "Пороговое значение отражаемости Z1",
-                                    "measurement_unit": " dBZ",
-                                    "warm": 20,
-                                    "cold": 19,
-                                    "index": 0
-                                }
-                            ]
-                        },
-                        "index": 4
-                    }
-                ]
-            }
-        }
+  + Attributes (MeteoSettings)
 
 + Response 404
 
@@ -3104,7 +3024,7 @@ distance, x, z - в километрах
     - title: `TITLE` (string) - Название программы
     - timetable_id: `view` (string)  - Уникальный идентификатор расписания
 
-## WeatherCriteriaItem(object, fixed-type)
+## WeatherCriteriaBaseItem(object, fixed-type)
 ### Properties
 - index: 0 (number)
 - code: `Cl_dBZ23_min` (string)
@@ -3112,6 +3032,8 @@ distance, x, z - в километрах
 - measurement_unit: `dBZ` (string)
 - warm: `10` (number)тр
 - cold: `-10` (number)
+
+## WeatherCriteriaItem(WeatherCriteriaBaseItem, fixed-type)
 - service_life: `All` (string)
 
 ## WeatherCriteria(object, fixed-type)
@@ -3120,3 +3042,19 @@ distance, x, z - в километрах
 - type: `Облачность` (string)
 - count: 1 (number) - Количество критериев
 - items (array[WeatherCriteriaItem])
+
+## MeteoSettings(object, fixed-type)
+### Properties
+- min_dangerous_meteo: 5 (number) - Индекс минимального опасного МЯ
+- max_dangerous_meteo: 19 (number) - Индекс максимального опасного МЯ
+- cloud_velocity_radial: true (boolean) - Скорость перемещения облачных масс: true - по радиальной скорости, false - по центру масс МЯ
+- meteo_classes (object, fixed-type) - Настройки критериев метеоявлений
+    - count: 2 (number)
+    - items (array)
+        - (object)
+            - index: 0 (number)
+            - id: 1 (number) - Идентификатор МЯ. 0 означает отсутствие МЯ
+            - type: `Название` (string) - Название
+            - criteria (object, fixed-type) - Критерий
+                - count: 1 (number)
+                - items (array[WeatherCriteriaBaseItem])
