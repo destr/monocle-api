@@ -168,7 +168,7 @@ hooks.before('Настройки > Построение карт РЛП > Обн
 });
 
 hooks.before('Настройки > Список настроек цветовых шкал > Получить список настроек цветовых шкал', function(transaction) {
-	transaction.skip = false;
+	transaction.skip = true;
 });
 
 hooks.before('Настройки > Настройки цветовой шкалы > Обновить настройки цветовой шкалы', function(transaction) {

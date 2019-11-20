@@ -1277,7 +1277,7 @@ distance, x, z - в километрах
 + Response 200 (application/json; charset=utf-8)
     + Attributes(object)
         - count: 1 (number) - Количество элементов
-        - items (array[ColorScale]) - Цветовые шкалы
+        - items (array[ColorScale], fixed-type) - Цветовые шкалы
 
 ## Настройки цветовой шкалы [/settings/color_scale/{id}]
 
@@ -2903,6 +2903,13 @@ distance, x, z - в километрах
 - title: Отражаемость (string) - Название шкалы
 - count: 3 (number) - Количество элементов item
 - items (array[ColorScaleItem])
+- alphaBtm: 0 (number)
+- alphaCenter: 0 (number)
+- alphaCenterOn: false (boolean)
+- alphaTop: 0 (number)
+- outDval: 0.1 (number)
+- size: 9 (number)
+- stepScale: true (boolean)
 
 ## ColorScaleItem(object, fixed-type)
 ### Properties
