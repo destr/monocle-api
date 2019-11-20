@@ -293,8 +293,8 @@ Cправочник типов конических сечений для СМР
 + Parameters
     + id: `0` (number, required) - ID СМРЛП
     * role (string, optional) - Роль пользователя
-        
-        В текущей реализации есть две роли: - полный список всех продуктов, 
+
+        В текущей реализации есть две роли: - полный список всех продуктов,
         или упрощённый, с одним виртуальным продуктом
 
 ### Получить перечень типов КС [GET]
@@ -320,8 +320,8 @@ Cправочник типов конических сечений для СМР
   + Attributes(object, fixed-type)
       - count: 1 (number)
       - items (array[WeatherCriteria])
-      
-              
+
+
 ## Каналы излучения [/settings/{id}/channels]
 
 ### Получить [GET]
@@ -330,10 +330,7 @@ Cправочник типов конических сечений для СМР
     + id: `0` (number) - ID СМРЛП
 
 + Response 200 (application/json; charset=utf-8)
-    + Attributes(array[number])
-
-
-
+    + Attributes (array[number])
 
 # Group Продукты и данные
 
@@ -1173,7 +1170,7 @@ distance, x, z - в километрах
 
 + Request (application/json)
     + Attributes(RadarSettings)
-            
+
 
 + Response 200 (application/json)
     + Attributes(RadarSettings)
@@ -1207,7 +1204,7 @@ distance, x, z - в километрах
     + Attributes(object)
         - count: 0 (number) - Количество элементов
         - items (array[Program])
-       
+
 
 ## Программа [/program/{id}]
 
@@ -1546,7 +1543,7 @@ distance, x, z - в километрах
 
 + Response 200 (application/json; charset=utf-8)
     + Attributes(AlgorithmParameters)
-    
+
 ### Обновить параметры [PUT]
 
 + Parameters
@@ -1554,12 +1551,12 @@ distance, x, z - в километрах
 
 + Request (application/json)
     + Attributes(AlgorithmParameters)
-    
+
 + Response 200 (application/json)
-    
+
     {
     }
-    
+
 ## Калибровка изотермы [/station/{id}/isotherm]
 
 Настройка изотермы (0, -22 градуса), высоты тропопаузы,
@@ -2754,10 +2751,10 @@ distance, x, z - в километрах
       - api_revision: sha1 (string) - Git ревизия API
       - build_date: `2019-11-01T11:13:20+00:00` (string) - Дата сборки
       - supported_methods: /api/version (array[string]) - Методы API
-      
+
 
 ## Версия формата имени файла BUFR [/internal/bufr_versions]
-Для некоторых получателей необходимо именовать файлы по разному. 
+Для некоторых получателей необходимо именовать файлы по разному.
 Ограничения: На один хост FTP можно выгрузить только один формат.
 Не реализовано (API)ен
 
@@ -2905,18 +2902,18 @@ distance, x, z - в километрах
     + vector_velocity_field(object)
         * vector_size: 30 (number) - Размер вектора, ед.
         * vector_thickness: 2 (number) - Толщина вектора, ед.
-        * kShortRangeSizeOverlapH: 2 (number) - Параметры расчета векторного поля скоростей: Гор. коэф. перекрытия мал. дальности, ед.        
-        * kShortRangeSizeOverlapV: 1.5 (number) - Параметры расчета векторного поля скоростей: Верт. коэф. перекрытия мал. дальности, ед.       
-        * kMediumRangeSizeOverlapH: 3.25 (number) - Параметры расчета векторного поля скоростей: Гор. коэф. перекрытия ср. дальности, ед.         
-        * kMediumRangeSizeOverlapV: 1.75 (number) - Параметры расчета векторного поля скоростей: Верт. коэф. перекрытия ср. дальности, ед.        
-        * kLongRangeSizeOverlapH: 3.75 (number) - Параметры расчета векторного поля скоростей: Гор. коэф. перекрытия макс. дальности, ед.       
-        * kLongRangeSizeOverlapV: 3 (number) - Параметры расчета векторного поля скоростей: Верт. коэф. перекрытия макс. дальности, ед.      
-        * shortRAzCellThreshold: 25 (number) - Параметры расчета векторного поля скоростей: Азимутальное перекрытия мал. дальности, ед.      
-        * shortRAzCellFillThreshold: 20 (number) - Параметры расчета векторного поля скоростей: Порог заполнения по азимуту мал. дальности, ед.  
-        * mediumRAzCellThreshold: 27 (number) - Параметры расчета векторного поля скоростей: Азимутальное перекрытия ср. дальности, ед.       
-        * mediumRAzCellFillThreshold: 23 (number) - Параметры расчета векторного поля скоростей: Порог заполнения по азимуту ср. дальности, ед.   
-        * longRAzCellThreshold: 17 (number) - Параметры расчета векторного поля скоростей: Азимутальное перекрытия макс. дальности, ед.     
-        * longRAzCellFillThreshold: 13 (number) - Параметры расчета векторного поля скоростей: Порог заполнения по азимуту макс. дальности, ед. 
+        * kShortRangeSizeOverlapH: 2 (number) - Параметры расчета векторного поля скоростей: Гор. коэф. перекрытия мал. дальности, ед.
+        * kShortRangeSizeOverlapV: 1.5 (number) - Параметры расчета векторного поля скоростей: Верт. коэф. перекрытия мал. дальности, ед.
+        * kMediumRangeSizeOverlapH: 3.25 (number) - Параметры расчета векторного поля скоростей: Гор. коэф. перекрытия ср. дальности, ед.
+        * kMediumRangeSizeOverlapV: 1.75 (number) - Параметры расчета векторного поля скоростей: Верт. коэф. перекрытия ср. дальности, ед.
+        * kLongRangeSizeOverlapH: 3.75 (number) - Параметры расчета векторного поля скоростей: Гор. коэф. перекрытия макс. дальности, ед.
+        * kLongRangeSizeOverlapV: 3 (number) - Параметры расчета векторного поля скоростей: Верт. коэф. перекрытия макс. дальности, ед.
+        * shortRAzCellThreshold: 25 (number) - Параметры расчета векторного поля скоростей: Азимутальное перекрытия мал. дальности, ед.
+        * shortRAzCellFillThreshold: 20 (number) - Параметры расчета векторного поля скоростей: Порог заполнения по азимуту мал. дальности, ед.
+        * mediumRAzCellThreshold: 27 (number) - Параметры расчета векторного поля скоростей: Азимутальное перекрытия ср. дальности, ед.
+        * mediumRAzCellFillThreshold: 23 (number) - Параметры расчета векторного поля скоростей: Порог заполнения по азимуту ср. дальности, ед.
+        * longRAzCellThreshold: 17 (number) - Параметры расчета векторного поля скоростей: Азимутальное перекрытия макс. дальности, ед.
+        * longRAzCellFillThreshold: 13 (number) - Параметры расчета векторного поля скоростей: Порог заполнения по азимуту макс. дальности, ед.
         * circular_horizontal_pitch: 8000 (number) - Шаг по горизонтали векторного поля скоростей, м (ОБЗОР)
         * circular_vertical_pitch: 1000 (number) - Шаг по вертикали векторного поля скоростей, м (ОБЗОР)
         * sector_horizontal_pitch: 1000 (number) - Шаг по горизонтали векторного поля скоростей, м (СЕКТОР)
@@ -2934,7 +2931,7 @@ distance, x, z - в километрах
     + vertical_section(object)
         * vertical_pitch: 0.1 (number) - Шаг по горизонтали для вертикального сечения, км
         * horizontal_pitch: 0.1 (number) - Шаг по вертикали для вертикального сечения и профиля, км
-        
+
 ## TitleValuePair(object, fixed-type)
 ### Properties
 - title (string) - Название
@@ -2964,7 +2961,7 @@ distance, x, z - в километрах
     - raster_right_azimuth: `0.1` (number) - right border of a raster review
     - scope_range: `0` (number) - Current scope range
     - duration: `00:00:00` (string) - Длительность
-    
+
 ## LogLevelEnum(enum[string])
 ### Members
 + `error` - Ошибка
@@ -3064,7 +3061,7 @@ distance, x, z - в километрах
   - cell_size: 100.1 (number) - Размер
 - vertically_integrated_liquid (object) - Размер ячейки построения карты вертикально интегрированной водности
   - cell_size: 100.1 (number) - Размер
-  
+
 ## TerrainTypeEnum(enum[number])
 Тип местности
 ### Members
@@ -3106,7 +3103,7 @@ distance, x, z - в километрах
     - timetable_enabled: false (boolean) - Признак работы по расписанию
     - title: `TITLE` (string) - Название программы
     - timetable_id: `view` (string)  - Уникальный идентификатор расписания
-    
+
 ## WeatherCriteriaItem(object, fixed-type)
 ### Properties
 - index: 0 (number)
