@@ -1131,11 +1131,11 @@ distance, x, z - в километрах
 Работа с заданной программой (для всей АС СМРЛП)
 
 + Parameters
-    + id: `0` (number) - ID программы
+    + id: `default` (string) - Уникальный идентификтор программы
 
 ### Получить [GET]
 
-+ Response 200 (application/json)
++ Response 200 (application/json; charset=utf-8)
     + Attributes(Program)
 
 + Response 404
@@ -2862,7 +2862,7 @@ distance, x, z - в километрах
 - id (string) - Уникальный идентификатор
 - description (string) - Описание
 - name (string) - Название
-- isDefault: true (boolean) - Признак предустановленной программы
+- isDefault: true (boolean) - Признак предустановленной (неудаляемой) программы
 - program(object)
     - angles_array: `0.1` (array[number]) - Массив позиций по УМ
     - av_azimuth_change: `0.1` (number) - Azimuth at which the change of angle in the vertical
@@ -2873,6 +2873,9 @@ distance, x, z - в километрах
             - end: `0.1` (number) - Конец сектора
     - mode: `0`(enum[number]) - Режим работы МРЛС
         + Members
+          * `-1` - Несуществующий режим
+          * `0` - ГОТОВНОСТЬ
+          * `1` - КОНТРОЛЬ
           * `2` - Круговой Обзор ФМ
           * `3` - Растровый Обзов ФМ
           * `4` - Круговой Обзор
