@@ -320,73 +320,20 @@ Cправочник типов конических сечений для СМР
   + Attributes(object, fixed-type)
       - count: 1 (number)
       - items (array[WeatherCriteria])
+      
+              
+## Каналы излучения [/settings/{id}/channels]
 
-
-## Калибровка изотермы [/station/{id}/isotherm]
-
-Настройка изотермы (0, -22 градуса), высоты тропопаузы,
-переключение автоматического/ручного режима задания, ввод параметров вычисления.
+### Получить [GET]
 
 + Parameters
-    + id: `0` (number, required) - ID СМРЛП
+    + id: `0` (number) - ID СМРЛП
 
-### Получить настройки вычисления изотермы [GET]
++ Response 200 (application/json; charset=utf-8)
+    + Attributes(array[number])
 
-+ Response 200 (application/json)
 
-        {
-            "_comment_manual": "Задаётся ли высота нулевой изотермы вручную. Если false - вычисляется из данных НАМС",
-            "manual": false,
-            "_comment_expire_period": "Время истечения заданного вручную значения, ч",
-            "expire_period": 12,
-            "_comment_update_time": "Время последнего обновления",
-            "update_time": "2017-05-15T08:30:00",
-            "_comment_height_temp0": "Высота нулевой изотермы, задаваемая вручную",
-            "height_temp0": 2400.0,
-            "_comment_height_temp22": "Высота изотермы -22 градуса, задаваемая вручную",
-            "height_temp22": 7000.0,
-            "_comment_height_tropopause": "Высота тропопаузы, задаваемая вручную",
-            "height_tropopause": 12000.0
-        }
 
-+ Response 404
-
-### Обновить настройки вычисления изотермы [PUT]
-
-+ Request (application/json)
-
-        {
-            "manual": false,
-            "expire_period": 12,
-            "_comment_manual_from_temp": "true: задаётся температура на уровне земли, false: задаётся высота нулевой изотермы",
-            "manual_from_temp": false,
-            "_comment_temperature": "Температура на уровне земли, задаваемая вручную",
-            "temperature": 15.2,
-            "height_temp0": 2400.0,
-            "height_temp22": 7000.0,
-            "height_tropopause": 12000.0
-        }
-
-+ Response 200 (application/json)
-
-        {
-            "manual": false,
-            "expire_period": 12,
-            "update_time": "2017-05-15T08:30:00",
-            "height_temp0": 2400,
-            "height_temp22": 7000,
-            "height_tropopause": 12000
-        }
-
-+ Response 422 (application/json)
-
-        {
-            "temperature": "Невалидное значение",
-        }
-
-+ Response 404
-
-+ Response 409
 
 # Group Продукты и данные
 
@@ -1493,30 +1440,7 @@ distance, x, z - в километрах
         }
 
 
-        
-## Каналы излучения [/settings/{id}/channels]
 
-### Получить [GET]
-
-+ Parameters
-    + id: `0` (number) - ID СМРЛП
-
-+ Response 200 (application/json)
-
-        [
-            1,
-            2,
-            3,
-            4,
-            5,
-            6,
-            7,
-            8,
-            9,
-            10,
-            11,
-            12
-        ]
 
 
 ## Актуальные значения оперативных параметров МП [/station/{id}/meteo]
@@ -1635,6 +1559,72 @@ distance, x, z - в километрах
     
     {
     }
+    
+## Калибровка изотермы [/station/{id}/isotherm]
+
+Настройка изотермы (0, -22 градуса), высоты тропопаузы,
+переключение автоматического/ручного режима задания, ввод параметров вычисления.
+
++ Parameters
+    + id: `0` (number, required) - ID СМРЛП
+
+### Получить настройки вычисления изотермы [GET]
+
++ Response 200 (application/json)
+
+        {
+            "_comment_manual": "Задаётся ли высота нулевой изотермы вручную. Если false - вычисляется из данных НАМС",
+            "manual": false,
+            "_comment_expire_period": "Время истечения заданного вручную значения, ч",
+            "expire_period": 12,
+            "_comment_update_time": "Время последнего обновления",
+            "update_time": "2017-05-15T08:30:00",
+            "_comment_height_temp0": "Высота нулевой изотермы, задаваемая вручную",
+            "height_temp0": 2400.0,
+            "_comment_height_temp22": "Высота изотермы -22 градуса, задаваемая вручную",
+            "height_temp22": 7000.0,
+            "_comment_height_tropopause": "Высота тропопаузы, задаваемая вручную",
+            "height_tropopause": 12000.0
+        }
+
++ Response 404
+
+### Обновить настройки вычисления изотермы [PUT]
+
++ Request (application/json)
+
+        {
+            "manual": false,
+            "expire_period": 12,
+            "_comment_manual_from_temp": "true: задаётся температура на уровне земли, false: задаётся высота нулевой изотермы",
+            "manual_from_temp": false,
+            "_comment_temperature": "Температура на уровне земли, задаваемая вручную",
+            "temperature": 15.2,
+            "height_temp0": 2400.0,
+            "height_temp22": 7000.0,
+            "height_tropopause": 12000.0
+        }
+
++ Response 200 (application/json)
+
+        {
+            "manual": false,
+            "expire_period": 12,
+            "update_time": "2017-05-15T08:30:00",
+            "height_temp0": 2400,
+            "height_temp22": 7000,
+            "height_tropopause": 12000
+        }
+
++ Response 422 (application/json)
+
+        {
+            "temperature": "Невалидное значение",
+        }
+
++ Response 404
+
++ Response 409
 
 #Group Уведомления
 
