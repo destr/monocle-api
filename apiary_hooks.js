@@ -17,7 +17,9 @@ hooks.beforeEachValidation(function(transaction) {
     transaction.expected.body = JSON.stringify(obj)
 });
 
-hooks.before('СМРЛП > СМРЛП > АС СМРЛП > Получить список СМРЛП', function(transaction) {
+hooks.after('СМРЛП > СМРЛП > АС СМРЛП > Получить список СМРЛП', function(transaction) {
+  var st = JSON.parse(transaction.real.body)
+  
 });
 
 hooks.before('СМРЛП > СМРЛП > Получить параметры СМРЛП', function(transaction) {
@@ -105,9 +107,17 @@ hooks.before('Продукты и данные > Получение данных
 	transaction.skip = false;
 });
 
-hooks.before('Продукты и данные > Список архивных обзоров > Получить', function(transaction) {
-	transaction.skip = false;
+hooks.after('Продукты и данные > Список архивных обзоров > Получить', function(transaction) {
+  if (transaction.skip) return
+  // не может быть в тестовом окружении
+  var archive = JSON.parse(transaction.real.body)
+  if (archive.items.length == 0)
+    transaction.fail = 'Список дат обзоров не может быть пустым'
+
+  if (archive.count != archive.items.length)
+    transaction.fail = 'Количество элементов массива и count не равны'
 });
+
 
 hooks.before('Продукты и данные > Получение карт РЛП > Получить', function(transaction) {
 	transaction.skip = false;
@@ -240,6 +250,14 @@ hooks.before('Qt-интерфейс > Управление вопроизвед�
 });
 
 hooks.before('MТП-5 > Выдача списка дат архивных данных температурного профилимера > Получить', function(transaction) {
+});
+
+hooks.after('MТП-5 > Выдача списка дат архивных данных температурного профилимера > Получить', function(transaction) {
+  if (transaction.skip) return
+  // не может быть в тестовом окружении
+  var archive = JSON.parse(transaction.real.body)
+  if (archive.dates.length == 0)
+    transaction.fail = "Список дат МТП-5 не может быть пустым"
 });
 
 hooks.before('MТП-5 > Выдача данных температурного профилемера > Получить', function(transaction) {

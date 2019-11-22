@@ -16,7 +16,7 @@ API для получения радиолокационных данных. В�
 + Response 200 (application/json; charset=UTF-8)
     + Attributes(object)
         - count: `1` (number) - Количество станций в списке
-        - items (array[Station]) - Список станций
+        - items (array[Station], fixed-type) - Список станций
 
 
 ## СМРЛП [/station/{id}]
@@ -669,7 +669,7 @@ Cправочник типов конических сечений для СМР
     + Attributes (object, fixed-type)
         - count: 1 (number) - Количество элементов
         - items (array)
-            - (object)
+            - (object, fixed-type)
                 - date: `2018-01-30T17:25:52` (string) - Дата обзора в ISO формате без TZ
 
 
@@ -2342,13 +2342,8 @@ distance, x, z - в километрах
     + id: `0` (number) - ID СМРЛП
 
 + Response 200 (application/json; charset=utf-8)
-
-        {
-            "dates": [
-                "2017-10-20T00:33:44",
-                "2017-10-20T00:38:20"
-            ]
-        }
+    + Attributes(object, fixed-type)
+        - dates: `2017-10-20T00:33:44` (array[string]) - Даты обзоров в ISO формате
 
 + Response 404
 
