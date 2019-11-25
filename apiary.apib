@@ -341,7 +341,7 @@ Cправочник типов конических сечений для СМР
 
 + Parameters
     + id: `0` (number) - ID СМРЛП
-    * date (optional) - Дата обзора
+    * date (optional) - Дата обзора в ISO формате без TZ
 
 + Response 200 (application/json; charset=utf-8)
     + Attributes (Passport)
@@ -2858,7 +2858,8 @@ distance, x, z - в километрах
 - cloud_direction: 120 (number) - Направление (азимут, град.) перемещения облачных систем
 - cloud_speed: 10.8 (number) - Скорость (м/с) перемещения облачных систем
 - data_format: 1 (string) - Код версии сериализованных данных
-- date: 20190808T142111Z (string) - Дата завершения формирования первичных РЛП
+- date: `20190808T142111Z` (string) - Дата завершения формирования первичных РЛП
+- time_start: `20190808T141111Z` (string) - Дата начала формирования первичных РЛП
 - hiso0(IsothermSource) - H изотермы 0 °С
 - hiso22(IsothermSource) - H изотермы -22 °С
 - htropo(IsothermSource) - H тропопаузы
@@ -2876,7 +2877,7 @@ distance, x, z - в километрах
 - secondary_valid: true (boolean) - Окончательный признак валидности обзора
 - spg_datetime: `20190808T143015Z` (string) - Дата завершения формирования вторичных РЛП
 - station_index: `TEST` (string) - Код станции
-- station_name: `station_name` (string) - Имя позиции МРЛК в системе
+- station_name: `stationname` (string) - Имя позиции МРЛК в системе
 - station_synoptic_code: `00001` (string) - Синоптический индекс станции
 - weather_list: 2, 3, 4, 5, 7 (array[number]) - Отсортированный перечень МЯ
 - weather_max: 4 (number) - Максимальное МЯ
