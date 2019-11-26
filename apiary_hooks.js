@@ -19,7 +19,7 @@ hooks.beforeEachValidation(function(transaction) {
 
 hooks.after('СМРЛП > СМРЛП > АС СМРЛП > Получить список СМРЛП', function(transaction) {
   var st = JSON.parse(transaction.real.body)
-  
+
 });
 
 hooks.before('СМРЛП > СМРЛП > Получить параметры СМРЛП', function(transaction) {
@@ -137,7 +137,6 @@ hooks.before('Продукты и данные > Получение углов �
 });
 
 hooks.before('Продукты и данные > Метеоинформация в указанной точке > Получить', function(transaction) {
-	transaction.skip = true;
 });
 
 hooks.before('Настройки > Программы > Получить список программ', function(transaction) {

@@ -755,8 +755,6 @@ Cправочник типов конических сечений для СМР
 
 + Response 404
 
-
-
 ## Получение углов места [/station/{id}/angles_array{?date}]
 
 ### Получить [GET]
@@ -782,53 +780,25 @@ distance, x, z - в километрах
     + id: `0` (number) - ID СМРЛП
 
 + Request (application/json)
+    + Attributes(object, fixed-type)
+        - date: `2019-10-08T08:19:52+00:00` (string) - Дата обзора ISO формат
+        - point (object)
+            - latitude: 56.0467250 (number) - Долгота
+            - longitude: 33.7738435 (number) - Широта
+        - types: `wpcell`, `dbz` (array[string])
+        - altitude_index: 0 (number) - Индекс отображаемого слоя по высоте (актуально только для сдвигов ветра - wsh и wsv)
 
-        {
-            "date": "2018-01-30T17:25:52+00:00",
-            "point": {
-                "latitude": 55.807775,
-                "longitude": 37.566814
-            },
-            "types": [
-                "wpcell",
-                "vvf",
-                "dbz"
-            ],
-            "altitude_index": 0,
-            "_comment_altitude_index": "Индекс отображаемого слоя по высоте (актуально только для сдвигов ветра - wsh и wsv)"
-        }
++ Response 200 (application/json; charset=utf-8)
+    + Attributes(object, fixed-type)
+        - data(array)
+            - (object)
+                - type: `wpcell` (string)
+                - title: `Метеоявления` (string)
+                - strings (array[string])
+        - timestamp: 1570522792 (number) - UNIX-timestamp  обзора
 
-+ Response 200 (application/json)
-
-        {
-            "data": [
-                {
-                    "type": "wpcell",
-                    "title": "Метеоявления",
-                    "strings": [
-                        "Ливень слабый"
-                    ]
-                },
-                {
-                    "type": "vvf",
-                    "title": "Векторное поле скоростей",
-                    "strings": [
-                        "Высота: 4.5 км",
-                        "Скорость: 26.1 м/с"
-                    ]
-                },
-                {
-                    "type": "dbz",
-                    "title": "Отражаемость",
-                    "strings": [
-                        "0.0 дБZ"
-                    ]
-                }
-            ]
-        }
 
 # Group Настройки
-
 
 ## Настройки критериев МЯ для отдельного СМРЛП [/station/{id}/meteosettings]
 
