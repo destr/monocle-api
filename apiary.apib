@@ -355,33 +355,16 @@ Cправочник типов конических сечений для СМР
 ### Получить [GET]
 
 + Parameters
-    + id: `0` (number) - ID СМРЛП
+    + id: `0` (number, required) - ID СМРЛП
 
-+ Response 200 (application/json)
-
-        {
-            "count": 3,
-            "items": [
-                {
-                    "date": "2017-05-15T08:39:00",
-                    "max_wp_id": 15
-                },
-                {
-                    "date": "2017-05-15T08:49:00",
-                    "max_wp_id": 12
-                },
-                {
-                    "date": "2017-05-15T08:59:00",
-                    "max_wp_id": 8
-                },
-                {
-                    "date": "2017-05-15T08:59:00",
-                    "max_wp_id": 5
-                }
-            ]
-        }
-
-
++ Response 200 (application/json; charset=utf-8)
+    + Attributes(object, fixed-type)
+        - count: 1 (number) - Количество элементов в массиве items
+        - items(array, fixed-type)
+            - (object, fixed-type)
+                - date: `2017-05-15T08:39:00` - Дата обзора в ISO формате без TZ
+                - max_wp_id: 15 (number) - Индекс максимально МЯ
+                - index: 0 (number) - Индекс элемента в массиве
 
 
 ## Получить данные РЛП в формате GeoJSON [/station/{id}/rlp/geojson{?rlp_id}{?altitude}{?date}{?only_dangerous}]
@@ -394,8 +377,8 @@ Cправочник типов конических сечений для СМР
 ### Получить [GET]
 
 + Parameters
-    + id: `0` (number) - ID СМРЛП
-    * rlp_id (enum[string]) - id радиолокационного продукта
+    + id: `0` (number, required) - ID СМРЛП
+    * rlp_id (enum[string], required) - id радиолокационного продукта
         + Members
             + `wpfig` - Карта МЯ в контурах
             + `vvf` - Векторное поле скоростей
