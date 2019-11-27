@@ -199,6 +199,10 @@ hooks.before('Настройки > Поправка на север > Устан
 	transaction.skip = true;
 });
 
+hooks.before('Настройки > Параметры алгоритмов обработки метео данных > Обновить параметры', function(transaction) {
+    transaction.skip = true;
+});
+
 hooks.before('Продукты и данные > Вертикальное сечение для Карты РЛП > Получить', function(transaction) {
 	transaction.skip = true;
 });
@@ -213,8 +217,6 @@ hooks.before('Продукты и данные > Вертикальный про
 
 hooks.before('Настройки > Текущие значения параметров работы МРЛС > Получить', function(transaction) {
 });
-
-
 
 hooks.before('Продукты и данные > Список уведомлений об опасных метеоявлениях > Получить', function(transaction) {
 	transaction.skip = true;
@@ -287,4 +289,17 @@ hooks.before('Служебные > Test > Get', function(transaction) {
 
 hooks.before('Служебные > Версия формата имени файла BUFR > Получить', function(transaction) {
     transaction.skip = true;
+});
+
+hooks.before('Настройки экспорта > Настройки экспорта BUFR > Обновить список настроек экспорта BUFR', function(transaction) {
+  transaction.skip = true;
+});
+hooks.before('Настройки экспорта > Настройка экспорта НАМС > Обновить список настроек экспорта НАМС', function(transaction) {
+  transaction.skip = true;
+});
+hooks.before('Настройки экспорта > Настройка экспорта HDF5 > Обновить список настроек экспорта HDF5', function(transaction) {
+  transaction.skip = true;
+});
+hooks.before('Настройки экспорта > Настройка экспорта MTP5 > Обновить список настроек экспорта MTP5', function(transaction) {
+  transaction.skip = true;
 });
