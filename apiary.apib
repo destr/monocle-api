@@ -475,31 +475,21 @@ Cправочник типов конических сечений для СМР
 ### Получить [POST]
 
 + Request (application/json)
+    + Attributes(object, fixed-type)
+        - station_id: 0 (number)
+        - date: `2019-10-02T00:49:26` (string)
+        - route_key_points (array) - Ключевые точки маршрута
+            - 55.95091, 37.34966 (array[number])
+            - 56.97223, 35.18087 (array[number])
+        - max_altitude: 5000 (number)
 
-        {
-            "station_id": 1,
-            "date": "2017-05-15T08:30:00",
-            "route_key_points": [
-                [-250.0, 0.0],
-                [375.0, 5.0],
-                [372.0, -301.0]
-            ],
-            "_comment_route_cells": "Ключевые точки маршрута",
-            "max_altitude": 5000
-        }
 
-+ Response 200 (application/json)
-
-        {
-                "values": [
-                    [4, 100, 2500],
-                    [5, 100, 2500],
-                    [5, 200, 2500]
-                ],
-                "user_points": [
-                    300.5, 526.29, 991.2
-                ]
-        }
++ Response 200 (application/json; charset=utf-8)
+    + Attributes(object, fixed-type)
+        - values (array):
+            - 4, 100.1, 2500.1 (array[number]) - Элементы массива: код метеоявления, высота начала(м) и высота конца(м) столбика
+        - user_points: 300.5 (array[number]) - Значения по горизонтальной оси
+        - timestamp: 1569977366 (number)
 
 ## Вертикальное сечение для КС [/vertical_section_cs]
 
