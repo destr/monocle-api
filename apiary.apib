@@ -340,7 +340,7 @@ Cправочник типов конических сечений для СМР
 ### Получить [GET]
 
 + Parameters
-    + id: `0` (number) - ID СМРЛП
+    + id: `0` (number, required) - ID СМРЛП
     * date (optional) - Дата обзора в ISO формате без TZ
 
 + Response 200 (application/json; charset=utf-8)
@@ -764,10 +764,10 @@ distance, x, z - в километрах
 
 + Request (application/json)
     + Attributes(object, fixed-type)
-        - date: `2019-10-08T08:19:52+00:00` (string) - Дата обзора ISO формат
+        - date: `2019-10-02T00:49:26+00:00` (string) - Дата обзора ISO формат
         - point (object)
-            - latitude: 56.0467250 (number) - Долгота
-            - longitude: 33.7738435 (number) - Широта
+            - latitude: 56.15778819063682 (number) - Долгота
+            - longitude: 37.07894895225763 (number) - Широта
         - types: `wpcell`, `dbz` (array[string])
         - altitude_index: 0 (number) - Индекс отображаемого слоя по высоте (актуально только для сдвигов ветра - wsh и wsv)
 
@@ -2734,9 +2734,8 @@ distance, x, z - в километрах
 - title (string) - Название
 - value (string) - Значение
 
-## Program(object, fixed-type)
+## ProgramBase(object, fixed-type)
 ### Properties
-- id (string) - Уникальный идентификатор
 - description (string) - Описание
 - name (string) - Название
 - isDefault: true (boolean) - Признак предустановленной (неудаляемой) программы
@@ -2761,6 +2760,10 @@ distance, x, z - в километрах
     - raster_right_azimuth: `0.1` (number) - right border of a raster review
     - scope_range: `0` (number) - Current scope range
     - duration: `00:00:00` (string) - Длительность
+
+## Program(ProgramBase, fixed-type)
+### Properties
+- id (string) - Уникальный идентификатор
 
 ## LogLevelEnum(enum[string])
 ### Members
@@ -2824,7 +2827,7 @@ distance, x, z - в километрах
 - min_ground_rfli: 0.1277328201064342 (number) - Мин. интенсивность приземных осадков
 - min_refl_altitude: 400 (number) - Нижняя граница радиоэха (MIN ГРЭ)
 - primary_valid: true (boolean) - Первичный признак валидности обзора
-- program (Program) - Программа выполнения обзора МРЛС
+- program (ProgramBase) - Программа выполнения обзора МРЛС
 - rfli_height: 2500 (number) - Высота расчёта осадков
 - season: `warm` (SeasonEnum) - Период эксплуатации
 - secondary_valid: true (boolean) - Окончательный признак валидности обзора
