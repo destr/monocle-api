@@ -367,7 +367,7 @@ Cправочник типов конических сечений для СМР
                 - index: 0 (number) - Индекс элемента в массиве
 
 
-## Получить данные РЛП в формате GeoJSON [/station/{id}/rlp/geojson{?rlp_id}{?altitude}{?date}{?only_dangerous}]
+## Получить данные РЛП в формате GeoJSON [/station/{id}/rlp/geojson{?rlp_id,altitude,date,only_dangerous}]
 Получить данные РЛП в формате GeoJSON для отрисовки в интерфейсе.
 Поддерживаемые РЛП:
 "Карта МЯ в контурах" (wpfig)
@@ -424,7 +424,7 @@ Cправочник типов конических сечений для СМР
 
 + Response 200 (applicaton/json; charset=utf-8)
 
-        {
+        {ver
             "timestamp": 1558443985,
             "features": [
                 {
@@ -1190,89 +1190,21 @@ distance, x, z - в километрах
 ### Получить [GET]
 
 + Parameters
-    + id: `0` (number) - ID СМРЛП
+    + id: `0` (number, required) - ID СМРЛП
 
 + Response 200 (application/json; charset=utf-8)
-
-        {
-            "sources": [
-                {
-                    "date": "2019-09-19T14:22:41",
-                    "available": true,
-                    "auto": false,
-                    "name": "manual",
-                    "hiso0": 1000,
-                    "hiso22": 4245,
-                    "htropo": 13782,
-                    "season": "warm"
-                },
-                {
-                    "available": false,
-                    "name": "nams",
-                    "auto": true
-                },
-                {
-                    "date": "2019-09-19T14:22:41",
-                    "available": true,
-                    "auto": true,
-                    "name": "mtp5",
-                    "hiso0": 0,
-                    "hiso22": 3245,
-                    "htropo": 12782,
-                    "season": "cold"
-                },
-                {
-                    "date": "2019-09-19T14:22:41",
-                    "available": true,
-                    "auto": true,
-                    "name": "athm",
-                    "hiso0": 0,
-                    "hiso22": 3245,
-                    "htropo": 12782,
-                    "season": "cold"
-                }
-            ],
-            "_comment_sources": "Массив контейнеров ОМП МП из разных источников"
-        }
+    + Attributes(object, fixed-type)
+        - sources (array[MeteoSource], fixed-type) - Массив контейнеров ОМП МП из разных источников
 
 ### Обновить [POST]
 
 + Parameters
-    + id: `0` (number) - ID CMРЛП
+    + id: `0` (number, required) - ID CMРЛП
 
 + Request (application/json)
-
-        {
-            "date": "2019-09-19T14:22:41",
-            "_comment_date": "Дата и время измерения ОМП",
-            "sources": [
-                {
-                    "name": "manual",
-                    "hiso0": 0,
-                    "hiso22": 3245,
-                    "htropo": 12782
-                },
-                {
-                    "name": "nams",
-                    "hiso0": 0,
-                    "hiso22": 3245,
-                    "htropo": 12782
-                },
-                {
-                    "name": "mtp5",
-                    "hiso0": 0,
-                    "hiso22": 3245,
-                    "htropo": 12782
-                },
-                {
-                    "name": "athm",
-                    "hiso0": 0,
-                    "hiso22": 3245,
-                    "htropo": 12782
-                }
-            ],
-            "_comment_sources": "Массив контейнеров ОМП МП из разных источников"
-        }
+    + Attributes(object, fixed-type)
+         date: `2019-09-19T14:22:41` (string) - Дата и время измерения ОМП
+        - sources (array[MeteoSouceBase]) - Массив контейнеров ОМП МП из разных источников
 
 + Response 200
 
@@ -2906,3 +2838,19 @@ distance, x, z - в километрах
     - cell_size: 1000.5 (number)
     - image_size: 209 (number)
 - url: `/wpcell.png` (string)
+
+
+## MeteoSourceBase(object, fixed-type)
+### properties
+- name: `manual` (string)
+- hiso0: 1000.1 (number, nullable)
+- hiso22: 4245.1 (number, nullable)
+- htropo: 13782.1 (number, nullable)
+
+## MeteoSource(MeteoSourceBase, fixed-type)
+### properties
+- date: `2019-09-19T14:22:41` (string, nullable)
+- available: true (boolean)
+- auto: false (boolean)
+- name: `manual` (string)
+- season: `warm` (SeasonEnum, nullable)
