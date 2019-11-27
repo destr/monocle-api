@@ -211,7 +211,6 @@ hooks.before('Продукты и данные > Вертикальное сеч
 });
 
 hooks.before('Продукты и данные > Вертикальный профиль > Получить', function(transaction) {
-	transaction.skip = true;
 });
 
 hooks.before('Настройки > Текущие значения параметров работы МРЛС > Получить', function(transaction) {

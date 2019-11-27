@@ -548,56 +548,20 @@ Cправочник типов конических сечений для СМР
 ### Получить [POST]
 
 + Request  (application/json)
+    + Attributes(object, fixed-type)
+        - station_id: 0 (number)
+        - date: `2019-10-02T00:49:26` (string)
+        - marker_pos(object)
+            - latitude: 55.807775 (number)
+            - longitude: 37.566814 (number)
+        - max_altitude: 5000.2 (number)
+        - cs_type: 12 (number)
 
-        {
-            "station_id": 1,
-            "date": "2017-05-15T08:30:00",
-            "marker_pos": {
-                "latitude": 55.807775,
-                "longitude": 37.566814
-            },
-            "max_altitude": 5000.2,
-            "cs_type": 2
-        }
-
-+ Response 200 (application/json)
-
-        {
-            "heights": [
-                0,
-                100,
-                200,
-                300,
-                400,
-                500,
-                600,
-                700,
-                800,
-                900,
-                1000,
-                1100,
-                1200,
-                1300,
-                1400
-                ],
-            "values": [
-                -10,
-                -10,
-                -10,
-                -10,
-                -10,
-                -10,
-                -10,
-                -10,
-                -10,
-                -10,
-                -10,
-                -10,
-                -10,
-                -10,
-                -10
-                ]
-        }
++ Response 200 (application/json; charset=utf-8)
+    + Attributes(object, fixed-type)
+        - heights: 0, 100.1 (array[number])
+        - values: `-10.1`, `-10.5` (array[number])
+        - timestamp: 1569977366 (number)
 
 ## Данные метео [/station/{id}/nams_data{?date}]
 
@@ -624,7 +588,7 @@ Cправочник типов конических сечений для СМР
 Получение данных метеостатистики для обзоров (сортированные)
 
 + Parameters
-    + id: `0` (number) - ID СМРЛП
+    + id: `0` (number, required) - ID СМРЛП
     * date (optional) - Дата запроса данных (если не указана, то возвращается последняя метеостатистика)
 
 ### Получить [GET]
@@ -644,7 +608,7 @@ Cправочник типов конических сечений для СМР
 Общий для РЛП и КС (сортированный)
 
 + Parameters
-    + id: `0` (number) - ID радара
+    + id: `0` (number, required) - ID радара
 
 ### Получить [GET]
 
@@ -2261,7 +2225,7 @@ distance, x, z - в километрах
 ### Установить новые параметры воспроизведения/записи [POST]
 
 + Parameters
-    + id: `0` (number) - ID СМРЛП
+    + id: `0` (number, required) - ID СМРЛП
 
 + Request (application/json)
 
@@ -2292,7 +2256,7 @@ distance, x, z - в километрах
 ### Получить [GET]
 
 + Parameters
-    + id: `0` (number) - ID СМРЛП
+    + id: `0` (number, required) - ID СМРЛП
 
 + Response 200 (application/json; charset=utf-8)
     + Attributes(object, fixed-type)
@@ -2307,7 +2271,7 @@ distance, x, z - в километрах
 ### Получить [GET]
 
 + Parameters
-    + id: `0` (number) - ID СМРЛП
+    + id: `0` (number, required) - ID СМРЛП
     * date (optional) - Дата обзора (ISO формат)
 
 + Response 200 (application/json; charset=utf-8)
