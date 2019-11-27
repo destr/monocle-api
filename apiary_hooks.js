@@ -100,7 +100,6 @@ hooks.before('СМРЛП > Запуск программы "КОНТРОЛЬ" д
 });
 
 hooks.before('Продукты и данные > Данные метео > Получить', function(transaction) {
-	transaction.skip = true;
 });
 
 hooks.before('Продукты и данные > Получение данных метеостатистики > Получить', function(transaction) {
