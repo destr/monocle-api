@@ -206,7 +206,6 @@ hooks.before('Продукты и данные > Вертикальное сеч
 });
 
 hooks.before('Продукты и данные > Вертикальное сечение для КС > Получить', function(transaction) {
-	transaction.skip = true;
 });
 
 hooks.before('Продукты и данные > Вертикальный профиль > Получить', function(transaction) {
