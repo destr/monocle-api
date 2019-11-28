@@ -1228,9 +1228,7 @@ distance, x, z - в километрах
     + Attributes(AlgorithmParameters)
 
 + Response 200 (application/json)
-
-    {
-    }
+    + Attributes(object)
 
 ## Калибровка изотермы [/station/{id}/isotherm]
 
@@ -1393,701 +1391,10 @@ distance, x, z - в километрах
 ### Получить [GET]
 
 + Parameters
-    + id: `0` (number) - ID СМРЛП
+    + id: `0` (number, required) - ID СМРЛП
 
 + Response 200 (application/json)
-
-        {
-                "station": {
-                        "id": 0,
-                        "index": "MORL",
-                        "baltrad_index": "abcdefgh",
-                        "path": "monocle-mrlk-bz-ga",
-                        "synopt_index": "1",
-                        "title": "Орловка",
-                        "latitude": 56.142616,
-                        "longitude": 34.987386,
-                        "alarm_id": 0,
-                        "hardware_id": "CMRC0001",
-                        "radar_present": true,
-                        "nams_present": true,
-                        "mtp_present": true,
-                        "terrain_altitude": 638,
-                        "radar_elevation": 25,
-                        "pressure_sensor_elevation": 0,
-                        "mtp_elevation": 0,
-                        "terrain_type": 0,
-                        "current_program": {
-                            "id": "Нет данных",
-                            "timetable_enabled": false,
-                            "title": "Нет данных",
-                            "timetable_id": "view_dummy_150"
-                        },
-                        "local_reflections_status": "Нет данных",
-                        "equipment_status": false,
-                        "exchange_status": false,
-                        "rotation_status": 0,
-                        "precipitaion_elevation_calc" : 0
-                    },
-                "spg": {
-                    "vector_velocity_field": {
-                        "circular_horizontal_pitch": 8000,
-                        "circular_vertical_pitch": 1000,
-                        "sector_horizontal_pitch": 8000,
-                        "sector_vertical_pitch": 1000,
-                        "vector_size": 30,
-                        "vector_thickness": 2,
-                        "filterSMAOn": true,
-                        "kLongRangeSizeOverlapH": 3.75,
-                        "kLongRangeSizeOverlapV": 2,
-                        "kMediumRangeSizeOverlapH": 3.25,
-                        "kMediumRangeSizeOverlapV": 1.75,
-                        "kShortRangeSizeOverlapH": 2,
-                        "kShortRangeSizeOverlapV": 1.5,
-                        "longRAzCellFillThreshold": 15,
-                        "longRAzCellThreshold": 17,
-                        "mediumRAzCellFillThreshold": 17,
-                        "mediumRAzCellThreshold": 23,
-                        "shortRAzCellFillThreshold": 15,
-                        "shortRAzCellThreshold": 20,
-                        "thresholdDeltaVelosity": 0.0001,
-                        "thresholdEpcilonVelosity": 0.001
-                    },
-                    "vertically_integrated_liquid": {
-                        "stepbuild": 1000
-                    },
-                    "wind_shear_field": {
-                        "circular_max_altitude": 3000,
-                        "circular_max_range": 50000,
-                        "sector_max_altitude": 3000,
-                        "sector_max_range": 50000,
-                        "horizontal_pitch": 500,
-                        "vertical_pitch": 500
-                    }
-                },
-                "render": {
-                    "colorscale": {
-                        "change": false,
-                        "dbz": {
-                            "items": [
-                            {
-                                "color": 14474460,
-                                "val": -30.0
-                            }
-                            ],
-                            "alphaBtm": -10,
-                            "alphaCenter": 0,
-                            "alphaCenterOn": false,
-                            "alphaTop": 10,
-                            "outDval": 2.5,
-                            "size": 18,
-                            "stepScale": true
-                        },
-                        "dwvs": {
-                            "items": [
-                            {
-                                "color": 1052947,
-                                "val": 0.25
-                            }
-                            ],
-                            "alphaBtm": 0,
-                            "alphaCenter": 0,
-                            "alphaCenterOn": false,
-                            "alphaTop": 0,
-                            "outDval": 0.1,
-                            "size": 9,
-                            "stepScale": true
-                        },
-                        "edr": {
-                            "items": [
-                            {
-                                "color": 16777215,
-                                "val": 0.0
-                            }
-                            ],
-                            "alphaBtm": 0,
-                            "alphaCenter": 0,
-                            "alphaCenterOn": false,
-                            "alphaTop": 0.05,
-                            "outDval": 0.01,
-                            "size": 13,
-                            "stepScale": true
-                        },
-                        "htmax": {
-                            "items": [
-                            {
-                                "color": 981670,
-                                "val": 0.0
-                            }
-                            ],
-                            "alphaBtm": 0,
-                            "alphaCenter": 0,
-                            "alphaCenterOn": false,
-                            "alphaTop": 1,
-                            "outDval": 0.1,
-                            "size": 18,
-                            "stepScale": true
-                        },
-                        "htmin": {
-                            "items": [
-                            {
-                                "color": 15725053,
-                                "val": 0.0
-                            }
-                            ],
-                            "alphaBtm": -1,
-                            "alphaCenter": 0,
-                            "alphaCenterOn": false,
-                            "alphaTop": -0.5,
-                            "outDval": 0.1,
-                            "size": 18,
-                            "stepScale": true
-                        },
-                        "rfli": {
-                            "items": [
-                            {
-                                "color": 65669,
-                                "val": 0.5
-                            }
-                            ],
-                            "alphaBtm": 0,
-                            "alphaCenter": 0,
-                            "alphaCenterOn": false,
-                            "alphaTop": 0.1,
-                            "outDval": 0.1,
-                            "size": 10,
-                            "stepScale": true
-                        },
-                        "rfls12": {
-                            "items": [
-                            {
-                                "color": 16777215,
-                                "val": 0.01
-                            }
-                            ],
-                            "alphaBtm": 0,
-                            "alphaCenter": 0,
-                            "alphaCenterOn": false,
-                            "alphaTop": 0.01,
-                            "outDval": 0.01,
-                            "size": 18,
-                            "stepScale": true
-                        },
-                        "rfls24": {
-                            "items": [
-                            {
-                                "color": 16777215,
-                                "val": 0.01
-                            }
-                            ],
-                            "alphaBtm": 0,
-                            "alphaCenter": 0,
-                            "alphaCenterOn": false,
-                            "alphaTop": 0.02,
-                            "outDval": 0.01,
-                            "size": 18,
-                            "stepScale": true
-                        },
-                        "rfls3": {
-                            "items": [
-                            {
-                                "color": 16777215,
-                                "val": 0.01
-                            }
-                            ],
-                            "alphaBtm": 0,
-                            "alphaCenter": 0,
-                            "alphaCenterOn": false,
-                            "alphaTop": 0.01,
-                            "outDval": 0.01,
-                            "size": 18,
-                            "stepScale": true
-                        },
-                        "rfls6": {
-                            "items": [
-                                {
-                                    "color": 16777215,
-                                    "val": 0.01
-                                }
-                            ],
-                            "alphaBtm": 0,
-                            "alphaCenter": 0,
-                            "alphaCenterOn": false,
-                            "alphaTop": 0.01,
-                            "outDval": 0.01,
-                            "size": 18,
-                            "stepScale": true
-                        },
-                        "undefined": {
-                            "alphaBtm": 0,
-                            "alphaCenter": 0,
-                            "alphaCenterOn": false,
-                            "alphaTop": 0,
-                            "outDval": 0,
-                            "size": 0,
-                            "stepScale": false
-                        },
-                        "vil": {
-                            "items": [
-                                {
-                                    "color": 16777215,
-                                    "val": 0.001
-                                }
-                            ],
-                            "alphaBtm": 0,
-                            "alphaCenter": 0,
-                            "alphaCenterOn": false,
-                            "alphaTop": 0.01,
-                            "outDval": 0.001,
-                            "size": 18,
-                            "stepScale": true
-                        },
-                        "vr": {
-                            "items": [
-                            {
-                                "color": 5551057,
-                                "val": -50.0
-                            }
-                            ],
-                            "alphaBtm": 0,
-                            "alphaCenter": 0,
-                            "alphaCenterOn": true,
-                            "alphaTop": 0.1,
-                            "outDval": 0.1,
-                            "size": 19,
-                            "stepScale": true
-                        },
-                        "wpcell": {
-                            "items": [
-                            {
-                                "color": 16777215,
-                                "val": 0.0
-                            }
-                            ],
-                            "alphaBtm": 0,
-                            "alphaCenter": 0,
-                            "alphaCenterOn": false,
-                            "alphaTop": 0.5,
-                            "outDval": 1,
-                            "size": 20,
-                            "stepScale": true
-                        },
-                        "wpfig": {
-                            "items": [
-                            {
-                                "color": 16777215,
-                                "val": 0.0
-                            }
-                            ],
-                            "alphaBtm": 0,
-                            "alphaCenter": 0,
-                            "alphaCenterOn": false,
-                            "alphaTop": 0.5,
-                            "outDval": 1,
-                            "size": 20,
-                            "stepScale": true
-                        },
-                        "wsh": {
-                            "items": [
-                            {
-                                "color": 13235437,
-                                "val": 0.0
-                            }
-                            ],
-                            "alphaBtm": 0,
-                            "alphaCenter": 0,
-                            "alphaCenterOn": false,
-                            "alphaTop": 0.01,
-                            "outDval": 0.25,
-                            "size": 27,
-                            "stepScale": true
-                        },
-                        "wsv": {
-                            "items": [
-                            {
-                                "color": 13693163,
-                                "val": 0.0
-                            }
-                            ],
-                            "alphaBtm": 0,
-                            "alphaCenter": 0,
-                            "alphaCenterOn": false,
-                            "alphaTop": 3,
-                            "outDval": 0.1,
-                            "size": 27,
-                            "stepScale": true
-                        }
-                    },
-                    "maps": {
-                        "contourResolution": 400,
-                        "rp_opacity": {
-                            "items": [
-                                1,
-                            1,
-                            1,
-                            1,
-                            1,
-                            1,
-                            1,
-                            1,
-                            1,
-                            1,
-                            1,
-                            1,
-                            1,
-                            1,
-                            1,
-                            1,
-                            1,
-                            1,
-                            1,
-                            1
-                                ]
-                        },
-                        "rp_z_value": {
-                            "items": [
-                                1,
-                            1,
-                            1,
-                            1,
-                            1,
-                            1,
-                            1,
-                            2,
-                            3,
-                            4,
-                            5,
-                            6,
-                            7,
-                            1,
-                            8,
-                            9,
-                            10,
-                            11,
-                            12,
-                            1
-                                ]
-                        },
-                        "showRegionData": true,
-                        "terrainGroundSize": 668,
-                        "terrainHorizontalShift": 0,
-                        "terrainVerticalShift": 0
-                    },
-                    "vertical_section": {
-                        "automaxheight": 0,
-                        "maxheight": 7.5,
-                        "horizontal_pitch": 100,
-                        "vertical_pitch": 100
-                    },
-                    "horizontal_section": {
-                        "cappi_altitude_interval": 100,
-                        "cappi_altitude_max": 20000,
-                        "cappi_altitude_min": 0
-                    }
-                },
-                "programs": [
-                {
-                    "description": "",
-                    "isDefault": true,
-                    "name": "ЗАГЛУШКА ОБЗОР 150 КМ 45-62°",
-                    "program": {
-                        "mode": 4,
-                        "blank_sectors_array": [
-                        {
-                            "start" : 0.0,
-                            "end": 0.0
-                        }
-                        ],
-                        "av_azimuth_change": 0,
-                        "azimuth_scan_speed": 23.82,
-                        "raster_left_azimuth": 30,
-                        "raster_right_azimuth": 60,
-                        "scope_range": 150,
-                        "angles_array": [
-                            0.0
-                        ]
-                    },
-                    "id": "view_dummy_150"
-                }
-            ],
-            "meteo": {
-                "min_dangerous_meteo": 5,
-                "max_dangerous_meteo": 19,
-                "cloud_velocity_radial": true,
-                "meteo_classes": [
-                {
-                    "id": 1,
-                    "type": "Облачность верхнего и среднего ярусов",
-                    "criteria": [
-                    {
-                        "code": "Cl_bH_min",
-                        "title": "Пороговое значение HНГ для облачности верхнего и среднего ярусов",
-                        "measurement_unit": " м",
-                        "warm": 0.0,
-                        "cold": 0.0
-                    }
-                    ]
-                }
-                ]
-            },
-
-            "timetable": [
-            {
-                "program_id": "view_dummy_150",
-                "date": "00:00:00"
-            }
-            ],
-            "bufr" : {
-                "count": 1,
-                "items":
-                    [
-                    {
-                        "active": true,
-                        "ip": "hostname",
-                        "port": 21,
-                        "path": "",
-                        "login": "login",
-                        "password": "password",
-                        "active_mode": false,
-                        "stations": [
-                        {
-                            "id": 0,
-                            "title": "TITLE",
-                            "products": {
-                                "wpcell" : true,
-                                "htmax" : true,
-                                "dbz": false,
-                                "rfli": false,
-                                "rfls3up24": true
-                            }
-                        }
-                        ]
-
-                    }
-                ]
-            },
-            "qtiface": {
-                "calibration_period": {
-                    "warm": 3,
-                    "cold": 72
-                },
-                "db": {
-                    "show_data_time_local": true,
-                    "time_to_live": 30
-                },
-                "advanced_soft_mode": false,
-                "show_cycle_meteostat": true,
-                "paths": {
-                    "terrain": "",
-                    "transparent_map": "",
-                    "dangerous_meteo_sound": ""
-                },
-                "datum": "WGS-84"
-            },
-            "dpm": {
-                "dataprocessing": {
-                    "manual_dbz_correction": 0,
-                    "anglev_dbz_correction_enable": 0,
-                    "WeightWindow": 1,
-                    "accumulatorSize": 59,
-                    "autoAccumulatorSize": 1,
-                    "autoKsOn": 1,
-                    "coefficientKs_10": 57.9382019,
-                    "coefficientKs_100": 57.9485009,
-                    "coefficientKs_150": 61.4485009,
-                    "coefficientKs_20": 57.9382019,
-                    "coefficientKs_200": 57.9485009,
-                    "coefficientKs_25": 58.4382019,
-                    "coefficientKs_50": 57.9382019,
-                    "coefficientKs_55": 63.2382049,
-                    "falseAlarmMFOffProbability": 3e-7,
-                    "falseAlarmProbability": 0.03,
-                    "indexProtoAv": 9,
-                    "kaperturef": 1.75,
-                    "kaperturerange": 2,
-                    "coeffIncreaseSingleTargetLF": 1,
-                    "linearNoiseFilterEnabled": 1,
-                    "medianFiltrOn": 1,
-                    "minreflectionrange": 1,
-                    "oneTgtFiltrOn": 1,
-                    "outDataPixelFilterOn": 0,
-                    "outDataPixelFilterMaxHeight": 20000,
-                    "pulsePeriod0Value10": 0.000243,
-                    "pulsePeriod0Value100": 0.000999,
-                    "pulsePeriod0Value150": 0.001224,
-                    "pulsePeriod0Value20": 0.000243,
-                    "pulsePeriod0Value200": 0.001989,
-                    "pulsePeriod0Value25": 0.000495,
-                    "pulsePeriod0Value50": 0.000495,
-                    "pulsePeriod0Value55": 0.000999,
-                    "pulsePeriod1Value10": 0.000243,
-                    "pulsePeriod1Value100": 0.001143,
-                    "pulsePeriod1Value150": 0.001377,
-                    "pulsePeriod1Value20": 0.000243,
-                    "pulsePeriod1Value200": 0.001989,
-                    "pulsePeriod1Value25": 0.000594,
-                    "pulsePeriod1Value50": 0.000594,
-                    "pulsePeriod1Value55": 0.001143,
-                    "sigmaAmbientNoise_100": 6.71100342110189e-18,
-                    "sigmaAmbientNoise_150": 7.81796275566459e-18,
-                    "sigmaAmbientNoise_50": 6.53831724970232e-18,
-                    "sigmaAmbientNoise_55": 7.72873151205209e-18,
-                    "tauPulseValue10": 0.0000021,
-                    "tauPulseValue100": 0.000016125,
-                    "tauPulseValue150": 0.000024,
-                    "tauPulseValue20": 0.0000021,
-                    "tauPulseValue200": 0.0000321,
-                    "tauPulseValue25": 0.000004125,
-                    "tauPulseValue50": 0.0000081,
-                    "tauPulseValue55": 0.0000195,
-                    "spectralLReflFirtrOn": 1,
-                    "localReflSpectralSize": 17,
-                    "coeffReflMeanSpectreTreshold": 100,
-                    "coeffLReflSpectralZeroPwr": 0.9,
-                    "coeffDeltaPwrQuant": 0.25,
-                    "maxLRPwrValueOn": 1,
-                    "velocity_mo_abs_step": 2.5,
-                    "velocity_mo_az_step": 10.0
-                },
-                "local_reflections": {
-                    "build_enabled": 0,
-                    "last_build_timestamp": 0,
-                    "num_cycles": 20
-                },
-                "isotherm": {
-                    "height_temp0": "",
-                    "manual_expire_period": 12,
-                    "manual_height_temp0": 2400,
-                    "manual_temperature": "",
-                    "manual_update_time": 0,
-                    "season_switch_threshold": 500
-                },
-                "radarsettings": {
-                    "AhDiscretesFirmwareValue": 1403,
-                    "beamWidth": 3.25,
-                    "trChannel": 44
-                },
-                "rainfall_computer": {
-                    "cell_size": 1000,
-                    "max_rainfall_height": 2500,
-                    "rainFallParams00": 0.36,
-                    "rainFallParams01": 0.0052,
-                    "rainFallParams02": 0.013,
-                    "rainFallParams10": 0.045,
-                    "rainFallParams11": 0.065,
-                    "rainFallParams12": 0.0625
-                },
-                "weather_map": {
-                    "contour_line_generalization": 3,
-                    "contour_line_expansion": 1,
-                    "cell_size": 1000,
-                    "max_hor_interpolation_step": 4000,
-                    "statistics_wph_off_coord_km_size": 0,
-                    "min_always_show_index_wph": 10,
-                    "afilter_wph_on": 1,
-                    "exclude_contours_after_afilter_wph": 0,
-                    "velocityRadial": 1,
-                    "maxNumSecVVCycle": 1800,
-                    "afilter_wph_treshold1": 400,
-                    "afilter_wph_treshold2": 400,
-                    "afilter_wph_treshold3": 84,
-                    "afilter_wph_treshold4": 84,
-                    "afilter_wph_treshold5": 84,
-                    "afilter_wph_treshold6": 64,
-                    "afilter_wph_treshold7": 84,
-                    "afilter_wph_treshold8": 84,
-                    "afilter_wph_treshold9": 84,
-                    "afilter_wph_treshold10": 4,
-                    "afilter_wph_treshold11": 4,
-                    "afilter_wph_treshold12": 4,
-                    "afilter_wph_treshold13": 4,
-                    "afilter_wph_treshold14": 4,
-                    "afilter_wph_treshold15": 4,
-                    "afilter_wph_treshold16": 4,
-                    "afilter_wph_treshold17": 4,
-                    "afilter_wph_treshold18": 4,
-                    "afilter_wph_treshold19": 4
-                }
-            },
-            "mr":{
-                "telescope": {
-                    "hostAddress": "127.0.0.1",
-                    "portAPI": 8888,
-                    "portWebSocket": 8889
-                },
-                "holoplayer": {
-                    "currentTimeOn": false,
-                    "loopHoloOn": true,
-                    "playspeed": 100,
-                    "playPath": "/var/lib/monocle/raw",
-                    "start": 110,
-                    "stop": 1800,
-                    "record": false,
-                    "recordPath": "/var/lib/monocle/raw"
-                },
-                "nams": {
-                    "dataRequest": "/script/dati.js",
-                    "elevation": 3,
-                    "updateRequest": "/cgi-bin/en_cgi_dati.cgi"
-                },
-                "network": {
-                    "hostAddress": "192.168.0.101",
-                    "namsAddress": "10.128.128.5",
-                    "namsPort": 80,
-                    "mtp5Address": "127.0.0.1",
-                    "mtp5Port": 5000,
-                    "radarAddress": "192.168.0.100",
-                    "radarConfRecvPort": 7706,
-                    "radarConfSendPort": 7703,
-                    "radarConfStatusPort": 7706,
-                    "radarConfigurePort": 7703,
-                    "radarControlPort": 7701,
-                    "radarDataPort": 7700,
-                    "radarStatusPort": 7704
-                },
-                "paths": {
-                    "rootPath": "/var/lib/monocle",
-                    "jsonRequestsPath": "/var/lib/monocle/control/requests",
-                    "jsonResponsesPath": "/var/lib/monocle/control/responses",
-                    "localReflectionsPath": "/var/lib/monocle/localreflections",
-                    "logPath": "/var/log/monocle",
-                    "programsPath": "/var/lib/monocle/programs",
-                    "storagePath": "/var/lib/monocle/db",
-                    "dbPath": "/var/lib/monocle/mr.db"
-                },
-                "programs": {
-                    "default": "view_dummy_150",
-                    "changeModeThroughReadiness": true,
-                    "changeModeDelay": 2000,
-                    "timeTableEnabled": true,
-                    "timeTableId": "view_dummy_150"
-                },
-                "radar": {
-                    "elevation": 25,
-                    "hAvADrivesOnIgnoring": false,
-                    "configRequestTimeout": 2500
-                },
-                "remote": {
-                    "statusWriteInterval": 5000
-                },
-                "terrain": {
-                    "altitude": 640,
-                    "type": 0
-                }
-            },
-            "spg_ini": {
-                "bufr": {
-                    "enableFileExport": true,
-                    "fileExportPath": "/work/monocle-data/fm94bufr"
-                },
-                "paths": {
-                    "logPath": "/var/log/monocle",
-                    "parametersPath": "/var/lib/monocle/parameters",
-                    "stationsPath": "/var/lib/monocle/parameters/stations",
-                    "storagePath": "/work/monocle-data/db"
-                }
-            }
-        }
+     + Attributes(QtIfaceSettings)
 
 ## Запрос проверки соединения с FTP [/settings/check_ftp_connection]
 Запрос на проверку соединения с FTP по указанным реквизитам
@@ -2274,6 +1581,7 @@ distance, x, z - в километрах
                         "id": 1,
                         "title": "Орловка"
                     },
+
                     {
                         "id": 2,
                         "title": "Чкаловский"
@@ -2445,11 +1753,14 @@ distance, x, z - в километрах
     + Attributes(Station)
 
 # Data Structures
-## Schedule(array)
+## ScheduleBase(array)
 - (object, fixed-type)
-    - id: 0 (number) - Порядковый номер
     - program_id: `123` (string) - Уникальный идентификатор программы
     - date: `00:01:01` (string) - Время запуска программы в формате hh:mm::ss
+
+## Schedule(array)
+- (ScheduleBase, fixed-type)
+    - id: 0 (number) - Порядковый номер
 
 ## FtpHost (object, fixed-type)
 Описание FTP-хоста на который происходит выгрузка данных НАМС, BUFR, HDF5 и ТПМ
@@ -2463,11 +1774,25 @@ distance, x, z - в километрах
 - password: password (string) - Пароль
 - stations (array[ShortStationInfo]) - Список станций с которых происходит выгрузка
 
+## FtpHostExt(FtpHost, fixed-type)
+### Properties
+- stations (array[ShortStationInfoExt])
+
 ## ShortStationInfo(object, fixed-type)
 Описание станции с которой происходит выгрузка
 ### Properties
 - id: 0 (number) - Идентификатор станции
 - title: Орловка (string) - Название станции
+
+## ShortStationInfoExt(ShortStationInfo, fixed-type)
+Описание станции с которой происходит выгрузка
+### Properties
+- products (object, fixed-type)
+    - wpcell: true (boolean)
+    - htmax: true (boolean)
+    - dbz: false (boolean)
+    - rfli: false (boolean)
+    - rfls3up24: true (boolean)
 
 ## CurrentFtpExportSettings(object, fixed-type)
 Текущие настройки экспорта
@@ -2505,98 +1830,117 @@ distance, x, z - в километрах
 - `18` - Шквал сильный
 - `19` - Торнадо (смерч)
 
+## VectorVelocityFieldBase(object, fixed-type)
+#### properties
+* vector_size: 30 (number) - Размер вектора, ед.
+* vector_thickness: 2 (number) - Толщина вектора, ед.
+* circular_horizontal_pitch: 8000 (number) - Шаг по горизонтали векторного поля скоростей, м (ОБЗОР)
+* circular_vertical_pitch: 1000 (number) - Шаг по вертикали векторного поля скоростей, м (ОБЗОР)
+* sector_horizontal_pitch: 1000 (number) - Шаг по горизонтали векторного поля скоростей, м (СЕКТОР)
+* sector_vertical_pitch: 500 (number) - Шаг по вертикали векторного поля скоростей, м (СЕКТОР)
+
+## VectorVelocityField(VectorVelocityFieldBase, fixed-type)
+### Properties
+* kShortRangeSizeOverlapH: 2 (number) - Параметры расчета векторного поля скоростей: Гор. коэф. перекрытия мал. дальности, ед.
+* kShortRangeSizeOverlapV: 1.5 (number) - Параметры расчета векторного поля скоростей: Верт. коэф. перекрытия мал. дальности, ед.
+* kMediumRangeSizeOverlapH: 3.25 (number) - Параметры расчета векторного поля скоростей: Гор. коэф. перекрытия ср. дальности, ед.
+* kMediumRangeSizeOverlapV: 1.75 (number) - Параметры расчета векторного поля скоростей: Верт. коэф. перекрытия ср. дальности, ед.
+* kLongRangeSizeOverlapH: 3.75 (number) - Параметры расчета векторного поля скоростей: Гор. коэф. перекрытия макс. дальности, ед.
+* kLongRangeSizeOverlapV: 3 (number) - Параметры расчета векторного поля скоростей: Верт. коэф. перекрытия макс. дальности, ед.
+* shortRAzCellThreshold: 25 (number) - Параметры расчета векторного поля скоростей: Азимутальное перекрытия мал. дальности, ед.
+* shortRAzCellFillThreshold: 20 (number) - Параметры расчета векторного поля скоростей: Порог заполнения по азимуту мал. дальности, ед.
+* mediumRAzCellThreshold: 27 (number) - Параметры расчета векторного поля скоростей: Азимутальное перекрытия ср. дальности, ед.
+* mediumRAzCellFillThreshold: 23 (number) - Параметры расчета векторного поля скоростей: Порог заполнения по азимуту ср. дальности, ед.
+* longRAzCellThreshold: 17 (number) - Параметры расчета векторного поля скоростей: Азимутальное перекрытия макс. дальности, ед.
+* longRAzCellFillThreshold: 13 (number) - Параметры расчета векторного поля скоростей: Порог заполнения по азимуту макс. дальности, ед.
+
+## VerticallyIntegratedLiquid(object, fixed-type)
+* cell_size: 1000.1 (number) - Размер ячейки построения карты VIL, м
+
+## WindShearField(object, fixed-type)
+### Properties
+* circular_max_altitude: 3000 (number) - Максимальная высота поля сдвигов ветра, м (ОБЗОР)
+* circular_max_range: 50000 (number) - Макс дальность поля сдвигов ветра, м (ОБЗОР)
+* sector_max_altitude: 3000 (number) - Максимальная высота поля сдвигов ветра, м (СЕКТОР)
+* sector_max_range: 50000 (number) - Макс дальность поля сдвигов ветра, м (СЕКТОР)
+* horizontal_pitch: 500 (number) - Шаг по горизонтали для поля сдвигов ветра, м
+* vertical_pitch: 500 (number) - Шаг по вертикали для поля сдвигов ветра, м
+
+## RainfallComputer(object, fixed-type)
+### Properties
+* rainFallParams00: 0.36 (number) - Параметры расчета интенсивности осадков из дБZ:Множитель для дождя, ед.
+* rainFallParams01: 0.0052 (number) - Параметры расчета интенсивности осадков из дБZ: Множитель для града, ед.
+* rainFallParams02: 0.013 (number) - Параметры расчета интенсивности осадков из дБZ: Множитель для снега, ед.
+* rainFallParams10: 0.045 (number) - Параметры расчета интенсивности осадков из дБZ: Показатель степени для дождя, ед.
+* rainFallParams11: 0.065 (number) - Параметры расчета интенсивности осадков из дБZ: Показатель степени для града, ед.
+* rainFallParams12: 0.0625 (number) - Параметры расчета интенсивности осадков из дБZ: Показатель степени для снега, ед.
+* max_rainfall_height: 600 (number) - Максимальная высота получения осадков, м
+* cell_size: 1000 (number) - Размер ячейки карты накопленных осадков, м
+
+## DataProcessing(object, fixed-type)
+### Properties
+* nominal_cycle_time: 605 (number) - Номинальная длительность обзора, с
+* nominal_rastr_cycle_time: 605 (number) - Номинальная длительность обзора РАСТР, с
+* accumulatorSize: 60 (number) - Размер буфера накопления, пак
+* WeightWindow: `0` (WeightWindowEnum[number]) - Взвешивание
+* falseAlarmProbability: 100 (number) - Вероятность ложной тревоги с МФ
+* falseAlarmMFOffProbability: 100 (number) - Вероятность ложной тревоги без МФ
+* minreflectionrange: 0 (number) - Приземные отражения - Д, м
+* manual_dbz_correction: 0 (number) - Поправка отражаемости, дБZ
+* kaperturef: 1.5 (number) - Коэффициент расширения частотной апертуры МФ, ед.
+* coeffReflMeanSpectreTreshold: 2 (number) - Коэффициент усиления мощности КМО, ед.
+* localReflSpectralSize: 15 (number) - Ширина зоны неподвижных отражений, отсч.
+* coeffIncreaseSingleTargetLF: 1 (number) - Коэффициент увеличения размера одиночной цели, ед.
+* coeffLReflSpectralZeroPwr: 0.9 (number) - Доля неподвижных отражений, ед.
+* oneTgtFiltrOn: false (boolean) - Фильтр одиночных целей в отражаемости
+* linearNoiseFilterEnabled: false (boolean) - Фильтр линейных помех
+* medianFiltrOn: false (boolean) - Медианная фильтрация
+* maxLRPwrValueOn: false (boolean) - Получение максимальной мощности для карты местных отражений
+* spectralLReflFirtrOn: false (boolean) - Спектральный фильтр местных отражений
+* anglev_dbz_correction_enable: false (boolean) - Коррекция Z по приземному заполнению луча
+* velocity_mo_abs_step: 2.5 (number) - Шаг отображения скорости ветра м/с
+* velocity_mo_az_step: 10 (number) - Шаг отображения направления ветра, º
+
+## WeatherMap(object, fixed-type)
+    * statistics_wph_off_coord_km_size: 40 (number) - Размер зоны исключения расчета статистики макс МЯ, км
+    * afilter_wph_treshold1: 0 (number) - Порог по площади, кв. км: Обл. В и Ср яруса
+    * afilter_wph_treshold2: 0 (number) - Порог по площади, кв. км: Слоистообр. обл.
+    * afilter_wph_treshold3: 0 (number) - Порог по площади, кв. км: Осадки слабые
+    * afilter_wph_treshold4: 0 (number) - Порог по площади, кв. км: Осадки умеренные
+    * afilter_wph_treshold5: 0 (number) - Порог по площади, кв. км: Осадки сильные
+    * afilter_wph_treshold6: 0 (number) - Порог по площади, кв. км: Кучевая облачность
+    * afilter_wph_treshold7: 0 (number) - Порог по площади, кв. км: Ливень слабый
+    * afilter_wph_treshold8: 0 (number) - Порог по площади, кв. км: Ливень умеренный
+    * afilter_wph_treshold9: 0 (number) - Порог по площади, кв. км: Ливень сильный
+    * afilter_wph_treshold10: 0 (number) - Порог по площади, кв. км: Гроза - вер. 30-70%
+    * afilter_wph_treshold11: 0 (number) - Порог по площади, кв. км: Гроза - вер. 71-90%
+    * afilter_wph_treshold12: 0 (number) - Порог по площади, кв. км: Гроза - вер. >90%
+    * afilter_wph_treshold13: 0 (number) - Порог по площади, кв. км: Град слабый
+    * afilter_wph_treshold14: 0 (number) - Порог по площади, кв. км: Град умеренный
+    * afilter_wph_treshold15: 0 (number) - Порог по площади, кв. км: Град сильный
+    * afilter_wph_treshold16: 0 (number) - Порог по площади, кв. км: Шквал слабый
+    * afilter_wph_treshold17: 0 (number) - Порог по площади, кв. км: Шквал умеренный
+    * afilter_wph_treshold18: 0 (number) - Порог по площади, кв. км: Шквал сильный
+    * afilter_wph_treshold19: 0 (number) - Порог по площади, кв. км: Торнадо (смерч)
+    * min_always_show_index_wph: 0 (MeteoClassEnum[number]) - Минимально опасное МЯ для постоянного отображения Примечание.  Предложение переименовать: "Мин. МЯ без фильтрации"
+    * exclude_contours_after_afilter_wph: false (boolean) - Удалять мелкие контуры после фильтрации
+    * afilter_wph_on: false (boolean) - Фильтр статистики МЯ по площади контура
+    * cell_size: 1000 (number) - Размер ячейки карты МЯ, м
+    * contour_line_generalization: 8 (number) - Степень генерализации контуров, ед.
+    * contour_line_expansion: 1 (number) - Величина расширения контуров, ячеек
+
 ## AlgorithmParameters(object, fixed-type)
 ### Properties
 + dpm(object)
-    + dataprocessing(object)
-        * nominal_cycle_time: 605 (number) - Номинальная длительность обзора, с
-        * nominal_rastr_cycle_time: 605 (number) - Номинальная длительность обзора РАСТР, с
-        * accumulatorSize: 60 (number) - Размер буфера накопления, пак
-        * WeightWindow: `0` (WeightWindowEnum[number]) - Взвешивание
-        * falseAlarmProbability: 100 (number) - Вероятность ложной тревоги с МФ
-        * falseAlarmMFOffProbability: 100 (number) - Вероятность ложной тревоги без МФ
-        * minreflectionrange: 0 (number) - Приземные отражения - Д, м
-        * manual_dbz_correction: 0 (number) - Поправка отражаемости, дБZ
-        * kaperturef: 1.5 (number) - Коэффициент расширения частотной апертуры МФ, ед.
-        * coeffReflMeanSpectreTreshold: 2 (number) - Коэффициент усиления мощности КМО, ед.
-        * localReflSpectralSize: 15 (number) - Ширина зоны неподвижных отражений, отсч.
-        * coeffIncreaseSingleTargetLF: 1 (number) - Коэффициент увеличения размера одиночной цели, ед.
-        * coeffLReflSpectralZeroPwr: 0.9 (number) - Доля неподвижных отражений, ед.
-        * oneTgtFiltrOn: false (boolean) - Фильтр одиночных целей в отражаемости
-        * linearNoiseFilterEnabled: false (boolean) - Фильтр линейных помех
-        * medianFiltrOn: false (boolean) - Медианная фильтрация
-        * maxLRPwrValueOn: false (boolean) - Получение максимальной мощности для карты местных отражений
-        * spectralLReflFirtrOn: false (boolean) - Спектральный фильтр местных отражений
-        * anglev_dbz_correction_enable: false (boolean) - Коррекция Z по приземному заполнению луча
-        * velocity_mo_abs_step: 2.5 (number) - Шаг отображения скорости ветра м/с
-        * velocity_mo_az_step: 10 (number) - Шаг отображения направления ветра, º
+    + dataprocessing(DataProcessing)
     + local_reflections(object)
         * num_cycles_default: 4 (number) - Циклы записи мест. отражений
-    + rainfall_computer(object)
-        * rainFallParams00: 0.36 (number) - Параметры расчета интенсивности осадков из дБZ:Множитель для дождя, ед.
-        * rainFallParams01: 0.0052 (number) - Параметры расчета интенсивности осадков из дБZ: Множитель для града, ед.
-        * rainFallParams02: 0.013 (number) - Параметры расчета интенсивности осадков из дБZ: Множитель для снега, ед.
-        * rainFallParams10: 0.045 (number) - Параметры расчета интенсивности осадков из дБZ: Показатель степени для дождя, ед.
-        * rainFallParams11: 0.065 (number) - Параметры расчета интенсивности осадков из дБZ: Показатель степени для града, ед.
-        * rainFallParams12: 0.0625 (number) - Параметры расчета интенсивности осадков из дБZ: Показатель степени для снега, ед.
-        * max_rainfall_height: 600 (number) - Максимальная высота получения осадков, м
-        * cell_size: 1000 (number) - Размер ячейки карты накопленных осадков, м
-    + weather_map(object)
-        * statistics_wph_off_coord_km_size: 40 (number) - Размер зоны исключения расчета статистики макс МЯ, км
-        * afilter_wph_treshold1: 0 (number) - Порог по площади, кв. км: Обл. В и Ср яруса
-        * afilter_wph_treshold2: 0 (number) - Порог по площади, кв. км: Слоистообр. обл.
-        * afilter_wph_treshold3: 0 (number) - Порог по площади, кв. км: Осадки слабые
-        * afilter_wph_treshold4: 0 (number) - Порог по площади, кв. км: Осадки умеренные
-        * afilter_wph_treshold5: 0 (number) - Порог по площади, кв. км: Осадки сильные
-        * afilter_wph_treshold6: 0 (number) - Порог по площади, кв. км: Кучевая облачность
-        * afilter_wph_treshold7: 0 (number) - Порог по площади, кв. км: Ливень слабый
-        * afilter_wph_treshold8: 0 (number) - Порог по площади, кв. км: Ливень умеренный
-        * afilter_wph_treshold9: 0 (number) - Порог по площади, кв. км: Ливень сильный
-        * afilter_wph_treshold10: 0 (number) - Порог по площади, кв. км: Гроза - вер. 30-70%
-        * afilter_wph_treshold11: 0 (number) - Порог по площади, кв. км: Гроза - вер. 71-90%
-        * afilter_wph_treshold12: 0 (number) - Порог по площади, кв. км: Гроза - вер. >90%
-        * afilter_wph_treshold13: 0 (number) - Порог по площади, кв. км: Град слабый
-        * afilter_wph_treshold14: 0 (number) - Порог по площади, кв. км: Град умеренный
-        * afilter_wph_treshold15: 0 (number) - Порог по площади, кв. км: Град сильный
-        * afilter_wph_treshold16: 0 (number) - Порог по площади, кв. км: Шквал слабый
-        * afilter_wph_treshold17: 0 (number) - Порог по площади, кв. км: Шквал умеренный
-        * afilter_wph_treshold18: 0 (number) - Порог по площади, кв. км: Шквал сильный
-        * afilter_wph_treshold19: 0 (number) - Порог по площади, кв. км: Торнадо (смерч)
-        * min_always_show_index_wph: 0 (MeteoClassEnum[number]) - Минимально опасное МЯ для постоянного отображения Примечание.  Предложение переименовать: "Мин. МЯ без фильтрации"
-        * exclude_contours_after_afilter_wph: false (boolean) - Удалять мелкие контуры после фильтрации
-        * afilter_wph_on: false (boolean) - Фильтр статистики МЯ по площади контура
-        * cell_size: 1000 (number) - Размер ячейки карты МЯ, м
-        * contour_line_generalization: 8 (number) - Степень генерализации контуров, ед.
-        * contour_line_expansion: 1 (number) - Величина расширения контуров, ячеек
+    + rainfall_computer(RainfallComputer)
+    + weather_map(WeatherMap)
 + spg(object)
-    + vector_velocity_field(object)
-        * vector_size: 30 (number) - Размер вектора, ед.
-        * vector_thickness: 2 (number) - Толщина вектора, ед.
-        * kShortRangeSizeOverlapH: 2 (number) - Параметры расчета векторного поля скоростей: Гор. коэф. перекрытия мал. дальности, ед.
-        * kShortRangeSizeOverlapV: 1.5 (number) - Параметры расчета векторного поля скоростей: Верт. коэф. перекрытия мал. дальности, ед.
-        * kMediumRangeSizeOverlapH: 3.25 (number) - Параметры расчета векторного поля скоростей: Гор. коэф. перекрытия ср. дальности, ед.
-        * kMediumRangeSizeOverlapV: 1.75 (number) - Параметры расчета векторного поля скоростей: Верт. коэф. перекрытия ср. дальности, ед.
-        * kLongRangeSizeOverlapH: 3.75 (number) - Параметры расчета векторного поля скоростей: Гор. коэф. перекрытия макс. дальности, ед.
-        * kLongRangeSizeOverlapV: 3 (number) - Параметры расчета векторного поля скоростей: Верт. коэф. перекрытия макс. дальности, ед.
-        * shortRAzCellThreshold: 25 (number) - Параметры расчета векторного поля скоростей: Азимутальное перекрытия мал. дальности, ед.
-        * shortRAzCellFillThreshold: 20 (number) - Параметры расчета векторного поля скоростей: Порог заполнения по азимуту мал. дальности, ед.
-        * mediumRAzCellThreshold: 27 (number) - Параметры расчета векторного поля скоростей: Азимутальное перекрытия ср. дальности, ед.
-        * mediumRAzCellFillThreshold: 23 (number) - Параметры расчета векторного поля скоростей: Порог заполнения по азимуту ср. дальности, ед.
-        * longRAzCellThreshold: 17 (number) - Параметры расчета векторного поля скоростей: Азимутальное перекрытия макс. дальности, ед.
-        * longRAzCellFillThreshold: 13 (number) - Параметры расчета векторного поля скоростей: Порог заполнения по азимуту макс. дальности, ед.
-        * circular_horizontal_pitch: 8000 (number) - Шаг по горизонтали векторного поля скоростей, м (ОБЗОР)
-        * circular_vertical_pitch: 1000 (number) - Шаг по вертикали векторного поля скоростей, м (ОБЗОР)
-        * sector_horizontal_pitch: 1000 (number) - Шаг по горизонтали векторного поля скоростей, м (СЕКТОР)
-        * sector_vertical_pitch: 500 (number) - Шаг по вертикали векторного поля скоростей, м (СЕКТОР)
-    + wind_shear_field(object)
-        * circular_max_altitude: 3000 (number) - Максимальная высота поля сдвигов ветра, м (ОБЗОР)
-        * circular_max_range: 50000 (number) - Макс дальность поля сдвигов ветра, м (ОБЗОР)
-        * sector_max_altitude: 3000 (number) - Максимальная высота поля сдвигов ветра, м (СЕКТОР)
-        * sector_max_range: 50000 (number) - Макс дальность поля сдвигов ветра, м (СЕКТОР)
-        * horizontal_pitch: 500 (number) - Шаг по горизонтали для поля сдвигов ветра, м
-        * vertical_pitch: 500 (number) - Шаг по вертикали для поля сдвигов ветра, м
-    + vertically_integrated_liquid(object)
-        * cell_size: 1000 (number) - Размер ячейки построения карты VIL, м
+    + vector_velocity_field(VectorVelocityField, fixed-type)
+    + wind_shear_field(WindShearField, fixed-type)
+    + vertically_integrated_liquid(VerticallyIntegratedLiquid, fixed-type)
 + render(object)
     + vertical_section(object)
         * vertical_pitch: 0.1 (number) - Шаг по горизонтали для вертикального сечения, км
@@ -2650,12 +1994,8 @@ distance, x, z - в километрах
 - station (ShortStationInfo) - Краткая информация о стации на которой произошло событие
 - message: `Текст сообщения` (string) - Сообщение
 
-## ColorScale(object, fixed-type)
-### Properties
-- id: 0 (number, optional) - Идентификатор шкалы. Нужен только для пагинации
-- title: Отражаемость (string) - Название шкалы
-- count: 3 (number) - Количество элементов item
-- items (array[ColorScaleItem])
+## ColorScaleBase(object, fixed-type)
+- items (array[ColorScaleItemBase])
 - alphaBtm: 0 (number)
 - alphaCenter: 0 (number)
 - alphaCenterOn: false (boolean)
@@ -2664,11 +2004,21 @@ distance, x, z - в километрах
 - size: 9 (number)
 - stepScale: true (boolean)
 
-## ColorScaleItem(object, fixed-type)
+## ColorScaleItemBase(object, fixed-type)
 ### Properties
-- index: 0 (number) - Порядковый номер
 - value: 30.5 (number) - Значение
 - color: `#010178` (string) - RGB значение цвета
+
+## ColorScaleItem(ColorScaleItemBase, fixed-type)
+### Properties
+- index: 0 (number) - Порядковый номер
+
+## ColorScale(ColorScaleBase, fixed-type)
+### Properties
+- id: 0 (number, optional) - Идентификатор шкалы. Нужен только для пагинации
+- title: `Отражаемость` (string) - Название шкалы
+- count: 3 (number) - Количество элементов item
+- items (array[ColorScaleItem])
 
 ## IsothermSource(object, fixed-type)
 ### Properties
@@ -2727,13 +2077,7 @@ distance, x, z - в километрах
   - sector_vertical_pitch: 1000 (number) - Шаг по вертикали в режиме СЕКТОР
   - vector_size: 5 (number) - Размер ячейки вектора поля скоростей
   - vector_thickness: 3 (number) - Толщина линии вектора поля скоростей
-- wind_shear_field (object) - Поля сдвигов ветра
-  - circular_max_altitude: 100 (number) - Максимальная высота в режиме ОБЗОР
-  - circular_max_range: 100 (number) - Максимальная дальность в режиме ОБЗОР
-  - sector_max_altitude: 100 (number) - Максимальная высота в режиме СЕКТОР
-  - sector_max_range: 100 (number) - Максимальная дальность в режиме СЕКТОР
-  - horizontal_pitch: 100 (number) - Шаг по вертикали
-  - vertical_pitch: 100 (number) - Шаг по горизонтали
+- wind_shear_field (WindShearField) - Поля сдвигов ветра
 - weather_map (object) - Карты МЯ
   - cell_size: 1000.1 (number) - Размер ячейки МЯ, м
   - contour_line_generalization: 3 (number) - Степень генерализации контуров МЯ
@@ -2743,8 +2087,7 @@ distance, x, z - в километрах
   - vertical_pitch: 100 (number)
 - accumulated_precipitation (object) - Размера ячейки карты накопленных осадков
   - cell_size: 100.1 (number) - Размер
-- vertically_integrated_liquid (object) - Размер ячейки построения карты вертикально интегрированной водности
-  - cell_size: 100.1 (number) - Размер
+- vertically_integrated_liquid (VerticallyIntegratedLiquid)
 
 ## TerrainTypeEnum(enum[number])
 Тип местности
@@ -2790,7 +2133,6 @@ distance, x, z - в километрах
 
 ## WeatherCriteriaBaseItem(object, fixed-type)
 ### Properties
-- index: 0 (number)
 - code: `Cl_dBZ23_min` (string)
 - title: `Название` (string)
 - measurement_unit: `dBZ` (string)
@@ -2807,11 +2149,14 @@ distance, x, z - в километрах
 - count: 1 (number) - Количество критериев
 - items (array[WeatherCriteriaItem])
 
-## MeteoSettings(object, fixed-type)
-### Properties
+## MeteoSettingsBase(object, fixed-type)
 - min_dangerous_meteo: 5 (number) - Индекс минимального опасного МЯ
 - max_dangerous_meteo: 19 (number) - Индекс максимального опасного МЯ
 - cloud_velocity_radial: true (boolean) - Скорость перемещения облачных масс: true - по радиальной скорости, false - по центру масс МЯ
+
+
+## MeteoSettings(MeteoSettingsBase, fixed-type)
+### Properties
 - meteo_classes (object, fixed-type) - Настройки критериев метеоявлений
     - count: 2 (number)
     - items (array)
@@ -2821,7 +2166,17 @@ distance, x, z - в километрах
             - type: `Название` (string) - Название
             - criteria (object, fixed-type) - Критерий
                 - count: 1 (number)
-                - items (array[WeatherCriteriaBaseItem])
+                - items (array)
+                  - (WeatherCriteriaBaseItem)
+                      - index: 0 (number)
+
+## MeteoSettingsQt(MeteoSettingsBase, fixed-type)
+### properties
+- meteo_classes (array)
+    - (object)
+        - id: 0 (number)
+        - type: "TITLE" (string)
+        - criteria (array[WeatherCriteriaBaseItem])
 
 ## RlpTypeEnum(enum[string], fixed-type)
 ### Members
@@ -2839,7 +2194,6 @@ distance, x, z - в километрах
     - image_size: 209 (number)
 - url: `/wpcell.png` (string)
 
-
 ## MeteoSourceBase(object, fixed-type)
 ### properties
 - name: `manual` (string)
@@ -2854,3 +2208,205 @@ distance, x, z - в километрах
 - auto: false (boolean)
 - name: `manual` (string)
 - season: `warm` (SeasonEnum, nullable)
+
+## Maps
+### Properties
+- contourResolution: 400 (number)
+- rp_opacity(object)
+    - items: 1, 1 (array[number])
+- rp_z_value(object)
+    - items: 1, 2 (array[number])
+- showRegionData: true (boolean)
+- terrainGroundSize: 668 (number)
+- terrainHorizontalShift: 0 (number)
+- terrainVerticalShift: 0 (number)
+
+## QtIfaceSettings(object, fixed-type)
+### Properties
+- station (Station, fixed-type)
+- spg(object, fixed-type):
+    - vector_velocity_field(VectorVelocityField, fixed-type)
+        - filterSMAOn: true (boolean)
+    - vertically_integrated_liquid (VerticallyIntegratedLiquid)
+    - wind_shear_field(WindShearField)
+- render(object)
+    - colorscale(object):
+        - change: false (boolean)
+        - dbz (ColorScaleBase)
+        - dwvs (ColorScaleBase)
+        - edr (ColorScaleBase)
+        - htmax (ColorScaleBase)
+        - htmin (ColorScaleBase)
+        - rfli (ColorScaleBase)
+        - rfls12 (ColorScaleBase)
+        - rfls24 (ColorScaleBase)
+        - rfls3 (ColorScaleBase)
+        - rfls6 (ColorScaleBase)
+        - undefine (ColorScaleBase)
+        - vil (ColorScaleBase)
+        - vr (ColorScaleBase)
+        - wpcell (ColorScaleBase)
+        - wpfig (ColorScaleBase)
+        - wsh (ColorScaleBase)
+        - wsv (ColorScaleBase)
+    - maps (Maps)
+    - vertical_section(object, fixed-type)
+        - automaxheight: 0 (number)
+        - maxheight: 7.5 (number)
+        - horizontal_pitch: 100 (number)
+        - vertical_pitch: 100 (number)
+    - horizontal_section(object, fixed-type)
+        - cappi_altitude_interval: 100 (number)
+        - cappi_altitude_max: 20000 (number)
+        - cappi_altitude_min: 0 (number)
+- programs (array[Program])
+- meteo (MeteoSettingsQt)
+- timetable (ScheduleBase)
+- bufr (object, fixed-type)
+    - count: 1 (number)
+    - items (array[FtpHostExt])
+- qtiface (object, fixed-type)
+    - calibration_period (object, fixed-type)
+        - warm: 3 (number)
+        - cold: 72 (number)
+    - db (object, fixed-type)
+        - show_data_time_local: true (boolean)
+        - time_to_live: 30 (number)
+    - advanced_soft_mode: false (boolean)
+    - show_cycle_meteostat: true (boolean)
+    - paths (object, fixed-type)
+        - terrain: `/path` (string)
+        - transparent_map: `/path` (string)
+        - dangerous_meteo_sound: `/path` (string)
+    - datum: `WGS-84` (string)
+- dpm (object)
+    - rainfall_computer (RainfallComputer)
+    - dataprocessing (DataProcessing, fixed-type)
+        * autoAccumulatorSize: 1 (number)
+        * autoKsOn: 1 (number)
+        * coefficientKs_10: 57.9382019 (number)
+        * coefficientKs_100: 57.9485009 (number)
+        * coefficientKs_150: 61.4485009 (number)
+        * coefficientKs_20: 57.9382019 (number)
+        * coefficientKs_200: 57.9485009 (number)
+        * coefficientKs_25: 58.4382019 (number)
+        * coefficientKs_50: 57.9382019 (number)
+        * coefficientKs_55: 63.2382049 (number)
+        * indexProtoAv: 9 (number)
+        * kaperturerange: 2 (number)
+        * outDataPixelFilterOn: 0 (number)
+        * outDataPixelFilterMaxHeight: 20000 (number)
+        * pulsePeriod0Value10: 0.000243 (number)
+        * pulsePeriod0Value100: 0.000999 (number)
+        * pulsePeriod0Value150: 0.001224 (number)
+        * pulsePeriod0Value20: 0.000243 (number)
+        * pulsePeriod0Value200: 0.001989 (number)
+        * pulsePeriod0Value25: 0.000495 (number)
+        * pulsePeriod0Value50: 0.000495 (number)
+        * pulsePeriod0Value55: 0.000999 (number)
+        * pulsePeriod1Value10: 0.000243 (number)
+        * pulsePeriod1Value100: 0.001143 (number)
+        * pulsePeriod1Value150: 0.001377 (number)
+        * pulsePeriod1Value20: 0.000243 (number)
+        * pulsePeriod1Value200: 0.001989 (number)
+        * pulsePeriod1Value25: 0.000594 (number)
+        * pulsePeriod1Value50: 0.000594 (number)
+        * pulsePeriod1Value55: 0.001143 (number)
+        * sigmaAmbientNoise_100: 6.71100342110189e-18 (number)
+        * sigmaAmbientNoise_150: 7.81796275566459e-18 (number)
+        * sigmaAmbientNoise_50: 6.53831724970232e-18 (number)
+        * sigmaAmbientNoise_55: 7.72873151205209e-18 (number)
+        * tauPulseValue10: 0.0000021 (number)
+        * tauPulseValue100: 0.000016125 (number)
+        * tauPulseValue150: 0.000024 (number)
+        * tauPulseValue20: 0.0000021 (number)
+        * tauPulseValue200: 0.0000321 (number)
+        * tauPulseValue25: 0.000004125 (number)
+        * tauPulseValue50: 0.0000081 (number)
+        * tauPulseValue55: 0.0000195 (number)
+        * coeffDeltaPwrQuant: 0.25 (number)
+    - weather_map(WeatherMap)
+        * max_hor_interpolation_step: 4000 (number)
+        * statistics_wph_off_coord_km_size: 0 (number)
+        * velocityRadial: 1 (number)
+        * maxNumSecVVCycle: 1800 (number)
+    - local_reflections(object, fixed-type)
+        - build_enabled: 0 (number)
+        - last_build_timestamp: 0 (number)
+        - num_cycles: 2 (number)
+    - radarsettings (object, fixed-type)
+        - AhDiscretesFirmwareValue: 1403 (number)
+        - beamWidth: 3.25 (number)
+        - trChannel: 4 (number)
+    - isotherm(object, fixed-type)
+        - height_temp0: 0 (number)
+        - manual_expire_period: 12 (number)
+        - manual_height_temp0: 2400 (number)
+        - manual_temperature: 0 (number)
+        - manual_update_time: 0 (number)
+        - season_switch_threshold: 500 (number)
+  - mr (object, fixed-type)
+        + telescope (object, fixed-type)
+            + hostAddress: `127.0.0.1` (string)
+            + portAPI: 8888 (number)
+            + portWebSocket: 8889 (number)
+        + holoplayer (object, fixed-type)
+            + currentTimeOn: false (boolean)
+            + loopHoloOn: true (boolean)
+            + playspeed: 100 (number)
+            + playPath: `/var/lib/monocle/raw`  (string)
+            + start: 110 (number)
+            + stop: 1800 (number)
+            + record: false (boolean)
+            + recordPath: `/var/lib/monocle/raw` (string)
+        + nams (object, fixed-type)
+            + dataRequest: `/script/dati.js` (string)
+            + elevation: 3 (number)
+            + updateRequest: `/cgi-bin/en_cgi_dati.cgi` (string)
+        + network (object, fixed-type)
+            + hostAddress: `192.168.0.101` (string)
+            + namsAddress: `10.128.128.5` (string)
+            + namsPort: 80 (number)
+            + mtp5Address: `127.0.0.1` (string)
+            + mtp5Port: 5000 (number)
+            + radarAddress: `192.168.0.100` (string)
+            + radarConfRecvPort: 7706 (number)
+            + radarConfSendPort: 7703 (number)
+            + radarConfStatusPort: 7706 (number)
+            + radarConfigurePort: 7703 (number)
+            + radarControlPort: 7701 (number)
+            + radarDataPort: 7700 (number)
+            + radarStatusPort: 7704 (number)
+        + paths (object, fixed-type)
+            + rootPath: `/var/lib/monocle` (string)
+            + jsonRequestsPath: `/var/lib/monocle/control/requests` (string)
+            + jsonResponsesPath: `/var/lib/monocle/control/responses` (string)
+            + localReflectionsPath: `/var/lib/monocle/localreflections` (string)
+            + logPath: `/var/log/monocle` (string)
+            + programsPath: `/var/lib/monocle/programs` (string)
+            + storagePath: `/var/lib/monocle/db` (string)
+            + dbPath: `/var/lib/monocle/mr.db` (string)
+        + programs (object, fixed-type)
+            + `default`: `view_dummy_150` (string)
+            + changeModeThroughReadiness: true (boolean)
+            + changeModeDelay: 2000 (number)
+            + timeTableEnabled: true (boolean)
+            + timeTableId: `view_dummy_150` (string)
+        + radar (object, fixed-type)
+            + elevation: 25 (number)
+            + hAvADrivesOnIgnoring: false (boolean)
+            + configRequestTimeout: 2500 (number)
+        + remote (object, fixed-type)
+            + statusWriteInterval: 5000 (number)
+        + terrain (object, fixed-type)
+            + altitude: 640 (number)
+            + type: 0 (number)
+    - spg_ini (object, fixed-type)
+    bufr (object, fixed-type)
+        - enableFileExport: true (boolean)
+        - fileExportPath: `/work/monocle-data/fm94bufr` (string)
+    -paths (object, fixed-type)
+        - logPath: `/var/log/monocle` (string)
+        - parametersPath: `/var/lib/monocle/parameters` (string)
+        - stationsPath: `/var/lib/monocle/parameters/stations` (string)
+        - storagePath: `/work/monocle-data/db` (string)
