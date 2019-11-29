@@ -424,7 +424,7 @@ Cправочник типов конических сечений для СМР
 
 + Response 200 (applicaton/json; charset=utf-8)
 
-        {ver
+        {
             "timestamp": 1558443985,
             "features": [
                 {
@@ -1240,40 +1240,28 @@ distance, x, z - в километрах
 
 ### Получить настройки вычисления изотермы [GET]
 
-+ Response 200 (application/json)
-
-        {
-            "_comment_manual": "Задаётся ли высота нулевой изотермы вручную. Если false - вычисляется из данных НАМС",
-            "manual": false,
-            "_comment_expire_period": "Время истечения заданного вручную значения, ч",
-            "expire_period": 12,
-            "_comment_update_time": "Время последнего обновления",
-            "update_time": "2017-05-15T08:30:00",
-            "_comment_height_temp0": "Высота нулевой изотермы, задаваемая вручную",
-            "height_temp0": 2400.0,
-            "_comment_height_temp22": "Высота изотермы -22 градуса, задаваемая вручную",
-            "height_temp22": 7000.0,
-            "_comment_height_tropopause": "Высота тропопаузы, задаваемая вручную",
-            "height_tropopause": 12000.0
-        }
++ Response 200 (application/json; charset=utf-8)
+    + Attibutes(object, fixed-type)
+        - manual: false (boolean) - Задаётся ли высота нулевой изотермы вручную. Если false - вычисляется из данных НАМС
+        - expire_period: 12 (number) - Время истечения заданного вручную значения, ч
+        - update_time: `2017-05-15T08:30:00` (string) - Время последнего обновления
+        - height_temp0: 2400.1 (number) - Высота нулевой изотермы, задаваемая вручную
+        - height_temp22: 7000.1 (number) Высота изотермы -22 градуса, задаваемая вручную
+        - height_tropopause: 12000.1 (number) - Высота тропопаузы, задаваемая вручную
 
 + Response 404
 
 ### Обновить настройки вычисления изотермы [PUT]
 
 + Request (application/json)
-
-        {
-            "manual": false,
-            "expire_period": 12,
-            "_comment_manual_from_temp": "true: задаётся температура на уровне земли, false: задаётся высота нулевой изотермы",
-            "manual_from_temp": false,
-            "_comment_temperature": "Температура на уровне земли, задаваемая вручную",
-            "temperature": 15.2,
-            "height_temp0": 2400.0,
-            "height_temp22": 7000.0,
-            "height_tropopause": 12000.0
-        }
+    + Attributes(object, fixed-type)
+        - manual: false (boolean)
+        - expire_period: 12 (number)
+        - manual_from_temp: false (boolean) true: задаётся температура на уровне земли, false: задаётся высота нулевой изотермы
+        - temperature: 15.2 (number) - Температура на уровне земли, задаваемая вручную
+        - height_temp0: 2400.1 (number)
+        - height_temp22: 7000.1 (number)
+        - height_tropopause: 12000.1 (number)
 
 + Response 200 (application/json)
 
@@ -1393,8 +1381,14 @@ distance, x, z - в километрах
 + Parameters
     + id: `0` (number, required) - ID СМРЛП
 
-+ Response 200 (application/json)
++ Response 200 (application/json; charset=utf-8)
      + Attributes(QtIfaceSettings)
+
+### Обновить [PUT]
+    + id: `0` (number, required) - ID СМРЛП
+
++ Request (application/json)
+    + Attributes(QtIfaceSettings)
 
 ## Запрос проверки соединения с FTP [/settings/check_ftp_connection]
 Запрос на проверку соединения с FTP по указанным реквизитам
@@ -1402,25 +1396,20 @@ distance, x, z - в километрах
 ### Запрос проверки [POST]
 
 + Request (application/json)
-
-        {
-            "host": "hostname",
-            "port": 21,
-            "path": "",
-            "login": "login",
-            "password": "password",
-            "active_mode": false
-        }
+    + Attributes(object, fixed-type)
+        - host: `hostname`
+        - port: 21 (number)
+        - path: `` (string)
+        - login: `login` (string)
+        - password: `password` (string)
+        - active_mode: false (boolean)
 
 + Response 200 (application/json)
-
-        {
-            "type": "ftp_connection",
-            "content" : {
-                "result": 0,
-                "message": ""
-            }
-        }
+    + Attributes(object, fixed-type)
+        - type: `ftp_connection` (string)
+        - content (object, fixed-type)
+            - result: 0 (number)
+            - message: `` (string)
 
 ## Получить список файлов содержащихся в каталоге для воспроизведения [/station/{id}/lsholodir]
 Запрос списка файлов
@@ -1853,6 +1842,8 @@ distance, x, z - в километрах
 * mediumRAzCellFillThreshold: 23 (number) - Параметры расчета векторного поля скоростей: Порог заполнения по азимуту ср. дальности, ед.
 * longRAzCellThreshold: 17 (number) - Параметры расчета векторного поля скоростей: Азимутальное перекрытия макс. дальности, ед.
 * longRAzCellFillThreshold: 13 (number) - Параметры расчета векторного поля скоростей: Порог заполнения по азимуту макс. дальности, ед.
+* thresholdDeltaVelosity: 0.001 (number)
+* thresholdEpcilonVelosity: 0.001 (number)
 
 ## VerticallyIntegratedLiquid(object, fixed-type)
 ### Properties
@@ -2285,8 +2276,8 @@ distance, x, z - в километрах
 - dpm (object)
     - rainfall_computer (RainfallComputer)
     - dataprocessing (DataProcessing, fixed-type)
-        * autoAccumulatorSize: 1 (number)
-        * autoKsOn: 1 (number)
+        * autoAccumulatorSize: 1 (boolean)
+        * autoKsOn: 1 (boolean)
         * coefficientKs_10: 57.9382019 (number)
         * coefficientKs_100: 57.9485009 (number)
         * coefficientKs_150: 61.4485009 (number)
@@ -2297,7 +2288,7 @@ distance, x, z - в километрах
         * coefficientKs_55: 63.2382049 (number)
         * indexProtoAv: 9 (number)
         * kaperturerange: 2 (number)
-        * outDataPixelFilterOn: 0 (number)
+        * outDataPixelFilterOn: 0 (boolean)
         * outDataPixelFilterMaxHeight: 20000 (number)
         * pulsePeriod0Value10: 0.000243 (number)
         * pulsePeriod0Value100: 0.000999 (number)
@@ -2331,12 +2322,12 @@ distance, x, z - в километрах
     - weather_map(WeatherMap)
         * max_hor_interpolation_step: 4000 (number)
         * statistics_wph_off_coord_km_size: 0 (number)
-        * velocityRadial: 1 (number)
+        * velocityRadial: true (boolean)
         * maxNumSecVVCycle: 1800 (number)
     - local_reflections(object, fixed-type)
-        - build_enabled: 0 (number)
+        - build_enabled: 0 (boolean)
         - last_build_timestamp: 0 (number)
-        - num_cycles: 2 (number)
+        - num_cycles_default: 20 (number)
     - radarsettings (object, fixed-type)
         - AhDiscretesFirmwareValue: 1403 (number)
         - beamWidth: 3.25 (number)
@@ -2345,65 +2336,63 @@ distance, x, z - в километрах
         - height_temp0: 0 (number)
         - manual_expire_period: 12 (number)
         - manual_height_temp0: 2400 (number)
+        - manual_height_temp22: 0 (number)
+        - manual_height_tropo: 0 (number)
         - manual_temperature: 0 (number)
         - manual_update_time: 0 (number)
         - season_switch_threshold: 500 (number)
-  - mr (object, fixed-type)
-        + telescope (object, fixed-type)
-            + hostAddress: `127.0.0.1` (string)
-            + portAPI: 8888 (number)
-            + portWebSocket: 8889 (number)
-        + holoplayer (object, fixed-type)
-            + currentTimeOn: false (boolean)
-            + loopHoloOn: true (boolean)
-            + playspeed: 100 (number)
-            + playPath: `/var/lib/monocle/raw`  (string)
-            + start: 110 (number)
-            + stop: 1800 (number)
-            + record: false (boolean)
-            + recordPath: `/var/lib/monocle/raw` (string)
-        + nams (object, fixed-type)
-            + dataRequest: `/script/dati.js` (string)
-            + elevation: 3 (number)
-            + updateRequest: `/cgi-bin/en_cgi_dati.cgi` (string)
-        + network (object, fixed-type)
-            + hostAddress: `192.168.0.101` (string)
-            + namsAddress: `10.128.128.5` (string)
-            + namsPort: 80 (number)
-            + mtp5Address: `127.0.0.1` (string)
-            + mtp5Port: 5000 (number)
-            + radarAddress: `192.168.0.100` (string)
-            + radarConfRecvPort: 7706 (number)
-            + radarConfSendPort: 7703 (number)
-            + radarConfStatusPort: 7706 (number)
-            + radarConfigurePort: 7703 (number)
-            + radarControlPort: 7701 (number)
-            + radarDataPort: 7700 (number)
-            + radarStatusPort: 7704 (number)
-        + paths (object, fixed-type)
-            + rootPath: `/var/lib/monocle` (string)
-            + jsonRequestsPath: `/var/lib/monocle/control/requests` (string)
-            + jsonResponsesPath: `/var/lib/monocle/control/responses` (string)
-            + localReflectionsPath: `/var/lib/monocle/localreflections` (string)
-            + logPath: `/var/log/monocle` (string)
-            + programsPath: `/var/lib/monocle/programs` (string)
-            + storagePath: `/var/lib/monocle/db` (string)
-            + dbPath: `/var/lib/monocle/mr.db` (string)
-        + programs (object, fixed-type)
-            + `default`: `view_dummy_150` (string)
-            + changeModeThroughReadiness: true (boolean)
-            + changeModeDelay: 2000 (number)
-            + timeTableEnabled: true (boolean)
-            + timeTableId: `view_dummy_150` (string)
-        + radar (object, fixed-type)
-            + elevation: 25 (number)
-            + hAvADrivesOnIgnoring: false (boolean)
-            + configRequestTimeout: 2500 (number)
-        + remote (object, fixed-type)
-            + statusWriteInterval: 5000 (number)
-        + terrain (object, fixed-type)
-            + altitude: 640 (number)
-            + type: 0 (number)
+        - height_tropo: 0 (number)
+        - height_temp22: 0 (number)
+- mr (object, fixed-type)
+      + telescope (object, fixed-type)
+          + hostAddress: `127.0.0.1` (string)
+          + portAPI: 8888 (number)
+          + portWebSocket: 8889 (number)
+      + holoplayer (object, fixed-type)
+          + currentTimeOn: false (boolean)
+          + loopHoloOn: true (boolean)
+          + playspeed: 100 (number)
+          + playPath: `/var/lib/monocle/raw`  (string)
+          + start: 110 (number)
+          + stop: 1800 (number)
+          + record: false (boolean)
+          + recordPath: `/var/lib/monocle/raw` (string)
+      + network (object, fixed-type)
+          + hostAddress: `192.168.0.101` (string)
+          + mtp5Address: `127.0.0.1` (string)
+          + mtp5Port: 5000 (number)
+          + radarAddress: `192.168.0.100` (string)
+          + radarConfRecvPort: 7706 (number)
+          + radarConfSendPort: 7703 (number)
+          + radarConfStatusPort: 7706 (number)
+          + radarConfigurePort: 7703 (number)
+          + radarControlPort: 7701 (number)
+          + radarDataPort: 7700 (number)
+          + radarStatusPort: 7704 (number)
+      + paths (object, fixed-type)
+          + rootPath: `/var/lib/monocle` (string)
+          + jsonRequestsPath: `/var/lib/monocle/control/requests` (string)
+          + jsonResponsesPath: `/var/lib/monocle/control/responses` (string)
+          + localReflectionsPath: `/var/lib/monocle/localreflections` (string)
+          + logPath: `/var/log/monocle` (string)
+          + programsPath: `/var/lib/monocle/programs` (string)
+          + storagePath: `/var/lib/monocle/db` (string)
+          + dbPath: `/var/lib/monocle/mr.db` (string)
+      + programs (object, fixed-type)
+          + `default`: `view_dummy_150` (string)
+          + changeModeThroughReadiness: true (boolean)
+          + changeModeDelay: 2000 (number)
+          + timeTableEnabled: true (boolean)
+          + timeTableId: `view_dummy_150` (string)
+      + radar (object, fixed-type)
+          + elevation: 25 (number)
+          + hAvADrivesOnIgnoring: false (boolean)
+          + configRequestTimeout: 2500 (number)
+      + remote (object, fixed-type)
+          + statusWriteInterval: 5000 (number)
+      + terrain (object, fixed-type)
+          + altitude: 640 (number)
+          + type: 0 (number)
 - spg_ini (object, fixed-type)
     - bufr (object, fixed-type)
         - enableFileExport: true (boolean)
