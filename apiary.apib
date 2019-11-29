@@ -1241,7 +1241,7 @@ distance, x, z - в километрах
 ### Получить настройки вычисления изотермы [GET]
 
 + Response 200 (application/json; charset=utf-8)
-    + Attibutes(object, fixed-type)
+    + Attributes (object, fixed-type)
         - manual: false (boolean) - Задаётся ли высота нулевой изотермы вручную. Если false - вычисляется из данных НАМС
         - expire_period: 12 (number) - Время истечения заданного вручную значения, ч
         - update_time: `2017-05-15T08:30:00` (string) - Время последнего обновления
@@ -1356,39 +1356,35 @@ distance, x, z - в километрах
     + id: `0` (number) - ID СМРЛП
 
 + Request (application/json)
-
-        {
-            "type": "notification",
-            "content": {
-                "station_id": 4,
-                "message": "Настройки СМРЛП Орловка успешно обновлены",
-                "date": "2017-05-15T08:30:00"
-            }
-        }
+    + Attributes(object, fixed-type)
+        - type: `notification` (string)
+        - content (object, fixed-type)
+            - station_id: `0` (number)
+            - message: `Настройки СМРЛП Орловка успешно обновлены` (string)
+            - date: `2017-05-15T08:30:00` (string)
 
 + Response 200 (application/json)
-
-        {
-        }
+    + Attributes(object)
 
 # Group Qt-интерфейс
 
 ## Получение настроек для Qt интерфейса [/station/{id}/settings/qtiface]
 Запросы для управления всеми настройками из Qt интерфейса
 
-### Получить [GET]
-
 + Parameters
     + id: `0` (number, required) - ID СМРЛП
 
+### Получить [GET]
 + Response 200 (application/json; charset=utf-8)
-     + Attributes(QtIfaceSettings)
+    + Attributes(QtIfaceSettings)
 
 ### Обновить [PUT]
-    + id: `0` (number, required) - ID СМРЛП
 
 + Request (application/json)
     + Attributes(QtIfaceSettings)
+
++ Response 200 (application/json; charset=utf-8)
+    + Attributes(object)
 
 ## Запрос проверки соединения с FTP [/settings/check_ftp_connection]
 Запрос на проверку соединения с FTP по указанным реквизитам
