@@ -629,11 +629,7 @@ Cправочник типов конических сечений для СМР
     + id: `0` (number) - ID СМРЛП
     * type: `png` (string) - тип данных, для данной итерации всегда png
     * cs_id: `13` (int) - тип конического сечения
-    * indicator: `maxcappi`  (enum[string]) -  CAPPI / PPI / MAXCAPPI
-        * Members
-            * `cappi` - cappi
-            * `ppi` - ppi
-            * `maxcappi` - MAXCAPPI
+    * indicator: `maxcappi`  (CsIndicator)
     * altitude: `100` (number) - Высота в метрах (только для CAPPI) [100:20000]
     * date (string, optional) - Дата обзора (если не указан, то возвращается последнее КС)
     * cell_size (number, optional) - Размер области, которую покрывает 1 пиксель в м., в текущей итерации всегда 1000
@@ -711,6 +707,10 @@ distance, x, z - в километрах
             - longitude: 37.07894895225763 (number) - Широта
         - types: `wpcell`, `dbz` (array[string])
         - altitude_index: 0 (number) - Индекс отображаемого слоя по высоте (актуально только для сдвигов ветра - wsh и wsv)
+        - indicator: `maxcappi` (CsIndicator)
+        - altitude: `1.1` - Высота
+        - angle: `1.1` - УМ
+        - interval: `100` - Интервал построения КС
 
 + Response 200 (application/json; charset=utf-8)
     + Attributes(object, fixed-type)
@@ -1971,6 +1971,12 @@ distance, x, z - в километрах
 ## Program(ProgramBase, fixed-type)
 ### Properties
 - id (string) - Уникальный идентификатор
+
+## CsIndicator(enum[string])
+### Members
++ `cappi` - CAPPI
++ `ppi` - PPI
++ `maxcappi` - MAXCAPPI
 
 ## LogLevelEnum(enum[string])
 ### Members
