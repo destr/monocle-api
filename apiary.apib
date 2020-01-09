@@ -38,7 +38,6 @@ API для получения радиолокационных данных. В�
 + Request (application/json)
     + Attribute(StationBase)
 
-
 + Response 200 (application/json; charset=utf-8)
     + Attribute(Station)
 
@@ -88,7 +87,8 @@ API для получения радиолокационных данных. В�
         - count: 1 (number) - Количество записей в расписании
         - items(Schedule) - Расписание
 
-+ Response 200 (application/json)
++ Response 200 (application/json; charset=utf-8)
+    {}
 
 + Response 422
 
@@ -1741,7 +1741,7 @@ distance, x, z - в километрах
 # Data Structures
 ## ScheduleBase(array)
 - (object, fixed-type)
-    - program_id: `123` (string) - Уникальный идентификатор программы
+    - program_id: `default` (string) - Уникальный идентификатор программы
     - date: `00:01:01` (string) - Время запуска программы в формате hh:mm::ss
 
 ## Schedule(array)
