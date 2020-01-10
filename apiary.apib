@@ -202,7 +202,7 @@ API для получения радиолокационных данных. В�
 
 ### Остановить [POST]
 
-+ Response 200 (application/json; charset=utf-8
++ Response 200 (application/json; charset=utf-8)
     {}
 
 + Response 409
@@ -218,7 +218,8 @@ API для получения радиолокационных данных. В�
 
 ### Запустить [POST]
 
-+ Response 200 (application/json)
++ Response 200 (application/json; charset=utf-8)
+    {}
 
 + Response 409
 
@@ -363,6 +364,8 @@ Cправочник типов конических сечений для СМР
 
 + Parameters
     + id: `0` (number, required) - ID СМРЛП
+
++ Response 204
 
 + Response 200 (application/json; charset=utf-8)
     + Attributes(object, fixed-type)
@@ -810,33 +813,7 @@ distance, x, z - в километрах
             }
         }
 
-+ Response 422
-
-        {
-            "meteo_classes":
-            {
-                "count": 1,
-                "items":
-                [
-                    {
-                        "index": 0,
-                        "criteria":
-                        {
-                            "count": 1,
-                            "items":
-                            [
-                                {
-                                    "index": 0,
-                                    "cold": "Невалидное значение"
-                                }
-                            ]
-                        }
-                    }
-                ]
-            }
-        }
-
-+ Response 200 (application/json)
++ Response 200 (application/json; charset=utf-8)
 
         {
             "min_dangerous_meteo": 5,
@@ -896,6 +873,33 @@ distance, x, z - в километрах
                 ]
             }
         }
+
++ Response 422
+
+        {
+            "meteo_classes":
+            {
+                "count": 1,
+                "items":
+                [
+                    {
+                        "index": 0,
+                        "criteria":
+                        {
+                            "count": 1,
+                            "items":
+                            [
+                                {
+                                    "index": 0,
+                                    "cold": "Невалидное значение"
+                                }
+                            ]
+                        }
+                    }
+                ]
+            }
+        }
+
 
 + Response 409
 
