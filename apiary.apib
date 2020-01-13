@@ -365,8 +365,6 @@ Cправочник типов конических сечений для СМР
 + Parameters
     + id: `0` (number, required) - ID СМРЛП
 
-+ Response 204
-
 + Response 200 (application/json; charset=utf-8)
     + Attributes(object, fixed-type)
         - count: 1 (number) - Количество элементов в массиве items
@@ -376,6 +374,7 @@ Cправочник типов конических сечений для СМР
                 - max_wp_id: 15 (number) - Индекс максимально МЯ
                 - index: 0 (number) - Индекс элемента в массиве
 
++ Response 204
 
 ## Получить данные РЛП в формате GeoJSON [/station/{id}/rlp/geojson{?rlp_id,altitude,date,only_dangerous}]
 Получить данные РЛП в формате GeoJSON для отрисовки в интерфейсе.
@@ -1526,7 +1525,6 @@ distance, x, z - в километрах
                         "active": true,
                         "ip": "40.72.241.112",
                         "port": 21,
-                        "active_mode": true,
                         "path": "/var/lib/monocle/data/",
                         "login": "login",
                         "password": "password",
@@ -1549,7 +1547,6 @@ distance, x, z - в километрах
                         "active": false,
                         "ip": "40.72.241.112",
                         "port": 21,
-                        "active_mode": false,
                         "path": "/var/lib/monocle/data/",
                         "login": "login",
                         "password": "password",
