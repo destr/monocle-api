@@ -1258,7 +1258,7 @@ distance, x, z - в километрах
     + Attributes (object, fixed-type)
         - manual: false (boolean) - Задаётся ли высота нулевой изотермы вручную. Если false - вычисляется из данных НАМС
         - expire_period: 12 (number) - Время истечения заданного вручную значения, ч
-        - update_time: `2017-05-15T08:30:00` (string) - Время последнего обновления
+        - update_time: `2019-09-19T14:22:41` (string) - Время последнего обновления
         - height_temp0: 2400.1 (number) - Высота нулевой изотермы, задаваемая вручную
         - height_temp22: 7000.1 (number) Высота изотермы -22 градуса, задаваемая вручную
         - height_tropopause: 12000.1 (number) - Высота тропопаузы, задаваемая вручную
@@ -1607,50 +1607,8 @@ distance, x, z - в километрах
             }
         ]
 
-+ Response 200 (application/json)
-
-        {
-            "count": 2,
-            "items":
-                [
-                    {
-                        "active": true,
-                        "ip": "40.72.241.112",
-                        "port": 21,
-                        "path": "/var/lib/monocle/data/",
-                        "login": "login",
-                        "password": "password",
-                        "stations": [
-                            {
-                                "id": 1,
-                                "title": "Орловка"
-                            },
-                            {
-                                "id": 2,
-                                "title": "Чкаловский"
-                            },
-                            {
-                                "id": 3,
-                                "title": "Братск"
-                            }
-                        ]
-                    },
-                    {
-                        "active": false,
-                        "ip": "40.72.241.112",
-                        "port": 21,
-                        "path": "/var/lib/monocle/data/",
-                        "login": "login",
-                        "password": "password",
-                        "stations": [
-                            {
-                                "id": 3,
-                                "title": "Братск"
-                            }
-                        ]
-                    }
-                ]
-        }
++ Response 200 (application/json; charset=utf-8)
+    + Attributes(object)
 
 + Response 422 (application/json)
 
@@ -1682,7 +1640,7 @@ distance, x, z - в километрах
         - (FtpHost)
 
 + Response 200 (application/json; charset=utf-8)
-    + Attributes(CurrentFtpExportSettings)
+    + Attributes(object)
 
 ## Настройка экспорта HDF5 [/settings/hdf5]
 Экспорт данных HDF5 c АС СМРПЛ.
@@ -1697,7 +1655,7 @@ distance, x, z - в километрах
         - (FtpHost)
 
 + Response 200 (application/json; charset=utf-8)
-    + Attributes(CurrentFtpExportSettings)
+    + Attributes(object)
 
 ## Настройка экспорта MTP5 [/settings/mtp5]
 Экспорт данных MTP5 с АС СМРПЛ
@@ -1712,7 +1670,7 @@ distance, x, z - в километрах
         - (FtpHost)
 
 + Response 200 (application/json; charset=utf-8)
-    + Attributes(CurrentFtpExportSettings)
+    + Attributes(object)
 
 # Group Служебные
 
