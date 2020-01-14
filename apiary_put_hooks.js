@@ -21,7 +21,14 @@ var order = [
     'СМРЛП > СМРЛП > Обновить параметры СМРЛП',
     'СМРЛП > СМРЛП > Получить параметры СМРЛП',
     'СМРЛП > Расписание СМРЛП > Обновить расписание СМРЛП',
-    'СМРЛП > Расписание СМРЛП > Получить расписание СМРЛП'
+    'СМРЛП > Расписание СМРЛП > Получить расписание СМРЛП',
+    'Настройки > Настройки критериев МЯ для отдельного СМРЛП > Обновить настройки СМРЛП',
+    'Настройки > Настройки критериев МЯ для отдельного СМРЛП > Получить',
+    'Настройки > Программа > Создать программу',
+	'Настройки > Программы > Получить список программ', 
+    'Настройки > Программа > Обновить программу',
+    'Настройки > Программа > Получить',
+    'Настройки > Программа > Удалить программу',
 ]
 
 hooks.beforeAll(function(transactions, done) {
@@ -47,10 +54,11 @@ hooks.before('СМРЛП > СМРЛП > Обновить параметры СМ
 hooks.after('СМРЛП > СМРЛП > Получить параметры СМРЛП', function(transaction) {
 	var station = JSON.parse(transaction.real.body)
 	// проверяем только обновленные поля, а не эквивалентность json-запроса и json-ответа, потому что Телескоп дозаписывает json-запрос
-	if ((station.index != '0001') || (station.baltrad_index != 'abcde'))
+	if ((station.index != '0001') || (station.baltrad_index != 'abcde')) {
 		transaction.fail = 'Обновление параметров СМРЛП не выполнено'
+		console.log(JSON.stringify(station))
+	}	
 });
-
 
 hooks.before('СМРЛП > Расписание СМРЛП > Обновить расписание СМРЛП', function(transaction) {
 	var requestBody = JSON.parse(transaction.request.body);
@@ -60,8 +68,10 @@ hooks.before('СМРЛП > Расписание СМРЛП > Обновить р
 
 hooks.after('СМРЛП > Расписание СМРЛП > Получить расписание СМРЛП', function(transaction) {
 	var schedule = JSON.parse(transaction.real.body)
-	if (schedule.items[0].date != '00:01:02')
+	if (schedule.items[0].date != '00:01:02') {
 		transaction.fail = 'Обновление расписания не выполнено'
+		console.log(JSON.stringify(schedule))
+	}
 });
 
 hooks.before('СМРЛП > Включить работу СМРЛП по расписанию > Включить', function(transaction) {
@@ -172,12 +182,19 @@ hooks.before('Продукты и данные > Метеоинформация 
 	transaction.skip = true;
 });
 
-hooks.before('Настройки > Настройки критериев МЯ для отдельного СМРЛП > Получить', function(transaction) {
-	transaction.skip = true;
+hooks.before('Настройки > Настройки критериев МЯ для отдельного СМРЛП > Обновить настройки СМРЛП', function(transaction) {
+	var requestBody = JSON.parse(transaction.request.body);
+	requestBody['min_dangerous_meteo'] = 6;
+	requestBody['max_dangerous_meteo'] = 18;
+	transaction.request.body = JSON.stringify(requestBody);
 });
 
-hooks.before('Настройки > Настройки критериев МЯ для отдельного СМРЛП > Обновить настройки СМРЛП', function(transaction) {
-	transaction.skip = true;
+hooks.after('Настройки > Настройки критериев МЯ для отдельного СМРЛП > Получить', function(transaction) {
+	var settings = JSON.parse(transaction.real.body)
+	if ((settings.min_dangerous_meteo != 6) || (settings.max_dangerous_meteo != 18)) {
+		transaction.fail = 'Обновление настроек СМРЛП не выполнено'
+		console.log(JSON.stringify(settings))
+	}
 });
 
 hooks.before('Настройки > Настройки МРЛС > Получить настройки МРЛС', function(transaction) {
@@ -185,26 +202,47 @@ hooks.before('Настройки > Настройки МРЛС > Получит�
 });
 
 hooks.before('Настройки > Настройки МРЛС > Обновить настройки МРЛС', function(transaction) {
+	// Невозможно протестировать
 	transaction.skip = true;
 });
 
-hooks.before('Настройки > Программы > Получить список программ', function(transaction) {
-	transaction.skip = true;
+var programId = "";
+
+hooks.after('Настройки > Программа > Создать программу', function(transaction) {
+	var program = JSON.parse(transaction.real.body);
+	programId = program.id;
 });
 
-hooks.before('Настройки > Программа > Получить', function(transaction) {
-	transaction.skip = true;
-});
-
-hooks.before('Настройки > Программа > Удалить программу', function(transaction) {
-	transaction.skip = true;
-});
-
-hooks.before('Настройки > Программа > Создать программу', function(transaction) {
-	transaction.skip = true;
+hooks.after('Настройки > Программы > Получить список программ', function(transaction) {
+	var programList = JSON.parse(transaction.real.body);
+	var programCreated = false;
+	programList.items.forEach(function(item, index, array) {
+		if (item.id == programId)
+			programCreated = true;
+	});
+	if (!programCreated)
+		transaction.fail = "Программа не создана"
 });
 
 hooks.before('Настройки > Программа > Обновить программу', function(transaction) {
+	transaction.fullPath = transaction.fullPath.replace('default', programId);
+	var requestBody = JSON.parse(transaction.request.body);
+	requestBody['description'] = 'new_program';
+	transaction.request.body = JSON.stringify(requestBody);
+});
+
+hooks.before('Настройки > Программа > Получить', function(transaction) {
+	// transaction.fullPath = transaction.fullPath.replace('default', programId);
+	transaction.skip = true;
+});
+
+hooks.after('Настройки > Программа > Получить', function(transaction) {
+	// var program = JSON.parse(transaction.real.body);
+	// if (program.description != 'new_program')
+	// 	transaction.fail = "Обновление программы не выполнено"
+});
+
+hooks.before('Настройки > Программа > Удалить программу', function(transaction) {
 	transaction.skip = true;
 });
 
@@ -307,7 +345,6 @@ hooks.after('MТП-5 > Выдача списка дат архивных дан�
 hooks.before('MТП-5 > Выдача данных температурного профилемера > Получить', function(transaction) {
 	transaction.skip = true;
 });
-
 
 hooks.before('Настройки экспорта > Настройки экспорта BUFR > Получить список настроек экспорта BUFR', function(transaction) {
   transaction.skip = true;

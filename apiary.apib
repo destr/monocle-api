@@ -745,133 +745,17 @@ distance, x, z - в километрах
 ### Получить [GET]
 
 + Response 200 (application/json; charset=utf-8)
-  + Attributes (MeteoSettings)
+    + Attributes (MeteoSettings)
 
 + Response 404
 
 ### Обновить настройки СМРЛП [PUT]
 
 + Request (application/json)
-
-        {
-            "min_dangerous_meteo": 5,
-            "cloud_velocity_radial": true,
-            "meteo_classes":
-            {
-                "count": 2,
-                "items":
-                [
-                    {
-                        "index": 0,
-                        "id": 2,
-                        "type": "Слоистая облачность",
-                        "criteria":
-                        {
-                            "count": 1,
-                            "items":
-                            [
-                                {
-                                    "index": 0,
-                                    "code": "Cl_bH_min",
-                                    "title": "Пороговое значение HНГ для облачности верхнего и среднего ярусов",
-                                    "measurement_unit": " м",
-                                    "warm": 3000,
-                                    "cold": 3000
-                                }
-                            ]
-                        }
-                    },
-                    {
-                        "id": 2,
-                        "type": "Облачность (кучевая облачность)",
-                        "criteria":
-                        {
-                            "count": 1,
-                            "items":
-                            [
-                                {
-                                    "index": 0,
-                                    "code": "Cl_dBZ2_min",
-                                    "title": "Минимальное значение радиолокационной отражаемости на уровне Z2",
-                                    "measurement_unit": "dBZ",
-                                    "warm": 35,
-                                    "cold": 30
-                                },
-                                {
-                                    "index": 1,
-                                    "code": "Cl_dBZ3_min",
-                                    "title": "Минимальное значение радиолокационной отражаемости на уровнях Z3",
-                                    "measurement_unit": "dBZ",
-                                    "warm": 35,
-                                    "cold": 30
-                                }
-                            ]
-                        }
-                    }
-                ]
-            }
-        }
-
+    + Attributes(MeteoSettings)
+       
 + Response 200 (application/json; charset=utf-8)
-
-        {
-            "min_dangerous_meteo": 5,
-            "cloud_velocity_radial": true,
-            "meteo_classes":
-            {
-                "count": 2,
-                "items":
-                [
-                    {
-                        "index": 0,
-                        "id": 2,
-                        "type": "Слоистая облачность",
-                        "criteria":
-                        {
-                            "count": 1,
-                            "items":
-                            [
-                                {
-                                    "index": 0,
-                                    "code": "Cl_bH_min",
-                                    "title": "Пороговое значение HНГ для облачности верхнего и среднего ярусов",
-                                    "measurement_unit": " м",
-                                    "warm": 3000,
-                                    "cold": 3000
-                                }
-                            ]
-                        }
-                    },
-                    {
-                        "id": 2,
-                        "type": "Облачность (кучевая облачность)",
-                        "criteria":
-                        {
-                            "count": 1,
-                            "items":
-                            [
-                                {
-                                    "index": 0,
-                                    "code": "Cl_dBZ2_min",
-                                    "title": "Минимальное значение радиолокационной отражаемости на уровне Z2",
-                                    "measurement_unit": "dBZ",
-                                    "warm": 35,
-                                    "cold": 30
-                                },
-                                {
-                                    "index": 1,
-                                    "code": "Cl_dBZ3_min",
-                                    "title": "Минимальное значение радиолокационной отражаемости на уровнях Z3",
-                                    "measurement_unit": "dBZ",
-                                    "warm": 35,
-                                    "cold": 30
-                                }
-                            ]
-                        }
-                    }
-                ]
-            }
-        }
+    + Attributes(MeteoSettings)
 
 + Response 422
 
@@ -980,6 +864,7 @@ distance, x, z - в километрах
 
 + Response 201 (application/json; charset=utf-8)
     + Attributes(object)
+        - id (string) - Идентификатор созданной программы
 
 + Response 422 (application/json)
 
@@ -1067,7 +952,6 @@ distance, x, z - в километрах
     + Attributes(object)
         - count: 1 (number) - Количество элементов
         - items (array[LogMessage]) - Сообщения
-
 
 ## Построение карт РЛП [/settings/productrender]
 
