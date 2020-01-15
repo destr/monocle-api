@@ -11,11 +11,6 @@ function removeComments(o) {
         }
     }
 }
-hooks.beforeEachValidation(function(transaction) {
-    var obj = JSON.parse(transaction.expected.body)
-    removeComments(obj)
-    transaction.expected.body = JSON.stringify(obj)
-});
 
 var order = [
     'СМРЛП > СМРЛП > Обновить параметры СМРЛП',
@@ -25,12 +20,13 @@ var order = [
     'Настройки > Настройки критериев МЯ для отдельного СМРЛП > Обновить настройки СМРЛП',
     'Настройки > Настройки критериев МЯ для отдельного СМРЛП > Получить',
     'Настройки > Программа > Создать программу',
-	'Настройки > Программы > Получить список программ', 
     'Настройки > Программа > Обновить программу',
-    'Настройки > Программа > Получить',
-    'Настройки > Программа > Удалить программу',
+    'Настройки > Программы > Получить список программ',
+    'Настройки > Программа > Удалить программу', 
+    'Настройки > Программа > Получить'
 ]
 
+// порядок, в котором будут выполняться запросы
 hooks.beforeAll(function(transactions, done) {
     transactions.sort(function(a, b) {
         var aIdx = order.indexOf(a.name)
@@ -210,18 +206,8 @@ var programId = "";
 
 hooks.after('Настройки > Программа > Создать программу', function(transaction) {
 	var program = JSON.parse(transaction.real.body);
+	// сохраняем id созданной программы
 	programId = program.id;
-});
-
-hooks.after('Настройки > Программы > Получить список программ', function(transaction) {
-	var programList = JSON.parse(transaction.real.body);
-	var programCreated = false;
-	programList.items.forEach(function(item, index, array) {
-		if (item.id == programId)
-			programCreated = true;
-	});
-	if (!programCreated)
-		transaction.fail = "Программа не создана"
 });
 
 hooks.before('Настройки > Программа > Обновить программу', function(transaction) {
@@ -231,19 +217,38 @@ hooks.before('Настройки > Программа > Обновить про�
 	transaction.request.body = JSON.stringify(requestBody);
 });
 
-hooks.before('Настройки > Программа > Получить', function(transaction) {
-	// transaction.fullPath = transaction.fullPath.replace('default', programId);
-	transaction.skip = true;
+hooks.after('Настройки > Программы > Получить список программ', function(transaction) {
+	var programList = JSON.parse(transaction.real.body);
+	var programCreated = false;
+	var programUpdated = false;
+	// сначала проверяем, что программа создана
+	programList.items.forEach(function(item, index, array) {
+		if (item.id == programId) {
+			programCreated = true;
+			// если программа есть - проверяем, что поле description обновилось
+			if (item.description == "new_program")
+				programUpdated = true;
+		}
+	});
+	if (!programCreated)
+		transaction.fail = "Программа не создана";
+	if (!programUpdated)
+		transaction.fail = "Обновление программы не выполнено";
 });
 
-hooks.after('Настройки > Программа > Получить', function(transaction) {
-	// var program = JSON.parse(transaction.real.body);
-	// if (program.description != 'new_program')
-	// 	transaction.fail = "Обновление программы не выполнено"
-});
 
 hooks.before('Настройки > Программа > Удалить программу', function(transaction) {
-	transaction.skip = true;
+	// удаляем созданную программу
+	transaction.fullPath = transaction.fullPath.replace('default', programId);
+});
+
+hooks.before('Настройки > Программа > Получить', function(transaction) {
+	transaction.fullPath = transaction.fullPath.replace('default', programId);
+	// пытаемся получить удаленную программу, ожидая статус ответа 204
+	delete transaction.expected.body;
+	delete transaction.expected.bodySchema;
+	delete transaction.expected.headers;
+	transaction.expected.statusCode = '204';
 });
 
 hooks.before('Настройки > Журнал событий > Получить список событий', function(transaction) {
