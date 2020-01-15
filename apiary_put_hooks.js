@@ -374,46 +374,57 @@ hooks.after('Настройки > Калибровка изотермы > Пол
 });
 
 hooks.before('Уведомления > Уведомление об окончании обработки очередного пакета данных > Отправить уведомление', function(transaction) {
+	// отключен в Телескопе
 	transaction.skip = true;
 });
 
 hooks.before('Уведомления > Уведомление о соcтоянии > Отправить уведомление', function(transaction) {
+	// отключен в Телескопе
 	transaction.skip = true;
 });
 
 hooks.before('Уведомления > Уведомление об обновлении настроек > Отправить уведомление о изменении настроек СМРЛП', function(transaction) {
+	// отключен в Телескопе
 	transaction.skip = true;
 });
 
 hooks.before('Qt-интерфейс > Получение настроек для Qt интерфейса > Получить', function(transaction) {
-  transaction.skip = true;
+	// TODO тестирование Qt-интерфейса
+    transaction.skip = true;
 });
 
 hooks.before('Qt-интерфейс > Получение настроек для Qt интерфейса > Обновить', function(transaction) {
-  transaction.skip = true;
+	// TODO тестирование Qt-интерфейса
+    transaction.skip = true;
 });
 
 hooks.before('Qt-интерфейс > Запрос проверки соединения с FTP > Запрос проверки', function(transaction) {
+	// TODO тестирование Qt-интерфейса
 	transaction.skip = true;
 });
 
 hooks.before('Qt-интерфейс > Получить список файлов содержащихся в каталоге для воспроизведения > Получить', function(transaction) {
+	// TODO тестирование Qt-интерфейса
 	transaction.skip = true;
 });
 
 hooks.before('Qt-интерфейс > Управление вопроизведением голограмм > Установить новые параметры воспроизведения/записи', function(transaction) {
+	// TODO тестирование Qt-интерфейса
 	transaction.skip = true;
 });
 
 hooks.before('MТП-5 > Выдача списка дат архивных данных температурного профилимера > Получить', function(transaction) {
+	// тестируется с использованием apiary_get_hooks.js
 	transaction.skip = true;
 });
 
 hooks.after('MТП-5 > Выдача списка дат архивных данных температурного профилимера > Получить', function(transaction) {
+	// тестируется с использованием apiary_get_hooks.js
 	transaction.skip = true;
 });
 
 hooks.before('MТП-5 > Выдача данных температурного профилемера > Получить', function(transaction) {
+	// тестируется с использованием apiary_get_hooks.js
 	transaction.skip = true;
 });
 
