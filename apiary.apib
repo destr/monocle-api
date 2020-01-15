@@ -1164,16 +1164,14 @@ distance, x, z - в километрах
         - height_temp22: 7000.1 (number)
         - height_tropopause: 12000.1 (number)
 
-+ Response 200 (application/json)
-
-        {
-            "manual": false,
-            "expire_period": 12,
-            "update_time": "2017-05-15T08:30:00",
-            "height_temp0": 2400,
-            "height_temp22": 7000,
-            "height_tropopause": 12000
-        }
++ Response 200 (application/json; charset=utf-8)
+    + Attributes (object)
+        - manual: false (boolean) - Задаётся ли высота нулевой изотермы вручную. Если false - вычисляется из данных НАМС
+        - expire_period: 12 (number) - Время истечения заданного вручную значения, ч
+        - update_time (string) - Время последнего обновления
+        - height_temp0: 2400.1 (number) - Высота нулевой изотермы, задаваемая вручную
+        - height_temp22: 7000.1 (number) Высота изотермы -22 градуса, задаваемая вручную
+        - height_tropopause: 12000.1 (number) - Высота тропопаузы, задаваемая вручную
 
 + Response 422 (application/json)
 
