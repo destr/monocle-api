@@ -38,6 +38,9 @@ API для получения радиолокационных данных. В�
 + Request (application/json)
     + Attribute(StationBase)
 
++ Response 200 (application/json; charset=utf-8)
+    + Attribute(Station)
+
 + Response 422 (application/json)
 
     + Body
@@ -59,9 +62,6 @@ API для получения радиолокационных данных. В�
                 "nams_present": "Невалидное значение",
                 "mtp_present": "Невалидное значение",
             }
-
-+ Response 200 (application/json; charset=utf-8)
-    + Attribute(Station)
 
 + Response 404
 
@@ -87,7 +87,8 @@ API для получения радиолокационных данных. В�
         - count: 1 (number) - Количество записей в расписании
         - items(Schedule) - Расписание
 
-+ Response 200 (application/json)
++ Response 200 (application/json; charset=utf-8)
+    + Attributes(object)
 
 + Response 422
 
@@ -121,7 +122,8 @@ API для получения радиолокационных данных. В�
 
 ### Включить [POST]
 
-+ Response 200 (application/json)
++ Response 200 (application/json; charset=utf-8)
+    + Attributes(object)
 
 + Response 409
 
@@ -136,7 +138,8 @@ API для получения радиолокационных данных. В�
 
 ### Остановить [POST]
 
-+ Response 200 (application/json)
++ Response 200 (application/json; charset=utf-8)
+    + Attributes(object)
 
 + Response 409
 
@@ -156,7 +159,8 @@ API для получения радиолокационных данных. В�
 
 ### Запись карты местных отражений [POST]
 
-+ Response 200 (application/json)
++ Response 200 (application/json; charset=utf-8)
+    + Attributes(object)
 
 ## Остановить запись карты местных отражений [/station/{id}/local_reflection_map/stop]
 
@@ -168,7 +172,8 @@ API для получения радиолокационных данных. В�
 
 ### Остановить запись карты местных отражений [POST]
 
-+ Response 200 (application/json)
++ Response 200 (application/json; charset=utf-8)
+    + Attributes(object)
 
 ## Запустить работу СМРЛП по программе [/station/{id}/program/{program_id}/start]
 
@@ -180,7 +185,8 @@ API для получения радиолокационных данных. В�
 
 ### Запустить [POST]
 
-+ Response 200 (application/json)
++ Response 200 (application/json; charset=utf-8)
+    + Attributes(object)
 
 + Response 409
 
@@ -196,7 +202,8 @@ API для получения радиолокационных данных. В�
 
 ### Остановить [POST]
 
-+ Response 200 (application/json)
++ Response 200 (application/json; charset=utf-8)
+    + Attributes(object)
 
 + Response 409
 
@@ -211,7 +218,8 @@ API для получения радиолокационных данных. В�
 
 ### Запустить [POST]
 
-+ Response 200 (application/json)
++ Response 200 (application/json; charset=utf-8)
+    + Attributes(object)
 
 + Response 409
 
@@ -366,6 +374,7 @@ Cправочник типов конических сечений для СМР
                 - max_wp_id: 15 (number) - Индекс максимально МЯ
                 - index: 0 (number) - Индекс элемента в массиве
 
++ Response 204
 
 ## Получить данные РЛП в формате GeoJSON [/station/{id}/rlp/geojson{?rlp_id,altitude,date,only_dangerous}]
 Получить данные РЛП в формате GeoJSON для отрисовки в интерфейсе.
@@ -736,72 +745,17 @@ distance, x, z - в километрах
 ### Получить [GET]
 
 + Response 200 (application/json; charset=utf-8)
-  + Attributes (MeteoSettings)
+    + Attributes (MeteoSettings)
 
 + Response 404
 
 ### Обновить настройки СМРЛП [PUT]
 
 + Request (application/json)
-
-        {
-            "min_dangerous_meteo": 5,
-            "cloud_velocity_radial": true,
-            "meteo_classes":
-            {
-                "count": 2,
-                "items":
-                [
-                    {
-                        "index": 0,
-                        "id": 2,
-                        "type": "Слоистая облачность",
-                        "criteria":
-                        {
-                            "count": 1,
-                            "items":
-                            [
-                                {
-                                    "index": 0,
-                                    "code": "Cl_bH_min",
-                                    "title": "Пороговое значение HНГ для облачности верхнего и среднего ярусов",
-                                    "measurement_unit": " м",
-                                    "warm": 3000,
-                                    "cold": 3000
-                                }
-                            ]
-                        }
-                    },
-                    {
-                        "id": 2,
-                        "type": "Облачность (кучевая облачность)",
-                        "criteria":
-                        {
-                            "count": 1,
-                            "items":
-                            [
-                                {
-                                    "index": 0,
-                                    "code": "Cl_dBZ2_min",
-                                    "title": "Минимальное значение радиолокационной отражаемости на уровне Z2",
-                                    "measurement_unit": "dBZ",
-                                    "warm": 35,
-                                    "cold": 30
-                                },
-                                {
-                                    "index": 1,
-                                    "code": "Cl_dBZ3_min",
-                                    "title": "Минимальное значение радиолокационной отражаемости на уровнях Z3",
-                                    "measurement_unit": "dBZ",
-                                    "warm": 35,
-                                    "cold": 30
-                                }
-                            ]
-                        }
-                    }
-                ]
-            }
-        }
+    + Attributes(MeteoSettings)
+       
++ Response 200 (application/json; charset=utf-8)
+    + Attributes(MeteoSettings)
 
 + Response 422
 
@@ -829,66 +783,6 @@ distance, x, z - в километрах
             }
         }
 
-+ Response 200 (application/json)
-
-        {
-            "min_dangerous_meteo": 5,
-            "cloud_velocity_radial": true,
-            "meteo_classes":
-            {
-                "count": 2,
-                "items":
-                [
-                    {
-                        "index": 0,
-                        "id": 2,
-                        "type": "Слоистая облачность",
-                        "criteria":
-                        {
-                            "count": 1,
-                            "items":
-                            [
-                                {
-                                    "index": 0,
-                                    "code": "Cl_bH_min",
-                                    "title": "Пороговое значение HНГ для облачности верхнего и среднего ярусов",
-                                    "measurement_unit": " м",
-                                    "warm": 3000,
-                                    "cold": 3000
-                                }
-                            ]
-                        }
-                    },
-                    {
-                        "id": 2,
-                        "type": "Облачность (кучевая облачность)",
-                        "criteria":
-                        {
-                            "count": 1,
-                            "items":
-                            [
-                                {
-                                    "index": 0,
-                                    "code": "Cl_dBZ2_min",
-                                    "title": "Минимальное значение радиолокационной отражаемости на уровне Z2",
-                                    "measurement_unit": "dBZ",
-                                    "warm": 35,
-                                    "cold": 30
-                                },
-                                {
-                                    "index": 1,
-                                    "code": "Cl_dBZ3_min",
-                                    "title": "Минимальное значение радиолокационной отражаемости на уровнях Z3",
-                                    "measurement_unit": "dBZ",
-                                    "warm": 35,
-                                    "cold": 30
-                                }
-                            ]
-                        }
-                    }
-                ]
-            }
-        }
 
 + Response 409
 
@@ -963,9 +857,60 @@ distance, x, z - в километрах
 
 + Response 404
 
-### Удалить программу [DELETE]
-
 + Response 204
+
+### Создать программу [POST /program]
+
++ Request (application/json)
+    + Attributes (Program)
+
++ Response 201 (application/json; charset=utf-8)
+    + Attributes(object)
+        - id (string) - Идентификатор созданной программы
+
++ Response 422 (application/json)
+
+    + Body
+
+            {
+                "program": {
+                    "angles_array": "Присутствуют невалидные значения",
+                    "av_azimuth_change": "Невалидное значение",
+                    "azimuth_scan_speed": "Невалидное значение",
+                    "blank_sectors_array": "Присутствуют невалидные значения",
+                    "mode": "Невалидное значение",
+                    "raster_left_azimuth": "Невалидное значение",
+                    "raster_right_azimuth": "Невалидное значение",
+                    "scope_range": "Невалидное значение",
+                    "duration": "Невалидное значение"
+                }
+            }
+
+### Обновить программу [PUT]
+
++ Request (application/json)
+    + Attributes (Program)
+
++ Response 200 (application/json; charset=utf-8)
+    + Attributes(object)
+
++ Response 422 (application/json)
+
+    + Body
+
+            {
+                "program": {
+                    "angles_array": "Присутствуют невалидные значения",
+                    "av_azimuth_change": "Невалидное значение",
+                    "azimuth_scan_speed": "Невалидное значение",
+                    "blank_sectors_array": "Присутствуют невалидные значения",
+                    "mode": "Невалидное значение",
+                    "raster_left_azimuth": "Невалидное значение",
+                    "raster_right_azimuth": "Невалидное значение",
+                    "scope_range": "Невалидное значение",
+                    "duration": "Невалидное значение"
+                }
+            }
 
 + Response 409
 
@@ -976,63 +921,18 @@ distance, x, z - в километрах
 
 + Response 404
 
-### Создать программу [POST /program]
+### Удалить программу [DELETE]
 
-+ Request (application/json)
-    + Attributes (Program)
-
-
-+ Response 422 (application/json)
-
-    + Body
-
-            {
-                "program": {
-                    "angles_array": "Присутствуют невалидные значения",
-                    "av_azimuth_change": "Невалидное значение",
-                    "azimuth_scan_speed": "Невалидное значение",
-                    "blank_sectors_array": "Присутствуют невалидные значения",
-                    "mode": "Невалидное значение",
-                    "raster_left_azimuth": "Невалидное значение",
-                    "raster_right_azimuth": "Невалидное значение",
-                    "scope_range": "Невалидное значение",
-                    "duration": "Невалидное значение"
-                }
-            }
-
-+ Response 201 (application/json)
-
-### Обновить программу [PUT]
-
-+ Request (application/json)
-    + Attributes (Program)
-
-+ Response 200 (application/json)
-
-+ Response 422 (application/json)
-
-    + Body
-
-            {
-                "program": {
-                    "angles_array": "Присутствуют невалидные значения",
-                    "av_azimuth_change": "Невалидное значение",
-                    "azimuth_scan_speed": "Невалидное значение",
-                    "blank_sectors_array": "Присутствуют невалидные значения",
-                    "mode": "Невалидное значение",
-                    "raster_left_azimuth": "Невалидное значение",
-                    "raster_right_azimuth": "Невалидное значение",
-                    "scope_range": "Невалидное значение",
-                    "duration": "Невалидное значение"
-                }
-            }
++ Response 410
 
 + Response 409
 
         {
-            "count": 2,
-            "station_ids": [1,4]
+            "count": 1,
+            "station_ids": [0]
         }
+
++ Response 204
 
 + Response 404
 
@@ -1050,11 +950,12 @@ distance, x, z - в километрах
     * limit (number, optional) - Количество строк на странице
     * offset (number, optional) - Начиная с какой позиции выводить элементы
 
++ Response 204
+
 + Response 200 (application/json)
     + Attributes(object)
         - count: 1 (number) - Количество элементов
         - items (array[LogMessage]) - Сообщения
-
 
 ## Построение карт РЛП [/settings/productrender]
 
@@ -1071,7 +972,7 @@ distance, x, z - в километрах
     + Attributes(ProductRenderer)
 
 
-+ Response 200 (application/json)
++ Response 200 (application/json; charset=utf-8)
     + Attributes(ProductRenderer)
 
 + Response 422 (application/json)
@@ -1115,7 +1016,7 @@ distance, x, z - в километрах
     + Attributes(array[ColorScaleItem])
 
 + Response 200 (application/json; charset=utf-8)
-    + Attributes(array[ColorScaleItem])
+    + Attributes(object)
 
 + Response 422 (application/json)
 
@@ -1203,8 +1104,8 @@ distance, x, z - в километрах
 
 + Request (application/json)
     + Attributes(object, fixed-type)
-         date: `2019-09-19T14:22:41` (string) - Дата и время измерения ОМП
-        - sources (array[MeteoSouceBase]) - Массив контейнеров ОМП МП из разных источников
+        - date: `2019-09-19T14:22:41` (string) - Дата и время измерения ОМП
+        - sources (array[MeteoSourceBase]) - Массив контейнеров ОМП МП из разных источников
 
 + Response 200
 
@@ -1227,7 +1128,7 @@ distance, x, z - в километрах
 + Request (application/json)
     + Attributes(AlgorithmParameters)
 
-+ Response 200 (application/json)
++ Response 201 (application/json; charset=utf-8)
     + Attributes(object)
 
 ## Калибровка изотермы [/station/{id}/isotherm]
@@ -1244,7 +1145,7 @@ distance, x, z - в километрах
     + Attributes (object, fixed-type)
         - manual: false (boolean) - Задаётся ли высота нулевой изотермы вручную. Если false - вычисляется из данных НАМС
         - expire_period: 12 (number) - Время истечения заданного вручную значения, ч
-        - update_time: `2017-05-15T08:30:00` (string) - Время последнего обновления
+        - update_time: `2019-09-19T14:22:41` (string) - Время последнего обновления
         - height_temp0: 2400.1 (number) - Высота нулевой изотермы, задаваемая вручную
         - height_temp22: 7000.1 (number) Высота изотермы -22 градуса, задаваемая вручную
         - height_tropopause: 12000.1 (number) - Высота тропопаузы, задаваемая вручную
@@ -1263,16 +1164,14 @@ distance, x, z - в километрах
         - height_temp22: 7000.1 (number)
         - height_tropopause: 12000.1 (number)
 
-+ Response 200 (application/json)
-
-        {
-            "manual": false,
-            "expire_period": 12,
-            "update_time": "2017-05-15T08:30:00",
-            "height_temp0": 2400,
-            "height_temp22": 7000,
-            "height_tropopause": 12000
-        }
++ Response 200 (application/json; charset=utf-8)
+    + Attributes (object)
+        - manual: false (boolean) - Задаётся ли высота нулевой изотермы вручную. Если false - вычисляется из данных НАМС
+        - expire_period: 12 (number) - Время истечения заданного вручную значения, ч
+        - update_time (string) - Время последнего обновления
+        - height_temp0: 2400.1 (number) - Высота нулевой изотермы, задаваемая вручную
+        - height_temp22: 7000.1 (number) Высота изотермы -22 градуса, задаваемая вручную
+        - height_tropopause: 12000.1 (number) - Высота тропопаузы, задаваемая вручную
 
 + Response 422 (application/json)
 
@@ -1512,7 +1411,6 @@ distance, x, z - в километрах
                         "active": true,
                         "ip": "40.72.241.112",
                         "port": 21,
-                        "active_mode": true,
                         "path": "/var/lib/monocle/data/",
                         "login": "login",
                         "password": "password",
@@ -1535,7 +1433,6 @@ distance, x, z - в километрах
                         "active": false,
                         "ip": "40.72.241.112",
                         "port": 21,
-                        "active_mode": false,
                         "path": "/var/lib/monocle/data/",
                         "login": "login",
                         "password": "password",
@@ -1593,50 +1490,8 @@ distance, x, z - в километрах
             }
         ]
 
-+ Response 200 (application/json)
-
-        {
-            "count": 2,
-            "items":
-                [
-                    {
-                        "active": true,
-                        "ip": "40.72.241.112",
-                        "port": 21,
-                        "path": "/var/lib/monocle/data/",
-                        "login": "login",
-                        "password": "password",
-                        "stations": [
-                            {
-                                "id": 1,
-                                "title": "Орловка"
-                            },
-                            {
-                                "id": 2,
-                                "title": "Чкаловский"
-                            },
-                            {
-                                "id": 3,
-                                "title": "Братск"
-                            }
-                        ]
-                    },
-                    {
-                        "active": false,
-                        "ip": "40.72.241.112",
-                        "port": 21,
-                        "path": "/var/lib/monocle/data/",
-                        "login": "login",
-                        "password": "password",
-                        "stations": [
-                            {
-                                "id": 3,
-                                "title": "Братск"
-                            }
-                        ]
-                    }
-                ]
-        }
++ Response 200 (application/json; charset=utf-8)
+    + Attributes(object)
 
 + Response 422 (application/json)
 
@@ -1668,7 +1523,7 @@ distance, x, z - в километрах
         - (FtpHost)
 
 + Response 200 (application/json; charset=utf-8)
-    + Attributes(CurrentFtpExportSettings)
+    + Attributes(object)
 
 ## Настройка экспорта HDF5 [/settings/hdf5]
 Экспорт данных HDF5 c АС СМРПЛ.
@@ -1683,7 +1538,7 @@ distance, x, z - в километрах
         - (FtpHost)
 
 + Response 200 (application/json; charset=utf-8)
-    + Attributes(CurrentFtpExportSettings)
+    + Attributes(object)
 
 ## Настройка экспорта MTP5 [/settings/mtp5]
 Экспорт данных MTP5 с АС СМРПЛ
@@ -1698,7 +1553,7 @@ distance, x, z - в километрах
         - (FtpHost)
 
 + Response 200 (application/json; charset=utf-8)
-    + Attributes(CurrentFtpExportSettings)
+    + Attributes(object)
 
 # Group Служебные
 
@@ -1740,7 +1595,7 @@ distance, x, z - в километрах
 # Data Structures
 ## ScheduleBase(array)
 - (object, fixed-type)
-    - program_id: `123` (string) - Уникальный идентификатор программы
+    - program_id: `default` (string) - Уникальный идентификатор программы
     - date: `00:01:01` (string) - Время запуска программы в формате hh:mm::ss
 
 ## Schedule(array)
