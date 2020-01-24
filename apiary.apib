@@ -496,7 +496,7 @@ Cправочник типов конических сечений для СМР
 + Response 200 (application/json; charset=utf-8)
     + Attributes(object, fixed-type)
         - values (array):
-            - 4, 100.1, 2500.1 (array[number]) - Элементы массива: код метеоявления, высота начала(м) и высота конца(м) столбика
+            - 4.2, 100.1, 2500.1 (array[number]) - Элементы массива: код метеоявления, высота начала(м) и высота конца(м) столбика
         - user_points: 300.5 (array[number]) - Значения по горизонтальной оси (расстояние до точки от начала маршруА)
         - timestamp: 1569977366 (number)
 
@@ -545,7 +545,7 @@ Cправочник типов конических сечений для СМР
 
 + Response 200 (application/json; charset=utf-8)
     + Attributes(object, fixed-type)
-        - heights: 0, 100.1 (array[number])
+        - heights: 0.1, 100.1 (array[number])
         - values: `-10.1`, `-10.5` (array[number])
         - timestamp: 1569977366 (number)
 
@@ -753,7 +753,7 @@ distance, x, z - в километрах
 
 + Request (application/json)
     + Attributes(MeteoSettings)
-       
+
 + Response 200 (application/json; charset=utf-8)
     + Attributes(MeteoSettings)
 
@@ -1001,7 +1001,7 @@ distance, x, z - в километрах
 + Response 200 (application/json; charset=utf-8)
     + Attributes(object)
         - count: 1 (number) - Количество элементов
-        - items (array[ColorScale], fixed-type) - Цветовые шкалы
+        - items (array[ColorScaleWebUi], fixed-type) - Цветовые шкалы
 
 ## Настройки цветовой шкалы [/settings/color_scale/{id}]
 
@@ -1013,7 +1013,7 @@ distance, x, z - в километрах
 ### Обновить настройки цветовой шкалы [PUT]
 
 + Request (application/json)
-    + Attributes(array[ColorScaleItem])
+    + Attributes(array[ColorScaleItemWebUi])
 
 + Response 200 (application/json; charset=utf-8)
     + Attributes(object)
@@ -1041,7 +1041,7 @@ distance, x, z - в километрах
 ### Получить настройки цветовой шкалы по умолчанию [GET]
 
 + Response 200 (application/json; charset=utf-8)
-    + Attributes(ColorScale)
+    + Attributes(ColorScaleWebUi)
 
 ## Поправка на север [/north_azimuth/{id}]
 
@@ -1861,17 +1861,26 @@ distance, x, z - в километрах
 - value: 30.5 (number) - Значение
 - color: `#010178` (string) - RGB значение цвета
 
-## ColorScaleItem(ColorScaleItemBase, fixed-type)
+## ColorScaleItemWebUi(ColorScaleItemBase, fixed-type)
 ### Properties
 - index: 0 (number) - Порядковый номер
 
-## ColorScale(ColorScaleBase, fixed-type)
+## ColorScaleItemRaw(object, fixed-type)
+### Properties
+- val: 30.5 (number) - Значение
+- color: 255 (number) - Значение цвета
+
+## ColorScaleRaw(ColorScaleBase, fixed-type)
+### Properties
+- items (array[ColorScaleItemRaw])
+
+## ColorScaleWebUi(ColorScaleBase, fixed-type)
 ### Properties
 - index: 0 (number, optional) - Идентификатор шкалы. Нужен только для пагинации
 - id: 0 (number) - Идентификатор цветовой шкалы. Соответствует типу РЛП и КС
 - title: `Отражаемость` (string) - Название шкалы
 - count: 3 (number) - Количество элементов item
-- items (array[ColorScaleItem])
+- items (array[ColorScaleItemWebUi])
 
 ## IsothermSource(object, fixed-type)
 ### Properties
@@ -2085,23 +2094,23 @@ distance, x, z - в километрах
 - render(object)
     - colorscale(object):
         - change: false (boolean)
-        - dbz (ColorScaleBase)
-        - dwvs (ColorScaleBase)
-        - edr (ColorScaleBase)
-        - htmax (ColorScaleBase)
-        - htmin (ColorScaleBase)
-        - rfli (ColorScaleBase)
-        - rfls12 (ColorScaleBase)
-        - rfls24 (ColorScaleBase)
-        - rfls3 (ColorScaleBase)
-        - rfls6 (ColorScaleBase)
-        - undefine (ColorScaleBase)
-        - vil (ColorScaleBase)
-        - vr (ColorScaleBase)
-        - wpcell (ColorScaleBase)
-        - wpfig (ColorScaleBase)
-        - wsh (ColorScaleBase)
-        - wsv (ColorScaleBase)
+        - dbz (ColorScaleRaw)
+        - dwvs (ColorScaleRaw)
+        - edr (ColorScaleRaw)
+        - htmax (ColorScaleRaw)
+        - htmin (ColorScaleRaw)
+        - rfli (ColorScaleRaw)
+        - rfls12 (ColorScaleRaw)
+        - rfls24 (ColorScaleRaw)
+        - rfls3 (ColorScaleRaw)
+        - rfls6 (ColorScaleRaw)
+        - undefine (ColorScaleRaw)
+        - vil (ColorScaleRaw)
+        - vr (ColorScaleRaw)
+        - wpcell (ColorScaleRaw)
+        - wpfig (ColorScaleRaw)
+        - wsh (ColorScaleRaw)
+        - wsv (ColorScaleRaw)
     - maps (Maps)
     - vertical_section(object, fixed-type)
         - automaxheight: 0 (number)

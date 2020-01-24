@@ -47,8 +47,8 @@
 /vertical_section_by_route
   > VerticalSectionPost
 /vertical_profile
-  > VerticalProfilePost
-  <200 VerticalProfile
+  > ::VerticalProfilePost
+  <200 ::VerticalProfile
 /station/{id}/mrls_status
   <200 ::MrlsStatus
 /settings/{id}/channels
@@ -64,14 +64,14 @@
   > ::FtpConnectionPost
   <200 FtpConnectionResult
 /station/{id}/marker_data
-  > MarkerDataPost
-  <200 MarkerData
+  > ::MarkerDataPost
+  <200 ::MarkerData
 /vertical_section_wp
-  > VerticalSectionWpPost
-  <200 VerticalSectionWp
+  > ::VerticalSectionWpPost
+  <200 ::VerticalSectionWp
 /vertical_section_cs
-  > VerticalSectionCsPost
-  <200 VerticalSectionCs
+  > ::VerticalSectionCsPost
+  <200 ::VerticalSectionCs
 /station/{id}/lsholodir
   <200 ::LsHoloDir
 /station/{id}/holocontrol
