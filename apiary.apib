@@ -999,9 +999,7 @@ distance, x, z - в километрах
 ### Получить список настроек цветовых шкал [GET]
 
 + Response 200 (application/json; charset=utf-8)
-    + Attributes(object)
-        - count: 1 (number) - Количество элементов
-        - items (array[ColorScaleWebUi], fixed-type) - Цветовые шкалы
+    + Attributes(ColorScaleList)
 
 ## Настройки цветовой шкалы [/settings/color_scale/{id}]
 
@@ -1890,6 +1888,12 @@ distance, x, z - в километрах
 - count: 3 (number) - Количество элементов item
 - items (array[ColorScaleItemWebUi])
 
+## ColorScaleList(object, fixed-type)
+### Properties
+- count: 1 (number) - Количество элементов
+- items (array[ColorScaleWebUi], fixed-type) - Цветовые шкалы
+
+
 ## IsothermSource(object, fixed-type)
 ### Properties
 - source: `auto` (string)
@@ -2063,7 +2067,10 @@ distance, x, z - в километрах
     - radius: 100.1 (number)
     - cell_size: 1000.5 (number)
     - image_size: 209 (number)
-- url: `/wpcell.png` (string)
+- url: `/wpcell.png` (string) - Отображение продукта в PNG
+- color_scale (ColorScaleWebUi) - Цветовая шкала используемая при отображении продукта
+- url_geotiff: `/wpcell.geotiff` (string) - Отображение продукта в GeoTIFF формате с опорными точками
+- url_geotiff_reproj: `/wpcell.reproj.georiff` - Отображение продукта в формате GeoTIFF перепроецированное
 
 ## MeteoSourceBase(object, fixed-type)
 ### properties
