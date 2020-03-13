@@ -8,7 +8,7 @@
 /station/{id}/types/cs_list{?role}
 /station/{id}/isotherm
   <200 ::IsothermCalibration
-  > ::IsothermCalibrationPut
+  > ::IsothermCalibrationPut[PUT]
 /station/{id}/meteosettings
 /station/{id}/radarsettings
 /station/{id}/schedule
@@ -76,7 +76,7 @@
   <200 ::LsHoloDir
 /station/{id}/holocontrol
   > ::HoloControlPost[POST]
-  <200 ::HoloControlStatus
+  <200 ::HoloControlStatus[POST]
 /station/{id}/mtp/archive
   <200 ::Mtp5Archive
 /station/{id}/mtp{?date}
