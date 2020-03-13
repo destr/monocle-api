@@ -1598,6 +1598,18 @@ distance, x, z - в километрах
 + Response 200 (application/json)
     + Attributes(Station)
 
+
+## Workaroud CPP types [/workaround/cpptypes]
+Обёрка для генерации c++ типов под несуществующими кодами возврата >600 Для того, чтобы
+не дорабатывать генератор
+### Get [GET]
+
++ Response 600 (application/json)
+    + Attributes(Maps)
+
++ Response 601 (application/json)
+    + Attributes(RenderColorScale)
+
 # Data Structures
 ## ScheduleBase(array)
 - (object, fixed-type)
@@ -2100,6 +2112,27 @@ distance, x, z - в километрах
 - terrainHorizontalShift: 0 (number)
 - terrainVerticalShift: 0 (number)
 
+## RenderColorScale
+### Properties
+- change: false (boolean)
+- dbz (ColorScaleRaw)
+- dwvs (ColorScaleRaw)
+- edr (ColorScaleRaw)
+- htmax (ColorScaleRaw)
+- htmin (ColorScaleRaw)
+- rfli (ColorScaleRaw)
+- rfls12 (ColorScaleRaw)
+- rfls24 (ColorScaleRaw)
+- rfls3 (ColorScaleRaw)
+- rfls6 (ColorScaleRaw)
+- undefine (ColorScaleRaw)
+- vil (ColorScaleRaw)
+- vr (ColorScaleRaw)
+- wpcell (ColorScaleRaw)
+- wpfig (ColorScaleRaw)
+- wsh (ColorScaleRaw)
+- wsv (ColorScaleRaw)
+
 ## QtIfaceSettings(object, fixed-type)
 ### Properties
 - station (Station, fixed-type)
@@ -2109,25 +2142,7 @@ distance, x, z - в километрах
     - vertically_integrated_liquid (VerticallyIntegratedLiquid)
     - wind_shear_field(WindShearField)
 - render(object)
-    - colorscale(object):
-        - change: false (boolean)
-        - dbz (ColorScaleRaw)
-        - dwvs (ColorScaleRaw)
-        - edr (ColorScaleRaw)
-        - htmax (ColorScaleRaw)
-        - htmin (ColorScaleRaw)
-        - rfli (ColorScaleRaw)
-        - rfls12 (ColorScaleRaw)
-        - rfls24 (ColorScaleRaw)
-        - rfls3 (ColorScaleRaw)
-        - rfls6 (ColorScaleRaw)
-        - undefine (ColorScaleRaw)
-        - vil (ColorScaleRaw)
-        - vr (ColorScaleRaw)
-        - wpcell (ColorScaleRaw)
-        - wpfig (ColorScaleRaw)
-        - wsh (ColorScaleRaw)
-        - wsv (ColorScaleRaw)
+    - colorscale(RenderColorScale, fixed-type)
     - maps (Maps)
     - vertical_section(object, fixed-type)
         - automaxheight: 0 (number)

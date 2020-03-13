@@ -45,9 +45,9 @@
 /settings/default_weather_criteria
 /north_azimuth/{id}
 /vertical_section_by_route
-  > VerticalSectionPost
+  > VerticalSectionPost[POST]
 /vertical_profile
-  > ::VerticalProfilePost
+  > ::VerticalProfilePost[POST]
   <200 ::VerticalProfile
 /station/{id}/mrls_status
   <200 ::MrlsStatus
@@ -61,21 +61,21 @@
 /station/{id}/settings/qtiface
   <200 QtifaceSettings
 /settings/check_ftp_connection
-  > ::FtpConnectionPost
+  > ::FtpConnectionPost[POST]
   <200 FtpConnectionResult
 /station/{id}/marker_data
-  > ::MarkerDataPost
+  > ::MarkerDataPost[POST]
   <200 ::MarkerData
 /vertical_section_wp
-  > ::VerticalSectionWpPost
+  > ::VerticalSectionWpPost[POST]
   <200 ::VerticalSectionWp
 /vertical_section_cs
-  > ::VerticalSectionCsPost
+  > ::VerticalSectionCsPost[POST]
   <200 ::VerticalSectionCs
 /station/{id}/lsholodir
   <200 ::LsHoloDir
 /station/{id}/holocontrol
-  > ::HoloControlPost
+  > ::HoloControlPost[POST]
   <200 ::HoloControlStatus
 /station/{id}/mtp/archive
   <200 ::Mtp5Archive
@@ -90,4 +90,8 @@
   <200 ::AlgorighmParameters
 /server/info
   <200 ::ServerInfo
-
+# Запрос не используется. Нужен для генерации C++ типов
+# чтобы не дорабатывать парсер-генератор. Код возврата больше 600
+/workaround/cpptypes
+  <600 ::WorkaroudData
+  <601 ::RenderColorScale

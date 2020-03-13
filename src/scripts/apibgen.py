@@ -17,23 +17,26 @@ class ResourceElement:
         transition = self._find_content(element, "transition")
         # может быть много ответов с разными кодами и разными форматами данных
         httpTransactions = self._find_content(transition, "httpTransaction")
-        httpResponse = self._find_content(httpTransactions, "httpResponse")
-        httpRequest = self._find_content(httpTransactions, "httpRequest")
+#        httpResponse = self._find_content(httpTransactions, "httpResponse")
+#        httpRequest = self._find_content(httpTransactions, "httpRequest")
 
         self.jsonobjs = dict()
 
-        for response in httpResponse:
-            code = response["attributes"]["statusCode"]["content"]
-            assets = self._find_content(httpResponse, "asset")
+        def add_asset(assets, method, code):
             if assets:
-                self.jsonobjs[int(code)] = assets[0]["content"]
+                self.jsonobjs[(method, int(code))] = assets[0]["content"]
 
-        for request in httpRequest:
-            assets = self._find_content(httpRequest, "asset")
-            # TODO типы запроса
-            #method = request["attributes"]["method"]["content"]
-            if assets:
-                self.jsonobjs[0] = assets[0]["content"]
+        for transaction in httpTransactions:
+            # предполагается что всегда есть запрос
+            request = self._find_content(transaction, "httpRequest")
+            method = request[0]["attributes"]["method"]["content"]
+            assets = self._find_content(request, "asset")
+            add_asset(assets, method, 0)
+
+            for response in self._find_content(transaction, "httpResponse"):
+                code = response["attributes"]["statusCode"]["content"]
+                assets = self._find_content(response, "asset")
+                add_asset(assets, method, code)
 
     def _find_content(self, content, name) -> list:
         result = list()
@@ -50,11 +53,14 @@ class ResourceElement:
                 result.append(e)
         return result
 
-    def jsonobj(self, code):
+    def jsonobj(self, method, code):
         try:
-            return self.jsonobjs[code]
+            return self.jsonobjs[(method, code)]
         except KeyError:
             return ''
+
+    def codes(self, m):
+        return [code for method, code in self.jsonobjs.keys() if m == method]
 
 
 class MapFile:
@@ -70,23 +76,38 @@ class MapFile:
                     continue
                 if line.startswith("/"):
                     url = line.strip()
-                    self.map[url] = dict()
                     continue
                 if line.startswith(' '):
                     line = line.strip()
+
+                    pos = None
+                    method = 'GET'
+                    try:
+                        pos = line.rindex('[')
+                        method = line[pos + 1:-1]
+                    except ValueError:
+                        pass
+
+                    key = (method, url)
+                    if key not in self.map:
+                        self.map[key] = dict()
+
                     if line.startswith("<") and len(line) > 5:
                         # коды ответов трёхзначный
-                        self.map[url][int(line[1:4])] = line[5:]
+                        # в Конце строки может быть тип запросв [] скобках
+                        self.map[key][int(line[1:4])] = line[5:pos]
                     if line.startswith(">") and len(line) > 3:
                         # post запрос пока всегда 0. Хотя код не нужен вообще.
                         # Возможно придётся сделать для POST PUT разные коды.
-                        self.map[url][0] = line[2:]
+                        self.map[key][0] = line[2:pos]
 
-    def classname(self, url, code):
+    def classname(self, method, url, code):
         try:
-            return self.map[url][code]
+            key = (method, url)
+            return self.map[key][code]
         except KeyError:
             return None
+
 
 
 class ApibGen:
@@ -129,33 +150,38 @@ class ApibGen:
                 continue
             for resource in category["content"]:
                 json_str = ''
+
+                if resource["element"] == "dataStructure":
+                    pass
+
                 if resource["element"] == "resource":
                     re = ResourceElement(resource)
                     self.re[re.url] = re
                     print(re.url)
 
-                    for code in (200, 0):
-                        cname = self.map.classname(re.url, code)
-                        if cname is None:
-                            continue
+                    for m in ('GET', 'POST', 'PUT', None):
+                        for code in re.codes(m):
+                            cname = self.map.classname(m, re.url, code)
+                            if cname is None:
+                                continue
 
-                        jsongen = JsonProtoGen()
-                        jsongen.class_name = cname
-                        jsongen.outtype = self.opts.outtype
+                            jsongen = JsonProtoGen()
+                            jsongen.class_name = cname
+                            jsongen.outtype = self.opts.outtype
 
-                        json_str = re.jsonobj(code)
-                        jsongen.i_file = io.StringIO(json_str)
+                            json_str = re.jsonobj(m, code)
+                            jsongen.i_file = io.StringIO(json_str)
 
-                        jsongen.o_file = self._open_proto_output_file(jsongen.class_name)
-                        try:
-                            jsongen.process()
-                        except json.JSONDecodeError as e:
-                            print("%s:1:1: error: Json decode error for URL: %s type `%s': %s"
-                                  % (self.opts.input_file, re.url, cname, str(e)), file=sys.stderr)
-                            print(json_str)
-                            exit(-1)
+                            jsongen.o_file = self._open_proto_output_file(jsongen.class_name)
+                            try:
+                                jsongen.process()
+                            except json.JSONDecodeError as e:
+                                print("%s:1:1: error: Json decode error for URL: %s type `%s': %s"
+                                      % (self.opts.input_file, re.url, cname, str(e)), file=sys.stderr)
+                                print(json_str)
+                                exit(-1)
 
-                        self._out_include(jsongen.class_name)
+                            self._out_include(jsongen.class_name)
 
         if out_close:
             self.out.close()
