@@ -286,6 +286,10 @@ hooks.before('Служебные > Test > Get', function(transaction) {
     transaction.skip = true;
 });
 
+hooks.before('Служебные > Workaroud CPP types > Get', function(transaction) {
+    transaction.skip = true;
+});
+
 hooks.before('Служебные > Версия формата имени файла BUFR > Получить', function(transaction) {
     transaction.skip = true;
 });
