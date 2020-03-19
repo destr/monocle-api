@@ -20,6 +20,8 @@
 /station/{id}/program/stop
 /station/{id}/check/start
 /station/{id}/nams_data{?date}
+/station/{id}/nams_data/archive
+  <200 NamsArchive
 /station/{id}/meteo_stat{?date}
   <200 MeteoStatistics
 /station/{id}/archive_product_list
