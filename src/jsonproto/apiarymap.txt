@@ -21,9 +21,9 @@
 /station/{id}/check/start
 /station/{id}/nams_data{?date}
 /station/{id}/nams_data/archive
-  <200 NamsArchive
 /station/{id}/meteo_stat{?date}
   <200 MeteoStatistics
+# Для мтп-5, намс и продуктов ответ имеет один и тот же формат
 /station/{id}/archive_product_list
   <200 ::ArchiveProductList
 # ответ на эти запросы одинаковый
@@ -80,7 +80,6 @@
   > ::HoloControlPost[POST]
   <200 ::HoloControlStatus[POST]
 /station/{id}/mtp/archive
-  <200 ::Mtp5Archive
 /station/{id}/mtp{?date}
   <200 ::Mtp5Data
 /api/version
@@ -97,3 +96,4 @@
 /workaround/cpptypes
   <600 ::WorkaroudData
   <601 ::RenderColorScale
+  <602 ::RequestRenderCs

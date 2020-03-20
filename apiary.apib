@@ -576,11 +576,11 @@ Cправочник типов конических сечений для СМР
 
 + Parameters
     + id: `0` (number, required) - ID СМРЛП
+    + date_from: `2020-03-08T00:10:20` (string, optional) - ISO дата время начала периода обзоров
+    + date_to: `2020-03-10T23:59:59` (string, optional) - ISO дата время окончания перода обзоров
 
 + Response 200 (application/json; charset=utf-8)
-    + Attributes(object, fixed-type)
-        - dates: `2020-03-19T00:10:00` (array[string]) - Даты обзоров в ISO формате
-
+    + Attributes(ArchiveProductList)
 
 ## Получение данных метеостатистики [/station/{id}/meteo_stat{?date}]
 
@@ -608,16 +608,13 @@ Cправочник типов конических сечений для СМР
 
 + Parameters
     + id: `0` (number, required) - ID радара
+    + date_from: `2020-03-08T00:10:20` (string, optional) - ISO дата время начала периода обзоров
+    + date_to: `2020-03-10T23:59:59` (string, optional) - ISO дата время окончания перода обзоров
 
 ### Получить [GET]
 
 + Response 200 (application/json; charset=utf-8)
-    + Attributes (object, fixed-type)
-        - count: 1 (number) - Количество элементов
-        - items (array)
-            - (object, fixed-type)
-                - date: `2018-01-30T17:25:52` (string) - Дата обзора в ISO формате без TZ
-
+    + Attributes (ArchiveProductList)
 
 ## Получение карт РЛП [/station/{id}/rlp/{type}/{?rlp_id,only_dangerous,altitude,date,cell_size,radius}]
 
@@ -1361,10 +1358,11 @@ distance, x, z - в километрах
 
 + Parameters
     + id: `0` (number, required) - ID СМРЛП
+    + date_from: `2020-03-08T00:10:20` (string, optional) - ISO дата время начала периода обзоров
+    + date_to: `2020-03-10T23:59:59` (string, optional) - ISO дата время окончания перода обзоров
 
 + Response 200 (application/json; charset=utf-8)
-    + Attributes(object, fixed-type)
-        - dates: `2017-10-20T00:33:44` (array[string]) - Даты обзоров в ISO формате
+    + Attributes(ArchiveProductList)
 
 + Response 404
 
@@ -1620,6 +1618,10 @@ distance, x, z - в километрах
     + Attributes(RequestRenderCs)
 
 # Data Structures
+## ArchiveProductList(object, fixed-type)
+### Properties
+- datetimes: `2020-03-18T00:20:00` (array[string]) - Даты и время обзоров в ISO формате
+
 ## HoloCommandEnum(enum[string])
 ### Members
 - `Play`

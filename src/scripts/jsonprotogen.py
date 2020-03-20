@@ -33,11 +33,12 @@ class JsonProtoGen:
         self.to_json_func = OrderedDict()
         self.type_map = {'str': 'QString', 'float': 'double'}
         self.to_map = {'int': 'toInt', 'double': 'toDouble', 'QString': 'toString', 'bool': 'toBool'}
-        self.keywords = ['default']
+        self.keywords = ['default', 'from']
         # Костыль поля warm и cold могут быть null. Пока такого костыля достаточно
         self.nullable = ['warm', 'cold']
         self.i_file = sys.stdin
         self.o_file = sys.stdout
+        self.schema_file = None
         self.class_name = ''
         self.no_ns = False
         self.outtype = JsonProtoGen.OutType.CPP
@@ -87,7 +88,12 @@ class JsonProtoGen:
 
         j = json.loads(self.i_file.read())
 
+        s = '{}'
+        if self.schema_file:
+            s = json.loads(self.schema_file.read())
+
         if self.outtype == JsonProtoGen.OutType.CPP:
+
             self._process_json_cpp(j, self.class_name)
             self._output_cpp(self.class_name)
         else:
@@ -139,13 +145,21 @@ class JsonProtoGen:
             if key.startswith("_comment_") or key.startswith("_enum_"):
                 continue
 
+            #key_schema = json_schema["properties"][key]
+            #is_enum = False
+            #if "anyOf" in key_schema and len(key_schema["anyOf"]) > 1 and "enum" in key_schema["anyOf"][1]:
+            #    self._generate_enums_py(class_name, key_schema["anyOf"]["enum"])
+            #    is_enum = True
+
+
+            key_esc = self._escape_cpp_keyword(key)
             item = json_object[key]
             if isinstance(item, dict):
                 sub_class_name = "st_" + class_name + "_" + key
-                self.classes[class_name] += self._tab(2) + "self.{0} = {1}()\n".format(key, sub_class_name)
-                self.assign_func[class_name] += self._tab(2) + "self.{0}.fromjson(j['{0}'])\n".format(key)
-                self.to_json_func[class_name] += self._tab(2) + "ret[\"{0}\"] = self.{0}.tojson()\n".format(key)
-                self.update_func[class_name] += self._tab(2) + "self.{0}.update_json(j['{0}'])\n".format(key)
+                self.classes[class_name] += self._tab(2) + "self.{0} = {1}()\n".format(key_esc, sub_class_name)
+                self.assign_func[class_name] += self._tab(2) + "self.{1}.fromjson(j['{0}'])\n".format(key, key_esc)
+                self.to_json_func[class_name] += self._tab(2) + "ret[\"{1}\"] = self.{0}.tojson()\n".format(key, key_esc)
+                self.update_func[class_name] += self._tab(2) + "self.{1}.update_json(j['{0}'])\n".format(key, key_esc)
                 self._process_json_py(item, sub_class_name)
                 continue
             elif isinstance(item, list):
@@ -154,18 +168,18 @@ class JsonProtoGen:
                     array_type = class_name + "_" + key
                     self._process_json_py(elem, array_type)
 
-                    self.classes[class_name] += self._tab(2) + "self.{0} = list()\n".format(key)
+                    self.classes[class_name] += self._tab(2) + "self.{0} = list()\n".format(key_esc)
                     self.assign_func[class_name] += self._tab(2) + """for e in j['{0}']:
             self.{0}.append({1}(e))\n""".format(key, array_type)
                     self.to_json_func[class_name] += self._tab(2) + \
-                                                     "ret[\"{0}\"] = [i.tojson() for i in self.{0}]\n".format(key)
-                    self.update_func[class_name] += self._tab(2) + "if len(self.{0}) != len(j['{0}']):\n".format(key) + \
+                                                     "ret[\"{0}\"] = [i.tojson() for i in self.{1}]\n".format(key, key_esc)
+                    self.update_func[class_name] += self._tab(2) + "if len(self.{1}) != len(j['{0}']):\n".format(key, key_esc) + \
                         self._tab(3) + "raise AttributeError('{0}.{1}: Update arrays different sizes')\n".format(class_name, key)
                     self.update_func[class_name] += self._tab(2) + \
-                        "for o in self.{0}:\n".format(key) + self._tab(3) + "o.update_json(j['{0}'])\n".format(key)
+                        "for o in self.{0}:\n".format(key_esc) + self._tab(3) + "o.update_json(j['{0}'])\n".format(key)
                     continue
 
-            self.classes[class_name] += self._tab(2) + "self.{0} = None\n".format(key)
+            self.classes[class_name] += self._tab(2) + "self.{0} = None\n".format(key_esc)
 
             to_enum = [''] * 2
             from_enum = [''] * 2
@@ -176,9 +190,9 @@ class JsonProtoGen:
                 from_enum[0] = ''
                 from_enum[1] = '.value'
 
-            self.assign_func[class_name] += self._tab(2) + "self.{0} = {1}j['{0}']{2}\n".format(key, *to_enum)
-            self.to_json_func[class_name] += self._tab(2) + "ret[\"{0}\"] = {1}self.{0}{2}\n".format(key, *from_enum)
-            self.update_func[class_name] += self._tab(2) + "j['{0}'] = self.{0}\n".format(key)
+            self.assign_func[class_name] += self._tab(2) + "self.{0} = {2}j['{1}']{3}\n".format(key_esc, key, *to_enum)
+            self.to_json_func[class_name] += self._tab(2) + "ret[\"{0}\"] = {2}self.{1}{3}\n".format(key, key_esc, *from_enum)
+            self.update_func[class_name] += self._tab(2) + "j['{0}'] = self.{1}\n".format(key, key_esc)
 
         self.to_json_func[class_name] += self._tab(2) + "return ret{0}\n".format("['array']" if is_root_array else '')
 
