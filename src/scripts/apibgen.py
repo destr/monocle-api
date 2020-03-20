@@ -23,8 +23,15 @@ class ResourceElement:
         self.jsonobjs = dict()
 
         def add_asset(assets, method, code):
-            if assets:
-                self.jsonobjs[(method, int(code))] = assets[0]["content"]
+            t = (None, None)
+            if len(assets) > 1:
+                t = (assets[0]["content"], assets[1]["content"])
+            elif assets:
+                t = (assets[0]["content"], None)
+            else:
+                return
+
+            self.jsonobjs[(method, int(code))] = t
 
         for transaction in httpTransactions:
             # предполагается что всегда есть запрос
@@ -169,8 +176,10 @@ class ApibGen:
                             jsongen.class_name = cname
                             jsongen.outtype = self.opts.outtype
 
-                            json_str = re.jsonobj(m, code)
+                            json_str, json_schema = re.jsonobj(m, code)
                             jsongen.i_file = io.StringIO(json_str)
+                            if json_schema:
+                                jsongen.schema_file = io.StringIO(json_schema)
 
                             jsongen.o_file = self._open_proto_output_file(jsongen.class_name)
                             try:

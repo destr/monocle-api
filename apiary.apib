@@ -580,7 +580,7 @@ Cправочник типов конических сечений для СМР
 + Response 200 (application/json; charset=utf-8)
     + Attributes(object, fixed-type)
         - dates: `2020-03-19T00:10:00` (array[string]) - Даты обзоров в ISO формате
-        
+
 
 ## Получение данных метеостатистики [/station/{id}/meteo_stat{?date}]
 
@@ -1339,24 +1339,17 @@ distance, x, z - в километрах
     + id: `0` (number, required) - ID СМРЛП
 
 + Request (application/json)
-
-        {
-            "loop_holo_on": true,
-            "current_time_on": false,
-            "playspeed": 1,
-            "start": 100,
-            "stop": 200,
-            "_comment_command": "Команда воспроизведение(play)/запись(record)/стоп(stop)",
-            "_enum_command": "Command: Play = 0/play, Record = 1/record, Stop = 2/stop",
-            "command": ""
-        }
+    + Attributes(object, fixed-type)
+        * loop_holo_on: true (boolean)
+        * current_time_on: false (boolean)
+        * playspeed: 1 (number)
+        * start: 100 (number)
+        * stop: 200 (number)
+        * command: `Play` (HoloCommandEnum) - Команда воспроизведение(play)/запись(record)/стоп(stop)
 
 + Response 200 (application/json)
-
-        {
-            "_enum_status": "Status: Play = 0/play, Record = 1/record, Stop = 2/stop",
-            "status": ""
-        }
+    + Attributes(object, fixed-type)
+        * status: `Play` (HoloCommandEnum)
 
 
 #Group MТП-5
@@ -1579,7 +1572,7 @@ distance, x, z - в километрах
       - git_revision: sha1 (string) - Git ревизия backend
       - api_revision: sha1 (string) - Git ревизия API
       - build_date: `2019-11-01T11:13:20+00:00` (string) - Дата сборки
-      - supported_methods: /api/version (array[string]) - Методы API
+      - supported_methods: `/api/version` (array[string]) - Методы API
 
 ## Информация о сервере СКОД на котором работает API [/server/info]
 
@@ -1623,7 +1616,36 @@ distance, x, z - в километрах
 + Response 601 (application/json)
     + Attributes(RenderColorScale)
 
++ Response 602 (application/json)
+    + Attributes(RequestRenderCs)
+
 # Data Structures
+## HoloCommandEnum(enum[string])
+### Members
+- `Play`
+- `Record`
+- `Stop`
+
+## RequestRenderCs
+Формат запроса отправляемый в monocle-render для отрисовки конеческого сечения
+### Properties
+- from: 0 (number) - UNIX-timestamp
+- to: 0 (number) - UNIX-timestamp
+- mode: `image` (enum[string]) - Тип данных
+    - Members:
+        * image - Картинка
+        * profile - Вертикальный профиль
+        * section - Сечение
+- station_code: `monocle-mrlk-bz-ga` (string) - Код станции
+- params (object, fixed-type)
+    * altitude: 100 (number) - Высота
+    * angle: 0.1 (number) - Угол места
+    * image_type: `png` (string) - Тип изображения (Только png)
+    * indicator: `maccappi` (CsIndicator) - Индикатор
+    * interval: 0 (number)
+    * type: `wpcell` (string) - Тип РЛП продукта
+    * bufr_quality: false (boolean)
+
 ## ScheduleBase(array)
 - (object, fixed-type)
     - program_id: `default` (string) - Уникальный идентификатор программы
