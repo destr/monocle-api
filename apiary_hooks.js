@@ -11,6 +11,11 @@ function removeComments(o) {
         }
     }
 }
+
+function archiveValid(body) {
+  var archive = JSON.parse(body)
+  return archive.datetimes.length != 0
+}
 hooks.beforeEachValidation(function(transaction) {
     var obj = JSON.parse(transaction.expected.body)
     removeComments(obj)
@@ -102,6 +107,12 @@ hooks.before('СМРЛП > Запуск программы "КОНТРОЛЬ" д
 hooks.before('Продукты и данные > Данные метео > Получить', function(transaction) {
 });
 
+hooks.after('Продукты и данные > Список дат измерений метео > Получить', function(transaction) {
+  if (transaction.skip) return
+  if (!archiveValid(transaction.real.body))
+    transaction.fail = 'Список дат обзоров не может быть пустым'
+});
+
 hooks.before('Продукты и данные > Получение данных метеостатистики > Получить', function(transaction) {
 	transaction.skip = false;
 });
@@ -109,12 +120,8 @@ hooks.before('Продукты и данные > Получение данных
 hooks.after('Продукты и данные > Список архивных обзоров > Получить', function(transaction) {
   if (transaction.skip) return
   // не может быть в тестовом окружении
-  var archive = JSON.parse(transaction.real.body)
-  if (archive.items.length == 0)
+  if(!archiveValid(transaction.real.body))
     transaction.fail = 'Список дат обзоров не может быть пустым'
-
-  if (archive.count != archive.items.length)
-    transaction.fail = 'Количество элементов массива и count не равны'
 });
 
 
@@ -256,8 +263,7 @@ hooks.before('MТП-5 > Выдача списка дат архивных дан
 hooks.after('MТП-5 > Выдача списка дат архивных данных температурного профилимера > Получить', function(transaction) {
   if (transaction.skip) return
   // не может быть в тестовом окружении
-  var archive = JSON.parse(transaction.real.body)
-  if (archive.dates.length == 0)
+  if(!archiveValid(transaction.real.body))
     transaction.fail = "Список дат МТП-5 не может быть пустым"
 });
 
