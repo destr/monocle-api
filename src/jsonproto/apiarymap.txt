@@ -20,11 +20,11 @@
 /station/{id}/program/stop
 /station/{id}/check/start
 /station/{id}/nams_data{?date}
-/station/{id}/nams_data/archive
+/station/{id}/nams_data/archive{?date_from,date_to}
 /station/{id}/meteo_stat{?date}
   <200 MeteoStatistics
 # Для мтп-5, намс и продуктов ответ имеет один и тот же формат
-/station/{id}/archive_product_list
+/station/{id}/archive_product_list{?date_from,date_to}
   <200 ::ArchiveProductList
 # ответ на эти запросы одинаковый
 /station/{id}/cs/{type}/{?cs_id,indicator,altitude,date,cell_size,radius,angle}
@@ -79,7 +79,7 @@
 /station/{id}/holocontrol
   > ::HoloControlPost[POST]
   <200 ::HoloControlStatus[POST]
-/station/{id}/mtp/archive
+/station/{id}/mtp/archive{?date_from,date_to}
 /station/{id}/mtp{?date}
   <200 ::Mtp5Data
 /api/version
