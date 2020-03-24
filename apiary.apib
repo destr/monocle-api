@@ -1624,17 +1624,16 @@ distance, x, z - в километрах
 
 ## HoloCommandEnum(enum[string])
 ### Members
-- `Play`
-- `Record`
-- `Stop`
-
+- `Play` - Воспроизведение
+- `Record` - Запись
+- `Stop` - Останов
 ## RequestRenderCs
 Формат запроса отправляемый в monocle-render для отрисовки конеческого сечения
 ### Properties
 - from: 0 (number) - UNIX-timestamp
-- to: 0 (number) - UNIX-timestamp
+- to: 0.0 (number) - UNIX-timestamp
 - mode: `image` (enum[string]) - Тип данных
-    - Members:
+    - Members
         * image - Картинка
         * profile - Вертикальный профиль
         * section - Сечение
@@ -1647,6 +1646,7 @@ distance, x, z - в километрах
     * interval: 0 (number)
     * type: `wpcell` (string) - Тип РЛП продукта
     * bufr_quality: false (boolean)
+- stations (array[ShortStationInfo]) - Список станций с которых происходит выгрузка
 
 ## ScheduleBase(array)
 - (object, fixed-type)

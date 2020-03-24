@@ -8,66 +8,8 @@ import datetime
 import subprocess
 from argparse import ArgumentParser
 from jsonprotogen import JsonProtoGen
-
-
-class ResourceElement:
-    def __init__(self, element):
-        self.url = element["attributes"]["href"]["content"]
-        # TODO use rerfact
-        transition = self._find_content(element, "transition")
-        # может быть много ответов с разными кодами и разными форматами данных
-        httpTransactions = self._find_content(transition, "httpTransaction")
-#        httpResponse = self._find_content(httpTransactions, "httpResponse")
-#        httpRequest = self._find_content(httpTransactions, "httpRequest")
-
-        self.jsonobjs = dict()
-
-        def add_asset(assets, method, code):
-            t = (None, None)
-            if len(assets) > 1:
-                t = (assets[0]["content"], assets[1]["content"])
-            elif assets:
-                t = (assets[0]["content"], None)
-            else:
-                return
-
-            self.jsonobjs[(method, int(code))] = t
-
-        for transaction in httpTransactions:
-            # предполагается что всегда есть запрос
-            request = self._find_content(transaction, "httpRequest")
-            method = request[0]["attributes"]["method"]["content"]
-            assets = self._find_content(request, "asset")
-            add_asset(assets, method, 0)
-
-            for response in self._find_content(transaction, "httpResponse"):
-                code = response["attributes"]["statusCode"]["content"]
-                assets = self._find_content(response, "asset")
-                add_asset(assets, method, code)
-
-    def _find_content(self, content, name) -> list:
-        result = list()
-        if isinstance(content, list):
-            for item in content:
-                result.extend(self._find_content(item, name))
-            return result
-
-        if not "content" in content:
-            return result
-
-        for e in content["content"]:
-            if "element" in e and e["element"] == name:
-                result.append(e)
-        return result
-
-    def jsonobj(self, method, code):
-        try:
-            return self.jsonobjs[(method, code)]
-        except KeyError:
-            return ''
-
-    def codes(self, m):
-        return [code for method, code in self.jsonobjs.keys() if m == method]
+from dstypes import *
+from dsgen import *
 
 
 class MapFile:
@@ -116,7 +58,6 @@ class MapFile:
             return None
 
 
-
 class ApibGen:
     def __init__(self):
         self.opts = None
@@ -151,7 +92,8 @@ class ApibGen:
             out_close = True
 
         self._out_header()
-
+        ds_list = list()
+        re_list = list()
         for category in self.api["content"][0]["content"]:
             if category["element"] != "category":
                 continue
@@ -159,38 +101,43 @@ class ApibGen:
                 json_str = ''
 
                 if resource["element"] == "dataStructure":
-                    pass
+                    ds = DSResource(resource["content"])
+                    ds_list.append(ds)
 
                 if resource["element"] == "resource":
                     re = ResourceElement(resource)
+                    re_list.append(re)
                     self.re[re.url] = re
-                    print(re.url)
+                    # print(re.url)
+                    #
+                    # for m in ('GET', 'POST', 'PUT', None):
+                    #     for code in re.codes(m):
+                    #         cname = self.map.classname(m, re.url, code)
+                    #         if cname is None:
+                    #             continue
+                    #
+                    #         jsongen = JsonProtoGen()
+                    #         jsongen.class_name = cname
+                    #         jsongen.outtype = self.opts.outtype
+                    #
+                    #         json_str, json_schema = re.jsonobj(m, code)
+                    #         jsongen.i_file = io.StringIO(json_str)
+                    #         if json_schema:
+                    #             jsongen.schema_file = io.StringIO(json_schema)
+                    #
+                    #         jsongen.o_file = self._open_proto_output_file(jsongen.class_name)
+                    #         try:
+                    #             jsongen.process()
+                    #         except json.JSONDecodeError as e:
+                    #             print("%s:1:1: error: Json decode error for URL: %s type `%s': %s"
+                    #                   % (self.opts.input_file, re.url, cname, str(e)), file=sys.stderr)
+                    #             print(json_str)
+                    #             exit(-1)
+                    #
+                    #         self._out_include(jsongen.class_name)
 
-                    for m in ('GET', 'POST', 'PUT', None):
-                        for code in re.codes(m):
-                            cname = self.map.classname(m, re.url, code)
-                            if cname is None:
-                                continue
-
-                            jsongen = JsonProtoGen()
-                            jsongen.class_name = cname
-                            jsongen.outtype = self.opts.outtype
-
-                            json_str, json_schema = re.jsonobj(m, code)
-                            jsongen.i_file = io.StringIO(json_str)
-                            if json_schema:
-                                jsongen.schema_file = io.StringIO(json_schema)
-
-                            jsongen.o_file = self._open_proto_output_file(jsongen.class_name)
-                            try:
-                                jsongen.process()
-                            except json.JSONDecodeError as e:
-                                print("%s:1:1: error: Json decode error for URL: %s type `%s': %s"
-                                      % (self.opts.input_file, re.url, cname, str(e)), file=sys.stderr)
-                                print(json_str)
-                                exit(-1)
-
-                            self._out_include(jsongen.class_name)
+        dsgen = DsGen()
+        dsgen.run(ds_list)
 
         if out_close:
             self.out.close()
