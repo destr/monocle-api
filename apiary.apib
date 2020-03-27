@@ -1618,15 +1618,31 @@ distance, x, z - в километрах
     + Attributes(RequestRenderCs)
 
 # Data Structures
+## ScheduleItemBase(object, fixed-type)
+Элемент расписания
+### Properties
+- program_id: `default` (string) - Уникальный идентификатор программы
+- date: `00:01:01` (string) - Время запуска программы в формате hh:mm::ss
+
+## ScheduleItem(ScheduleItemBase, fixed-type)
+### Properties
+- id: 0 (number) - Порядковый номер
+
+## ScheduleBase(array[ScheduleItemBase])
+
+## Schedule(array[ScheduleItem])
+
 ## ArchiveProductList(object, fixed-type)
 ### Properties
 - datetimes: `2020-03-18T00:20:00` (array[string]) - Даты и время обзоров в ISO формате
+
 
 ## HoloCommandEnum(enum[string])
 ### Members
 - `Play` - Воспроизведение
 - `Record` - Запись
 - `Stop` - Останов
+
 ## RequestRenderCs
 Формат запроса отправляемый в monocle-render для отрисовки конеческого сечения
 ### Properties
@@ -1648,14 +1664,6 @@ distance, x, z - в километрах
     * bufr_quality: false (boolean)
 - stations (array[ShortStationInfo]) - Список станций с которых происходит выгрузка
 
-## ScheduleBase(array)
-- (object, fixed-type)
-    - program_id: `default` (string) - Уникальный идентификатор программы
-    - date: `00:01:01` (string) - Время запуска программы в формате hh:mm::ss
-
-## Schedule(array)
-- (ScheduleBase, fixed-type)
-    - id: 0 (number) - Порядковый номер
 
 ## FtpHost (object, fixed-type)
 Описание FTP-хоста на который происходит выгрузка данных НАМС, BUFR, HDF5 и ТПМ

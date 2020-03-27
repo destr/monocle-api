@@ -77,7 +77,6 @@ class ResourceElement:
         return [code for method, code in self.jsonobjs.keys() if m == method]
 
 
-
 class DSField:
     def __init__(self, content):
         c = content["content"]
@@ -97,14 +96,18 @@ class DSField:
                 return
 
             v = c["value"]["content"]
-            if isinstance(v, (dict, list)):
-                v = DSResource(c["value"])
+            element = c["value"]["element"]
+            if element in ("object"):
+                self.type = DSResource(c['value'])
+                v = c["value"]['content']
+            elif element == 'array':
+                self.type = DSResource(c["value"])
+                if 'content' in v[0]:
+                    v = v[0]['content']
             else:
                 self.type = TypeMap(type(v).__name__)
 
             self.value = v
-
-
 
 
 class DsEnumField:
@@ -121,24 +124,32 @@ class DSResource:
         Object = 1
         Enum = 2
         Array = 3
+        BaseType = 4
 
     def __init__(self, content):
         self.fields = list()
-        self.type = DSResource.Type.Unknown
-        self.array_type = None
+        self.object_type = DSResource.Type.Unknown
+        self.base_type = None
+        self.name = None
         element = content["element"]
-        if element == "object":
-            self.type = DSResource.Type.Object
+        if element == "object" or element[0].isupper():
+            self.object_type = DSResource.Type.Object
             self._parse_object(content)
         elif element == "enum":
-            self.type = DSResource.Type.Enum
+            self.object_type = DSResource.Type.Enum
             self._parse_enum(content)
         elif element == "array":
-            self.type = DSResource.Type.Array
+            self.object_type = DSResource.Type.Array
             self._parse_array(content)
+#        else:
+#            self.object_type = DSResource.Type.BaseType
+#            self.base_type = element
+#            if 'content' in content:
+#                self._parse_object(content)
 
     def _parse_object(self, content):
         self._parse_meta(content)
+
         # члены класса
         for item in content["content"]:
             f = DSField(item)
@@ -163,8 +174,15 @@ class DSResource:
             self.fields.append(DsEnumField(e))
 
     def _parse_array(self, content):
-        item=content["content"][0]
-        if item['element'] == "object":
-            self.array_type = DSResource(content["content"][0])
+        self._parse_meta(content)
+        item = content["content"][0]
+        element = item['element']
+        if element in ('object'):
+            self.fields.append(DSResource(item))
+        elif element[0].isupper():
+            # наш существующий тип
+            self.base_type = element
+            # при при этом он может быть расширен, отнаследован
+            #self.fields.append(DSField(item))
         else:
-            self.array_type = TypeMap(item["element"])
+            self.base_type = TypeMap(element)

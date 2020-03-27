@@ -15,9 +15,9 @@ class DsGen:
 
     def run(self, ds_list):
         for item in ds_list:
-            if item.type == DSResource.Type.Object:
+            if item.object_type == DSResource.Type.Object:
                 self._gen_class(item)
-            elif item.type == DSResource.Type.Enum:
+            elif item.object_type == DSResource.Type.Enum:
                 self._gen_enum(item)
 
         for key in self.enums.keys():
@@ -28,7 +28,6 @@ class DsGen:
             self._print(self.classes[key])
             self._print(self.fields[key])
             self._print("\n};")
-
 
     def _gen_class(self, item):
         self.classes[item.name] = "class {0} {{\n".format(item.name)
@@ -43,8 +42,16 @@ class DsGen:
     def _gen_fields(self, item):
         self.fields[item.name] = ''
         for f in item.fields:
+            if item.object_type == DSResource.Type.Array:
+                continue
             t = f.type
             n = f.name
+
+            if isinstance(t, DSResource):
+                t.name = item.name + "_" + f.name
+                self._gen_class(t)
+                continue
+
             if t is None:
                 if f.value.type == DSResource.Type.Array:
                     if f.value.array_type == 'QString':
