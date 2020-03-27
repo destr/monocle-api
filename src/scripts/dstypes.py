@@ -97,13 +97,15 @@ class DSField:
 
             v = c["value"]["content"]
             element = c["value"]["element"]
-            if element in ("object"):
+            if element in ("object", 'enum'):
                 self.type = DSResource(c['value'])
                 v = c["value"]['content']
             elif element == 'array':
                 self.type = DSResource(c["value"])
                 if 'content' in v[0]:
                     v = v[0]['content']
+            elif element[0].isupper():
+                self.type = element
             else:
                 self.type = TypeMap(type(v).__name__)
 
@@ -134,6 +136,8 @@ class DSResource:
         element = content["element"]
         if element == "object" or element[0].isupper():
             self.object_type = DSResource.Type.Object
+            if element != "object":
+                self.base_type = element
             self._parse_object(content)
         elif element == "enum":
             self.object_type = DSResource.Type.Enum
@@ -141,11 +145,6 @@ class DSResource:
         elif element == "array":
             self.object_type = DSResource.Type.Array
             self._parse_array(content)
-#        else:
-#            self.object_type = DSResource.Type.BaseType
-#            self.base_type = element
-#            if 'content' in content:
-#                self._parse_object(content)
 
     def _parse_object(self, content):
         self._parse_meta(content)

@@ -30,7 +30,11 @@ class DsGen:
             self._print("\n};")
 
     def _gen_class(self, item):
-        self.classes[item.name] = "class {0} {{\n".format(item.name)
+
+        base_class=''
+        if item.base_type is not None:
+            base_class = ': public ' + item.base_type
+        self.classes[item.name] = "class {0} {1} {{\n".format(item.name, base_class)
         self._gen_fields(item)
 
     def _gen_enum(self, item):
@@ -44,28 +48,31 @@ class DsGen:
         for f in item.fields:
             if item.object_type == DSResource.Type.Array:
                 continue
+
             t = f.type
             n = f.name
 
-            if isinstance(t, DSResource):
+            if isinstance(t, DSResource) and t.object_type == DSResource.Type.Object:
                 t.name = item.name + "_" + f.name
                 self._gen_class(t)
-                continue
+                t = t.name
+            if isinstance(t, DSResource) and t.object_type == DSResource.Type.Enum:
+                t.name = item.name + "_" + f.name
+                self._gen_enum(t)
+                t = t.name
 
-            if t is None:
-                if f.value.type == DSResource.Type.Array:
-                    if f.value.array_type == 'QString':
-                        t = 'QStringList'
-                    else:
-                        t = 'QVector<{}>'.format(f.value.array_type)
-                elif f.value.type == DSResource.Type.Object:
-                    t = item.name + "_" + f.name
-                    f.value.name = t
-                    self._gen_class(f.value)
-                elif f.value.type == DSResource.Type.Enum:
-                    t = item.name + "_" + f.name
-                    f.value.name = t
-                    self._gen_enum(f.value)
+            if isinstance(t, DSResource) and t.object_type == DSResource.Type.Array:
+                if t.base_type == 'QString':
+                     t = 'QStringList'
+                else:
+                    if t.base_type is None:
+                        #t.name =
+                        a = t.fields[0]
+                        a.name = item.name + "_"  + f.name
+                        self._gen_class(a)
+                        t.base_type = a.name
+
+                    t = 'QVector<{}>'.format(t.base_type)
 
             self.fields[item.name] += self._tab() + "{0} {1}; // {2}\n".format(t, n, f.description)
 
