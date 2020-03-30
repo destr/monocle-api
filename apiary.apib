@@ -1191,6 +1191,56 @@ distance, x, z - в километрах
 
 + Response 409
 
+#Group Настройки пользователя
+
+## Список настроек цветовых шкал пользователя [/settings/{user_id}/color_scale/list]
+
+Цветовые шкалы - легенды при выводе продуктов
+
++ Parameters
+    + user_id: `0` (number) Уникальный идентификатор пользователя
+
+### Получить список настроек цветовых шкал [GET]
+
++ Response 200 (application/json; charset=utf-8)
+    + Attributes(ColorScaleList)
+    
+## Настройки цветовой шкалы [/settings/{user_id}/color_scale/{id}]
+
+Редактирование цветовых шкал
+
++ Parameters
+    + user_id: `0` (number) - Уникальый идентификатор пользователя
+    + id: `0` (number) - ID раздела настроек цветовой шкалы
+
+### Обновить настройки цветовой шкалы [PUT]
+
++ Request (application/json)
+    + Attributes(array[ColorScaleItemWebUi])
+
++ Response 200 (application/json; charset=utf-8)
+    + Attributes(object)
+
++ Response 422 (application/json)
+    + Attributes(array)
+        index: `1` (number) - Индекс элемента
+        value: `Невалидное значение` (string)
+        color: `Невалидное значение` (string)
+
++ Response 404
+
+## Настройки цветовой шкалы по умолчанию [/settings/{user_id}/color_scale/{id}/default]
+
+Всегда может понадобиться сбросить цветовую шкалу в состояние "по-умолчанию"
+
++ Parameters
+    + id: `0` (number) - ID раздела настроек цветовой шкалы
+
+### Получить настройки цветовой шкалы по умолчанию [GET]
+
++ Response 200 (application/json; charset=utf-8)
+    + Attributes(ColorScaleWebUi)
+
 #Group Уведомления
 
 ## Уведомления [/notification]
