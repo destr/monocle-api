@@ -77,7 +77,7 @@ API для получения радиолокационных данных. В�
 + Response 200 (application/json; charset=utf-8)
     + Attributes (object)
         - count: 1 (number) - Количество записей в расписании
-        - items(Schedule) - Расписание
+        - items(ScheduleWebUi) - Расписание
 + Response 409
 
 ### Обновить расписание СМРЛП [PUT]
@@ -85,7 +85,7 @@ API для получения радиолокационных данных. В�
 + Request (application/json)
     + Attributes (object)
         - count: 1 (number) - Количество записей в расписании
-        - items(Schedule) - Расписание
+        - items(ScheduleWebUi) - Расписание
 
 + Response 200 (application/json; charset=utf-8)
     + Attributes(object)
@@ -217,7 +217,6 @@ API для получения радиолокационных данных. В�
     + id: `0` (number, required) - ID СМРЛП
 
 ### Запустить [POST]
-
 + Response 200 (application/json; charset=utf-8)
     + Attributes(object)
 
@@ -393,7 +392,7 @@ Cправочник типов конических сечений для СМР
             + `vvf` - Векторное поле скоростей
     * altitude (number, optional) - Высота в метрах [100:20000]
     * date (string, optional) - Дата обзора (если не указан, то возвращается последнее РЛП)
-    * only_dangerous (bool, optional) - Флаг фильтрации опасных МЯ
+    * only_dangerous (boolean, optional) - Флаг фильтрации опасных МЯ
 
 + Response 200 (application/json; charset=utf-8)
 
@@ -947,6 +946,41 @@ distance, x, z - в километрах
 + Response 204
 
 + Response 404
+
+## Расписания [/schedule]
+
+Работа со списком расписаний для всей АС СМРЛП
+
+### Получить список расписаний [GET]
+Получить список расписаний отсортированный в алфавитном порядке
++ Response 200 (application/json; charset=utf-8)
+    + Attributes(ScheduleList)
+
+### Создать новое расписание [POST]
+Создать новое расписание
++ Request (application/json; charset=utf-8)
+    + Attributes(ScheduleListItem)
+
++ Response 201 (application/json; charset=utf-8)
+    + Headers
+        + Location: /schedule/{id}
+
+## Управление расписанием [/schedule/{id}]
++ Parameters
+    * id: `view_100` (string) - Имя (идентификатор расписания) уникальный
+Удаление изменение расписания
+### Изменить расписание [PUT]
++ Request (application/json)
+    + Attributes(ScheduleWebUi)
+
++ Response 200 
+
++ Response 422 (application/json; charset=utf-8)
+    + Attributes(array[number])
+        + Sample: 0, 3, 5 - Список индексов полей с невалидными данными
+
+### Удалить расписание [DELETE]
+
 
 ## Журнал событий [/station_log/list{?type}{?station}{?from}{?to}{?limit}{?offset}]
 
@@ -1700,12 +1734,25 @@ distance, x, z - в километрах
     * type: `wpcell` (string) - Тип РЛП продукта
     * bufr_quality: false (boolean)
 
+## ScheduleListItem(object, fixed-type)
+Элемент списка расписаний
+### Properties
+* name: `view_100` (string) - Название программы
+
+## ScheduleList(object, fixed-type)
+Список программ АС СМРЛП
+### Properties
+* count: `1` (number) - Количество элементов в списке
+* items (array[ScheduleListItem]) - Элементы списка
+
 ## ScheduleBase(array)
+Хранимое расписание
 - (object, fixed-type)
     - program_id: `default` (string) - Уникальный идентификатор программы
     - date: `00:01:01` (string) - Время запуска программы в формате hh:mm::ss
 
-## Schedule(array)
+## ScheduleWebUi(array)
+Расписание для представления в web интерфейсе с дополнительными полями
 - (ScheduleBase, fixed-type)
     - id: 0 (number) - Порядковый номер
 
