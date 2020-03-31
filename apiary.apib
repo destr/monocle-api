@@ -965,15 +965,15 @@ distance, x, z - в километрах
 + Response 201 (application/json; charset=utf-8)
 
     + Header
-            
-            Location: /schedule/{id}
 
-## Управление расписанием [/schedule/{id}]
+            Location: /schedule/{name}
+
+## Управление расписанием [/schedule/{name}]
 
 Удаление изменение расписания
 
 + Parameters
-    * id: `view_100` (string) - Имя (идентификатор расписания) уникальный
+    * name: `view_100` (string) - Имя (идентификатор расписания) уникальный
 
 ### Изменить расписание [PUT]
 
@@ -989,8 +989,7 @@ distance, x, z - в километрах
 ### Удалить расписание [DELETE]
 + Response 204
 
-
-## Журнал событий [/station_log/list{?type}{?station}{?from}{?to}{?limit}{?offset}]
+## Журнал событий [/station_log/list{?type,station,from,to,limit,offset}]
 
 Получение журнала событий заданного СМРЛП
 
@@ -1006,7 +1005,7 @@ distance, x, z - в километрах
 
 + Response 204
 
-+ Response 200 (application/json)
++ Response 200 (application/json; charset=utf-8)
     + Attributes(object)
         - count: 1 (number) - Количество элементов
         - items (array[LogMessage]) - Сообщения
@@ -1024,7 +1023,6 @@ distance, x, z - в километрах
 
 + Request (application/json)
     + Attributes(ProductRenderer)
-
 
 + Response 200 (application/json; charset=utf-8)
     + Attributes(ProductRenderer)

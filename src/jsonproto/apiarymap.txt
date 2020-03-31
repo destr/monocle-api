@@ -37,7 +37,7 @@
 /station/{id}/{product_type}/point/{?latitude}{?longitude}
 /program/list{?mode}{?title}{?limit}{?offset}
 /program/{id}
-/station_log/list{?type}{?station}{?from}{?to}{?limit}{?offset}
+/station_log/list{?type,station,from,to,limit,offset}
   <200 LogEntryList
 /settings/bufr
 /settings/productrender
