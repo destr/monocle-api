@@ -549,24 +549,22 @@ Cправочник типов конических сечений для СМР
         - values: `-10.1`, `-10.5` (array[number])
         - timestamp: 1569977366 (number)
 
-## Данные метео [/station/{id}/nams_data{?date}]
+## Данные метео [/station/{id}/nams_data{?date,date_from,date_to}]
 
 Получение данных от метедатчиков СМРЛП
 
 + Parameters
     + id: `0` (number, required) - ID СМРЛП
-    * date (optional) - Дата запроса данных (если не указана, то возвращается последние метеоданные)
+    * date: `2019-12-08T12:30:00` (string, optional)  - Дата запроса данных (если не указана, то возвращается последние метеоданные)
+    * date_from: `2019-12-08T00:10:01` (string, optional) - Дата начала периода данных в формате ISO
+    * date_to: `2020-03-10T00:01:01` (string, optional) - Дата окончания периода данных в формате ISO
 
 ### Получить [GET]
 
 + Response 200 (application/json; charset=utf-8)
     + Attributes (object, fixed-type)
-        - date: `2018-01-30T23:59:55+00:00` (string) - ISO дата
-        - humidity    : 0 (string) - влажность - %
-        - pressure: 95120 (string) - давление - мм.рт.с
-        - wind_azimuth: 29 (string) - направление ветра - градусы
-        - wind_speed: 2 (string) - скорость ветра - м/c
-        - temp: `-34.5` (string) - температура - градусы Цельсия
+        * count: `1` (number) - Количестко элементом
+        * items (array[NamsData]) - Элементы НАМС
 
 ## Список дат измерений метео [/station/{id}/nams_data/archive{?date_from,date_to}]
 
@@ -1735,6 +1733,16 @@ distance, x, z - в километрах
     * interval: 0 (number)
     * type: `wpcell` (string) - Тип РЛП продукта
     * bufr_quality: false (boolean)
+
+## NamsData(object, fixed-type)
+Запись данных НАМС
+### Properties
+- date: `2018-01-30T23:59:55+00:00` (string) - ISO дата
+- humidity: 0 (string) - влажность - %
+- pressure: 951201 (string) - давление - мм.рт.с
+- wind_azimuth: 29.1 (string) - направление ветра - градусы
+- wind_speed: 2.1 (string) - скорость ветра - м/c
+- temp: `-34.5` (string) - температура - градусы Цельсия
 
 ## ScheduleListItem(object, fixed-type)
 Элемент списка расписаний
