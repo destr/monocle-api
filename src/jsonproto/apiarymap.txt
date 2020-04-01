@@ -12,6 +12,8 @@
 /station/{id}/meteosettings
 /station/{id}/radarsettings
 /station/{id}/schedule
+/schedule
+  <200 ::ScheduleList
 /station/{id}/schedule/start
 /station/{id}/schedule/stop
 /station/{id}/local_reflection_map/start{?cycle}
