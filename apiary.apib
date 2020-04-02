@@ -958,12 +958,12 @@ distance, x, z - в километрах
 
 ### Создать новое расписание [POST]
 Создать новое расписание
-+ Request (application/json; charset=utf-8)
++ Request (application/json)
     + Attributes(object, fixed-type)
         * name: `schedule_name` (string) - Название расписания
         * schedule (ScheduleWebUi) - Расписание
 
-+ Response 201 (application/json; charset=utf-8)
++ Response 201
 
     + Header
 
@@ -1061,7 +1061,7 @@ distance, x, z - в километрах
 + Response 200 (application/json; charset=utf-8)
     + Attributes(ColorScaleList)
 
-## Настройки цветовой шкалы [/settings/color_scale/{id}н]
+## Настройки цветовой шкалы [/settings/color_scale/{id}]
 
 Редактирование цветовых шкал
 
@@ -1281,6 +1281,7 @@ distance, x, z - в километрах
 
 + Parameters
     + id: `0` (number) - ID раздела настроек цветовой шкалы
+    + user_id: `0` (number) - ID пользователя
 
 ### Получить настройки цветовой шкалы по умолчанию [GET]
 

@@ -17,6 +17,7 @@ function archiveValid(body) {
   return archive.datetimes.length != 0
 }
 hooks.beforeEachValidation(function(transaction) {
+    if (transaction.expected.body == undefined) return
     var obj = JSON.parse(transaction.expected.body)
     removeComments(obj)
     transaction.expected.body = JSON.stringify(obj)
