@@ -952,13 +952,16 @@ distance, x, z - в километрах
 
 ### Получить список расписаний [GET]
 Получить список расписаний отсортированный в алфавитном порядке
+
 + Response 200 (application/json; charset=utf-8)
     + Attributes(ScheduleList)
 
 ### Создать новое расписание [POST]
 Создать новое расписание
 + Request (application/json; charset=utf-8)
-    + Attributes(ScheduleListItem, fixed-type)
+    + Attributes(object, fixed-type)
+        * name: `schedule_name` (string) - Название расписания
+        * schedule (ScheduleWebUi) - Расписание
 
 + Response 201 (application/json; charset=utf-8)
 
@@ -972,6 +975,13 @@ distance, x, z - в километрах
 
 + Parameters
     * name: `view_100` (string) - Имя (идентификатор расписания) уникальный
+
+### Получить расписание [GET]
+
++ Response 200 (application/json; charset=utf-8)
+    + Attributes(object, fixed-type)
+        * count: `1` (number)
+        * items (ScheduleWebUi)
 
 ### Изменить расписание [PUT]
 

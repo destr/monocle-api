@@ -14,6 +14,9 @@
 /station/{id}/schedule
 /schedule
   <200 ::ScheduleList
+  > ::SchedulePost[POST]
+/schedule/{name}
+  <200 ::Schedule
 /station/{id}/schedule/start
 /station/{id}/schedule/stop
 /station/{id}/local_reflection_map/start{?cycle}
