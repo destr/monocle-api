@@ -74,7 +74,6 @@ hooks.before('СМРЛП > Расписание СМРЛП > Получить р
 });
 
 hooks.before('СМРЛП > Расписание СМРЛП > Обновить расписание СМРЛП', function(transaction) {
-	transaction.skip = true;
 });
 
 hooks.before('СМРЛП > Включить работу СМРЛП по расписанию > Включить', function(transaction) {

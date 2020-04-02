@@ -78,37 +78,17 @@ API для получения радиолокационных данных. В�
     + Attributes (object)
         - count: 1 (number) - Количество записей в расписании
         - items(ScheduleWebUi) - Расписание
-        
+
 + Response 409
 
 ### Обновить расписание СМРЛП [PUT]
 
 + Request (application/json)
-    + Attributes (object)
-        - count: 1 (number) - Количество записей в расписании
-        - items(ScheduleWebUi) - Расписание
+    + Attributes (ScheduleListItem)
 
-+ Response 200 (application/json; charset=utf-8)
-    + Attributes(object)
++ Response 200
 
 + Response 422
-
-        {
-            "count": 2,
-            "items":
-            [
-                {
-                    "id": 0,
-                    "program_id": "Указанная программа не найдена.",
-                    "date": "17:30:46"
-                },
-                {
-                    "id": 1,
-                    "program_id": 2,
-                    "date": "Чоо-то не так с этим временем"
-                }
-            ]
-        }
 
 + Response 409
 
@@ -1758,7 +1738,7 @@ distance, x, z - в километрах
 ## ScheduleListItem(object, fixed-type)
 Элемент списка расписаний
 ### Properties
-* name: `view_100` (string) - Название программы
+* name: `view_dummy_100` (string) - Название программы
 
 ## ScheduleList(object, fixed-type)
 Список программ АС СМРЛП

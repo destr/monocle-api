@@ -12,6 +12,7 @@
 /station/{id}/meteosettings
 /station/{id}/radarsettings
 /station/{id}/schedule
+  > ::ScheduleListItem[PUT]
 /schedule
   <200 ::ScheduleList
   > ::SchedulePost[POST]
