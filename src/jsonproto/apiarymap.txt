@@ -105,3 +105,6 @@
   <600 ::WorkaroudData
   <601 ::RenderColorScale
   <602 ::RequestRenderCs
+  <603 ::StationsJson
+  <604 ::FtpServersJson
+  <605 ::ExportMap

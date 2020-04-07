@@ -1694,6 +1694,15 @@ distance, x, z - в километрах
 + Response 602 (application/json)
     + Attributes(RequestRenderCs)
 
++ Response 603 (application/json)
+    + Attributes(StationsJson)
+
++ Response 604 (application/json)
+    + Attributes(FtpServersJson)
+
++ Response 605 (application/json)
+    + Attributes(ExportMap)
+
 # Data Structures
 ## ArchiveProductList(object, fixed-type)
 ### Properties
@@ -2452,3 +2461,56 @@ distance, x, z - в километрах
         - parametersPath: `/var/lib/monocle/parameters` (string)
         - stationsPath: `/var/lib/monocle/parameters/stations` (string)
         - storagePath: `/work/monocle-data/db` (string)
+
+## StationItemJson
+Тип описыващий формат данных в файле station.json
+### Properties
+- id: 0 (number) - Уникальный идентификатор станции
+- index: `MORL` (string) - Строковый 4-символьный индекс станции
+- title: `Орловка` (string) - Название станции
+- path: `monocle-mrlk-bz-ga` (string) - Внутрнеее название станции в хранилище
+- synopt_index: `1` (number) - Синоптический индекс
+- baltrad_index: `abcdefgh` (string) - Индекс какой-то
+- long_name: `STATION` (string) - Некое название меторлогическое (используется в BUFR)
+- hardware_id: `CMRC0001` (string) - Идентификатор оборудования
+- latitude: `56.142616` (number) - Долгота
+- longitude: `34.987386` (number) - Широта
+- altitude: `491` (number) - Высота установки локатора над уровнем моря
+- alarm_id: `0` (number) - Идентификатор звукового уведомления
+- short_name: `00001` (string) - Некое короткое меторлогическое название (используется в BUFR)
+- status_life_time: `30` (number) - Интервал обновления статуса станции
+- radar_present: `true` (boolean) - Признак установки локатора
+- nams_present: `true` (boolean) - Признак установки метеостанции
+- mtp_present: `true` (boolean) - Признак установки МТП-5
+- base_azimuth_center: `0` (number) - Поправка к северу локатора
+
+## StationsJson(object, fixed-type)
+Список станций
+### Properties
+- stations(array[StationItemJson])
+
+## FtpServerItemJson(object, fixed-type)
+Тип описывающий формат даных в файле ftp.json
+### Properties
+- id: `0` (number) - Уникальный идентификатор сервера
+- name: `ftp1` (string) - Имя
+- host: `ftp.ians.aero` (string) - Доменное имя/IP адрес
+- port: `21` (number) - Порт
+- active_mode: `false` (boolean) - Активный режим работы
+- remote_dir: `/pub` (string) - Каталог на сервере
+
+## FtpServersJson(object, fixed-type)
+Список FTP-серверов для экспорта
+### Properties
+- ftpservers(array[FtpServerItemJson])
+
+## ExportMap(object, fixed-type)
+Структура описывающая какие продукты экспортировать на какие FTP
+### Properties
+- exports (array)
+    - (object)
+        - ftpid: `1` (number) - ID FTP сервера
+        - stations (array)
+            - (object)
+                - id: `1` (number) - ID станции
+                - products: 1, 2, 3 (array[number]) - ID продуктов
