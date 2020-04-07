@@ -97,6 +97,8 @@
 /settings/nams
   <200 ::NamsExportSettings
   > NamsExportSettingsPut
+/settings/export
+  <200 ::ExportSettings
 /station/{id}/algorithmparameters
   <200 ::AlgorighmParameters
 /server/info

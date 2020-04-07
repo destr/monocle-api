@@ -1519,6 +1519,17 @@ distance, x, z - в километрах
 + Response 200 (application/json; charset=utf-8)
     + Attributes (StationExportProducts)
 
+## Получить информацию о текущих настройках экспорта [/settings/export]
+
+### Получить текущие настройки экспорта [GET]
++ Response 200 (application/json; charset=utf-8)
+    + Attributes (ExportSettings)
+
+### Обновить текущие настройки экспорта [PUT]
++ Request (application/json)
+    + Attributes (ExportSettings)
+
++ Response 201(application/json; charset=utf-8)
 
 ## Настройки экспорта BUFR [/settings/bufr]
 
@@ -2553,34 +2564,51 @@ distance, x, z - в километрах
 ### Properties
 - ftpservers(array[FtpServerItemJson])
 
+## ExportProductEnum(enum[string])
+### Members
++ `NONE` - Неизвестный тип
++ `BUFR_V1` - Базовая версия
++ `BUFR_V2` - Версия Авиаметтелекома
++ `HDF5` - Данные в формате HDF5
++ `NAMS` - Данные НАМС
++ `MTP5` - Данные МТП-5
+
 ## ExportProductType(object, fixed-type)
 Описание экспортируемого продукта
 ### Properties
-- type: `NONE`  (enum[string]) - Имя продукта
-    + Members
-        + `NONE` - Неизвестный тип
-        + `BUFR_V1` - Базовая версия
-        + `BUFR_V2` - Версия Авиаметтелекома
-        + `HDF5` - Данные в формате HDF5
-        + `NAMS` - Данные НАМС
-        + `MTP5` - Данные МТП-5
-
+- type: `NONE`  (ExportProductEnum) - Имя продукта
 
 ## StationExportProducts(object, fixed-type)
 ### Properties
 - available (array)
     - (object)
         - station_id: `1` (number) - ID станции
-        - products (array[ExportProductType]) -  Список продуктов поддеживаемых на станции
+        - products (array[ExportProductEnum]) -  Список продуктов поддеживаемых на станции
 
 ## ExportItem(object, fixed-type)
 - ftpid: `1` (number) - ID FTP сервера
 - stations (array)
     - (object)
         - id: `1` (number) - ID станции
-        - products: 1, 2, 3 (array[number]) - ID продуктов
+        - products: `BUFR_V1`, `NAMS` (array[ExportProductEnum]) - ID продуктов
 
 ## ExportMap(object, fixed-type)
 Структура описывающая какие продукты экспортировать на какие FTP
 ### Properties
 - exports (array[ExportItem])
+
+## ExportItemSettings(object, fixed-type)
+Структура развёрнутая из ExportMap, заменены все идентификаторы на их значение
+### Properties
+- ftpid: `1` (number) - ID FTP-сервера
+- ftpname: `name` (string) - Название FTP-сервера
+- stations(array)
+    - (object)
+        - id: `1` (number) - ID станции
+        - name: `Title` (string) - Название станции
+        - products: `BUFR V1`, `NAMS` (array[string]) - Типы продуктов
+
+## ExportSettings(object, fixed-type)
+Настройки экспорта
+### Properties
+- items (array[ExportItemSettings])
