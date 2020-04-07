@@ -1217,7 +1217,7 @@ distance, x, z - в километрах
 
 + Response 409
 
-#Group Настройки пользователя
+# Group Настройки пользователя
 
 ## Список настроек цветовых шкал пользователя [/settings/{user_id}/color_scale/list]
 
@@ -1268,7 +1268,7 @@ distance, x, z - в километрах
 + Response 200 (application/json; charset=utf-8)
     + Attributes(ColorScaleWebUi)
 
-#Group Уведомления
+# Group Уведомления
 
 ## Уведомления [/notification]
 
@@ -1426,7 +1426,7 @@ distance, x, z - в километрах
         * status: `Play` (HoloCommandEnum)
 
 
-#Group MТП-5
+# Group MТП-5
 
 ## Выдача списка дат архивных данных температурного профилимера [/station/{id}/mtp/archive{?date_from,date_to}]
 Выдача архивных дат измерений ТПМ. Список отсортирован по возрастанию
@@ -1483,7 +1483,7 @@ distance, x, z - в километрах
 + Response 200 (application/json; charset=utf-8)
     + Attributes (FtpServersJson)
 
-### Добавить новый FTP-сервер[POST]
+### Добавить новый FTP-сервер [POST]
 
 + Request (application/json)
     + Attributes (FtpServerItemJson)
@@ -1492,32 +1492,34 @@ distance, x, z - в километрах
 
     + Header
 
-            Location: /ftpservers/{id}
+            Location: /settings/ftpservers/{id}
 
-## Получить информацию о FTP-сервере[/settings/ftpservers/{id}]
 
-+ Parameters:
-    * id - Идентификатор сервера
+## Получить информацию о FTP-сервере [/settings/ftpservers/{id}]
++ Parameters
+    * id: `0` (number) - Идентификатор сервера
 
-### Получить информацию о FTP-сервере[GET]
+### Получить информацию о FTP-сервере [GET]
 + Response 200 (application/json; charset=utf-8)
     + Attributes (FtpServerItemJson)
 
-### Обновить информацию о FTP-сервере[PUT]
+### Обновить информацию о FTP-сервере [PUT]
 + Request (application/json; charset=utf-8)
     + Attributes (FtpServerItemJson)
 
 + Response 200 (application/json)
 
-### Удалить информацию о FTP-сервере[DELETE]
+### Удалить информацию о FTP-сервере [DELETE]
 + Response 204
 
-## Получить информацию о экспортируемых продуктах на СМРЛП[/settings/exportproducts]
-Список продуктов который экспортируется с каждой станции
 
+## Получить информацию о экспортируемых продуктах на СМРЛП [/settings/exportproducts]
+
+Список продуктов который экспортируется с каждой станции
 ### Получить список[GET]
 + Response 200 (application/json; charset=utf-8)
-    + Attributes(StationExportProducts)
+    + Attributes (StationExportProducts)
+
 
 ## Настройки экспорта BUFR [/settings/bufr]
 
@@ -2554,13 +2556,22 @@ distance, x, z - в километрах
 ## ExportProductType(object, fixed-type)
 Описание экспортируемого продукта
 ### Properties
-- index: `0` (number) - Уникальный индекс
-- name: `НАМС` (string) - Имя продукта
+- type: `NONE`  (enum[string]) - Имя продукта
+    + Members
+        + `NONE` - Неизвестный тип
+        + `BUFR_V1` - Базовая версия
+        + `BUFR_V2` - Версия Авиаметтелекома
+        + `HDF5` - Данные в формате HDF5
+        + `NAMS` - Данные НАМС
+        + `MTP5` - Данные МТП-5
+
 
 ## StationExportProducts(object, fixed-type)
 ### Properties
-- station_id: `1` (number) - ID станции
-- products (array[ExportProductType]) -  Список продуктов поддеживаемых на станции
+- available (array)
+    - (object)
+        - station_id: `1` (number) - ID станции
+        - products (array[ExportProductType]) -  Список продуктов поддеживаемых на станции
 
 ## ExportItem(object, fixed-type)
 - ftpid: `1` (number) - ID FTP сервера
