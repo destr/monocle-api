@@ -2583,7 +2583,7 @@ distance, x, z - в километрах
 - available (array)
     - (object)
         - station_id: `1` (number) - ID станции
-        - products (array[ExportProductEnum]) -  Список продуктов поддеживаемых на станции
+        - products (array[ExportProductType]) -  Список продуктов поддеживаемых на станции
 
 ## ExportItem(object, fixed-type)
 - ftpid: `1` (number) - ID FTP сервера
@@ -2611,4 +2611,5 @@ distance, x, z - в километрах
 ## ExportSettings(object, fixed-type)
 Настройки экспорта
 ### Properties
-- items (array[ExportItemSettings])
+- exports (array[ExportItemSettings])
+
