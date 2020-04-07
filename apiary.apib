@@ -1494,17 +1494,16 @@ distance, x, z - в километрах
 
             Location: /settings/ftpservers/{id}
 
-
 ## Получить информацию о FTP-сервере [/settings/ftpservers/{id}]
 + Parameters
-    * id: `0` (number) - Идентификатор сервера
+    * id: `1` (number) - Идентификатор сервера
 
 ### Получить информацию о FTP-сервере [GET]
 + Response 200 (application/json; charset=utf-8)
     + Attributes (FtpServerItemJson)
 
 ### Обновить информацию о FTP-сервере [PUT]
-+ Request (application/json; charset=utf-8)
++ Request (application/json)
     + Attributes (FtpServerItemJson)
 
 + Response 200 (application/json)
@@ -2547,6 +2546,7 @@ distance, x, z - в километрах
 - remote_dir: `/pub` (string) - Каталог на сервере
 - login: `login` (string) - Логин
 - password: `qwertyui` (string) - Пароль
+- active: true (boolean) - Использовать сервер для выгрузки
 
 ## FtpServersJson(object, fixed-type)
 Список FTP-серверов для экспорта
