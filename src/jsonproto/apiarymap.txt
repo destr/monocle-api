@@ -62,6 +62,8 @@
 /station/{id}/mrls_status
   <200 ::MrlsStatus
 /settings/{id}/channels
+/settings/exportproducts
+  <200 ::StationExportProducts
 /station/{id}/dangerous_meteo_list
 /notification
 /notify/new_state

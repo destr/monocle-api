@@ -1230,7 +1230,7 @@ distance, x, z - в километрах
 
 + Response 200 (application/json; charset=utf-8)
     + Attributes(ColorScaleList)
-    
+
 ## Настройки цветовой шкалы [/settings/{user_id}/color_scale/{id}]
 
 Редактирование цветовых шкал
@@ -1260,8 +1260,8 @@ distance, x, z - в километрах
 Всегда может понадобиться сбросить цветовую шкалу в состояние "по-умолчанию"
 
 + Parameters
-    + id: `0` (number) - ID раздела настроек цветовой шкалы
     + user_id: `0` (number) - ID пользователя
+    + id: `0` (number) - ID раздела настроек цветовой шкалы
 
 ### Получить настройки цветовой шкалы по умолчанию [GET]
 
@@ -1474,6 +1474,51 @@ distance, x, z - в километрах
 
 # Group Настройки экспорта
 
+## Настройка FTP-серверов [/settings/ftpservers]
+
+Настройка списка серверов доступных для экспорта
+
+### Получить список серверов [GET]
+
++ Response 200 (application/json; charset=utf-8)
+    + Attributes (FtpServersJson)
+
+### Добавить новый FTP-сервер[POST]
+
++ Request (application/json)
+    + Attributes (FtpServerItemJson)
+
++ Response 201
+
+    + Header
+
+            Location: /ftpservers/{id}
+
+## Получить информацию о FTP-сервере[/settings/ftpservers/{id}]
+
++ Parameters:
+    * id - Идентификатор сервера
+
+### Получить информацию о FTP-сервере[GET]
++ Response 200 (application/json; charset=utf-8)
+    + Attributes (FtpServerItemJson)
+
+### Обновить информацию о FTP-сервере[PUT]
++ Request (application/json; charset=utf-8)
+    + Attributes (FtpServerItemJson)
+
++ Response 200 (application/json)
+
+### Удалить информацию о FTP-сервере[DELETE]
++ Response 204
+
+## Получить информацию о экспортируемых продуктах на СМРЛП[/settings/exportproducts]
+Список продуктов который экспортируется с каждой станции
+
+### Получить список[GET]
++ Response 200 (application/json; charset=utf-8)
+    + Attributes(StationExportProducts)
+
 ## Настройки экспорта BUFR [/settings/bufr]
 
 Экспорт данных АС СМРЛП в заданные направления по протоколу FTP
@@ -1655,7 +1700,7 @@ distance, x, z - в километрах
 
 + Response 200 (application/json; charset=utf-8)
     + Attributes(object, fixed-type)
-      - skod_id: strid (string) - Уникальный идентификатор СКОД
+      - skod_id: `strid` (string) - Уникальный идентификатор СКОД
 
 
 ## Версия формата имени файла BUFR [/internal/bufr_versions]
@@ -2498,19 +2543,33 @@ distance, x, z - в километрах
 - port: `21` (number) - Порт
 - active_mode: `false` (boolean) - Активный режим работы
 - remote_dir: `/pub` (string) - Каталог на сервере
+- login: `login` (string) - Логин
+- password: `qwertyui` (string) - Пароль
 
 ## FtpServersJson(object, fixed-type)
 Список FTP-серверов для экспорта
 ### Properties
 - ftpservers(array[FtpServerItemJson])
 
+## ExportProductType(object, fixed-type)
+Описание экспортируемого продукта
+### Properties
+- index: `0` (number) - Уникальный индекс
+- name: `НАМС` (string) - Имя продукта
+
+## StationExportProducts(object, fixed-type)
+### Properties
+- station_id: `1` (number) - ID станции
+- products (array[ExportProductType]) -  Список продуктов поддеживаемых на станции
+
+## ExportItem(object, fixed-type)
+- ftpid: `1` (number) - ID FTP сервера
+- stations (array)
+    - (object)
+        - id: `1` (number) - ID станции
+        - products: 1, 2, 3 (array[number]) - ID продуктов
+
 ## ExportMap(object, fixed-type)
 Структура описывающая какие продукты экспортировать на какие FTP
 ### Properties
-- exports (array)
-    - (object)
-        - ftpid: `1` (number) - ID FTP сервера
-        - stations (array)
-            - (object)
-                - id: `1` (number) - ID станции
-                - products: 1, 2, 3 (array[number]) - ID продуктов
+- exports (array[ExportItem])
