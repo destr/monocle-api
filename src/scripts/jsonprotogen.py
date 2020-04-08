@@ -422,6 +422,8 @@ class JsonProtoGen:
         # дополнительные статичные методы
         self.classes[class_name] += """
     bool isNull() const { return is_null_; }
+    // FIXME Функция не рекурсивная
+    void setNull(bool null) { is_null_ = null;}
 private:
     bool is_null_ = true;
 """

@@ -699,17 +699,7 @@ distance, x, z - в километрах
     + id: `0` (number) - ID СМРЛП
 
 + Request (application/json)
-    + Attributes(object, fixed-type)
-        - date: `2019-10-02T00:49:26+00:00` (string) - Дата обзора ISO формат
-        - point (object)
-            - latitude: 56.15778819063682 (number) - Долгота
-            - longitude: 37.07894895225763 (number) - Широта
-        - types: `wpcell`, `dbz` (array[string])
-        - altitude_index: 0 (number) - Индекс отображаемого слоя по высоте (актуально только для сдвигов ветра - wsh и wsv)
-        - indicator: `maxcappi` (CsIndicator)
-        - altitude: `1.1` - Высота
-        - angle: `1.1` - УМ
-        - interval: `100` - Интервал построения КС
+    + Attributes(MarkerRequest)
 
 + Response 200 (application/json; charset=utf-8)
     + Attributes(object, fixed-type)
@@ -720,6 +710,22 @@ distance, x, z - в километрах
                 - strings: `Данные` (array[string])
         - timestamp: 1570522792 (number) - UNIX-timestamp  обзора
 
+## Метеоинформация в указанной точке V2 [/station/{id}/marker_data_v2]
+
+Получения значения продукта в указанной точке. Для плоских карт одно значение.
+Для колических сечений дополнительно минимальное и максимальное
+
+### Получить [POST]
+
++ Parameters
+    + id: `0` (number) - ID СМРЛП
+
++ Request (application/json)
+    + Attributes(MarkerRequest)
+
++ Response 200 (application/json; charset=utf-8)
+    + Attributes (object, fixed-type)
+        - data (array[MarkerResponseRlp, MarkerResponseCs, MarkerResponseVvField])
 
 # Group Настройки
 
@@ -1760,6 +1766,18 @@ distance, x, z - в километрах
 + Response 605 (application/json)
     + Attributes(ExportMap)
 
++ Response 606 (application/json)
+    + Attributes(MarkerResponse)
+
++ Response 607 (application/json)
+    + Attributes(MarkerResponseRlp)
+
++ Response 608 (application/json)
+    + Attributes(MarkerResponseCs)
+
++ Response 609 (application/json)
+    + Attributes(MarkerResponseVvField)
+
 # Data Structures
 ## ArchiveProductList(object, fixed-type)
 ### Properties
@@ -2613,3 +2631,52 @@ distance, x, z - в километрах
 ### Properties
 - exports (array[ExportItemSettings])
 
+## MarkerRequest(object, fixed-type)
+Тип запроса данных маркера
+### Properties
+- date: `2019-10-02T00:49:26+00:00` (string) - Дата обзора ISO формат
+- point (object)
+    - latitude: 56.15778819063682 (number) - Долгота
+    - longitude: 37.07894895225763 (number) - Широта
+- types: `wpcell`, `dbz` (array[string])
+- altitude_index: 0 (number, optional) - Индекс отображаемого слоя по высоте (актуально только для сдвигов ветра - wsh и wsv)
+- indicator: `maxcappi` (CsIndicator, optional) - только для КС
+- altitude: `1.1` (number, optional) - Высота
+- angle: `1.1` (number, optional) - УМ
+- interval: `100` (number, optional) - Интервал построения КС
+
+## MarkerResponseBase(object, fixed-type)
+Базовый тип ответа маркера для всех типов продуктов
+### Properties
+- type: `wpcell` (string) - Тип продукта
+
+## MarkerResponseRlp(MarkerResponseBase, fixed-type)
+Тип ответа на запрос данных в точке для РЛП карт
+### Properties
+- value: `1` (string, nullable) - Значение в точке, строковое представление. Может быть null в этом случае значения нет
+
+## MarkerResponseCs(MarkerResponseRlp, fixed-type)
+Тип ответа на запрос данных в точке для КС. value может быть null, но при этом min, max может не быть null. То есть нет значения в точке, но минимальное и максимально возможное определить удалось.
+### Properties
+- min: `1` (string, nullable) - Минимальное значение в точке. Может быть null в случае если не удалось получить данные.
+- max: `1` (string, nullable) - Максимальное значение в точке. Поведение с null аналогично min
+
+## MarkerResponseVvField(MarkerResponseBase, fixed-type)
+Тип ответа на запрос для векторного поля ветра. Карта РЛП у которой есть слои
+### Properties
+- altitude: `1` (string) - Высота
+- x: `0` (string, nullable) - Координата X
+- y: `0` (string, nullable) - Метеорологическое направление
+- z: `0` (string, nullable) - Координата Z
+
+## MarkerData(object, fixed-type)
+Тип для cpp реализации маркера, включающий всё в себя
+### Properties
+- Include MarkerResponseVvField
+- Include MarkerResponseCs
+
+## MarkerResponse(object, fixed-type)
+Тип для С++
+### Properties
+- data(array[MarkerData])
+- timestamp: `123` (number) - UNUX-timestamp

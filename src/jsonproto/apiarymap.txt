@@ -103,6 +103,8 @@
   <200 ::AlgorighmParameters
 /server/info
   <200 ::ServerInfo
+#/station/{id}/marker_data_v2
+#  <200 ::MarkerResponse[POST]
 # Запрос не используется. Нужен для генерации C++ типов
 # чтобы не дорабатывать парсер-генератор. Код возврата больше 600
 /workaround/cpptypes
@@ -112,3 +114,9 @@
   <603 ::StationsJson
   <604 ::FtpServersJson
   <605 ::ExportMap
+# Общий тип ответа для использования в C++
+  <606 ::MarkerResponse
+# Эти типы более узкие для python
+  <607 ::MarkerResponseRlp
+  <608 ::MarkerResponseCs
+  <609 ::MarkerResponseVvField
