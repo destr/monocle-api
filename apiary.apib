@@ -688,29 +688,7 @@ Cправочник типов конических сечений для СМР
 
 + Response 404
 
-## Метеоинформация в указанной точке [/station/{id}/marker_data]
-
-Получение данных маркера для указанного списка продуктов.
-distance, x, z - в километрах
-
-### Получить [POST]
-
-+ Parameters
-    + id: `0` (number) - ID СМРЛП
-
-+ Request (application/json)
-    + Attributes(MarkerRequest)
-
-+ Response 200 (application/json; charset=utf-8)
-    + Attributes(object, fixed-type)
-        - data(array)
-            - (object)
-                - type: `wpcell` (string)
-                - title: `Метеоявления` (string)
-                - strings: `Данные` (array[string])
-        - timestamp: 1570522792 (number) - UNIX-timestamp  обзора
-
-## Метеоинформация в указанной точке V2 [/station/{id}/marker_data_v2]
+## Метеоинформация в указанной точке V2 [/station/{id}/marker_data]
 
 Получения значения продукта в указанной точке. Для плоских карт одно значение.
 Для колических сечений дополнительно минимальное и максимальное
