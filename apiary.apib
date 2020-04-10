@@ -704,6 +704,7 @@ Cправочник типов конических сечений для СМР
 + Response 200 (application/json; charset=utf-8)
     + Attributes (object, fixed-type)
         - data (array[MarkerResponseRlp, MarkerResponseCs, MarkerResponseVvField])
+        - timestamp: `100000` (number)
 
 # Group Настройки
 
@@ -2616,7 +2617,7 @@ Cправочник типов конических сечений для СМР
 - point (object)
     - latitude: 56.15778819063682 (number) - Долгота
     - longitude: 37.07894895225763 (number) - Широта
-- types: `wpcell`, `dbz` (array[string])
+- types: `wpcell`, `dbz`, `vvf` (array[string])
 - altitude_index: 0 (number, optional) - Индекс отображаемого слоя по высоте (актуально только для сдвигов ветра - wsh и wsv)
 - indicator: `maxcappi` (CsIndicator, optional) - только для КС
 - altitude: `1.1` (number, optional) - Высота
