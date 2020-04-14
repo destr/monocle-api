@@ -546,7 +546,7 @@ Cправочник типов конических сечений для СМР
         * count: `1` (number) - Количестко элементом
         * items (array[NamsData]) - Элементы НАМС
 
-## Список дат измерений метео [/station/{id}/nams_data/archive{?date_from,date_to}]
+## Список дат измерений метео [/station/{id}/nams_data/archive{?date_from,date_to,last_n}]
 
 Получить список дат в формате ISO для зарегистрированных наблюдений метео. Список отсортирован по возрастанию
 
@@ -556,6 +556,7 @@ Cправочник типов конических сечений для СМР
     + id: `0` (number, required) - ID СМРЛП
     + date_from: `2019-12-08T00:10:20` (string, optional) - ISO дата время начала периода обзоров
     + date_to: `2020-03-10T23:59:59` (string, optional) - ISO дата время окончания перода обзоров
+    + last_n: `1` (number, optional) - Получить последние N записей
 
 + Response 200 (application/json; charset=utf-8)
     + Attributes(ArchiveProductList)
@@ -588,6 +589,7 @@ Cправочник типов конических сечений для СМР
     + id: `0` (number, required) - ID радара
     + date_from: `2019-10-01T19:30:20` (string, optional) - ISO дата время начала периода обзоров
     + date_to: `2019-10-02T00:30:59` (string, optional) - ISO дата время окончания перода обзоров
+    + last_n: `1` (number, optional) - Получить N последних записей
 
 ### Получить [GET]
 
@@ -1413,7 +1415,7 @@ Cправочник типов конических сечений для СМР
 
 # Group MТП-5
 
-## Выдача списка дат архивных данных температурного профилимера [/station/{id}/mtp/archive{?date_from,date_to}]
+## Выдача списка дат архивных данных температурного профилимера [/station/{id}/mtp/archive{?date_from,date_to,last_n}]
 Выдача архивных дат измерений ТПМ. Список отсортирован по возрастанию
 
 ### Получить [GET]
@@ -1422,6 +1424,7 @@ Cправочник типов конических сечений для СМР
     + id: `0` (number, required) - ID СМРЛП
     + date_from: `2019-10-07T19:30:20` (string, optional) - ISO дата время начала периода обзоров
     + date_to: `2019-10-07T23:59:59` (string, optional) - ISO дата время окончания перода обзоров
+    + last_n: `1` (number, optional) - Получить N последних записей
 
 + Response 200 (application/json; charset=utf-8)
     + Attributes(ArchiveProductList)
