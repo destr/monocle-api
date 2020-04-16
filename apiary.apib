@@ -581,7 +581,7 @@ Cправочник типов конических сечений для СМР
         - min_wp_id: 1 (number) - минимальное МЯ - идетификатор из списка
         - date: `2018-01-30T17:25:52+00:00` (string) - Дата ISO-формат
 
-## Список архивных обзоров [/station/{id}/archive_product_list{?date_from,date_to}]
+## Список архивных обзоров [/station/{id}/archive_product_list{?date_from,date_to,last_n}]
 
 Общий для РЛП и КС (сортированный)
 
@@ -1658,12 +1658,6 @@ Cправочник типов конических сечений для СМР
 ### Properties
 - id: 0 (number) - Идентификатор станции
 - title: Орловка (string) - Название станции
-
-## CurrentFtpExportSettings(object, fixed-type)
-Текущие настройки экспорта
-### Properties
-- count: 1(number) - Количество элементов
-- items (array[FtpHost]) - Список FTP
 
 ## WeightWindowEnum(enum[number])
 Типы взвешивания
