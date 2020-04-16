@@ -2567,8 +2567,9 @@ Cправочник типов конических сечений для СМР
 ## ExportProductEnum(enum[string])
 ### Members
 + `NONE` - Неизвестный тип
-+ `BUFR_V1` - Базовая версия
-+ `BUFR_V2` - Версия Авиаметтелекома
++ `BUFR_DEFAULT` - Базовая версия
++ `BUFR_GAMC_GGO` - Версия одним файлом для ГАМЦ ГГО
++ `BUFR_AVIAMETTELECOM` - Версия Авиаметтелекома
 + `HDF5` - Данные в формате HDF5
 + `NAMS` - Данные НАМС
 + `MTP5` - Данные МТП-5
@@ -2590,7 +2591,7 @@ Cправочник типов конических сечений для СМР
 - stations (array)
     - (object)
         - id: `1` (number) - ID станции
-        - products: `BUFR_V1`, `NAMS` (array[ExportProductEnum]) - ID продуктов
+        - products: `BUFR_DEFAULT`, `NAMS` (array[ExportProductEnum]) - ID продуктов
 
 ## ExportMap(object, fixed-type)
 Структура описывающая какие продукты экспортировать на какие FTP
