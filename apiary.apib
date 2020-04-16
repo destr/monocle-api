@@ -1519,166 +1519,6 @@ Cправочник типов конических сечений для СМР
 
 + Response 201(application/json; charset=utf-8)
 
-## Настройки экспорта BUFR [/settings/bufr]
-
-Экспорт данных АС СМРЛП в заданные направления по протоколу FTP
-
-### Получить список настроек экспорта BUFR [GET]
-
-+ Response 200 (application/json; charset=utf-8)
-
-        {
-            "count": 2,
-            "items":
-                [
-                    {
-                        "active": true,
-                        "ip": "40.72.241.112",
-                        "port": 21,
-                        "path": "/var/lib/monocle/data/",
-                        "login": "login",
-                        "password": "password",
-                        "stations": [
-                            {
-                                "id": 1,
-                                "title": "Орловка"
-                            },
-                            {
-                                "id": 2,
-                                "title": "Чкаловский"
-                            },
-                            {
-                                "id": 3,
-                                "title": "Братск"
-                            }
-                        ]
-                    },
-                    {
-                        "active": false,
-                        "ip": "40.72.241.112",
-                        "port": 21,
-                        "path": "/var/lib/monocle/data/",
-                        "login": "login",
-                        "password": "password",
-                        "stations": [
-                            {
-                                "id": 3,
-                                "title": "Братск"
-                            }
-                        ]
-                    }
-                ]
-        }
-
-### Обновить список настроек экспорта BUFR [PUT]
-
-+ Request (application/json)
-
-        [
-            {
-                "active": true,
-                "ip": "40.72.241.112",
-                "port": 21,
-                "path": "/var/lib/monocle/data/",
-                "login": "login",
-                "password": "password",
-                "stations": [
-                    {
-                        "id": 1,
-                        "title": "Орловка"
-                    },
-
-                    {
-                        "id": 2,
-                        "title": "Чкаловский"
-                    },
-                    {
-                        "id": 3,
-                        "title": "Братск"
-                    }
-                ]
-            },
-            {
-                "active": false,
-                "ip": "40.72.241.112",
-                "port": 21,
-                "path": "/var/lib/monocle/data/",
-                "login": "login",
-                "password": "password",
-                "stations": [
-                    {
-                        "id": 3,
-                        "title": "Братск"
-                    }
-                ]
-            }
-        ]
-
-+ Response 200 (application/json; charset=utf-8)
-    + Attributes(object)
-
-+ Response 422 (application/json)
-
-        {
-            "count": 1,
-            "items":
-                [
-                    {
-                        "index": 1,
-                        "active": "Невалидное значение",
-                        "ip": "Невалидное значение",
-                        "port": "Невалидное значение",
-                        "path": "Невалидное значение",
-                        "stations": "Невалидное значение"
-                    }
-                ]
-        }
-
-## Настройка экспорта НАМС [/settings/nams]
-Экспорт данных НАМС с АС СМРПЛ.
-
-### Получить список настроек экспорта НАМС [GET]
-+ Response 200 (application/json; charset=utf-8)
-    + Attributes(CurrentFtpExportSettings)
-
-### Обновить список настроек экспорта НАМС [PUT]
-+ Request (application/json)
-    + Attributes(array)
-        - (FtpHost)
-
-+ Response 200 (application/json; charset=utf-8)
-    + Attributes(object)
-
-## Настройка экспорта HDF5 [/settings/hdf5]
-Экспорт данных HDF5 c АС СМРПЛ.
-
-### Получить список настроек экспорта HDF5 [GET]
-+ Response 200 (application/json; charset=utf-8)
-    + Attributes(CurrentFtpExportSettings)
-
-### Обновить список настроек экспорта HDF5 [PUT]
-+ Request (application/json)
-    + Attributes(array)
-        - (FtpHost)
-
-+ Response 200 (application/json; charset=utf-8)
-    + Attributes(object)
-
-## Настройка экспорта MTP5 [/settings/mtp5]
-Экспорт данных MTP5 с АС СМРПЛ
-
-### Получить список настроек экспорта MTP5 [GET]
-+ Response 200 (application/json; charset=utf-8)
-    + Attributes(CurrentFtpExportSettings)
-
-### Обновить список настроек экспорта MTP5 [PUT]
-+ Request (application/json)
-    + Attributes(array)
-        - (FtpHost)
-
-+ Response 200 (application/json; charset=utf-8)
-    + Attributes(object)
-
 # Group Служебные
 
 ## Версия API [/api/version]
@@ -1701,22 +1541,6 @@ Cправочник типов конических сечений для СМР
 + Response 200 (application/json; charset=utf-8)
     + Attributes(object, fixed-type)
       - skod_id: `strid` (string) - Уникальный идентификатор СКОД
-
-
-## Версия формата имени файла BUFR [/internal/bufr_versions]
-Для некоторых получателей необходимо именовать файлы по разному.
-Ограничения: На один хост FTP можно выгрузить только один формат.
-Не реализовано (API)ен
-
-### Получить [GET]
-+ Response 200 (application/json; charset=utf-8)
-    + Attributes(array)
-        - (object)
-            - node: `monocle-autodor` (string) - Название узла
-            - ftp (array):
-                - (object)
-                    - host: localhost (string) - Имя хоста указанного в настройка выгрузки BUFR
-                    - version: aviamettelecom (string) - Название версии формата
 
 ## Test [/test]
 ### Get [GET]
@@ -1825,41 +1649,15 @@ Cправочник типов конических сечений для СМР
 Расписание для представления в web интерфейсе с дополнительными полями
 ### Properties
 - id: 0 (number) - Порядковый номер
-    
+
 ## ScheduleWebUi(array[ScheduleItemWebUi])
 Расписание предназначенное для работы в web интерфейсе
-
-## FtpHost (object, fixed-type)
-Описание FTP-хоста на который происходит выгрузка данных НАМС, BUFR, HDF5 и ТПМ
-### Properties
-- active: false (boolean) - Признак использования хоста для выгрузки
-- ip: example.com (string) - Имя хоста
-- port: 21 (number) - Порт
-- active_mode: true (boolean) - Активный режим работы FTP
-- path: /var/lib/monocle/data/ (string) - Каталог выгрузки данных на FTP
-- login: login (string) - Логин
-- password: password (string) - Пароль
-- stations (array[ShortStationInfo]) - Список станций с которых происходит выгрузка
-
-## FtpHostExt(FtpHost, fixed-type)
-### Properties
-- stations (array[ShortStationInfoExt])
 
 ## ShortStationInfo(object, fixed-type)
 Описание станции с которой происходит выгрузка
 ### Properties
 - id: 0 (number) - Идентификатор станции
 - title: Орловка (string) - Название станции
-
-## ShortStationInfoExt(ShortStationInfo, fixed-type)
-Описание станции с которой происходит выгрузка
-### Properties
-- products (object, fixed-type)
-    - wpcell: true (boolean)
-    - htmax: true (boolean)
-    - dbz: false (boolean)
-    - rfli: false (boolean)
-    - rfls3up24: true (boolean)
 
 ## CurrentFtpExportSettings(object, fixed-type)
 Текущие настройки экспорта
@@ -2366,7 +2164,6 @@ Cправочник типов конических сечений для СМР
 - timetable (ScheduleBase)
 - bufr (object, fixed-type)
     - count: 1 (number)
-    - items (array[FtpHostExt])
 - qtiface (object, fixed-type)
     - calibration_period (object, fixed-type)
         - warm: 3 (number)
