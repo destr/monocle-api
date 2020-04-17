@@ -87,12 +87,10 @@ class DSField:
         if 'meta' in content and 'description' in content["meta"]:
             self.description = content["meta"]["description"]["content"]
 
-        self.value = None
-
         if 'value' in c:
             if 'content' not in c["value"]:
                 # тип данных
-                self.type = c["value"]["element"]
+                self.type = TypeMap(c["value"]["element"])
                 return
 
             v = c["value"]["content"]
@@ -115,6 +113,7 @@ class DSField:
 class DsEnumField:
     def __init__(self, content):
         self.name = content["content"]
+        self.is_number = content["element"] == 'number'
         self.description = None
         if "meta" in content and 'description' in content["meta"]:
             self.description = content['meta']['description']['content']
@@ -133,6 +132,7 @@ class DSResource:
         self.object_type = DSResource.Type.Unknown
         self.base_type = None
         self.name = None
+        self.refs = list()
         element = content["element"]
         if element == "object" or element[0].isupper():
             self.object_type = DSResource.Type.Object
@@ -151,6 +151,9 @@ class DSResource:
 
         # члены класса
         for item in content["content"]:
+            if item['element'] == 'ref':
+                self.refs.append(item['content'])
+                continue
             f = DSField(item)
             self.fields.append(f)
 
