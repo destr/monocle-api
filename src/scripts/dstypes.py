@@ -2,13 +2,20 @@
 
 from enum import Enum
 
-kTypeMap= {'str': 'QString', 'float' : 'double', 'string': 'QString', 'number': 'int'}
+kTypeMap = {'str': 'QString', 'float' : 'double', 'string': 'QString', 'number': 'int'}
+kTypeFromJsonValue = {'QString': 'String', 'double' : 'Double', 'int': 'Int', 'bool': 'Bool'}
+
 
 def TypeMap(type_name):
     if type_name in kTypeMap:
         return kTypeMap[type_name]
     return type_name
 
+
+def FromJsonValueTypeConverter(type_name):
+    if type_name in kTypeFromJsonValue:
+        return kTypeFromJsonValue[type_name]
+    return 'Object'
 
 class ResourceElement:
     def __init__(self, element):
@@ -83,7 +90,7 @@ class DSField:
         self.value = None
         self.type = None
         self.name = c["key"]["content"]
-        self.description = None
+        self.description = ''
         if 'meta' in content and 'description' in content["meta"]:
             self.description = content["meta"]["description"]["content"]
 
@@ -109,6 +116,11 @@ class DSField:
 
             self.value = v
 
+    def to_func(self):
+        if self.type in kTypeFromJsonValue:
+            return kTypeFromJsonValue[self.type]
+        return 'Object'
+
 
 class DsEnumField:
     def __init__(self, content):
@@ -133,6 +145,10 @@ class DSResource:
         self.base_type = None
         self.name = None
         self.refs = list()
+        self.description = ''
+        if 'meta' in content and 'description' in content['meta']:
+            self.description = content['meta']['description']
+
         element = content["element"]
         if element == "object" or element[0].isupper():
             self.object_type = DSResource.Type.Object
