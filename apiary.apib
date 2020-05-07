@@ -464,14 +464,7 @@ Cправочник типов конических сечений для СМР
 ### Получить [POST]
 
 + Request (application/json)
-    + Attributes(object, fixed-type)
-        - station_id: 0 (number)
-        - date: `2019-10-02T00:49:26` (string)
-        - route_key_points (array) - Ключевые точки маршрута
-            - 55.95091, 37.34966 (array[number])
-            - 56.97223, 35.18087 (array[number])
-        - max_altitude: 5000 (number)
-
+    + Attributes(VerticalSectionWpRequest)
 
 + Response 200 (application/json; charset=utf-8)
     + Attributes(object, fixed-type)
@@ -632,6 +625,7 @@ Cправочник типов конических сечений для СМР
     * indicator: `maxcappi`  (CsIndicator)
     * altitude: `100` (number) - Высота в метрах (только для CAPPI) [100:20000]
     * user_id: `0` (number) - Уникальный идентификатор пользователя
+    * interval: `100` (number)
     * date (string, optional) - Дата обзора (если не указан, то возвращается последнее КС)
     * cell_size (number, optional) - Размер области, которую покрывает 1 пиксель в м., в текущей итерации всегда 1000
     * radius (number, optional) - Радиус обзора в км., в текущей итерации всегда 100
@@ -1595,6 +1589,12 @@ Cправочник типов конических сечений для СМР
 - `Record`
 - `Stop`
 
+## CsIndicator(enum[string])
+### Members
++ `cappi` - CAPPI
++ `ppi` - PPI
++ `maxcappi` - MAXCAPPI
+
 ## RequestRenderCs
 Формат запроса отправляемый в monocle-render для отрисовки конеческого сечения
 ### Properties
@@ -1846,11 +1846,6 @@ Cправочник типов конических сечений для СМР
 ### Properties
 - id (string) - Уникальный идентификатор
 
-## CsIndicator(enum[string])
-### Members
-+ `cappi` - CAPPI
-+ `ppi` - PPI
-+ `maxcappi` - MAXCAPPI
 
 ## LogLevelEnum(enum[string])
 ### Members
@@ -2454,3 +2449,12 @@ Cправочник типов конических сечений для СМР
 ### Properties
 - data(array[MarkerData])
 - timestamp: `123` (number) - UNUX-timestamp
+
+## VerticalSectionWpRequest (object, fixed-type)
+### Properties
+- station_id: 0 (number)
+- date: `2019-10-02T00:49:26` (string)
+- route_key_points (array) - Ключевые точки маршрута
+    - 55.95091, 37.34966 (array[number])
+    - 56.97223, 35.18087 (array[number])
+- max_altitude: 5000 (number)
