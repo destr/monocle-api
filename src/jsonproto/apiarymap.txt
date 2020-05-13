@@ -113,10 +113,11 @@
   <602 ::RequestRenderCs
   <603 ::StationsJson
   <604 ::FtpServersJson
-  <605 ::ExportMap
+  <605 ::ExportJson
 # Общий тип ответа для использования в C++
   <606 ::MarkerResponse
 # Эти типы более узкие для python
   <607 ::MarkerResponseRlp
   <608 ::MarkerResponseCs
   <609 ::MarkerResponseVvField
+  <610 ::ExportProductTypesJson

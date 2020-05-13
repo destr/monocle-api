@@ -1564,7 +1564,7 @@ Cправочник типов конических сечений для СМР
     + Attributes(FtpServersJson)
 
 + Response 605 (application/json)
-    + Attributes(ExportMap)
+    + Attributes(ExportJson)
 
 + Response 606 (application/json)
     + Attributes(MarkerResponse)
@@ -1577,6 +1577,9 @@ Cправочник типов конических сечений для СМР
 
 + Response 609 (application/json)
     + Attributes(MarkerResponseVvField)
+
++ Response 610 (application/json)
+    + Attributes(ExportProductTypesJson)
 
 # Data Structures
 ## ArchiveProductList(object, fixed-type)
@@ -2340,7 +2343,6 @@ Cправочник типов конических сечений для СМР
 - host: `ftp.ians.aero` (string) - Доменное имя/IP адрес
 - port: `21` (number) - Порт
 - active_mode: `false` (boolean) - Активный режим работы
-- remote_dir: `/pub` (string) - Каталог на сервере
 - login: `login` (string) - Логин
 - password: `qwertyui` (string) - Пароль
 - active: true (boolean) - Использовать сервер для выгрузки
@@ -2360,41 +2362,61 @@ Cправочник типов конических сечений для СМР
 + `NAMS` - Данные НАМС
 + `MTP5` - Данные МТП-5
 
-## ExportProductType(object, fixed-type)
+## ExportProductTypeItemBase(object, fixed-type)
+### Properties
+- type: `NONE`  (ExportProductEnum) - Код продукта
+- name: `Данные НАМС` (string) - Название продукта
+
+## ExportProductTypeItemJson(ExportProductTypeItemBase, fixed-type)
 Описание экспортируемого продукта
 ### Properties
-- type: `NONE`  (ExportProductEnum) - Имя продукта
+- remote_dir: `/pub` (string, nullable) - Каталог для выгрузке на сервер
+
+## ExportProductTypesJson(object, fixed-type)
+Тип описывающий содержимое файла export_product_types.json
+### Properties
+- products(array[ExportProductTypeItemJson]
 
 ## StationExportProducts(object, fixed-type)
 ### Properties
 - available (array)
     - (object)
         - station_id: `1` (number) - ID станции
-        - products (array[ExportProductType]) -  Список продуктов поддеживаемых на станции
+        - products (array[ExportProductTypeItemBase]) -  Список продуктов поддеживаемых на станции
 
-## ExportItem(object, fixed-type)
+
+## ExportProductItemJson(object, fixed-type)
+Элемент списка products в ExportItemJson
+### Properties
+- type (enum[ExportProductEnum])
+- remote_dir: `/dir` (string) - Каталог на сервере
+
+## ExportItemJson(object, fixed-type)
+Элемент списка ftpexport.json
+### Properties
 - ftpid: `1` (number) - ID FTP сервера
 - stations (array)
     - (object)
         - id: `1` (number) - ID станции
-        - products: `BUFR_DEFAULT`, `NAMS` (array[ExportProductEnum]) - ID продуктов
+        - products (array[ExportProductItemJson]) - ID продуктов
 
-## ExportMap(object, fixed-type)
-Структура описывающая какие продукты экспортировать на какие FTP
+## ExportJson(object, fixed-type)
+Структура описывающая какие продукты экспортировать на какие FTP. Соответствует
+файлу ftpexport.json
 ### Properties
-- exports (array[ExportItem])
+- exports (array[ExportItemJson])
+
 
 ## ExportItemSettings(object, fixed-type)
-Структура развёрнутая из ExportMap, заменены все идентификаторы на их значение
+Структура развёрнутая из ExportJson, заменены все идентификаторы на их значение
 ### Properties
 - ftpid: `1` (number) - ID FTP-сервера
 - ftpname: `name` (string) - Название FTP-сервера
-- remote_dir: `/pub` (string) - Каталог на сервере
 - stations(array)
     - (object)
         - id: `1` (number) - ID станции
         - name: `Title` (string) - Название станции
-        - products: `BUFR V1`, `NAMS` (array[string]) - Типы продуктов
+        - products: (array[ExportProductTypeItemJson]) - Типы продуктов
 
 ## ExportSettings(object, fixed-type)
 Настройки экспорта
