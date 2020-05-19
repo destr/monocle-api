@@ -12,6 +12,10 @@ def TypeMap(type_name):
     return type_name
 
 
+def IsSimpleType(type):
+     return type in kTypeMap.values()
+
+
 def FromJsonValueTypeConverter(type_name):
     if type_name in kTypeFromJsonValue:
         return kTypeFromJsonValue[type_name]

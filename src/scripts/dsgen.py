@@ -23,6 +23,7 @@ class DsGen:
         self.tojson_func = OrderedDict()
         self.enum_names = list()
         self.class_names = list()
+        self.array_names = dict()
         self.o_file = sys.stdout
         self.keywords = ['default', 'class', 'self', 'auto']
 
@@ -87,11 +88,88 @@ class DsGen:
             "    QByteArray toJson() const {\n"\
             "        QByteArray __data;\n"\
             "        QTextStream __out(&__data, QIODevice::WriteOnly);\n"\
-            "        return __data;\n" \
-            "    }"
+            "        __out.setCodec(\"UTF-8\");\n"\
+            '        __out << "{";\n'
+
+        field_count = len(item.fields)
+        line_end = ' << ",";\n'
+        for f in item.fields:
+            field_count -= 1
+            if field_count == 0:
+                line_end = ';\n'
+
+            esc_f_name = self._escape_keywords(f.name)
+            if isinstance(f.type, DSResource) and f.type.object_type == DSResource.Type.Object or \
+                    f.type in self.class_names:
+                self.tojson_func[item.name] += self._tab(2) + '__out << "\\"{1}\\":" << {0}.toJson(){2}'\
+                    .format(esc_f_name, f.name, line_end)
+                continue
+
+            if isinstance(f.type, DSResource) and f.type.object_type == DSResource.Type.Enum:
+                continue
+
+            if isinstance(f.type, DSResource) and f.type.object_type == DSResource.Type.Array:
+                depth = 1
+                type = f.type.base_type
+                while isinstance(type, DSResource):
+                    depth += 1
+                    type = type.base_type
+
+                to_json = '.toJson()' if not IsSimpleType(type) else ''
+
+                self._gen_tojson_array(depth, esc_f_name, f.name, item.name, line_end, to_json)
+                continue
+
+            if f.type in self.enum_names:
+                self.tojson_func[item.name] += self._tab(2)
+                self.tojson_func[item.name] += '__out << "\\"{2}:\\"" << {0}ToString({1}){3}'.format(f.type, esc_f_name, f.name, line_end)
+                continue
+
+            if f.type in self.array_names:
+                to_json = '.toJson()' if not IsSimpleType(self.array_names[f.type]) else ''
+                self._gen_tojson_array(1, esc_f_name, f.name, item.name, line_end, to_json)
+                continue
+
+            esc_field = [''] * 2
+            if f.type == "QString":
+                esc_field[0] = '"\\"" << '
+                esc_field[1] = ' << "\\""'
+
+            self.tojson_func[item.name] += self._tab(2) + '__out << "\\"{1}\\":" << {3}{0}{4}{2}'\
+                .format(esc_f_name, f.name, line_end, *esc_field)
+
+        self.tojson_func[item.name] += self._tab(2) + '__out << "}";\n'
+
+        self.tojson_func[item.name] += self._tab(2) + "return __data;\n"
+        self.tojson_func[item.name] += self._tab() + "}"
+
+    def _gen_tojson_array(self, depth, esc_f_name, f_name, class_name, line_end, to_json):
+        for_begin = self._tab(2) + '__out << "\\"{0}\\": [";\n'.format(f_name)
+        for_begin += self._tab(2) + "{\n"
+        for_begin += self._tab(3) + "const auto &__v_0 = {0};\n".format(esc_f_name)
+        for_begin += self._tab(3) + 'for (int i_{0}(0); i_{0} < __v_{0}.size(); ++i_{0}) {{\n'.format(0)
+        for_end = ''
+        for i in range(1, depth):
+            for_begin += self._tab(1 * (i + 3)) + 'const auto &__v_{0} = __v_{1}.at(i_{1});\n'.format(i, i - 1)
+            for_begin += self._tab(1 * (i + 3)) + '__out << ((i_{0} == 0) ? "" : ",") << "[";\n'.format(i - 1)
+            for_begin += self._tab(1 * (i + 3)) + "for (int i_{0}(0); i_{0} < __v_{0}.size(); ++i_{0}) {{\n".format(i)
+            if i == depth - 1:
+                for_begin += self._tab(1 * (i + 4)) + \
+                             '__out << ((i_{0} == 0) ? "": ",") << __v_{0}.at(i_{0}){1};\n'.format(i, to_json)
+            else:
+                for_begin += self._tab(1 * (i + 4)) + "const auto &__v_{1} = __v_{0}.at(i_{0});\n".format(i, i + 1)
+            for_end += self._tab(1 * (depth - i + 3)) + "}\n"
+            for_end += self._tab(1 * (depth - i + 3)) + '__out << "]";\n'
+        if depth == 1:
+            for_begin += self._tab(4) + '__out << ((i_0 == 0) ? "": ",") << __v_0.at(i_0){0};\n'.format(to_json)
+        for_end += self._tab(3) + "}\n"
+        for_end += self._tab(2) + "}\n"
+        for_end += self._tab(2) + '__out << "]"{0}'.format(line_end)
+        self.tojson_func[class_name] += for_begin
+        self.tojson_func[class_name] += for_end
 
     def _gen_assign(self, item, base_classes = None):
-        self.assign_func[item.name] = "    void assign(const QJsonObject &obj) {\n"\
+        self.assign_func[item.name] = "    void assign(const QJsonObject &obj) { // begin assign func\n"\
         # для базовых классов передаём тот же json
         if base_classes is not None:
             for base_class in base_classes:
@@ -114,34 +192,7 @@ class DsGen:
                     depth += 1
                     type = type.base_type
                 converter = dstypes.FromJsonValueTypeConverter(type)
-                for_begin = ''
-                if depth != 1:
-                    for_begin += 'auto &__r_0 = {0};\n'.format(f.name)
-                    for_begin += '        '
-                for_begin += 'const QJsonArray __a_0 = obj.value("{0}").toArray();\n'\
-                    '        for (int __i_0(0); __i_0 < __a_0.size(); ++__i_0) {{\n'.format(f.name)
-                for_end = ''
-                i = 0
-                for i in range(1, depth):
-                    for_begin += self._tab(1 * (i + 2))
-                    for_begin += 'const QJsonArray __a_{0} = __a_{1}.at(__i_{1}).toArray();\n'.format(i, i - 1)
-                    for_begin += self._tab(1 * (i + 2))
-                    vector_depth = depth - i
-                    for_begin += '{0}{1}{2} __r_{3};\n'.format('QVector<' * vector_depth, type, '>' * vector_depth, i)
-                    for_begin += self._tab(1 * (i + 2))
-                    for_begin += 'for (int __i_{0}; __i_{0} < __a_{0}.size(); ++__i_{0}) {{\n'.format(i)
-                    if i == depth - 1:
-                        for_begin += self._tab(1 * (i + 3))
-                        for_begin += '__r_{0}.append({1}(__a_{0}.at(__i_{0}).to{2}()));\n'.format(i, type, converter)
-
-                    for_end += self._tab(1 * (depth - i + 2)) + '}\n'
-                    for_end += self._tab(1 * (depth - i + 2)) + '__r_{0}.append(__r_{1});\n'.format(depth - i - 1, depth - i)
-                if i == 0:
-                    for_begin += self._tab(3) + '{3}.append({1}(__a_0.at(__i_{4}).to{2}()));\n'.format(f.name, type, converter, esc_f_name, i)
-                for_end += '        }\n'
-
-                self.assign_func[item.name] += for_begin
-                self.assign_func[item.name] += for_end
+                self._gen_array_assign(converter, depth, esc_f_name, f.name, item.name, type)
 
                 continue
 
@@ -150,9 +201,44 @@ class DsGen:
                 self.assign_func[item.name] += '{2} = {0}FromString(obj.value("{1}").toString());\n'.format(f.type, f.name, esc_f_name)
                 continue
 
-            self.assign_func[item.name] += self._tab(2) + '{2} = obj.value("{0}").to{1}();\n'.format(f.name, f.to_func(), esc_f_name)
+            if f.type not in self.array_names:
+                self.assign_func[item.name] += self._tab(2) + '{2} = obj.value("{0}").to{1}();\n'.format(f.name, f.to_func(), esc_f_name)
+            else:
+                self.assign_func[item.name] += self._tab(2)
+                self._gen_array_assign('Object', 1, esc_f_name, f.name, item.name, self.array_names[f.type])
 
-        self.assign_func[item.name] += "    }"
+        self.assign_func[item.name] += "    } // assign"
+
+    def _gen_array_assign(self, converter, depth, esc_f_name, f_name, class_name, type):
+        for_begin = '{ //for begin scope\n'
+        if depth != 1:
+            for_begin += 'auto &__v_0 = {0};\n'.format(f_name)
+
+        for_begin += '        const QJsonArray __a_0 = obj.value("{0}").toArray();\n' \
+                     '        for (int __i_0(0); __i_0 < __a_0.size(); ++__i_0) {{ // for _0 begin\n'.format(f_name)
+        for_end = ''
+        i = 0
+        for i in range(1, depth):
+            for_begin += self._tab(1 * (i + 2))
+            for_begin += 'const QJsonArray __a_{0} = __a_{1}.at(__i_{1}).toArray();\n'.format(i, i - 1)
+            for_begin += self._tab(1 * (i + 2))
+            vector_depth = depth - i
+            for_begin += '{0}{1}{2} __v_{3};\n'.format('QVector<' * vector_depth, type, '>' * vector_depth, i)
+            for_begin += self._tab(1 * (i + 2))
+            for_begin += 'for (int __i_{0}; __i_{0} < __a_{0}.size(); ++__i_{0}) {{\n'.format(i)
+            if i == depth - 1:
+                for_begin += self._tab(1 * (i + 3))
+                for_begin += '__v_{0}.append({1}(__a_{0}.at(__i_{0}).to{2}()));\n'.format(i, type, converter)
+
+            for_end += self._tab(1 * (depth - i + 2)) + '}\n'
+            for_end += self._tab(1 * (depth - i + 2)) + '__v_{0}.append(__v_{1});\n'.format(depth - i - 1, depth - i)
+        if i == 0:
+            for_begin += self._tab(3) + '{3}.append({1}(__a_0.at(__i_{4}).to{2}()));\n' \
+                .format(f_name, type, converter, esc_f_name, i)
+        for_end += self._tab(2) + '} // for _0 end\n'
+        for_end += self._tab(2) + '} // for end scope\n'
+        self.assign_func[class_name] += for_begin
+        self.assign_func[class_name] += for_end
 
     def _gen_class_end(self, item):
         self.class_end[item.name] = \
@@ -198,6 +284,7 @@ class DsGen:
         self.enums[item.name] += from_string
 
     def _gen_array(self, item):
+        self.array_names.update({item.name: item.base_type})
         self.arrays[item.name] = "struct {1};\nusing {0} = QVector<{1}>;\n".format(item.name, item.base_type)
 
     def _gen_fields(self, item):
@@ -258,5 +345,6 @@ class DsGen:
         if name in self.keywords:
             return "_" + name
         return name
+
 
 
