@@ -3,6 +3,9 @@
 import os
 import sys
 from collections import OrderedDict
+
+from reportlab.lib.validators import _isInt
+
 import dstypes
 
 from dstypes import *
@@ -75,11 +78,11 @@ class DsGen:
 
         self._gen_ctors(item)
         self._gen_fields(item)
-        self._gen_assign(item)
-        self._gen_tojson(item)
+        self._gen_assign(item, all_base_classes)
+        self._gen_tojson(item, all_base_classes)
         self._gen_class_end(item)
 
-    def _gen_tojson(self, item):
+    def _gen_tojson(self, item, base_classes=None):
         self.tojson_func[item.name] = \
             "    QByteArray toJson() const {\n"\
             "        QByteArray __data;\n"\
@@ -87,9 +90,12 @@ class DsGen:
             "        return __data;\n" \
             "    }"
 
-    def _gen_assign(self, item):
+    def _gen_assign(self, item, base_classes = None):
         self.assign_func[item.name] = "    void assign(const QJsonObject &obj) {\n"\
-
+        # для базовых классов передаём тот же json
+        if base_classes is not None:
+            for base_class in base_classes:
+                self.assign_func[item.name] += self._tab(2) + "{0}::assign(obj);\n".format(base_class)
         for f in item.fields:
             esc_f_name = self._escape_keywords(f.name)
             if isinstance(f.type, DSResource) and f.type.object_type == DSResource.Type.Object or \
@@ -103,12 +109,40 @@ class DsGen:
             if isinstance(f.type, DSResource) and f.type.object_type == DSResource.Type.Array:
                 self.assign_func[item.name] += self._tab(2)
                 type = f.type.base_type
+                depth = 1
+                while isinstance(type, DSResource):
+                    depth += 1
+                    type = type.base_type
                 converter = dstypes.FromJsonValueTypeConverter(type)
+                for_begin = ''
+                if depth != 1:
+                    for_begin += 'auto &__r_0 = {0};\n'.format(f.name)
+                    for_begin += '        '
+                for_begin += 'const QJsonArray __a_0 = obj.value("{0}").toArray();\n'\
+                    '        for (int __i_0(0); __i_0 < __a_0.size(); ++__i_0) {{\n'.format(f.name)
+                for_end = ''
+                i = 0
+                for i in range(1, depth):
+                    for_begin += self._tab(1 * (i + 2))
+                    for_begin += 'const QJsonArray __a_{0} = __a_{1}.at(__i_{1}).toArray();\n'.format(i, i - 1)
+                    for_begin += self._tab(1 * (i + 2))
+                    vector_depth = depth - i
+                    for_begin += '{0}{1}{2} __r_{3};\n'.format('QVector<' * vector_depth, type, '>' * vector_depth, i)
+                    for_begin += self._tab(1 * (i + 2))
+                    for_begin += 'for (int __i_{0}; __i_{0} < __a_{0}.size(); ++__i_{0}) {{\n'.format(i)
+                    if i == depth - 1:
+                        for_begin += self._tab(1 * (i + 3))
+                        for_begin += '__r_{0}.append({1}(__a_{0}.at(__i_{0}).to{2}()));\n'.format(i, type, converter)
 
-                self.assign_func[item.name] += 'const QJsonArray __array_{0} = obj.value("{0}").toArray();\n'\
-                    '        for (int __i_{0}(0); __i_{0} < __array_{0}.size(); ++__i_{0}) {{\n'\
-                    '            {3}.append({1}(__array_{0}.at(__i_{0}).to{2}()));\n'\
-                    '        }}\n'.format(f.name, type, converter, esc_f_name)
+                    for_end += self._tab(1 * (depth - i + 2)) + '}\n'
+                    for_end += self._tab(1 * (depth - i + 2)) + '__r_{0}.append(__r_{1});\n'.format(depth - i - 1, depth - i)
+                if i == 0:
+                    for_begin += self._tab(3) + '{3}.append({1}(__a_0.at(__i_{4}).to{2}()));\n'.format(f.name, type, converter, esc_f_name, i)
+                for_end += '        }\n'
+
+                self.assign_func[item.name] += for_begin
+                self.assign_func[item.name] += for_end
+
                 continue
 
             if f.type in self.enum_names:
@@ -191,7 +225,16 @@ class DsGen:
                         self._gen_class(a, item.name)
                         t.base_type = a.name
 
-                    t = 'QVector<{}>'.format(t.base_type)
+                    depth = 1
+                    while isinstance(t.base_type, DSResource):
+                        t = t.base_type
+                        depth += 1
+                    base_type = t.base_type
+                    if t.base_type == 'QString':
+                        depth -= 1
+                        base_type = 'QStringList'
+
+                    t = '{0}{1}{2}'.format('QVector<' * depth, base_type, '>' * depth)
 
             n = self._escape_keywords(n)
             self.fields[item.name] += self._tab() + "{0} {1}; // {2}\n".format(t, n, f.description)

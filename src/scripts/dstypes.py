@@ -197,6 +197,8 @@ class DSResource:
         element = item['element']
         if element in ('object'):
             self.fields.append(DSResource(item))
+        elif element in ('array'):
+            self.base_type = DSResource(item)
         elif element[0].isupper():
             # наш существующий тип
             self.base_type = element
