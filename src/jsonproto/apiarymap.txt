@@ -58,7 +58,7 @@
   > VerticalSectionPost[POST]
 /vertical_profile
   > ::VerticalProfilePost[POST]
-  <200 ::VerticalProfile
+  <200 ::VerticalProfile[POST]
 /station/{id}/mrls_status
   <200 ::MrlsStatus
 /settings/{id}/channels
@@ -74,16 +74,16 @@
   <200 QtifaceSettings
 /settings/check_ftp_connection
   > ::FtpConnectionPost[POST]
-  <200 FtpConnectionResult
+  <200 FtpConnectionResult[POST]
 /station/{id}/marker_data
   > ::MarkerDataPost[POST]
-  <200 ::MarkerData
+  <200 ::MarkerData[POST]
 /vertical_section_wp
   > ::VerticalSectionWpPost[POST]
-  <200 ::VerticalSectionWp
+  <200 ::VerticalSectionWp[POST]
 /vertical_section_cs
   > ::VerticalSectionCsPost[POST]
-  <200 ::VerticalSectionCs
+  <200 ::VerticalSectionCs[POST]
 /station/{id}/lsholodir
   <200 ::LsHoloDir
 /station/{id}/holocontrol
