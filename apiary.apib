@@ -471,6 +471,7 @@ Cправочник типов конических сечений для СМР
         - values (array):
             - 4.2, 100.1, 2500.1 (array[number]) - Элементы массива: код метеоявления, высота начала(м) и высота конца(м) столбика
         - user_points: 300.5 (array[number]) - Значения по горизонтальной оси (расстояние до точки от начала маршруА)
+        - colors: [`#FFFFFF`, `#DCDCDC`] (array[string]) - RGBA цвет значения
         - timestamp: 1569977366 (number)
 
 ## Вертикальное сечение для КС [/vertical_section_cs]
@@ -483,6 +484,7 @@ Cправочник типов конических сечений для СМР
     + Attributes(object, fixed-type)
         - station_id: 0 (number, required)
         - date: `2019-10-02T00:49:26`
+        - user_id: `user_id` (string) Идентификатор пользователя
         - cs_id: 12 (number)
         - route_key_points (array) - Ключевые точки маршрута
             - 55.95091, 37.34966 (array[number])
@@ -492,10 +494,12 @@ Cправочник типов конических сечений для СМР
 + Response 200 (application/json; charset=utf-8)
     + Attributes(object, fixed-type)
         - heights: 0, 100, 200 (array[number])
-        - values (array) - Столбики значений, по одному на указанную точку маршрута
+        - values (array) - Столбики значений
             - `-10.0`, `-2.5`, `3.1` (array[number])
             - `-10.0`, `-5.2`, `-2.8` (array[number])
         - user_points: 300.5, 526.29 (array[number]) Значения по горизонтальной оси (расстояние до точки от начала маршрута)
+        - colors (array) - RGBA цвет соответствующий значению #AARRGGBB
+            - `#DCDCDC`, `#FF00FF` (array[string])
         - min_altitude: 150.1 (number)
         - max_altitude: 3450.1 (number)
         - timestamp: 1569977366 (number)
@@ -2476,6 +2480,7 @@ Cправочник типов конических сечений для СМР
 ### Properties
 - station_id: 0 (number)
 - date: `2019-10-02T00:49:26` (string)
+- user_id: `user_id` (string) - Идентификатор пользователя
 - route_key_points (array) - Ключевые точки маршрута
     - 55.95091, 37.34966 (array[number])
     - 56.97223, 35.18087 (array[number])
