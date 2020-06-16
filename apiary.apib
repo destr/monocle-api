@@ -485,6 +485,10 @@ Cправочник типов конических сечений для СМР
         - station_id: 0 (number, required)
         - date: `2019-10-02T00:49:26`
         - user_id: 0 (number) -  Идентификатор пользователя
+        - format (enum[string])
+            + Members
+                + `json` - Значения в виде json-массива
+                + `png` - Отрисованная картинка
         - cs_id: 12 (number)
         - route_key_points (array) - Ключевые точки маршрута
             - 55.95091, 37.34966 (array[number])
@@ -494,12 +498,13 @@ Cправочник типов конических сечений для СМР
 + Response 200 (application/json; charset=utf-8)
     + Attributes(object, fixed-type)
         - heights: 0, 100, 200 (array[number])
-        - values (array) - Столбики значений
+        - values (array, optional) - Столбики значений
             - `-10.0`, `-2.5`, `3.1` (array[number])
             - `-10.0`, `-5.2`, `-2.8` (array[number])
         - user_points: 300.5, 526.29 (array[number]) Значения по горизонтальной оси (расстояние до точки от начала маршрута)
-        - colors (array) - RGBA цвет соответствующий значению #AARRGGBB
-            - `#DCDCDCFf`, `#FF00FF00` (array[string])
+        - colors (array, optional) - RGBA цвет соответствующий значению #AARRGGBB
+            - `#DCDCDCFF`, `#FF00FF00` (array[string])
+        - url: `url` (string, optional) - Путь к файлу как в ProductImage. У картники по горизонтали это длина маршрута, по вертикали - max_altitude.
         - min_altitude: 150.1 (number)
         - max_altitude: 3450.1 (number)
         - timestamp: 1569977366 (number)
