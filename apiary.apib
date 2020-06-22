@@ -481,19 +481,7 @@ Cправочник типов конических сечений для СМР
 ### Получить [POST]
 
 + Request (application/json)
-    + Attributes(object, fixed-type)
-        - station_id: 0 (number, required)
-        - date: `2019-10-02T00:49:26`
-        - user_id: 0 (number) -  Идентификатор пользователя
-        - format (enum[string])
-            + Members
-                + `json` - Значения в виде json-массива
-                + `png` - Отрисованная картинка
-        - cs_id: 12 (number)
-        - route_key_points (array) - Ключевые точки маршрута
-            - 55.95091, 37.34966 (array[number])
-            - 56.97223, 35.18087 (array[number])
-        - max_altitude: 5000 (number)
+    + Attributes(VerticalSectionCsRequest)
 
 + Response 200 (application/json; charset=utf-8)
     + Attributes(object, fixed-type)
@@ -508,6 +496,19 @@ Cправочник типов конических сечений для СМР
         - min_altitude: 150.1 (number)
         - max_altitude: 3450.1 (number)
         - timestamp: 1569977366 (number)
+
+## Получить данные маркера [/vertical_section_cs_marker]
+
+Получить данные в точке для вертикального сечения
+
+### Получить [POST]
+
++ Request (application/json)
+    + Attributes(VerticalSectionCsMarkerRequest)
+
++ Response 200 (application/json; charset=utf-8)
+    + Attributes(object, fixed-type)
+        - value: `-10.0` (number) - Значение в указанной точке
 
 ## Вертикальный профиль [/vertical_profile]
 
@@ -2490,3 +2491,24 @@ Cправочник типов конических сечений для СМР
     - 55.95091, 37.34966 (array[number])
     - 56.97223, 35.18087 (array[number])
 - max_altitude: 5000 (number)
+
+
+## VerticalSectionCsRequest (object, fixed-type)
+### Properties
+- station_id: 0 (number, required)
+- date: `2019-10-02T00:49:26`
+- cs_id: 12 (number)
+- user_id: 0 (number) -  Идентификатор пользователя
+- format (enum[string])
+    + Members
+        + `json` - Значения в виде json-массива
+        + `png` - Отрисованная картинка
+- route_key_points (array) - Ключевые точки маршрута
+    - 55.95091, 37.34966 (array[number])
+    - 56.97223, 35.18087 (array[number])
+- max_altitude: 5000 (number)
+
+## VerticalSectionCsMarkerRequest(VerticalSectionCsRequest, fixed-type)
+### Properties
+- distance: 0.1 (number, required) - Расстояние в метрах от начала маршрута
+- height: 0.1 (number, required) - Высота точки в метрах
