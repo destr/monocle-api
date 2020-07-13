@@ -121,3 +121,4 @@
   <608 ::MarkerResponseCs
   <609 ::MarkerResponseVvField
   <610 ::ExportProductTypesJson
+  <611 ::MeteoSourceStatusJson

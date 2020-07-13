@@ -1566,6 +1566,9 @@ Cправочник типов конических сечений для СМР
 + Response 610 (application/json)
     + Attributes(ExportProductTypesJson)
 
++ Response 611 (application/json)
+    + Attributes(MeteoSourceStatusJson)
+
 # Data Structures
 ## ArchiveProductList(object, fixed-type)
 ### Properties
@@ -2068,21 +2071,41 @@ Cправочник типов конических сечений для СМР
 - url_geotiff_reproj: `/wpcell.reproj.georiff` - Отображение продукта в формате GeoTIFF перепроецированное
 - url_distort: `/wpcell-distort.png` - Искаженное изображение под проекцию EPSG3857
 
+## MeteoSourceEnum(enum[string], fixed-type)
+Типы источников метео-данных (упорядоче по уменьшению приоритета)
+### Members
+- `manual` - Ручной ввод
+- `mtp5` - Данные от МТП-5
+- `nams` - Данные НАМС
+- `athm` - Данные ЧМА
+
 ## MeteoSourceBase(object, fixed-type)
-### properties
-- name: `manual` (string)
+### Properties
+- name: `manual` (MeteoSourceEnum) - Тип источника данных
 - hiso0: 1000.1 (number, nullable) - Высота нулевой изотермы
 - hiso22: 4245.1 (number, nullable) - Высота -22°C изотермы
 - htropo: 13782.1 (number, nullable) - Высота тропопаузы
 - tsurface: 12.0 (number, nullable) - Приземная температура (идёт в BUFR)
+- active: true (boolean) - Признак использования данных источника
 
 ## MeteoSource(MeteoSourceBase, fixed-type)
-### properties
+### Properties
 - date: `2019-09-19T14:22:41` (string, nullable)
 - available: true (boolean)
 - auto: false (boolean)
 - name: `manual` (string)
 - season: `warm` (SeasonEnum, nullable)
+
+## MeteoSourceStatusJson(object, fixed-type)
+Описание json-файла в котором хранится признак использования даных источника ОМП
+### Properties
+- statuses(array)
+    - (object, fixed-type)
+        - station_id: 0 (number, required) - ID СМРЛП
+        - manual: `true` (boolean) - Признак использования данных ручного ввода
+        - mtp5: `true` (boolean) - Признак использования данных МТП-5
+        - nams: `true` (boolean) - Признак использования данных НАМС
+        - athm: `true` (boolean) - Признак использования данных ЧМА
 
 ## Maps
 ### Properties
