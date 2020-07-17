@@ -100,7 +100,8 @@
 /settings/export
   <200 ::ExportSettings
 /station/{id}/algorithmparameters
-  <200 ::AlgorighmParameters
+  <200 AlgorithmParameters
+  > AlgorithmParametersModify[PUT]
 /server/info
   <200 ::ServerInfo
 #/station/{id}/marker_data_v2

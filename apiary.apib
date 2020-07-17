@@ -1126,7 +1126,7 @@ Cправочник типов конических сечений для СМР
     - id: `0` (number) - ID СМРЛП
 
 + Request (application/json)
-    + Attributes(AlgorithmParameters)
+    + Attributes(AlgorithmParametersModify)
 
 + Response 201 (application/json; charset=utf-8)
     + Attributes(object)
@@ -1783,7 +1783,7 @@ Cправочник типов конических сечений для СМР
 * contour_line_generalization: 8 (number) - Степень генерализации контуров, ед.
 * contour_line_expansion: 1 (number) - Величина расширения контуров, ячеек
 
-## AlgorithmParameters(object, fixed-type)
+## AlgorithmParametersModify(object, fixed-type)
 ### Properties
 + dpm(object)
     + dataprocessing(DataProcessing)
@@ -1799,6 +1799,20 @@ Cправочник типов конических сечений для СМР
     + vertical_section(object)
         * vertical_pitch: 0.1 (number) - Шаг по горизонтали для вертикального сечения, км
         * horizontal_pitch: 0.1 (number) - Шаг по вертикали для вертикального сечения и профиля, км
+
+## AlgorithmParameters(AlgorithmParametersModify, fixed-type)
+Параметры алгоритмов с параметрами только для чтения
+### Properties
++ adp(object)
+    + size_fft: 0 (number) - Размер БПФ, пак.
+    + accum_time: 0.1 (array[number]) - T накопления мин. (Реальн. | БПФ), мс 
+    + rpt_fr: 0.1 (array[number]) - Частоты ПИ (0 | 1), кГц
+    + discr_fr: 0.1 (number) - Разрешение F, не более Гц
+    + discr_vr: 0.1 (number) - Разрешение Vr, не более м/с
+    + clearly_fr: 0.1 (array[number]) - Модуль однозначности F (0 | 1), кГц
+    + clearly_vr: 0.1 (array[number]) - Модуль однозначности Vr (0 | 1), м/с
+    + sigma_noise: 0.1 (number) - Мощность шума измер., Вт*10^-18
+    + power_threshold: 0.1 (number) - Порог обнаружения, Вт*10^-18
 
 ## TitleValuePair(object, fixed-type)
 ### Properties
