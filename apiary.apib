@@ -1803,7 +1803,7 @@ Cправочник типов конических сечений для СМР
 ## AlgorithmParameters(AlgorithmParametersModify, fixed-type)
 Параметры алгоритмов с параметрами только для чтения
 ### Properties
-+ adp(object)
++ adp(object, fixed-type)
     + size_fft: 0 (number) - Размер БПФ, пак.
     + accum_time: 0.1 (array[number]) - T накопления мин. (Реальн. | БПФ), мс 
     + rpt_fr: 0.1 (array[number]) - Частоты ПИ (0 | 1), кГц
@@ -1881,7 +1881,7 @@ Cправочник типов конических сечений для СМР
 
 ## ColorScaleItemWebUi(ColorScaleItemBase, fixed-type)
 ### Properties
-- index: 0 (number) - Порядковый номер
+- index: 1 (number) - Соответствует id в GET запросе Критериях классификации типов метеоявлений по умолчанию, по этим полям происходит сопоставление
 
 ## ColorScaleItemRaw(object, fixed-type)
 ### Properties
