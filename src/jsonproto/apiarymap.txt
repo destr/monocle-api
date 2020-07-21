@@ -92,6 +92,8 @@
 /station/{id}/mtp/archive{?date_from,date_to,last_n}
 /station/{id}/mtp{?date}
   <200 ::Mtp5Data
+/station/{id}/mtp_raw{?date}
+  <200 ::Mtp5DataRaw
 /api/version
   <200 ::VersionInfo
 /settings/nams

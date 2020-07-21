@@ -1420,6 +1420,28 @@ Cправочник типов конических сечений для СМР
 
 + Response 404
 
+## Выдача данных температурного профилемера [/station/{id}/mtp_raw{?date}]
+Выдача данных измерений ТПМ и характеристик температурной стратификации для выбранного МП и времени.
+
+### Получить [GET]
+
++ Parameters
+    + id: `0` (number, required) - ID СМРЛП
+    * date (optional) - Дата обзора (ISO формат)
+
++ Response 200 (application/json; charset=utf-8)
+    + Attributes (object)
+        - data(array) - Данные измерений ТПМ (от 0 до 100 м)
+            - (object)
+                - altitude: 15 (number) - Высота
+                - temperature: 12.5 (number) - Температура
+        - mtp_elevation: 100.0 (number) - Высота установки МТП
+
+
++ Response 204
+
++ Response 404
+
 # Group Настройки экспорта
 
 ## Настройка FTP-серверов [/settings/ftpservers]
