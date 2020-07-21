@@ -1142,36 +1142,17 @@ Cправочник типов конических сечений для СМР
 ### Получить настройки вычисления изотермы [GET]
 
 + Response 200 (application/json; charset=utf-8)
-    + Attributes (object, fixed-type)
-        - manual: false (boolean) - Задаётся ли высота нулевой изотермы вручную. Если false - вычисляется из данных НАМС
-        - expire_period: 12 (number) - Время истечения заданного вручную значения, ч
-        - update_time: `2019-09-19T14:22:41` (string) - Время последнего обновления
-        - height_temp0: 2400.1 (number) - Высота нулевой изотермы, задаваемая вручную
-        - height_temp22: 7000.1 (number) Высота изотермы -22 градуса, задаваемая вручную
-        - height_tropopause: 12000.1 (number) - Высота тропопаузы, задаваемая вручную
+    + Attributes (IsothermCalibration)
 
 + Response 404
 
 ### Обновить настройки вычисления изотермы [PUT]
 
 + Request (application/json)
-    + Attributes(object, fixed-type)
-        - manual: false (boolean)
-        - expire_period: 12 (number)
-        - manual_from_temp: false (boolean) true: задаётся температура на уровне земли, false: задаётся высота нулевой изотермы
-        - temperature: 15.2 (number) - Температура на уровне земли, задаваемая вручную
-        - height_temp0: 2400.1 (number)
-        - height_temp22: 7000.1 (number)
-        - height_tropopause: 12000.1 (number)
+    + Attributes(IsothermCalibrationPut)
 
 + Response 200 (application/json; charset=utf-8)
-    + Attributes (object)
-        - manual: false (boolean) - Задаётся ли высота нулевой изотермы вручную. Если false - вычисляется из данных НАМС
-        - expire_period: 12 (number) - Время истечения заданного вручную значения, ч
-        - update_time (string) - Время последнего обновления
-        - height_temp0: 2400.1 (number) - Высота нулевой изотермы, задаваемая вручную
-        - height_temp22: 7000.1 (number) Высота изотермы -22 градуса, задаваемая вручную
-        - height_tropopause: 12000.1 (number) - Высота тропопаузы, задаваемая вручную
+    + Attributes (IsothermCalibration)
 
 + Response 422 (application/json)
 
@@ -1905,6 +1886,25 @@ Cправочник типов конических сечений для СМР
 - count: 1 (number) - Количество элементов
 - items (array[ColorScaleWebUi], fixed-type) - Цветовые шкалы
 
+## IsothermCalibrationBase(object, fixed-type)
+Базовый тип параметров изотермы
+### Properties
+- expire_period: 12 (number) - Время истечения заданного вручную значения, ч
+- height_temp0: 2400.1 (number) - Высота нулевой изотермы, задаваемая вручную
+- height_temp22: 7000.1 (number) Высота изотермы -22° C, задаваемая вручную
+- height_tropopause: 12000.1 (number) - Высота тропопаузы, задаваемая вручную
+- season_switch_threshold: 1 (number) - Порог изотермы после которого переключается сезон на тёплый
+
+## IsothermCalibration(IsothermCalibrationBase, fixed-type)
+Параметры изотермы
+### Properties
+- update_time: `2019-09-19T14:22:41` (string) - Время последнего обновления, ISO формат
+
+## IsothermCalibrationPut(IsothermCalibrationBase, fixed-type)i
+Параметры изотермы задаваемые при обновлении
+### Properties
+- manual_from_temp: false (boolean) true: задаётся температура на уровне земли, false: задаётся высота нулевой изотермы
+- temperature: 15.2 (number) - Температура на уровне земли, задаваемая вручную
 
 ## IsothermSource(object, fixed-type)
 ### Properties
@@ -2527,3 +2527,4 @@ Cправочник типов конических сечений для СМР
 ### Properties
 - distance: 0.1 (number, required) - Расстояние в метрах от начала маршрута
 - height: 0.1 (number, required) - Высота точки в метрах
+
