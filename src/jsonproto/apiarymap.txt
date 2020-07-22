@@ -20,8 +20,12 @@
   <200 ::Schedule
 /station/{id}/schedule/start
 /station/{id}/schedule/stop
-/station/{id}/local_reflection_map/start{?cycle}
+/station/{id}/local_reflection_map/start
+/station/{id}/local_reflection_map
 /station/{id}/local_reflection_map/stop
+/station/{id}/local_reflection_map/{lrm_id}
+  <200 ::LocalReflectionCommandResponse
+  > ::LocalReflectionCommand[PUT]
 /station/{id}/program/{program_id}/start
 /station/{id}/program/stop
 /station/{id}/check/start
