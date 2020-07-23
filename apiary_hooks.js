@@ -100,7 +100,7 @@ hooks.before('СМРЛП > Получить список КМО > Получит
 hooks.before('СМРЛП > Управление КМО > Получить параметры КМО', function(transaction) { transaction.skip = true; });
 hooks.before('СМРЛП > Управление КМО > Изменить параметры КМО', function(transaction) { transaction.skip = true; });
 hooks.before('СМРЛП > Управление КМО > Удалить КМО', function(transaction) { transaction.skip = true; });
-
+hooks.before('СМРЛП > Установить существующую карту местных отражений > Установить КМО', function(transaction) { transaction.skip = true; });
 
 hooks.before('СМРЛП > Запустить работу СМРЛП по программе > Запустить', function(transaction) {
 	transaction.skip = true;
