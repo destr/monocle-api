@@ -1444,7 +1444,7 @@ Cправочник типов конических сечений для СМР
 + Response 404
 
 
-## Выдача данных температурного профилемера [/station/{id}/mtp{?date}]
+## Выдача данных температурного профилемера [/station/{id}/mtp{?date}{?isRaw}]
 Выдача данных измерений ТПМ и характеристик температурной стратификации для выбранного МП и времени.
 
 ### Получить [GET]
@@ -1452,16 +1452,17 @@ Cправочник типов конических сечений для СМР
 + Parameters
     + id: `0` (number, required) - ID СМРЛП
     * date (optional) - Дата обзора (ISO формат)
+    * isRaw: false (boolean, optional) - Признак запроса данных без блейдинга
 
 + Response 200 (application/json; charset=utf-8)
     + Attributes (object)
-        - inversion_layer_altitude: 250 (number) - Высота нижней границы слоя инверсии, м
-        - inversion_layer_power_height: 260 (number) - Вертикальная мощность слоя инверсии, м
-        - inversion_layer_temp_delta: 3.2 (number) Величина слоя инверсии, °С
-        - mix_layer_altitude: 800 (number) - Высота слоя перемешивания, м
-        - height_temp0: 1800 (number) - Высота изотермы 0°С, м
-        - height_temp22: 3000 (number) - Высота изотермы -22°С, м
-        - height_tropopause: 11400 (number) - Высота тропопаузы, м
+        - inversion_layer_altitude: 250 (number, nullable) - Высота нижней границы слоя инверсии, м
+        - inversion_layer_power_height: 260 (number, nullable) - Вертикальная мощность слоя инверсии, м
+        - inversion_layer_temp_delta: 3.2 (number, nullable) Величина слоя инверсии, °С
+        - mix_layer_altitude: 800 (number, nullable) - Высота слоя перемешивания, м
+        - height_temp0: 1800 (number, nullable) - Высота изотермы 0°С, м
+        - height_temp22: 3000 (number, nullable) - Высота изотермы -22°С, м
+        - height_tropopause: 11400 (number, nullable) - Высота тропопаузы, м
         - data(array) - Данные измерений ТПМ (от 0 до 15000 м)
             - (object)
                 - altitude: 15 (number) - Высота
