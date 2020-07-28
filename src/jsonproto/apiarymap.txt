@@ -6,9 +6,6 @@
 /station/{id}/types/rlp_list{?role}
   <200 ProductType
 /station/{id}/types/cs_list{?role}
-/station/{id}/isotherm
-  <200 ::IsothermCalibration
-  > ::IsothermCalibrationPut[PUT]
 /station/{id}/meteosettings
 /station/{id}/radarsettings
 /station/{id}/schedule
@@ -51,7 +48,6 @@
 /program/{id}
 /station_log/list{?type,station,from,to,limit,offset}
   <200 LogEntryList
-/settings/bufr
 /settings/productrender
 /settings/color_scale/list
 /settings/color_scale/{id}

@@ -1161,7 +1161,10 @@ Cправочник типов конических сечений для СМР
         - sources (array[MeteoSource], fixed-type) - Массив контейнеров ОМП МП из разных источников
 
 ### Обновить [POST]
-
+При обновлении, необходимыми параметрами в источнике явлюется только name. Остальные
+параметры опциональны. Поэтому если нужно только включить или выключить источник
+можно передать только значение active и название нужного источника. Дата обновления
+при этом изменится.
 + Parameters
     + id: `0` (number, required) - ID CMРЛП
 
@@ -1193,39 +1196,6 @@ Cправочник типов конических сечений для СМР
 
 + Response 201 (application/json; charset=utf-8)
     + Attributes(object)
-
-## Калибровка изотермы [/station/{id}/isotherm]
-
-Настройка изотермы (0, -22 градуса), высоты тропопаузы,
-переключение автоматического/ручного режима задания, ввод параметров вычисления.
-
-+ Parameters
-    + id: `0` (number, required) - ID СМРЛП
-
-### Получить настройки вычисления изотермы [GET]
-
-+ Response 200 (application/json; charset=utf-8)
-    + Attributes (IsothermCalibration)
-
-+ Response 404
-
-### Обновить настройки вычисления изотермы [PUT]
-
-+ Request (application/json)
-    + Attributes(IsothermCalibrationPut)
-
-+ Response 200 (application/json; charset=utf-8)
-    + Attributes (IsothermCalibration)
-
-+ Response 422 (application/json)
-
-        {
-            "temperature": "Невалидное значение",
-        }
-
-+ Response 404
-
-+ Response 409
 
 # Group Настройки пользователя
 
@@ -1982,7 +1952,6 @@ Cправочник типов конических сечений для СМР
 - height_temp0: 2400.1 (number) - Высота нулевой изотермы, задаваемая вручную
 - height_temp22: 7000.1 (number) Высота изотермы -22° C, задаваемая вручную
 - height_tropopause: 12000.1 (number) - Высота тропопаузы, задаваемая вручную
-- season_switch_threshold: 1 (number) - Порог изотермы после которого переключается сезон на тёплый
 
 ## IsothermCalibration(IsothermCalibrationBase, fixed-type)
 Параметры изотермы
@@ -2184,20 +2153,22 @@ Cправочник типов конических сечений для СМР
 
 ## MeteoSourceBase(object, fixed-type)
 ### Properties
-- name: `manual` (MeteoSourceEnum) - Тип источника данных
-- hiso0: 1000.1 (number, nullable) - Высота нулевой изотермы
-- hiso22: 4245.1 (number, nullable) - Высота -22°C изотермы
-- htropo: 13782.1 (number, nullable) - Высота тропопаузы
-- tsurface: 12.0 (number, nullable) - Приземная температура (идёт в BUFR)
-- active: true (boolean) - Признак использования данных источника
+- name: `manual` (MeteoSourceEnum, required) - Тип источника данных
+- hiso0: 1000.1 (number, optional,nullable) - Высота нулевой изотермы
+- hiso22: 4245.1 (number, nullable, optional) - Высота -22°C изотермы
+- htropo: 13782.1 (number, nullable, optional) - Высота тропопаузы
+- tsurface: 12.0 (number, nullable, optional) - Приземная температура
+- active: true (boolean, optional) - Признак использования данных источника
+- manual_from_temp: `false` (boolean, optional) - Флаг активности параметра температура у земли
+- expire_period: 12 (number, optional) - Время истечения заданного вручную значения, ч
+- season_switch_threshold: 500 (number, optional) - Порог изотермы после которого переключается сезон на тёплый
 
 ## MeteoSource(MeteoSourceBase, fixed-type)
 ### Properties
-- date: `2019-09-19T14:22:41` (string, nullable)
-- available: true (boolean)
-- auto: false (boolean)
-- name: `manual` (string)
-- season: `warm` (SeasonEnum, nullable)
+- date: `2019-09-19T14:22:41` (string) - Время последнего обновления, ISO формат
+- available: true (boolean) - Признак доступности данных
+- auto: false (boolean) - Тип источника (автоматический/ручной)
+- season: `warm` (SeasonEnum, nullable) - Сезон
 
 ## MeteoSourceStatusJson(object, fixed-type)
 Описание json-файла в котором хранится признак использования даных источника ОМП
@@ -2529,7 +2500,7 @@ Cправочник типов конических сечений для СМР
     - (object)
         - id: `1` (number) - ID станции
         - name: `Title` (string) - Название станции
-        - products: (array[ExportProductTypeItemJson]) - Типы продуктов
+        - products (array[ExportProductTypeItemJson]) - Типы продуктов
 
 ## ExportSettings(object, fixed-type)
 Настройки экспорта
@@ -2616,6 +2587,4 @@ Cправочник типов конических сечений для СМР
 ### Properties
 - distance: 0.1 (number, required) - Расстояние в метрах от начала маршрута
 - height: 0.1 (number, required) - Высота точки в метрах
-
-
 
