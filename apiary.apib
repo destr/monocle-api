@@ -2141,14 +2141,14 @@ Cправочник типов конических сечений для СМР
 - hiso22: 4245.1 (number, nullable, optional) - Высота -22°C изотермы
 - htropo: 13782.1 (number, nullable, optional) - Высота тропопаузы
 - tsurface: 12.0 (number, nullable, optional) - Приземная температура
-- active: true (boolean, optional) - Признак использования данных источника
-- manual_from_temp: `false` (boolean, optional) - Флаг активности параметра температура у земли
-- expire_period: 12 (number, optional) - Время истечения заданного вручную значения, ч
-- season_switch_threshold: 500 (number, optional) - Порог изотермы после которого переключается сезон на тёплый
+- active: true (boolean, optional, nullable) - Признак использования данных источника
+- manual_from_temp: `false` (boolean, optional, nullable) - Флаг активности параметра температура у земли
+- expire_period: 12 (number, optional, nullable) - Время истечения заданного вручную значения, ч
+- season_switch_threshold: 500 (number, nullable, optional) - Порог изотермы после которого переключается сезон на тёплый
 
 ## MeteoSource(MeteoSourceBase, fixed-type)
 ### Properties
-- date: `2019-09-19T14:22:41` (string) - Время последнего обновления, ISO формат
+- date: `2019-09-19T14:22:41` (string, nullable) - Время последнего обновления, ISO формат
 - available: true (boolean) - Признак доступности данных
 - auto: false (boolean) - Тип источника (автоматический/ручной)
 - season: `warm` (SeasonEnum, nullable) - Сезон
