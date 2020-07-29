@@ -1944,25 +1944,6 @@ Cправочник типов конических сечений для СМР
 - count: 1 (number) - Количество элементов
 - items (array[ColorScaleWebUi], fixed-type) - Цветовые шкалы
 
-## IsothermCalibrationBase(object, fixed-type)
-Базовый тип параметров изотермы
-### Properties
-- expire_period: 12 (number) - Время истечения заданного вручную значения, ч
-- height_temp0: 2400.1 (number) - Высота нулевой изотермы, задаваемая вручную
-- height_temp22: 7000.1 (number) Высота изотермы -22° C, задаваемая вручную
-- height_tropopause: 12000.1 (number) - Высота тропопаузы, задаваемая вручную
-
-## IsothermCalibration(IsothermCalibrationBase, fixed-type)
-Параметры изотермы
-### Properties
-- update_time: `2019-09-19T14:22:41` (string) - Время последнего обновления, ISO формат
-
-## IsothermCalibrationPut(IsothermCalibrationBase, fixed-type)i
-Параметры изотермы задаваемые при обновлении
-### Properties
-- manual_from_temp: false (boolean) true: задаётся температура на уровне земли, false: задаётся высота нулевой изотермы
-- temperature: 15.2 (number) - Температура на уровне земли, задаваемая вручную
-
 ## IsothermSource(object, fixed-type)
 ### Properties
 - source: `auto` (string)
@@ -1985,6 +1966,9 @@ Cправочник типов конических сечений для СМР
 - hiso0(IsothermSource) - H изотермы 0 °С
 - hiso22(IsothermSource) - H изотермы -22 °С
 - htropo(IsothermSource) - H тропопаузы
+- isotherm_source(object, fixed-type):
+    - actual: true (boolean) - Признак актуальности источника изотерм
+    - name: `mtp5` (MeteoSourceEnum) - Иcточник изотерм. На данный момент алгоритм выборки предполагает, что все данные из одного источника
 - location: 56.142616, 34.987386 (array[number]) - Географическая координата точки получения обзора
 - max_cloud_altitude: 4000 (number) - Вертикальная граница облачности (MAX ВГО)
 - max_edr: 0 (number) - Макс. EDR
