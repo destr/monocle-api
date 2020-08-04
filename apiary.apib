@@ -1349,26 +1349,7 @@ Cправочник типов конических сечений для СМР
 + Response 200 (application/json; charset=utf-8)
     + Attributes(object)
 
-## Запрос проверки соединения с FTP [/settings/check_ftp_connection]
-Запрос на проверку соединения с FTP по указанным реквизитам
 
-### Запрос проверки [POST]
-
-+ Request (application/json)
-    + Attributes(object, fixed-type)
-        - host: `hostname`
-        - port: 21 (number)
-        - path: `` (string)
-        - login: `login` (string)
-        - password: `password` (string)
-        - active_mode: false (boolean)
-
-+ Response 200 (application/json)
-    + Attributes(object, fixed-type)
-        - type: `ftp_connection` (string)
-        - content (object, fixed-type)
-            - result: 0 (number)
-            - message: `` (string)
 
 ## Получить список файлов содержащихся в каталоге для воспроизведения [/station/{id}/lsholodir]
 Запрос списка файлов
@@ -1492,6 +1473,33 @@ Cправочник типов конических сечений для СМР
 ### Удалить информацию о FTP-сервере [DELETE]
 + Response 204
 
+## Запрос проверки соединения с FTP [/settings/check_ftp_connection]
+Запрос на проверку соединения с FTP по указанным реквизитам
+
+### Запрос проверки [POST]
+
++ Request (application/json)
+    + Attributes(object, fixed-type)
+        - host: `hostname`
+        - port: 21 (number)
+        - path: `` (string)
+        - login: `login` (string)
+        - password: `password` (string)
+        - active_mode: false (boolean)
+
++ Response 200 (application/json)
+    + Attributes(CheckFtpConnectionResult)
+
+## Запрос проверки соединения существующего FTP [/settings/check_ftp_connection/{ftp_id}]
+Запрос на проверку соединения FTP ранее добавленного сервера
+
++ Parameters
+    + ftp_id: `0` (number, required) - ID FTP
+
+### Получить [GET]
+
++ Response 200 (application/json; charset=utf-8)
+    + Attributes(CheckFtpConnectionResult)
 
 ## Получить информацию о экспортируемых продуктах на СМРЛП [/settings/exportproducts]
 
@@ -2418,6 +2426,14 @@ Cправочник типов конических сечений для СМР
 Список FTP-серверов для экспорта
 ### Properties
 - ftpservers(array[FtpServerItemJson])
+
+## CheckFtpConnectionResult(object, fixed-type)
+Результат проверки подключения к FTP-серверу
+### Properties
+- type: `ftp_connection` (string)
+- content (object, fixed-type)
+    - result: 0 (number) - Код возврата. Код != 0 ошибка.
+    - message: `` (string, nullable) - Текст ошибки
 
 ## ExportProductEnum(enum[string])
 ### Members
