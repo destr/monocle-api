@@ -1477,15 +1477,10 @@ Cправочник типов конических сечений для СМР
 Запрос на проверку соединения с FTP по указанным реквизитам
 
 ### Запрос проверки [POST]
+Поле id не используется.
 
 + Request (application/json)
-    + Attributes(object, fixed-type)
-        - host: `hostname`
-        - port: 21 (number)
-        - path: `` (string)
-        - login: `login` (string)
-        - password: `password` (string)
-        - active_mode: false (boolean)
+    + Attributes(FtpServerItemJson)
 
 + Response 200 (application/json)
     + Attributes(CheckFtpConnectionResult)

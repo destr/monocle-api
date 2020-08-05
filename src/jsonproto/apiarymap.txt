@@ -73,8 +73,6 @@
 /station/{id}/settings/qtiface
   <200 QtifaceSettings
 /settings/check_ftp_connection
-  > ::FtpConnectionPost[POST]
-  <200 FtpConnectionResult[POST]
 /station/{id}/marker_data
   > ::MarkerDataPost[POST]
   <200 ::MarkerData[POST]
