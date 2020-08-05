@@ -2428,7 +2428,7 @@ Cправочник типов конических сечений для СМР
 - type: `ftp_connection` (string)
 - content (object, fixed-type)
     - result: 0 (number) - Код возврата. Код != 0 ошибка.
-    - message: `` (string, nullable) - Текст ошибки
+    - messages: `error`, `message` (array[string], nullable) - Сообщения выданные при проверке. При успешной проверке тоже могут быть сообщения.
 
 ## ExportProductEnum(enum[string])
 ### Members
