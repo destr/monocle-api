@@ -19,9 +19,9 @@
 /station/{id}/schedule/stop
 /station/{id}/local_reflection_map/start
 /station/{id}/local_reflection_map{?program_id}
+  <200 ::LocalReflectionCommandResponseMap
 /station/{id}/local_reflection_map/stop
 /station/{id}/local_reflection_map/{lrm_id}
-  <200 ::LocalReflectionCommandResponse
   > ::LocalReflectionCommand[PUT]
 /station/{id}/program/{program_id}/start
 /station/{id}/program/stop
@@ -122,3 +122,4 @@
   <609 ::MarkerResponseVvField
   <610 ::ExportProductTypesJson
   <611 ::MeteoSourceStatusJson
+  <612 ::LocalReflectionCommandResponse
