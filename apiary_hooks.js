@@ -75,13 +75,11 @@ hooks.before('СМРЛП > Расписание СМРЛП > Получить р
 hooks.before('СМРЛП > Расписание СМРЛП > Обновить расписание СМРЛП', function(transaction) {
 });
 
-hooks.before('СМРЛП > Включить работу СМРЛП по расписанию > Включить', function(transaction) {
-	transaction.skip = true;
-});
 
-hooks.before('СМРЛП > Остановить работу СМРЛП по расписанию > Остановить', function(transaction) {
-	transaction.skip = true;
-});
+hooks.before('СМРЛП > Включить работу СМРЛП по расписанию > Включить', function(transaction) { transaction.skip = true; });
+hooks.before('СМРЛП > Установить расписание для работы СМРЛП > Установить', function(transaction) { transaction.skip = true; });
+hooks.before('СМРЛП > Активировать работу по ранее установленному расписанию > Активировать', function(transaction) { transaction.skip = true; });
+hooks.before('СМРЛП > Остановить работу СМРЛП по расписанию > Остановить', function(transaction) { transaction.skip = true; });
 
 
 hooks.before('СМРЛП > Запустить запись карты местных отражений > Запись карты местных отражений', function(transaction) {
