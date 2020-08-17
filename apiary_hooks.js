@@ -199,9 +199,6 @@ hooks.before('Настройки > Поправка на север > Устан
 	transaction.skip = true;
 });
 
-hooks.before('Настройки > Параметры алгоритмов обработки метео данных > Обновить параметры', function(transaction) {
-});
-
 hooks.before('Продукты и данные > Вертикальное сечение для Карты РЛП > Получить', function(transaction) {
 });
 

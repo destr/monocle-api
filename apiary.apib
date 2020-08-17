@@ -778,6 +778,29 @@ Cправочник типов конических сечений для СМР
         - data (array[MarkerResponseRlp, MarkerResponseCs, MarkerResponseVvField])
         - timestamp: `100000` (number)
 
+## Параметры алгоритмов обработки метео данных [/station/{id}/algorithmparameters]
+Получение параметров алгоритмов обработки метео данных
+
+### Получить текущее состояние [GET]
+
++ Parameters
+    - id: `0` (number) - ID СМРЛП
+
++ Response 200 (application/json; charset=utf-8)
+    + Attributes(AlgorithmParameters)
+
+### Обновить параметры [PUT]
+
++ Parameters
+    - id: `0` (number) - ID СМРЛП
+
++ Request (application/json)
+    + Attributes(AlgorithmParametersModify)
+
++ Response 201 (application/json; charset=utf-8)
+    + Attributes(object)
+
+
 # Group Настройки
 
 ## Настройки критериев МЯ для отдельного СМРЛП [/station/{id}/meteosettings]
@@ -1202,27 +1225,6 @@ Cправочник типов конических сечений для СМР
 
 + Response 200
 
-## Параметры алгоритмов обработки метео данных [/station/{id}/algorithmparameters]
-Получение параметров алгоритмов обработки метео данных
-
-### Получить текущее состояние [GET]
-
-+ Parameters
-    - id: `0` (number) - ID СМРЛП
-
-+ Response 200 (application/json; charset=utf-8)
-    + Attributes(AlgorithmParameters)
-
-### Обновить параметры [PUT]
-
-+ Parameters
-    - id: `0` (number) - ID СМРЛП
-
-+ Request (application/json)
-    + Attributes(AlgorithmParametersModify)
-
-+ Response 201 (application/json; charset=utf-8)
-    + Attributes(object)
 
 # Group Настройки пользователя
 
