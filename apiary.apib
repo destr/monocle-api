@@ -1054,6 +1054,18 @@ Cправочник типов конических сечений для СМР
     + Attributes(array[number])
         + Sample: 2, 4, 5
 
+### Переименовать расписание [POST]
+
++ Request (application/json)
+    + Attributes(object, fixed-type)
+        * name: `new_schedule_name` (string) - Новое имя расписания
+
++ Response 201
+
+    + Header
+
+            Location: /schedule/{name} - URL-escaped путь
+
 ### Удалить расписание [DELETE]
 + Response 204
 
