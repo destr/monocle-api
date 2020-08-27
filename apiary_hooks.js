@@ -98,7 +98,15 @@ hooks.before('СМРЛП > Управление КМО > Удалить КМО',
 hooks.before('СМРЛП > Установить существующую карту местных отражений > Установить КМО', function(transaction) { transaction.skip = true; });
 hooks.before('СМРЛП > Отменить использование карты местных отражений > Отменить использование карты местных отражений', function(transaction) { transaction.skip = true; });
 
+hooks.before('СМРЛП > Рабочая КМО для программы > Получить', function(transaction) {
+  transaction.skip = true;
+});
+
 hooks.before('СМРЛП > Рабочая КМО для программы > Установить для программы рабочую КМО', function(transaction) {
+  transaction.skip = true;
+});
+
+hooks.before('СМРЛП > Рабочая КМО для программы > Удалить для программы рабочую КМО', function(transaction) {
   transaction.skip = true;
 });
 
