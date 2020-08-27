@@ -219,6 +219,53 @@ API для получения радиолокационных данных. В�
 ### Отменить использование карты местных отражений [POST]
 + Response 200
 
+## Рабочие КМО для программ [/station/{id}/program_lrm_map/list]
+
+Работа по списком рабочих КМО для программ (для всей АС СМРЛП)
+
+### Получить список рабочих КМО для программ [GET]
+
++ Response 200 (application/json; charset=utf-8)
+    + Attributes(object)
+        - count: 0 (number) - Количество элементов
+        - items (array[ProgramLocalReflectionMapItem])
+
++ Response 404
+
+
+## Рабочая КМО для программы [/station/{id}/program_lrm_map/{program_id}]
+
+Работа с рабочей КМО для программы (для всей АС СМРЛП)
+
++ Parameters
+    + id: `default` (string) - Уникальный идентификтор программы
+
+### Получить [GET]
+
++ Response 200 (application/json; charset=utf-8)
+    + Attributes(ProgramLocalReflectionMapItem)
+
++ Response 404
+
++ Response 204
+
+### Установить для программы рабочую КМО [POST /station/{id}/program_lrm_map]
+
++ Request (application/json)
+    + Attributes (ProgramLocalReflectionMapItem)
+
++ Response 201 (application/json; charset=utf-8)
+
++ Response 422 (application/json)
+
+### Удалить для программы рабочую КМО [DELETE]
+
++ Response 410
+
++ Response 204
+
++ Response 404
+
 ## Запустить работу СМРЛП по программе [/station/{id}/program/{program_id}/start]
 
 Запуск работы СМРЛП по указанной программе
@@ -2111,6 +2158,12 @@ Cправочник типов конических сечений для СМР
     - timetable_enabled: false (boolean) - Признак работы по расписанию
     - title: `TITLE` (string) - Название программы
     - timetable_id: `view` (string)  - Уникальный идентификатор расписания
+
+## ProgramLocalReflectionMapItem(object, fixed-type)
+Значение рабочей КМО для программы
+### Properties
+- program_id: `view` (string) - ID программы
+- lrm_id: `29.02.2020-view` (string) - ID рабочей КМО
 
 ## WeatherCriteriaBaseItem(object, fixed-type)
 ### Properties

@@ -46,6 +46,9 @@
 /station/{id}/{product_type}/point/{?latitude}{?longitude}
 /program/list{?mode}{?title}{?limit}{?offset}
 /program/{id}
+/station/{id}/program_lrm_map/list
+  <200 ProgramLocalReflectionMapList
+/station/{id}/program_lrm_map/{program_id}
 /station_log/list{?type,station,from,to,limit,offset}
   <200 LogEntryList
 /settings/productrender
