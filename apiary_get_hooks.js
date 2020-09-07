@@ -70,6 +70,18 @@ hooks.before('СМРЛП > Запуск программы "КОНТРОЛЬ" д
 	transaction.skip = true;
 });
 
+hooks.before('СМРЛП > Рабочая КМО для программы > Получить', function(transaction) {
+  transaction.skip = true;
+});
+
+hooks.before('СМРЛП > Рабочая КМО для программы > Установить для программы рабочую КМО', function(transaction) {
+  transaction.skip = true;
+});
+
+hooks.before('СМРЛП > Рабочая КМО для программы > Удалить для программы рабочую КМО', function(transaction) {
+  transaction.skip = true;
+});
+
 hooks.before('СМРЛП > Текущие значения параметров работы МРЛС > Получить', function(transaction) {
 });
 
