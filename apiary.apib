@@ -1121,6 +1121,13 @@ Cправочник типов конических сечений для СМР
 
 + Response 204
 
++ Response 409 (application/json; charset=utf-8)
+    + Attributes(object, fixed-type)
+        - used_on (array) - Список названий постов на которых используется расписание
+            - (object)
+              * station_id: `1` (number) -  Идентификатор станции
+              * station_title: `Орловка` (string) - Название станции
+
 ## Журнал событий [/station_log/list{?type,station,from,to,limit,offset}]
 
 Получение журнала событий заданного СМРЛП

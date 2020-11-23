@@ -166,7 +166,7 @@ class ApibGen:
                     self.re[re.url] = re
                     print(re.url)
 
-                    for m in ('GET', 'POST', 'PUT', None):
+                    for m in ('GET', 'POST', 'PUT', 'DELETE', None):
                         for code in re.codes(m):
                             cname = self.map.classname(m, re.url, code)
                             if cname is None:
